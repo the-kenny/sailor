@@ -404,7 +404,7 @@ defmodule Sailor.Handshake do
       encrypt_key: encrypt_key,
       decrypt_key: decrypt_key,
       encrypt_nonce: encrypt_nonce,
-      decrypt_none: decrypt_nonce,
+      decrypt_nonce: decrypt_nonce,
     }
 
     {:ok, keys}
