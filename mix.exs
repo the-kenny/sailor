@@ -14,6 +14,7 @@ defmodule Sailor.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
+      mod: {Sailor.Application, []},
       extra_applications: [:logger]
     ]
   end
@@ -21,10 +22,8 @@ defmodule Sailor.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      # {:salty, "~> 0.1.3", hex: :libsalty}
-      {:salty, "~> 0.1.3", git: "https://github.com/the-kenny/libsalty.git", branch: "add-ed-to-curve-conversion-functions"}
-      # {:dep_from_hexpm, "~> 0.3.0"},
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
+      {:salty, "~> 0.1.3", git: "https://github.com/the-kenny/libsalty.git", branch: "add-ed-to-curve-conversion-functions"},
+      {:jason, "~> 1.1"},
     ]
   end
 end

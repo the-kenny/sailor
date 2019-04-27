@@ -1,24 +1,76 @@
 require Salty.Auth
 require Salty.Box
+require Jason
 
 defmodule Sailor.Handshake.Keypair do
-  defstruct [:type, :pub, :sec]
+  defstruct [:curve, :pub, :sec]
+
+  def from_id(id) do
+    with <<"@", pub_base64 :: bytes-size(44), ".", curve :: binary>> <- id,
+         {:ok, pub} <- Base.decode64(pub_base64)
+    do
+      keypair = %__MODULE__{
+        curve: String.to_existing_atom(curve),
+        pub: pub,
+      }
+
+      {:ok, keypair}
+    else
+      _ -> :error
+    end
+  end
+
+  def load_secret(path) do
+    with {:ok, contents} <- File.read(Path.expand(path)),
+         json_str = contents |> String.split("\n") |> Enum.filter(fn s -> !String.starts_with?(s, "#") end) |> Enum.join(),
+    do: from_secret(json_str)
+  end
+
+  def from_secret(json_str) do
+    with {:ok, json} <- Jason.decode(json_str)
+    do
+      [private_base64, "ed25519"] = String.split(json["private"], ".")
+      [public_base64, "ed25519"] = String.split(json["public"], ".")
+
+      keypair = %__MODULE__{
+        curve: String.to_atom(json["curve"]),
+        sec: Base.decode64!(private_base64),
+        pub: Base.decode64!(public_base64),
+      }
+
+      {:ok, keypair}
+    end
+  end
+
+  def to_secret(keypair) do
+    base64_pub = Base.encode64 keypair.pub
+    base64_sec = Base.encode64 keypair.sec
+    curve = to_string keypair.curve
+    Jason.encode! %{
+      curve: curve,
+      public: base64_pub <> "." <> curve,
+      private: base64_sec <> "." <> curve,
+      id: id(keypair)
+    }
+  end
+
+  def id(keypair) do
+    "@" <> Base.encode64(keypair.pub) <> "." <> to_string keypair.curve
+  end
 
   def random() do
     {:ok, pub, sec} = Salty.Sign.Ed25519.keypair
     true = Salty.Sign.Ed25519.publickeybytes == byte_size(pub)
     true = Salty.Sign.Ed25519.secretkeybytes == byte_size(sec)
-    %__MODULE__{type: :ed25519, pub: pub, sec: sec}
+    %__MODULE__{curve: :ed25519, pub: pub, sec: sec}
   end
 
   def randomCurve25519() do
     {:ok, pub, sec} = Salty.Box.primitive.keypair
     true = Salty.Box.primitive.publickeybytes == byte_size(pub)
     true = Salty.Box.primitive.secretkeybytes == byte_size(sec)
-    %__MODULE__{type: :curve25519, pub: pub, sec: sec}
+    %__MODULE__{curve: :curve25519, pub: pub, sec: sec}
   end
-
-
 end
 
 defmodule Sailor.Handshake do
@@ -53,7 +105,7 @@ defmodule Sailor.Handshake do
       #   )
       # )
 
-      data = state.network_identifier <> state.shared_secret_ab <> state.shared_secret_aB <> state.shared_secret_Ab
+    data = state.network_identifier <> state.shared_secret_ab <> state.shared_secret_aB <> state.shared_secret_Ab
     1024 = bit_size(data)
 
     {:ok, shared_secret} = Salty.Hash.Sha256.hash(data)
@@ -71,13 +123,13 @@ defmodule Sailor.Handshake do
   end
 
   def hello_challenge(state) do
-    {:ok, nacl_auth} = Salty.Auth.Hmacsha256.auth(state.ephemeral.pub, state.network_identifier)
+    {:ok, nacl_auth} = Salty.Auth.primitive.auth(state.ephemeral.pub, state.network_identifier)
     nacl_auth <> state.ephemeral.pub
   end
 
   def verify_hello(state, <<msg :: bytes-size(64)>>) do
     <<hmac :: bytes-size(32), other_ephemeral_pub :: bytes-size(32)>> = msg
-    :ok = Salty.Auth.Hmacsha256.verify(hmac, other_ephemeral_pub, state.network_identifier)
+    :ok = Salty.Auth.primitive.verify(hmac, other_ephemeral_pub, state.network_identifier)
     state = %{state | other_ephemeral: %Keypair{pub: other_ephemeral_pub}}
     {:ok, state}
   end
@@ -86,7 +138,6 @@ defmodule Sailor.Handshake do
     {:ok, shared_secret_ab} = Salty.Scalarmult.Curve25519.scalarmult(state.ephemeral.sec, state.other_ephemeral.pub)
 
     server? = state.other_pubkey == nil
-    client? = !server?
 
     # If `other_pubkey` is nil we're on the server (as the client didn't send its pubkey yet)
     {:ok, shared_secret_aB} = if server? do
@@ -306,11 +357,11 @@ defmodule Sailor.Handshake do
     #   )
     # )
 
-    {:ok, sha256_secretbox_key} = Salty.Hash.Sha256.hash client.network_identifier <> client.shared_secret_ab <> client.shared_secret_aB <> client.shared_secret_Ab
+    {:ok, secretbox_key} = Salty.Hash.Sha256.hash client.network_identifier <> client.shared_secret_ab <> client.shared_secret_aB <> client.shared_secret_Ab
     {:ok, detached_signature_b} = Salty.Secretbox.primitive.open(
       msg,
       :binary.copy(<<0>>, 24),
-      sha256_secretbox_key
+      secretbox_key
     )
 
     # assert_nacl_sign_verify_detached(
@@ -334,6 +385,29 @@ defmodule Sailor.Handshake do
     client = %{client | detached_signature_b: detached_signature_b}
 
     {:ok, client}
+  end
+
+  def boxstream_keys(state) do
+    import Salty.Hash.Sha256, only: [hash: 1]
+
+    {:ok, shared_secret} = shared_secret(state)
+    {:ok, sha256_shared_secret} = hash(shared_secret)
+
+    {:ok, encrypt_key} = hash(sha256_shared_secret <> state.other_pubkey)
+    {:ok, decrypt_key} = hash(sha256_shared_secret <> state.identity.pub)
+
+    encrypt_nonce = binary_part(state.other_ephemeral.pub, 0, 24)
+    decrypt_nonce = binary_part(state.ephemeral.pub, 0, 24)
+
+    keys = %{
+      shared_secret: shared_secret,
+      encrypt_key: encrypt_key,
+      decrypt_key: decrypt_key,
+      encrypt_nonce: encrypt_nonce,
+      decrypt_none: decrypt_nonce,
+    }
+
+    {:ok, keys}
   end
 end
 
