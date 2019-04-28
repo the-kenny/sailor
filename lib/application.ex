@@ -4,13 +4,14 @@ defmodule Sailor.Application do
   def start(_type, _args) do
     {:ok, identity_keypair} = Sailor.Handshake.Keypair.load_secret "~/.ssb/secret"
     network_identifier = Sailor.Handshake.default_appkey
+    port = 8008
 
     children = [
       {Sailor.Identity, [identity_keypair, network_identifier]},
       # Sailor.Discovery
 
       {DynamicSupervisor, strategy: :one_for_one, name: Sailor.PeerSupervisor},
-      {Sailor.SSBServer, []}
+      {Sailor.SSBServer, [port, identity_keypair]}
     ]
     opts = [strategy: :one_for_one, name: Sailor.Supervisor]
     Supervisor.start_link(children, opts)
