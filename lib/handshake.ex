@@ -74,7 +74,8 @@ defmodule Sailor.Handshake.Keypair do
 end
 
 defmodule Sailor.Handshake do
-  require Sailor.Handshake.Keypair, as: Keypair
+  alias Sailor.Handshake.Keypair, as: Keypair
+  require Logger
 
   @appkey Base.decode64!("1KHLiKZvAvjbY1ziZEHMXawbCEIM6qwjCDm3VYRan/s=")
 
@@ -187,7 +188,9 @@ defmodule Sailor.Handshake do
     # Make sure to run this only on the client
     true = (state.other_pubkey != nil)
 
-    IO.inspect state
+    # Some safeguards
+    true = (state.shared_secret_ab != nil)
+    true = (state.shared_secret_aB != nil)
 
     {:ok, sha256_shared_secret_ab} = Salty.Hash.Sha256.hash(state.shared_secret_ab)
     {:ok, detached_signature_a} = Salty.Sign.Ed25519.sign_detached(
@@ -238,6 +241,10 @@ defmodule Sailor.Handshake do
   def verify_client_authenticate(state, msg) do
     # Make sure to run this only on the server
     nil = state.other_pubkey
+
+    # Some safeguards
+    true = (state.shared_secret_ab != nil)
+    true = (state.shared_secret_aB != nil)
 
     # msg3_plaintext = assert_nacl_secretbox_open(
     #   ciphertext: msg3,

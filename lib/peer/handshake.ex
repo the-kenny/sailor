@@ -19,6 +19,8 @@ defmodule Sailor.Peer.Handshake do
 
     {:ok, handshake} = H.verify_hello(handshake, client_hello)
 
+    {:ok, handshake} = H.derive_secrets(handshake)
+
     server_hello = H.hello_challenge(handshake)
     :ok = :gen_tcp.send(socket, server_hello)
 
@@ -44,6 +46,8 @@ defmodule Sailor.Peer.Handshake do
 
     {:ok, server_hello} = :gen_tcp.recv(socket, 64)
     {:ok, handshake} = H.verify_hello(handshake, server_hello)
+
+    {:ok, handshake} = H.derive_secrets(handshake)
 
     {:ok, handshake, client_authenticate} = H.client_authenticate(handshake)
     :ok = :gen_tcp.send(socket, client_authenticate)
