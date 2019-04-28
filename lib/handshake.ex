@@ -399,15 +399,13 @@ defmodule Sailor.Handshake do
     encrypt_nonce = binary_part(state.other_ephemeral.pub, 0, 24)
     decrypt_nonce = binary_part(state.ephemeral.pub, 0, 24)
 
-    keys = %{
+    %{
       shared_secret: shared_secret,
       encrypt_key: encrypt_key,
       decrypt_key: decrypt_key,
       encrypt_nonce: encrypt_nonce,
       decrypt_nonce: decrypt_nonce,
     }
-
-    {:ok, keys}
   end
 end
 

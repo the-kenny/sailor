@@ -1,0 +1,60 @@
+defmodule Sailor.BoxstreamTest do
+  use ExUnit.Case
+  doctest Sailor.Boxstream
+
+  alias Sailor.Boxstream
+
+  def finished_handshake() do
+    alias Sailor.Handshake
+    network_identifier = Handshake.default_appkey
+    server_identity = Handshake.Keypair.random()
+    client_identity = Handshake.Keypair.random()
+
+    server = Handshake.create(server_identity, nil, network_identifier)
+    client = Handshake.create(client_identity, server_identity.pub, network_identifier)
+
+    {:ok, server} = Handshake.verify_hello(server, Handshake.hello_challenge(client))
+    {:ok, client} = Handshake.verify_hello(client, Handshake.hello_challenge(server))
+
+    {:ok, server} = Handshake.derive_secrets(server)
+    {:ok, client} = Handshake.derive_secrets(client)
+
+    {:ok, client, client_authenticate_msg} = Handshake.client_authenticate(client)
+    {:ok, server} = Handshake.verify_client_authenticate(server, client_authenticate_msg)
+
+    {:ok, server, server_accept_msg} = Handshake.server_accept(server)
+    {:ok, client} = Handshake.verify_server_accept(client, server_accept_msg)
+
+    {:ok, server_shared_secret} = Handshake.shared_secret(server)
+    {:ok, client_shared_secret} = Handshake.shared_secret(client)
+
+    {server, client}
+  end
+
+  test "inc_nonce" do
+    assert Boxstream.inc_nonce(<<0>>) == <<1>>
+    assert Boxstream.inc_nonce(<<0, 42>>) == <<0, 43>>
+    assert Boxstream.inc_nonce(<<255, 255>>) == <<0, 0>>
+    assert Boxstream.inc_nonce(<<255, 0, 255>>) == <<255, 1, 0>>
+    assert Boxstream.inc_nonce(:binary.copy(<<255>>, 256)) == :binary.copy(<<0>>, 256)
+  end
+
+  test "encrypt-decrypt" do
+    {server, client} = finished_handshake()
+    {:ok, server_encrypt, _server_decrypt} = Boxstream.create(Sailor.Handshake.boxstream_keys(server))
+    {:ok, _client_encrypt, client_decrypt} = Boxstream.create(Sailor.Handshake.boxstream_keys(client))
+
+    {:ok, _, close_msg} = Boxstream.close(server_encrypt)
+    :closed = Boxstream.decrypt(client_decrypt, close_msg)
+
+    Enum.each(1..100, fn _ ->
+      assert {:ok, server_encrypt, message} = Boxstream.encrypt(server_encrypt, <<"HELLO">>)
+      # Check that a :missing_data error is returned when `message` is missing data
+      assert {:error, :missing_data} = Boxstream.decrypt(client_decrypt, binary_part(message, 0, byte_size(message)-2))
+
+      assert {:ok, _client_decrypt, <<"HELLO">>, unused_bytes} = Boxstream.decrypt(client_decrypt, message)
+      # Check that extra data is returned in `unused_bytes` after decryption
+      assert {:ok, _client_decrypt, <<"HELLO">>, <<"foo">>} = Boxstream.decrypt(client_decrypt, message <> <<"foo">>)
+    end)
+  end
+end
