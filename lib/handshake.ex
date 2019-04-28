@@ -83,6 +83,7 @@ defmodule Sailor.Handshake do
   defstruct [
     identity: %Keypair{},
     ephemeral: {<<>>, <<>>},
+    # TODO: Refactor and use `Keypair` for convenience formatting functions
     other_pubkey: <<>>,
     other_ephemeral: %Keypair{},
     network_identifier: <<>>,
@@ -185,6 +186,8 @@ defmodule Sailor.Handshake do
   def client_authenticate(state) do
     # Make sure to run this only on the client
     true = (state.other_pubkey != nil)
+
+    IO.inspect state
 
     {:ok, sha256_shared_secret_ab} = Salty.Hash.Sha256.hash(state.shared_secret_ab)
     {:ok, detached_signature_a} = Salty.Sign.Ed25519.sign_detached(
