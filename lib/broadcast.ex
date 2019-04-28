@@ -17,6 +17,7 @@ defmodule Sailor.Broadcast do
   def handle_info(:broadcast, {socket, keypair} = state) do
     {:ok, {_ip, port}} = :inet.sockname(socket)
     {:ok, interfaces} = :inet.getif()
+    interfaces = Enum.filter(interfaces, fn {ip, _, _} -> ip != {127,0,0,1} end)
     Enum.each interfaces, fn {ip, _, _} ->
       message = "net:" <> to_string(:inet.ntoa(ip)) <> ":" <> Integer.to_string(port) <> "~shs:" <> Base.encode64(keypair.pub)
       Logger.debug "Broadcasting #{message}"
@@ -28,7 +29,7 @@ defmodule Sailor.Broadcast do
 
   def handle_info({:udp, _socket, _address, _port, data}, state) do
     # punt the data to a new function that will do pattern matching
-    # IO.inspect data
+    IO.inspect data
     {:noreply, state}
   end
 end
