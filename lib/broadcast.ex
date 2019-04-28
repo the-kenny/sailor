@@ -36,10 +36,10 @@ defmodule Sailor.Broadcast do
           {port, ""} <- Integer.parse(port),
           keypair = %Keypair{curve: :ed25519, pub: public_key}
     do
-      Logger.info("Received broadcast from #{Keypair.id keypair} at #{inspect {ip, port}}")
+      Logger.debug("Received broadcast from #{Keypair.id keypair} at #{inspect {ip, port}}")
       {:ok, {keypair, ip, port}}
     else
-      err -> Logger.error(inspect err)
+      _ -> Logger.error("Failed to parse UDP broadcast: #{inspect data}")
     end
 
     {:noreply, state}
