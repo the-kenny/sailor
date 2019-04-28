@@ -28,8 +28,20 @@ defmodule Sailor.Broadcast do
   end
 
   def handle_info({:udp, _socket, _address, _port, data}, state) do
-    # punt the data to a new function that will do pattern matching
-    IO.inspect data
+    alias Sailor.Handshake.Keypair
+    Logger.debug "Received UDP broadcast: #{data}"
+    with [^data, ip, port, public_key] <- Regex.run(~r/^net:(.+):(\d+)~shs:(.+)$/, data),
+          {:ok, public_key} <- Base.decode64(public_key),
+          {:ok, ip} <- :inet.parse_address(to_charlist ip),
+          {port, ""} <- Integer.parse(port),
+          keypair = %Keypair{curve: :ed25519, pub: public_key}
+    do
+      Logger.info("Received broadcast from #{Keypair.id keypair} at #{inspect {ip, port}}")
+      {:ok, {keypair, ip, port}}
+    else
+      err -> Logger.error(inspect err)
+    end
+
     {:noreply, state}
   end
 end
