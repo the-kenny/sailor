@@ -3,15 +3,17 @@ defmodule Sailor.Peer do
 
   require Logger
 
+  # TODO: Pass identity as arg
+
   # Start as a Client peer
-  def start_link(socket, server_pubkey) do
+  def start_link([socket, {:client, server_pubkey}]) do
     identity = Sailor.Identity.keypair
     network_identifier = Sailor.Identity.network_identifier
     GenServer.start_link(__MODULE__, [socket, {identity, server_pubkey, network_identifier}])
   end
 
   # Start as a Server peer
-  def start_link(socket) do
+  def start_link([socket, :server]) do
     identity = Sailor.Identity.keypair
     network_identifier = Sailor.Identity.network_identifier
     GenServer.start_link(__MODULE__, [socket, {identity, network_identifier}])

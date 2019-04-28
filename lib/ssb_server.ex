@@ -19,7 +19,7 @@ defmodule Sailor.SSBServer do
     {:ok, client_socket} = :gen_tcp.accept(socket)
     Logger.info "Got Client on: #{inspect client_socket}"
 
-    {:ok, peer} = DynamicSupervisor.start_child(Sailor.PeerSupervisor, {Sailor.Peer, client_socket})
+    {:ok, peer} = DynamicSupervisor.start_child(Sailor.PeerSupervisor, {Sailor.Peer, [client_socket, :server]})
     :ok = :gen_tcp.controlling_process(client_socket, peer)
 
     acceptor_loop(socket)
