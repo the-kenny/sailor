@@ -10,7 +10,7 @@ defmodule Sailor.Application do
       {Sailor.Identity, [identity_keypair, network_identifier]},
       {DynamicSupervisor, strategy: :one_for_one, name: Sailor.PeerSupervisor},
       {Sailor.SSBServer, [port, identity_keypair]},
-      {Sailor.Discovery, [port, identity_keypair]},
+      {Sailor.Broadcast, [port, identity_keypair]},
     ]
     opts = [strategy: :one_for_one, name: Sailor.Supervisor]
     Supervisor.start_link(children, opts)
