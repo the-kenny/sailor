@@ -3,11 +3,8 @@ defmodule Sailor.Discovery do
 
   use GenServer
 
-  def start_link([]) do
-    port = 8008
-    keypair = Keypair.random
-
-    GenServer.start_link(__MODULE__, {port, keypair}) # Start 'er up
+  def start_link([port, identity]) do
+    GenServer.start_link(__MODULE__, {port, identity})
   end
 
   def init({port, keypair}) do
