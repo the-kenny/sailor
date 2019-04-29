@@ -8,21 +8,17 @@ defmodule Sailor.Boxstream do
 
   defstruct [
     shared_secret: nil,
-    box_key: nil,
     nonce: nil,
   ]
 
-
-  def create(keys) do
+  def create(keys) do\
     encrypt = %__MODULE__{
-      shared_secret: keys.shared_secret,
-      box_key: keys.encrypt_key,
+      shared_secret: keys.encrypt_key,
       nonce: keys.encrypt_nonce,
     }
 
     decrypt = %__MODULE__{
-      shared_secret: keys.shared_secret,
-      box_key: keys.decrypt_key,
+      shared_secret: keys.decrypt_key,
       nonce: keys.decrypt_nonce,
     }
 
@@ -73,7 +69,20 @@ defmodule Sailor.Boxstream do
     {:ok, %{boxstream | nonce: inc_nonce(header_nonce)}, encrypted_header}
   end
 
-  def decrypt(boxstream, msg) do
+  def decrypt(boxstream, buffer, msgs \\ []) do
+    case decrypt_message(boxstream, buffer) do
+      :closed -> {:closed, msgs}
+      {:error, :missing_data} -> {:ok, boxstream, msgs, buffer}
+      {:ok, boxstream, plaintext_body, rest} -> decrypt(boxstream, rest, msgs ++ [plaintext_body])
+      err -> err
+    end
+  end
+
+  def decrypt_message(_boxstream, msg) when byte_size(msg) < 34 do
+    {:error, :missing_data}
+  end
+
+  def decrypt_message(boxstream, msg) do
     header_nonce = boxstream.nonce
     body_nonce = inc_nonce(boxstream.nonce)
 

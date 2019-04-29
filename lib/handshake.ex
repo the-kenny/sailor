@@ -406,11 +406,13 @@ defmodule Sailor.Handshake do
     {:ok, encrypt_key} = hash(sha256_shared_secret <> state.other_pubkey)
     {:ok, decrypt_key} = hash(sha256_shared_secret <> state.identity.pub)
 
-    encrypt_nonce = binary_part(state.other_ephemeral.pub, 0, 24)
-    decrypt_nonce = binary_part(state.ephemeral.pub, 0, 24)
+    {:ok, <<encrypt_nonce :: bytes-size(24), _ :: binary>>} = Salty.Auth.primitive.auth(state.other_ephemeral.pub, state.network_identifier)
+    {:ok, <<decrypt_nonce :: bytes-size(24), _ :: binary>>} = Salty.Auth.primitive.auth(state.ephemeral.pub, state.network_identifier)
+
+    24 = byte_size(encrypt_nonce)
+    24 = byte_size(decrypt_nonce)
 
     %{
-      shared_secret: shared_secret,
       encrypt_key: encrypt_key,
       decrypt_key: decrypt_key,
       encrypt_nonce: encrypt_nonce,

@@ -70,7 +70,6 @@ defmodule Sailor.HandshakeTest do
     boxstream_client = Handshake.boxstream_keys(client)
     boxstream_server = Handshake.boxstream_keys(server)
 
-    assert boxstream_client.shared_secret == boxstream_server.shared_secret
     assert boxstream_client.encrypt_key == boxstream_server.decrypt_key
     assert boxstream_client.decrypt_key == boxstream_server.encrypt_key
 

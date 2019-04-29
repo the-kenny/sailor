@@ -25,9 +25,6 @@ defmodule Sailor.BoxstreamTest do
     {:ok, server, server_accept_msg} = Handshake.server_accept(server)
     {:ok, client} = Handshake.verify_server_accept(client, server_accept_msg)
 
-    {:ok, server_shared_secret} = Handshake.shared_secret(server)
-    {:ok, client_shared_secret} = Handshake.shared_secret(client)
-
     {server, client}
   end
 
@@ -45,16 +42,17 @@ defmodule Sailor.BoxstreamTest do
     {:ok, _client_encrypt, client_decrypt} = Boxstream.create(Sailor.Handshake.boxstream_keys(client))
 
     {:ok, _, close_msg} = Boxstream.close(server_encrypt)
-    :closed = Boxstream.decrypt(client_decrypt, close_msg)
+    {:closed, []} = Boxstream.decrypt(client_decrypt, close_msg)
 
-    Enum.each(1..100, fn _ ->
+    Enum.each(1..5, fn _ ->
       assert {:ok, server_encrypt, message} = Boxstream.encrypt(server_encrypt, <<"HELLO">>)
-      # Check that a :missing_data error is returned when `message` is missing data
-      assert {:error, :missing_data} = Boxstream.decrypt(client_decrypt, binary_part(message, 0, byte_size(message)-2))
+      # Check no messages are returned and the internal state isn't changed when there is not enough data for decryption
+      incomplete_message = binary_part(message, 0, byte_size(message)-2)
+      assert {:ok, ^client_decrypt, [], ^incomplete_message} = Boxstream.decrypt(client_decrypt, incomplete_message)
 
-      assert {:ok, _client_decrypt, <<"HELLO">>, unused_bytes} = Boxstream.decrypt(client_decrypt, message)
+      assert {:ok, _client_decrypt, [<<"HELLO">>], unused_bytes} = Boxstream.decrypt(client_decrypt, message)
       # Check that extra data is returned in `unused_bytes` after decryption
-      assert {:ok, _client_decrypt, <<"HELLO">>, <<"foo">>} = Boxstream.decrypt(client_decrypt, message <> <<"foo">>)
+      assert {:ok, _client_decrypt, [<<"HELLO">>], <<"foo">>} = Boxstream.decrypt(client_decrypt, message <> <<"foo">>)
     end)
   end
 end
