@@ -81,23 +81,17 @@ defmodule Sailor.Peer do
     us = handshake.identity
     Logger.info "Successful handshake between #{Keypair.id(us)} (us) and #{Keypair.id(them)} (them)"
 
-    # {:ok, bytes} = :gen_tcp.recv(state.socket, 0) # Read remaining bytes to clear buffer
-    # Logger.debug "Read bytes from socket before switching to active mode: #{inspect bytes}"
-    # :ok = :inet.setopts(state.socket, [active: true])
-
     {:ok, encrypt, decrypt} = Boxstream.create(Handshake.boxstream_keys(handshake))
 
-    Task.start(fn ->
+    Task.start_link(fn ->
       {:ok, read} = Sailor.Boxstream.IO.reader(socket, decrypt);
       IO.binstream(read, 1) |> Stream.each(&IO.inspect(&1)) |> Stream.run
     end)
 
-
-    {:ok, writer} = Sailor.Boxstream.IO.writer(socket, encrypt)
-    Task.start(fn -> IO.binwrite(writer, <<"HELLO">>) end)
-
-    # {:ok, _boxstream, message} = Boxstream.encrypt(encrypt, <<"HELLO">>)
-    # :ok = :gen_tcp.send(socket, message);
+    Task.start_link(fn ->
+      {:ok, writer} = Sailor.Boxstream.IO.writer(socket, encrypt)
+      IO.binwrite(writer, <<"HELLO">>)
+    end)
 
     {:noreply, state}
   end
