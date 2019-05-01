@@ -1,5 +1,5 @@
 %{
   "elixir_make": {:hex, :elixir_make, "0.5.2", "96a28c79f5b8d34879cd95ebc04d2a0d678cfbbd3e74c43cb63a76adf0ee8054", [:mix], [], "hexpm"},
   "jason": {:hex, :jason, "1.1.2", "b03dedea67a99223a2eaf9f1264ce37154564de899fd3d8b9a21b1a6fd64afe7", [:mix], [{:decimal, "~> 1.0", [hex: :decimal, repo: "hexpm", optional: true]}], "hexpm"},
-  "salty": {:git, "https://github.com/the-kenny/libsalty.git", "514ffcc9d5ece3200652880ec21e602d0898448f", [branch: "add-ed-to-curve-conversion-functions"]},
+  "salty": {:git, "https://github.com/the-kenny/libsalty.git", "1c2c00b15ba5a0144e20077e9cb676d786e0436a", [branch: "add-ed-to-curve-conversion-functions"]},
 }

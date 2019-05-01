@@ -1,5 +1,7 @@
 # TODO: We might be able to implement this as a Stream via `Stream.transform`: https://hexdocs.pm/elixir/Stream.html
 
+require Stream
+
 defmodule Sailor.Boxstream do
   require Bitwise
 
@@ -69,12 +71,11 @@ defmodule Sailor.Boxstream do
     {:ok, %{boxstream | nonce: inc_nonce(header_nonce)}, encrypted_header}
   end
 
-  def decrypt(boxstream, buffer, msgs \\ []) do
+  def decrypt(boxstream, buffer, chunks \\ []) do
     case decrypt_message(boxstream, buffer) do
-      :closed -> {:closed, msgs}
-      {:error, :missing_data} -> {:ok, boxstream, msgs, buffer}
-      {:ok, boxstream, plaintext_body, rest} -> decrypt(boxstream, rest, msgs ++ [plaintext_body])
-      err -> err
+      :closed -> {:closed, chunks}
+      {:error, :missing_data} -> {:ok, boxstream, chunks, buffer}
+      {:ok, boxstream, chunk, rest} -> decrypt(boxstream, rest, chunks ++ [chunk])
     end
   end
 
@@ -101,7 +102,7 @@ defmodule Sailor.Boxstream do
         {:error, :missing_data}
       else
         <<body :: bytes-size(body_length), rest :: binary>> = rest
-        {:ok, plaintext_body} = Box.open(
+        {:ok, chunk} = Box.open(
           secret_box2 <> body,
           body_nonce,
           boxstream.shared_secret
@@ -109,7 +110,7 @@ defmodule Sailor.Boxstream do
 
         boxstream = %{boxstream | nonce: inc_nonce(body_nonce)}
 
-        {:ok, boxstream, plaintext_body, rest}
+        {:ok, boxstream, chunk, rest}
       end
     end
   end
@@ -124,5 +125,98 @@ defmodule Sailor.Boxstream do
       # Pad `new-nonce` to the size of `nonce`
       :binary.copy(<<0>>, byte_size(nonce) - byte_size(new_nonce)) <> new_nonce
     end
+  end
+end
+
+defmodule Sailor.Boxstream.IO do
+  use GenServer
+
+  alias Sailor.Boxstream
+
+  defstruct [
+    socket: nil,
+    boxstream: nil,
+    recv_buffer: nil,
+    decrypted_data: nil,
+  ]
+
+  def reader(socket, boxstream) do
+    GenServer.start(__MODULE__, [socket, boxstream])
+  end
+
+  def writer(socket, boxstream) do
+    {:ok, ref} = GenServer.start(__MODULE__, [socket, boxstream])
+    :ok = :gen_tcp.controlling_process(socket, ref)
+    {:ok, ref}
+  end
+
+  def init([socket, boxstream]) do
+    state = %__MODULE__{
+      socket: socket,
+      boxstream: boxstream,
+      recv_buffer: <<>>,
+      decrypted_data: <<>>,
+    }
+
+    {:ok, state}
+  end
+
+  defp read_available(state) do
+    {:ok, data} = :gen_tcp.recv(state.socket, 0)
+    recv_buffer = state.recv_buffer <> data
+    {:ok, %{state | recv_buffer: recv_buffer}}
+  end
+
+  defp decrypt_available(state) do
+    case Boxstream.decrypt(state.boxstream, state.recv_buffer) do
+      {:ok, boxstream, chunks, rest} -> {:ok, %{state |
+        boxstream: boxstream,
+        recv_buffer: rest,
+        decrypted_data: state.decrypted_data <> :erlang.iolist_to_binary(chunks),
+      }}
+    end
+  end
+
+  defp handle_read(from, reply_as, bytes_requested, state) do
+    if bytes_requested <= byte_size(state.decrypted_data) do
+      <<response :: binary-size(bytes_requested), rest :: binary>> = state.decrypted_data
+      :ok = Process.send(from, {:io_reply, reply_as, response}, [])
+      {:noreply, %{state | decrypted_data: rest}}
+    else
+      {:ok, state} = read_available(state)
+      {:ok, state} = decrypt_available(state)
+      handle_read(from, reply_as, bytes_requested, state)
+    end
+  end
+
+  def handle_info({:io_request, from, reply_as, {:get_chars, :"", n}}, state), do: handle_read(from, reply_as, n, state)
+  def handle_info({:io_request, from, reply_as, {:get_chars, _encoding, :"", n}}, state), do: handle_read(from, reply_as, n, state)
+
+  def handle_info({:io_request, from, reply_as, {:put_chars, _encoding, data}}, state) do
+    {:ok, boxstream, message} = Boxstream.encrypt(state.boxstream, data)
+    :ok = :gen_tcp.send(state.socket, message)
+    :ok = Process.send(from, {:io_reply, reply_as, :ok}, [])
+    {:noreply, %{state | boxstream: boxstream}}
+  end
+end
+
+defmodule Sailor.Boxstream.Stream do
+  require Logger
+
+  def chunks(socket, decrypting_boxstream) do
+    Stream.resource(
+      fn -> IO.inspect "xxx"; {decrypting_boxstream, <<>>} end,
+      fn {boxstream, buffer} ->
+        {:ok, data} = :gen_tcp.recv(socket, 0)
+        Logger.debug "Received data: #{inspect data}"
+        buffer = buffer <> data
+        case Sailor.Boxstream.decrypt(boxstream, buffer) do
+          {:ok, boxstream, chunks, rest} -> {chunks, {boxstream, rest}}
+          {:closed, []} -> {:halt, boxstream}
+          {:closed, chunks} -> {chunks, {boxstream, <<>>}}
+        end
+      end,
+      fn _boxstream -> nil end
+    )
   end
 end
