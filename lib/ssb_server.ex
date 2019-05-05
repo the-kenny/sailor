@@ -1,17 +1,24 @@
 defmodule Sailor.SSBServer do
-  use Task, restart: :permanent
+  use Task, restart: :transient
 
   require Logger
 
+  # TODO: Rewrite as `GenServer` and make socket active
 
   def start_link([port, identity]) do
     Task.start_link(__MODULE__, :accept, [port, identity])
   end
 
   def accept(port, identity) do
-    {:ok, listen_socket} = :gen_tcp.listen(port, [:binary, active: false, reuseaddr: true])
     Logger.info "Listening for peers on port #{inspect port}"
-    acceptor_loop(listen_socket, identity)
+    with {:ok, listen_socket} <- :gen_tcp.listen(port, [:binary, active: false, reuseaddr: true])
+    do
+      acceptor_loop(listen_socket, identity)
+    else
+      {:error, :eaddrinuse} ->
+        Logger.error "Can't start SSBServer: Address in use"
+        :ok
+    end
   end
 
   defp acceptor_loop(socket, identity) do
