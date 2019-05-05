@@ -1,7 +1,6 @@
 defmodule Sailor.Peer do
   use GenServer
 
-  alias Sailor.Boxstream
   require Logger
 
   defmodule State do
@@ -9,7 +8,7 @@ defmodule Sailor.Peer do
     ]
   end
 
-  def start_link([]) do
+  def start_link(_) do
     GenServer.start_link(__MODULE__, [])
   end
 
@@ -39,59 +38,37 @@ defmodule Sailor.Peer do
     {:noreply, %{state | socket: socket}}
   end
 
-  # defp handle_decryption_result({:error, :missing_data}, state) do
-  #   {:noreply, state}
-  # end
-
-  # defp handle_decryption_result({:ok, boxstream, messages, rest_data}, state) do
-  #   state = %{state |
-  #     buffer: rest_data,
-  #     decrypting_boxstream: boxstream,
-  #   }
-
-  #   Logger.info "Decrypted messages: #{inspect messages}"
-
-  #   # Respond with a closing message
-  #   # {:ok, encrypting_boxstream, close_msg} = Boxstream.close(state.encrypting_boxstream)
-  #   # :ok = :gen_tcp.send(state.socket, close_msg)
-
-  #   # state = %{state | encrypting_boxstream: encrypting_boxstream}
-
-  #   {:noreply, state}
-  # end
-
-  # def handle_info({:tcp, _socket, data}, state) do
-
-  #   state = %{state | buffer: state.buffer <> data}
-  #   Logger.debug "Buffer: #{inspect state.buffer}"
-  #   handle_decryption_result(Boxstream.decrypt(state.decrypting_boxstream, state.buffer), state)
-  # end
-
-  # def handle_info({:tcp_closed, socket}, state) do
-  #   {:stop, :normal, nil}
-  # end
-
   def handle_cast({:do_handshake, socket, handshake_data}, state) do
     alias Sailor.Handshake.Keypair
-    alias Sailor.Handshake
-    alias Sailor.Boxstream
 
     {:ok, handshake} = Sailor.Peer.Handshake.run(socket, handshake_data)
     them = %Keypair{pub: handshake.other_pubkey}
     us = handshake.identity
     Logger.info "Successful handshake between #{Keypair.id(us)} (us) and #{Keypair.id(them)} (them)"
 
-    {:ok, encrypt, decrypt} = Boxstream.create(Handshake.boxstream_keys(handshake))
+    {:ok, reader, writer} = Sailor.Boxstream.IO.open(socket, handshake)
 
     Task.start_link(fn ->
-      {:ok, read} = Sailor.Boxstream.IO.reader(socket, decrypt);
-      IO.binstream(read, 1) |> Stream.each(&IO.inspect(&1)) |> Stream.run
+      alias Sailor.Rpc
+      Enum.each 1..999, fn _i ->
+        <<packet_header :: binary>> = IO.binread(reader, 9)
+        content_length = Rpc.Packet.body_length(packet_header)
+        Logger.debug "Got packet header: type=#{Rpc.Packet.body_type(packet_header)} body_length=#{Rpc.Packet.body_length(packet_header)}"
+        <<packet_body :: binary>> = IO.binread(reader, content_length)
+        packet = packet_header <> packet_body
+        IO.inspect {
+          Rpc.Packet.request_number(packet),
+          Rpc.Packet.body_type(packet),
+          Rpc.Packet.body_length(packet),
+          packet_body
+        }
+      end
     end)
 
-    Task.start_link(fn ->
-      {:ok, writer} = Sailor.Boxstream.IO.writer(socket, encrypt)
-      IO.binwrite(writer, <<"HELLO">>)
-    end)
+    # Task.start_link(fn ->
+    #   {:ok, writer} = Sailor.Boxstream.IO.writer(socket, encrypt)
+    #   IO.binwrite(writer, <<"HELLO">>)
+    # end)
 
     {:noreply, state}
   end
