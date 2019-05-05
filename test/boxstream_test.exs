@@ -55,4 +55,22 @@ defmodule Sailor.BoxstreamTest do
       assert {:ok, _client_decrypt, [<<"HELLO">>], <<"foo">>} = Boxstream.decrypt(client_decrypt, message <> <<"foo">>)
     end)
   end
+
+  test "closing" do
+    {server, client} = finished_handshake()
+    {:ok, server_encrypt, _server_decrypt} = Boxstream.create(Sailor.Handshake.boxstream_keys(server))
+    {:ok, _client_encrypt, client_decrypt} = Boxstream.create(Sailor.Handshake.boxstream_keys(client))
+
+    {:ok, _, close_msg} = Boxstream.close(server_encrypt)
+    {:closed, []} = Boxstream.decrypt(client_decrypt, close_msg)
+    {:closed, []} = Boxstream.decrypt(client_decrypt, close_msg)
+  end
+end
+
+defmodule Sailor.Boxstream.IOTest do
+  use ExUnit.Case
+  doctest Sailor.Boxstream
+
+  alias Sailor.Boxstream
+
 end
