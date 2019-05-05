@@ -10,8 +10,14 @@ defmodule Sailor.Broadcast do
   def init({port, keypair}) do
     :timer.send_interval 5*1000, :broadcast
 
-    {:ok, socket} = :gen_udp.open(port, [:binary, active: true, broadcast: true])
-    {:ok, {socket, keypair}}
+    with {:ok, socket} <- :gen_udp.open(port, [:binary, active: true, broadcast: true])
+    do
+      {:ok, {socket, keypair}}
+    else
+      {:error, :eaddrinuse} ->
+        Logger.warn "Couldn't start broadcast: Address in use"
+        :ignore
+    end
   end
 
   def handle_info(:broadcast, {socket, keypair} = state) do
