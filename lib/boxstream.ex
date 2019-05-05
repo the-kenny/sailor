@@ -79,6 +79,8 @@ defmodule Sailor.Boxstream do
     end
   end
 
+  @spec decrypt_chunk(any(), binary) :: :closed | {:error, term()} | {:ok, any(), binary(), binary()}
+
   def decrypt_chunk(_boxstream, chunk) when byte_size(chunk) < 34 do
     {:error, :missing_data}
   end
@@ -128,10 +130,12 @@ defmodule Sailor.Boxstream do
   end
 end
 
+# TODO: Correctly handle closed socket
 defmodule Sailor.Boxstream.IO do
   use GenServer
 
   alias Sailor.Boxstream
+  alias Sailor.Handshake
 
   defstruct [
     socket: nil,
@@ -139,6 +143,15 @@ defmodule Sailor.Boxstream.IO do
     recv_buffer: nil,
     decrypted_data: nil,
   ]
+
+  def open(socket, handshake) do
+    {:ok, encrypt, decrypt} = Boxstream.create(Handshake.boxstream_keys(handshake))
+    {:ok, reader} = reader(socket, decrypt);
+    {:ok, writer} = writer(socket, encrypt);
+
+    {:ok, reader, writer}
+  end
+
 
   # TODO: Is socket ownership handled correctly here?
   def reader(socket, boxstream) do
@@ -161,45 +174,67 @@ defmodule Sailor.Boxstream.IO do
   end
 
   defp read_available(state) do
-    {:ok, data} = :gen_tcp.recv(state.socket, 0)
-    recv_buffer = state.recv_buffer <> data
-    {:ok, %{state | recv_buffer: recv_buffer}}
-  end
-
-  defp decrypt_available(state) do
-    case Boxstream.decrypt(state.boxstream, state.recv_buffer) do
-      {:ok, boxstream, chunks, rest} -> {:ok, %{state |
-        boxstream: boxstream,
-        recv_buffer: rest,
-        decrypted_data: state.decrypted_data <> :erlang.iolist_to_binary(chunks),
-      }}
+    with {:ok, data} <- :gen_tcp.recv(state.socket, 0)
+    do
+      recv_buffer = state.recv_buffer <> data
+      {:ok, %{state | recv_buffer: recv_buffer}}
     end
   end
 
-  defp handle_read(from, reply_as, bytes_requested, state) when bytes_requested < 0 do
+  defp decrypt_available(state) do
+    # TODO: Handle `{:closed, chunks}` and `{:error, :missing_data}`.
+    # We have to propagate closed and can just ignore `:missing_data`
+    # as this function is automatically called in a loop
+    case Boxstream.decrypt(state.boxstream, state.recv_buffer) do
+      {:closed, chunks} ->
+        state = %{state | decrypted_data: state.decrypted_data <> :erlang.iolist_to_binary(chunks)}
+        {:ok, state}
+      {:error, :missing_data} -> {:ok, state}
+      {:ok, boxstream, chunks, rest} ->
+        state = %{state |
+          boxstream: boxstream,
+          recv_buffer: rest,
+          decrypted_data: state.decrypted_data <> :erlang.iolist_to_binary(chunks),
+        }
+        {:ok, state}
+    end
+  end
+
+  # Invalid request, n < 0
+  defp io_read(from, reply_as, bytes_requested, state) when bytes_requested < 0 do
     :ok = Process.send(from, {:io_reply, reply_as, {:error, :badarg}}, [])
     {:noreply, state}
   end
 
-  defp handle_read(from, reply_as, bytes_requested, %{decrypted_data: available} = state) when bytes_requested <= byte_size(available) do
+  # We have enough decrypted data in `state.decrypted_data`
+  defp io_read(from, reply_as, bytes_requested, %{decrypted_data: available} = state) when bytes_requested <= byte_size(available) do
     <<response :: binary-size(bytes_requested), rest :: binary>> = state.decrypted_data
     :ok = Process.send(from, {:io_reply, reply_as, response}, [])
     {:noreply, %{state | decrypted_data: rest}}
   end
 
-  defp handle_read(from, reply_as, bytes_requested, state) do
-    {:ok, state} = read_available(state)
-    {:ok, state} = decrypt_available(state)
-    handle_read(from, reply_as, bytes_requested, state)
+  # Read more data from `state.socket` and try to decrypt
+  defp io_read(from, reply_as, bytes_requested, state) do
+    with {:ok, state} <- read_available(state),
+         {:ok, state} <- decrypt_available(state)
+    do
+      io_read(from, reply_as, bytes_requested, state)
+    end
   end
 
-  def handle_info({:io_request, from, reply_as, {:get_chars, :"", n}}, state), do: handle_read(from, reply_as, n, state)
-  def handle_info({:io_request, from, reply_as, {:get_chars, _encoding, :"", n}}, state), do: handle_read(from, reply_as, n, state)
+  def handle_info({:io_request, from, reply_as, {:get_chars, :"", n}}, state), do: io_read(from, reply_as, n, state)
+  def handle_info({:io_request, from, reply_as, {:get_chars, _encoding, :"", n}}, state), do: io_read(from, reply_as, n, state)
 
   def handle_info({:io_request, from, reply_as, {:put_chars, _encoding, data}}, state) do
-    {:ok, boxstream, message} = Boxstream.encrypt(state.boxstream, data)
-    :ok = :gen_tcp.send(state.socket, message)
-    :ok = Process.send(from, {:io_reply, reply_as, :ok}, [])
-    {:noreply, %{state | boxstream: boxstream}}
+    with {:ok, boxstream, message} <- Boxstream.encrypt(state.boxstream, data),
+         :ok <- :gen_tcp.send(state.socket, message)
+    do
+      Process.send(from, {:io_reply, reply_as, :ok}, [])
+      {:noreply, %{state | boxstream: boxstream}}
+    else
+      {:error, err} ->
+        Process.send(from, {:io_reply, reply_as, {:error, err}}, [])
+        {:noreply, state}
+    end
   end
 end
