@@ -1,3 +1,5 @@
+alias Sailor.Keypair
+
 defmodule Sailor.Broadcast do
   use GenServer
 
@@ -34,7 +36,6 @@ defmodule Sailor.Broadcast do
   end
 
   def handle_info({:udp, _socket, _address, _port, data}, state) do
-    alias Sailor.Handshake.Keypair
     Logger.debug "Received UDP broadcast: #{data}"
     with [^data, ip, port, public_key] <- Regex.run(~r/^net:(.+):(\d+)~shs:(.+)$/, data),
           {:ok, public_key} <- Base.decode64(public_key),

@@ -2,7 +2,7 @@ defmodule Sailor.Application do
   use Application
 
   def start(_type, _args) do
-    {:ok, identity_keypair} = Sailor.Handshake.Keypair.load_secret "~/.ssb/secret"
+    {:ok, identity_keypair} = Sailor.Keypair.load_secret "~/.ssb/secret"
     network_identifier = Sailor.Handshake.default_appkey
     port = 8008
 
