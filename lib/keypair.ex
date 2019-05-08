@@ -1,7 +1,7 @@
 defmodule Sailor.Keypair do
   defstruct [:curve, :pub, :sec]
 
-  def from_id(id) do
+  def from_identifier(id) do
     with <<"@", pub_base64 :: bytes-size(44), ".", curve :: binary>> <- id,
          {:ok, pub} <- Base.decode64(pub_base64)
     do
