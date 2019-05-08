@@ -1,4 +1,4 @@
-defmodule Sailor.Identity do
+defmodule Sailor.LocalIdentity do
   use Agent
 
   def start_link([identity, network_identifier]) do

@@ -7,7 +7,7 @@ defmodule Sailor.Application do
     port = 8008
 
     children = [
-      {Sailor.Identity, [identity_keypair, network_identifier]},
+      {Sailor.LocalIdentity, [identity_keypair, network_identifier]},
       {DynamicSupervisor, strategy: :one_for_one, name: Sailor.PeerSupervisor},
       {Sailor.SSBServer, [port, identity_keypair]},
       # {Sailor.Broadcast, [port, identity_keypair]},

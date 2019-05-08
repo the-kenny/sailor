@@ -14,7 +14,7 @@ defmodule Sailor.Peer do
 
   # Start as a Client peer
   def run(peer, socket, identity, {:client, server_pubkey}) do
-    network_identifier = Sailor.Identity.network_identifier
+    network_identifier = Sailor.LocalIdentity.network_identifier
     :ok = :gen_tcp.controlling_process(socket, peer)
     :ok = GenServer.cast(peer, {:do_handshake, socket, {identity, server_pubkey, network_identifier}})
     :ok
@@ -22,7 +22,7 @@ defmodule Sailor.Peer do
 
   # Start as a Server peer
   def run(peer, socket, identity, :server) do
-    network_identifier = Sailor.Identity.network_identifier
+    network_identifier = Sailor.LocalIdentity.network_identifier
     :ok = :gen_tcp.controlling_process(socket, peer)
     :ok = GenServer.cast(peer, {:do_handshake, socket, {identity, network_identifier}})
     :ok

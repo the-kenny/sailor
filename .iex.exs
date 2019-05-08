@@ -7,7 +7,7 @@ defmodule User do
     random_keypair = Sailor.Handshake.Keypair.random
 
     {:ok, peer} = Peer.start_link([])
-    :ok = Peer.run(peer, socket, random_keypair, {:client, Sailor.Identity.keypair().pub})
+    :ok = Peer.run(peer, socket, random_keypair, {:client, Sailor.LocalIdentity.keypair().pub})
     {:ok, peer}
   end
 end
