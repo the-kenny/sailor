@@ -50,6 +50,7 @@ defmodule Sailor.LocalDiscover do
   end
 
   def handle_info({:udp, _socket, _address, _port, data}, state) do
+    # TODO: parse multiple announced identifiers separated by `;`
     with [^data, ip, port, public_key] <- Regex.run(~r/^net:(.+):(\d+)~shs:(.+)$/, data),
           {:ok, public_key} <- Base.decode64(public_key),
           {:ok, ip} <- :inet.parse_address(to_charlist ip),

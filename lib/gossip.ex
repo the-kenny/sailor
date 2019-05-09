@@ -13,6 +13,7 @@ defmodule Sailor.Gossip do
     Agent.get(gossip, fn peers -> Map.get(peers, identifier) end)
   end
 
+  # TODO: Store a set of {port, ip} tuples (a peer might announce multiple IPs)
   def remember_peer(gossip \\ __MODULE__, identifier, {ip, port}) do
     Agent.update(gossip, fn peers -> Map.put(peers, identifier, {ip, port}) end)
   end
