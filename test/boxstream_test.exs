@@ -6,9 +6,10 @@ defmodule Sailor.BoxstreamTest do
 
   def finished_handshake() do
     alias Sailor.Handshake
+    alias Sailor.Keypair
     network_identifier = Handshake.default_appkey
-    server_identity = Handshake.Keypair.random()
-    client_identity = Handshake.Keypair.random()
+    server_identity = Keypair.random()
+    client_identity = Keypair.random()
 
     server = Handshake.create(server_identity, nil, network_identifier)
     client = Handshake.create(client_identity, server_identity.pub, network_identifier)

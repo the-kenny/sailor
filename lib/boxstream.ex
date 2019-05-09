@@ -219,6 +219,15 @@ defmodule Sailor.Boxstream.IO do
          {:ok, state} <- decrypt_available(state)
     do
       io_read(from, reply_as, bytes_requested, state)
+    else
+      # TODO: Handle graceful close by signalling EOF
+      # {:closed, chunks} ->
+      #   # Boxstream closed, graceful exit
+      #   :ok = Process.send(from, {:io_reply, reply_as, :eof}, [])
+      #   {:stop, {:error, :closed}, state}
+      err ->
+        :ok = Process.send(from, {:io_reply, reply_as, err}, [])
+        {:stop, err, state}
     end
   end
 

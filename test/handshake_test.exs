@@ -1,11 +1,9 @@
 defmodule Sailor.HandshakeTest do
   use ExUnit.Case
   require Sailor.Handshake, as: Handshake
+  alias Sailor.Keypair
 
   doctest Sailor.Handshake
-
-
-  alias Handshake.Keypair
 
   test "Keypair.from_identifier(id)" do
     {:ok, keypair} = Keypair.from_identifier("@ZKIjG289FB3fZPyKftIpPM5xqgSRBGdxB5KcYqDspx8=.ed25519")
@@ -35,8 +33,8 @@ defmodule Sailor.HandshakeTest do
 
   test "Handshake between our client and our server" do
     network_identifier = Handshake.default_appkey
-    server_identity = Handshake.Keypair.random()
-    client_identity = Handshake.Keypair.random()
+    server_identity = Keypair.random()
+    client_identity = Keypair.random()
 
     server = Handshake.create(server_identity, nil, network_identifier)
     client = Handshake.create(client_identity, server_identity.pub, network_identifier)

@@ -1,14 +1,11 @@
 defmodule Sailor.Peer.Handshake do
-  use Task
-
   alias Sailor.Handshake, as: H
+  alias Sailor.Keypair
 
-  def start_link(socket, args) do
-    Task.start_link(__MODULE__, :run, [socket, args])
-  end
+  require Logger
 
   # Server
-  def run(socket, {identity, network_identifier}) do
+  def incoming(socket, identity, network_identifier) do
     handshake = H.create(
       identity,
       nil,
@@ -30,11 +27,15 @@ defmodule Sailor.Peer.Handshake do
     {:ok, handshake, server_accept} = H.server_accept(handshake)
     :ok = :gen_tcp.send(socket, server_accept)
 
+    Logger.info "Successful handshake between #{Keypair.id(handshake.identity)} (us) and #{Keypair.id(Keypair.from_pubkey(handshake.other_pubkey))} (them)"
+
     {:ok, handshake}
   end
 
   # Client
-  def run(socket, {identity, other_pubkey, network_identifier}) do
+  def outgoing({ip, port, other_pubkey}, identity, network_identifier) do
+    {:ok, socket} = :gen_tcp.connect(ip, port, [:binary, active: false])
+
     handshake = H.create(
       identity,
       other_pubkey,
@@ -55,6 +56,8 @@ defmodule Sailor.Peer.Handshake do
     {:ok, server_accept} = :gen_tcp.recv(socket, 80)
     {:ok, handshake} = H.verify_server_accept(handshake, server_accept)
 
-    {:ok, handshake}
+    Logger.info "Successful handshake between #{Keypair.id(handshake.identity)} (us) and #{Keypair.id(Keypair.from_pubkey(handshake.other_pubkey))} (them)"
+
+    {:ok, socket, handshake}
   end
 end

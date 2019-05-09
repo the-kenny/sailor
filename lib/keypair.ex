@@ -16,6 +16,13 @@ defmodule Sailor.Keypair do
     end
   end
 
+  def from_pubkey(pubkey) do
+    %__MODULE__{
+      curve: :ed25519,
+      pub: pubkey
+    }
+  end
+
   def load_secret(path) do
     with {:ok, contents} <- File.read(Path.expand(path)),
          json_str = contents |> String.split("\n") |> Enum.filter(fn s -> !String.starts_with?(s, "#") end) |> Enum.join(),
@@ -51,6 +58,9 @@ defmodule Sailor.Keypair do
   end
 
   def id(keypair) do
+    if keypair.curve == nil do
+      raise "Can't create identifier without `curve`"
+    end
     "@" <> Base.encode64(keypair.pub) <> "." <> to_string keypair.curve
   end
 
