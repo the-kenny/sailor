@@ -6,29 +6,37 @@ defmodule Sailor.LocalDiscover do
   require Logger
 
   def start_link([port, identity]) do
-    GenServer.start_link(__MODULE__, {port, identity})
+    GenServer.start_link(__MODULE__, {port, identity}, name: __MODULE__)
   end
 
   def init({port, identity}) do
-    enabled? = Application.get_env(:sailor, __MODULE__) |> Keyword.get(:enabled?, false)
+    config = Application.get_env(:sailor, __MODULE__)
 
-    if !enabled? do
+    if !Keyword.get(config, :enable) do
+      Logger.info "Disabling local discovery and broadcast"
       :ignore
     else
-      :timer.send_interval 5*1000, :broadcast
+      Logger.info "Starting local discovery and broadcast"
+
+      case Keyword.get(config, :broadcast_interval) do
+        nil -> Logger.info "No `:broadcast_interval` configured."
+        n ->
+          Logger.info "Broadcasting every #{inspect n}ms"
+          :timer.send_interval(n, :broadcast)
+      end
 
       with {:ok, socket} <- :gen_udp.open(port, [:binary, active: true, broadcast: true])
       do
-        {:ok, {socket, identity, %{}}}
+        {:ok, {socket, identity}}
       else
-        {:error, :eaddrinuse} ->
-          Logger.warn "Couldn't start broadcast: Address in use"
-          :ignore
+        err ->
+          Logger.warn "Couldn't start local discovery and broadcast: #{inspect err}"
+          err
       end
     end
   end
 
-  def handle_info(:broadcast, {socket, identity, _known_peers} = state) do
+  def handle_info(:broadcast, {socket, identity} = state) do
     {:ok, {_ip, port}} = :inet.sockname(socket)
     {:ok, interfaces} = :inet.getif()
     interfaces = Enum.filter(interfaces, fn {ip, _, _} -> ip != {127,0,0,1} end)
@@ -41,20 +49,21 @@ defmodule Sailor.LocalDiscover do
     {:noreply, state}
   end
 
-  def handle_info({:udp, _socket, _address, _port, data}, {socket, identity, known_peers} = state) do
+  def handle_info({:udp, _socket, _address, _port, data}, state) do
     with [^data, ip, port, public_key] <- Regex.run(~r/^net:(.+):(\d+)~shs:(.+)$/, data),
           {:ok, public_key} <- Base.decode64(public_key),
           {:ok, ip} <- :inet.parse_address(to_charlist ip),
           {port, ""} <- Integer.parse(port),
           keypair = Keypair.from_pubkey(public_key)
     do
-      known_peers = if !Map.has_key?(known_peers, keypair) do
-        Logger.debug ("Received broadcast from #{Keypair.id keypair} at #{inspect {:inet.ntoa(ip), port}}")
-        Map.put(known_peers, keypair, {ip, port})
-      else
-        known_peers
+      identifier = Keypair.id(keypair)
+      if Sailor.Gossip.get_peer(identifier) == nil do
+        Logger.debug "Received broadcast from #{identifier} at #{inspect {:inet.ntoa(ip), port}}"
       end
-      {:noreply, {socket, identity,known_peers}}
+
+      Sailor.Gossip.remember_peer(identifier, {ip, port})
+
+      {:noreply, state}
 
     else
       _ ->

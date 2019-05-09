@@ -3,7 +3,8 @@
 use Mix.Config
 
 config :sailor, Sailor.LocalDiscover,
-  enable: true
+  enable: true,
+  broadcast_interval: 1*1000
 
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this

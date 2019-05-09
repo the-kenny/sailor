@@ -10,6 +10,7 @@ defmodule Sailor.Application do
       {Sailor.LocalIdentity, [identity_keypair, network_identifier]},
       {DynamicSupervisor, strategy: :one_for_one, name: Sailor.PeerSupervisor},
       {Sailor.SSBServer, [port, identity_keypair]},
+      Sailor.Gossip,
       {Sailor.LocalDiscover, [port, identity_keypair]},
     ]
 
