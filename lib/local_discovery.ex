@@ -36,6 +36,27 @@ defmodule Sailor.LocalDiscover do
     end
   end
 
+  @peer_connection_re ~r/^net:(.+):(\d+)~shs:(.+)$/
+
+  def parse_announcement(data) do
+    with [^data, ip, port, public_key] <- Regex.run(@peer_connection_re, data),
+         {:ok, public_key} <- Base.decode64(public_key),
+         {:ok, ip} <- :inet.parse_address(to_charlist ip),
+         {port, ""} <- Integer.parse(port),
+         keypair = Keypair.from_pubkey(public_key)
+    do
+      {:ok, ip, port, keypair}
+    else
+      _ -> {:error, data}
+    end
+  end
+
+  def parse_announcements(data) do
+    String.split(data, ";")
+    |> Stream.map(&parse_announcement/1)
+    |> Stream.filter(&Kernel.match?({:ok, _ip, _port, _public_key}, &1))
+  end
+
   def handle_info(:broadcast, {socket, identity} = state) do
     {:ok, {_ip, port}} = :inet.sockname(socket)
     {:ok, interfaces} = :inet.getif()
@@ -50,28 +71,15 @@ defmodule Sailor.LocalDiscover do
   end
 
   def handle_info({:udp, _socket, _address, _port, data}, state) do
-    # TODO: parse multiple announced identifiers separated by `;`
-    with [^data, ip, port, public_key] <- Regex.run(~r/^net:(.+):(\d+)~shs:(.+)$/, data),
-          {:ok, public_key} <- Base.decode64(public_key),
-          {:ok, ip} <- :inet.parse_address(to_charlist ip),
-          {port, ""} <- Integer.parse(port),
-          keypair = Keypair.from_pubkey(public_key)
-    do
+    Enum.each(parse_announcements(data), fn {:ok, ip, port, keypair} ->
       identifier = Keypair.id(keypair)
       if Sailor.Gossip.get_peer(identifier) == nil do
         Logger.debug "Received broadcast from #{identifier} at #{inspect {:inet.ntoa(ip), port}}"
       end
 
       Sailor.Gossip.remember_peer(identifier, {ip, port})
+    end)
 
-      {:noreply, state}
-
-    else
-      _ ->
-        Logger.error("Failed to parse UDP broadcast: #{inspect data}")
-        {:noreply, state}
-    end
-
-
+    {:noreply, state}
   end
 end
