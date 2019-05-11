@@ -91,7 +91,6 @@ defmodule Sailor.Rpc do
     # Start a task reading all messages from `state.reader` and pass them on to our parent `peer`
     {:ok, _reader_task} = Task.start_link(fn ->
       message_stream
-      |> Stream.each(fn message -> Logger.debug "Received RPC message: #{inspect message}" end)
       |> Stream.each(fn message -> :ok = Process.send(peer, {:rpc, message}, []) end)
       |> Stream.run()
 
