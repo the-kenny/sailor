@@ -1,7 +1,6 @@
 defmodule Sailor.LocalDiscoverTest do
   use ExUnit.Case
   require Sailor.LocalDiscover, as: LD
-  alias Sailor.Keypair
 
   doctest Sailor.LocalDiscover
 
