@@ -4,6 +4,7 @@ defmodule Sailor.Peer do
   require Logger
 
   alias Sailor.Keypair
+  alias Sailor.Rpc.Packet
 
   defmodule State do
     defstruct [
@@ -18,28 +19,32 @@ defmodule Sailor.Peer do
   end
 
   # TODO: Move this logic to somewhere else (`Sailor.Rpc.HandlerRegistry`?)
-  def handle_rpc_request(packet_number, :json, %{"name" => name, "type" => type, "args" => args}, state) do
-    # This check has a race condition, but we only use it for logging. Nothing to worry about.
-    if Registry.lookup(Sailor.Rpc.HandlerRegistry, name) == [] do
-      Logger.warn "No handler found for #{inspect name}, we MAY not be able to answer request #{packet_number}"
-    end
+  def handle_rpc_request(packet, state) do
+    request_number = Packet.request_number(packet)
 
-    me = self()
-    Registry.dispatch(Sailor.Rpc.HandlerRegistry, name, fn handlers ->
-      Enum.each(handlers, fn {_pid, handler} ->
-        Sailor.Rpc.Handler.call(handler, name, type, args, me)
+    if Packet.body_type(packet) != :json do
+      Logger.warn "Unknown RPC message #{request_number} of type: #{inspect Packet.body_type(packet)}: #{inspect Packet.body(packet)}"
+      {:noreply, state}
+    else
+      {:ok, %{"name" => name, "type" => type, "args" => args}} = Jason.decode(Packet.body(packet))
+
+      # This check has a race condition, but we only use it for logging. Nothing to worry about.
+      if Registry.lookup(Sailor.Rpc.HandlerRegistry, name) == [] do
+        Logger.warn "No handler found for #{inspect name}, we MAY not be able to answer request #{request_number}"
+      end
+
+      Registry.dispatch(Sailor.Rpc.HandlerRegistry, name, fn handlers ->
+        Enum.each(handlers, fn {_pid, handler} ->
+          Process.send(handler, {:rpc_request, name, type, args, packet, state.rpc}, [])
+        end)
       end)
-    end)
-    {:noreply, state}
+      {:noreply, state}
+    end
   end
 
-  def handle_rpc_request(packet_number, type, msg, state) do
-    Logger.warn "Unknown RPC message #{packet_number} of type: #{inspect type}: #{inspect msg}"
-    {:noreply, state}
-  end
-
-  def handle_rpc_response(packet_number, _type, msg, state) do
-    Logger.info "Received RPC response to #{-packet_number}: #{inspect msg}"
+  def handle_rpc_response(packet, state) do
+    packet = Packet.info(packet)
+    Logger.info "Received RPC response to #{-packet.request_number}: #{inspect packet.body}"
     {:noreply, state}
   end
 
@@ -61,21 +66,23 @@ defmodule Sailor.Peer do
     # TODO: open this in RPC
     {:ok, reader, writer} = Sailor.Boxstream.IO.open(socket, handshake)
 
-    {:ok, rpc} = Sailor.Rpc.start_link([reader, writer])
+    {:ok, rpc} = Sailor.Rpc.subscribe_link([reader, writer])
 
-    :ok = Sailor.Rpc.send(rpc, ["createHistoryStream"], :source, [%{id: state.identifier, live: true, old: true}])
-    :ok = Sailor.Rpc.send(rpc, ["blobs", "has"], :async, ["&F9tH7Ci4f1AVK45S9YhV+tK0tsmkTjQLSe5kQ6nEAuo=.sha256"])
+    :ok = Sailor.Rpc.call(rpc, ["createHistoryStream"], :source, [%{id: state.identifier, live: true, old: true}])
+    :ok = Sailor.Rpc.call(rpc, ["blobs", "has"], :async, ["&F9tH7Ci4f1AVK45S9YhV+tK0tsmkTjQLSe5kQ6nEAuo=.sha256"])
 
     {:noreply, %{state | rpc: rpc}}
   end
 
-  def handle_info({:rpc, {packet_number, type, msg}}, state) when packet_number < 0 do
-    handle_rpc_response(packet_number, type, msg, state)
-  end
-
-  def handle_info({:rpc, {packet_number, type, msg}}, state) when packet_number > 0 do
-    Logger.debug "Dispatching rpc request #{packet_number}: #{inspect msg}"
-    handle_rpc_request(packet_number, type, msg, state)
+  def handle_info({:rpc, rpc_packet}, state) do
+    case Packet.request_number(rpc_packet) do
+      n when n < 0 ->
+        Logger.debug "Dispatching rpc response #{-n}: #{inspect rpc_packet}"
+        handle_rpc_response(rpc_packet, state)
+      n when n > 0 ->
+        Logger.debug "Dispatching rpc request #{n}: #{inspect rpc_packet}"
+        handle_rpc_request(rpc_packet, state)
+    end
   end
 
   # Shutdown Handling

@@ -2,6 +2,8 @@ defmodule Sailor.Rpc.Handler.Blobs do
   use GenServer
   require Logger
 
+  alias Sailor.Rpc.Packet
+
   def start_link([blobs_path]) do
     GenServer.start_link(__MODULE__, [blobs_path], name: __MODULE__)
   end
@@ -17,8 +19,15 @@ defmodule Sailor.Rpc.Handler.Blobs do
     {:noreply, blobs_path}
   end
 
-  def handle_info({:rpc_request, ["blobs", "has"], "async", [blob_id], peer}, state) do
-    Logger.info "Searching for Blob #{blob_id} (for peer #{inspect peer})"
+  def handle_info({:rpc_request, ["blobs", "has"], "async", [blob_id], request_packet, rpc}, state) do
+    Logger.info "Searching for Blob #{blob_id} (for request #{Packet.request_number(request_packet)}"
+
+    packet = Packet.respond(request_packet)
+    |> Packet.body_type(:json)
+    |> Packet.body(Jason.encode!(false))
+
+    Sailor.Rpc.respond(rpc, packet)
+
     {:noreply, state}
   end
 end

@@ -129,14 +129,34 @@ defmodule Sailor.Rpc.Packet do
     packet_binary()
   end
 
-  @doc """
-  Hello world.
+  def respond(packet) do
+    packet
+    |> request_number(-request_number(packet))
+    |> body(<<>>)
+  end
 
+  defstruct [
+    request_number: nil,
+    stream?: nil,
+    end_or_error?: nil,
+    body_type: nil,
+    body_length: nil,
+    body: nil,
+  ]
+
+  @doc """
   ## Examples
 
       iex> packet = create() |> stream() |> request_number(42) |> body_type(:utf8) |> body("HELLO")
       iex> info(packet)
-      {42, :stream, false, :utf8, 5, "HELLO"}
+      %Sailor.Rpc.Packet{
+        request_number: 42,
+        stream?: true,
+        end_or_error?: false,
+        body_type: :utf8,
+        body_length: 5,
+        body: "HELLO"
+      }
 
   """
   def info(packet) do
@@ -148,13 +168,13 @@ defmodule Sailor.Rpc.Packet do
       2 -> :json
     end
 
-    {
-      request_number,
-      (if stream? == 1, do: :stream, else: :async),
-      end_or_error? == 1,
-      body_type,
-      body_length,
-      body
+    %__MODULE__{
+      request_number: request_number,
+      stream?: stream? == 1,
+      end_or_error?: end_or_error? == 1,
+      body_type: body_type,
+      body_length: body_length,
+      body: body,
     }
   end
 end

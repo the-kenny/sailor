@@ -14,6 +14,8 @@ defmodule Sailor.Application do
       {Sailor.LocalIdentity, [identity_keypair, network_identifier]},
       {DynamicSupervisor, strategy: :one_for_one, name: Sailor.PeerSupervisor},
       Sailor.Gossip,
+
+      # TODO: Don't start LocalDiscover for tests
       {Sailor.LocalDiscover, [port, identity_keypair]},
 
       {Sailor.Rpc.HandlerRegistry, []},
