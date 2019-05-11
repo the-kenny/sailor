@@ -16,6 +16,16 @@ defmodule Sailor.Peer do
     GenServer.start_link(__MODULE__, [socket, handshake])
   end
 
+  def handle_rpc_request(packet_number, _type, msg, state) do
+    Logger.warn "Unhandled RPC request ##{packet_number}: #{inspect msg}"
+    {:noreply, state}
+  end
+
+  def handle_rpc_response(packet_number, _type, msg, state) do
+    Logger.info "Received RPC response to #{-packet_number}: #{inspect msg}"
+    {:noreply, state}
+  end
+
   # Callbacks
 
   def init([socket, handshake]) do
@@ -39,14 +49,12 @@ defmodule Sailor.Peer do
     {:noreply, state}
   end
 
-  def handle_info({:rpc, {packet_number, _type, msg}}, state) when packet_number < 0 do
-    Logger.info "Received RPC response #{inspect packet_number}: #{inspect msg}"
-    {:noreply, state}
+  def handle_info({:rpc, {packet_number, type, msg}}, state) when packet_number < 0 do
+    handle_rpc_response(packet_number, type, msg, state)
   end
 
-  def handle_info({:rpc, {packet_number, _type, msg}}, state) when packet_number > 0 do
-    Logger.warn "Unhandled RPC request: #{inspect msg}"
-    {:noreply, state}
+  def handle_info({:rpc, {packet_number, type, msg}}, state) when packet_number > 0 do
+    handle_rpc_request(packet_number, type, msg, state)
   end
 
 end
