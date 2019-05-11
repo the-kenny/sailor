@@ -2,6 +2,15 @@ defmodule Sailor.Rpc do
   use GenServer
   require Logger
 
+  defmodule State do
+    defstruct [
+      request_number: 1,
+      reader: nil,
+      writer: nil,
+      response_registry: nil, # Maps from `request_id` to a process
+    ]
+  end
+
   def start_link([reader, writer]) do
     peer = self()
     GenServer.start_link(__MODULE__, [peer, reader, writer])
@@ -11,20 +20,28 @@ defmodule Sailor.Rpc do
     GenServer.call(rpc, {:send, name, type, args})
   end
 
+  # Callbacks
+
   def init([peer, reader, writer]) do
-    {:ok, {reader, writer, 1}, {:continue, peer}}
+    state = %State{
+      request_number: 1,
+      reader: reader,
+      writer: writer,
+      response_registry: Registry.start_link(keys: :unique, name: Sailor.Rpc.ResponseHandlerRegistry),
+    }
+    {:ok, state, {:continue, peer}}
   end
 
-  def handle_continue(peer, {reader, _writer, _request_number} = state) do
+  def handle_continue(peer, state) do
     alias Sailor.Rpc.Packet
 
     message_stream = Stream.resource(
       fn -> nil end,
       fn acc ->
-        with <<packet_header :: binary>> <- IO.binread(reader, 9),
+        with <<packet_header :: binary>> <- IO.binread(state.reader, 9),
             #  _ = Logger.debug("Got packet header: type=#{Packet.body_type(packet_header)} body_length=#{Packet.body_length(packet_header)}"),
              content_length = Packet.body_length(packet_header),
-             <<packet_body :: binary>> <- IO.binread(reader, content_length),
+             <<packet_body :: binary>> <- IO.binread(state.reader, content_length),
              packet = packet_header <> packet_body
         do
           request_number = Packet.request_number(packet)
@@ -52,7 +69,7 @@ defmodule Sailor.Rpc do
     {:noreply, state}
   end
 
-  def handle_call({:send, name, type, args}, _from, {reader, writer, request_number}) do
+  def handle_call({:send, name, type, args}, _from, state) do
     alias Sailor.Rpc.Packet
 
     {:ok, json} = Jason.encode %{
@@ -69,14 +86,14 @@ defmodule Sailor.Rpc do
     end
 
     packet = Packet.create()
-    |> Packet.request_number(request_number)
+    |> Packet.request_number(state.request_number)
     |> Packet.body_type(:json)
     |> async_or_stream.()
     |> Packet.body(json)
 
     Logger.debug "Sending packet #{inspect Packet.info(packet)}"
 
-    :ok = IO.write(writer, packet)
-    {:reply, :ok, {reader, writer, request_number + 1}}
+    :ok = IO.write(state.writer, packet)
+    {:reply, :ok, %{state | request_number: state.request_number + 1}}
   end
 end
