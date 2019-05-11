@@ -10,8 +10,12 @@ defmodule Sailor.Rpc do
       request_number: 1,
       reader: nil,
       writer: nil,
-      response_registry: nil, # Maps from `request_id` to a process
     ]
+  end
+
+  def start([reader, writer]) do
+    peer = self()
+    GenServer.start(__MODULE__, [peer, reader, writer])
   end
 
   def start_link([reader, writer]) do
@@ -23,55 +27,84 @@ defmodule Sailor.Rpc do
     GenServer.call(rpc, {:send, name, type, args})
   end
 
-  def create_message_stream(reader) do
+  def goodbye(rpc) do
+    GenServer.call(rpc, :goodbye)
+  end
+
+  defp create_message_stream(reader) do
     Stream.resource(
-      fn -> nil end,
-      fn acc ->
+      fn -> reader end,
+      fn reader ->
         with <<packet_header :: binary>> <- IO.binread(reader, 9),
              content_length = Packet.body_length(packet_header),
              <<packet_body :: binary>> <- IO.binread(reader, content_length),
              packet = packet_header <> packet_body
         do
-          request_number = Packet.request_number(packet)
-          body_type = Packet.body_type(packet)
-          body = case body_type do
-            :binary -> Packet.body(packet)
-            :utf8   -> Packet.body(packet)
-            :json   -> Jason.decode!(Packet.body(packet))
+          if Packet.goodbye_packet?(packet) do
+            Logger.debug "Received RPC GOODBYE packet"
+            {:halt, reader}
+          else
+            Logger.debug "Received RPC packet: #{inspect Packet.info(packet)}"
+            request_number = Packet.request_number(packet)
+            body_type = Packet.body_type(packet)
+            body = case body_type do
+              :binary -> Packet.body(packet)
+              :utf8   -> Packet.body(packet)
+              :json   -> Jason.decode!(Packet.body(packet))
+            end
+            # TODO: We have to pass down the `stream?` as well as the `end_or_error?`
+            # flag downstram as it's used to signal that no further messages will
+            # arrive for a `stream` rpc call
+            {[{request_number, body_type, body}], reader}
           end
-          {[{request_number, body_type, body}], acc}
         else
-          _ -> {:halt, acc}
+          _ -> {:halt, reader}
         end
       end,
-      fn _acc -> Process.exit(self(), :boxstream_closed) end
+      fn reader -> Process.exit(reader, :shutdown) end
     )
+  end
+
+  defp send_packet(packet, state) do
+    Logger.debug "Sending packet #{inspect Packet.info(packet)}"
+
+    :ok = IO.write(state.writer, packet)
+    {:reply, :ok, %{state | request_number: state.request_number + 1}}
   end
 
   # Callbacks
 
   def init([peer, reader, writer]) do
+    Process.flag(:trap_exit, true)
+
     state = %State{
       request_number: 1,
       reader: reader,
       writer: writer,
-      response_registry: Registry.start_link(keys: :unique, name: Sailor.Rpc.ResponseHandlerRegistry),
     }
-    {:ok, state, {:continue, peer}}
+    {:ok, state, {:continue, {:start_stream, peer}}}
   end
 
-  def handle_continue(peer, state) do
+  def handle_continue({:start_stream, peer}, state) do
     message_stream = create_message_stream(state.reader)
 
     # Start a task reading all messages from `state.reader` and pass them on to our parent `peer`
-    Task.start_link(fn ->
+    {:ok, _reader_task} = Task.start_link(fn ->
       message_stream
       |> Stream.each(fn message -> Logger.debug "Received RPC message: #{inspect message}" end)
       |> Stream.each(fn message -> :ok = Process.send(peer, {:rpc, message}, []) end)
       |> Stream.run()
+
+      Logger.debug "RPC stream for #{inspect self()} closed. Shutting down..."
+
+      Process.exit(self(), :shutdown)
     end)
 
     {:noreply, state}
+  end
+
+  def handle_call(:goodbye, _from, state) do
+    send_packet(Packet.goodbye_packet(), state)
   end
 
   def handle_call({:send, name, type, args}, _from, state) do
@@ -96,9 +129,11 @@ defmodule Sailor.Rpc do
     |> async_or_stream.()
     |> Packet.body(json)
 
-    Logger.debug "Sending packet #{inspect Packet.info(packet)}"
+    send_packet(packet, state)
+  end
 
-    :ok = IO.write(state.writer, packet)
-    {:reply, :ok, %{state | request_number: state.request_number + 1}}
+  def handle_info({:EXIT, pid, reason}, state) do
+    Logger.debug "Shutting down RPC because subprocess #{inspect pid} stopped. Reason: #{inspect reason}"
+    {:stop, reason, state}
   end
 end

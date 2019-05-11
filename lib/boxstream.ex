@@ -142,6 +142,7 @@ defmodule Sailor.Boxstream.IO do
     boxstream: nil,
     recv_buffer: nil,
     decrypted_data: nil,
+    closed?: false,
   ]
 
   def open(socket, handshake) do
@@ -187,7 +188,10 @@ defmodule Sailor.Boxstream.IO do
     # as this function is automatically called in a loop
     case Boxstream.decrypt(state.boxstream, state.recv_buffer) do
       {:closed, chunks} ->
-        state = %{state | decrypted_data: state.decrypted_data <> :erlang.iolist_to_binary(chunks)}
+        state = %{state |
+          decrypted_data: state.decrypted_data <> :erlang.iolist_to_binary(chunks),
+          closed?: true
+        }
         {:ok, state}
       {:error, :missing_data} -> {:ok, state}
       {:ok, boxstream, chunks, rest} ->
@@ -213,6 +217,12 @@ defmodule Sailor.Boxstream.IO do
     {:noreply, %{state | decrypted_data: rest}}
   end
 
+  # `closed?` is true and we don't have enough decrypted data to respond to the request
+  defp io_read(from, reply_as, bytes_requested, %{decrypted_data: available, closed?: true}) when bytes_requested > byte_size available do
+    :ok = Process.send(from, {:io_reply, reply_as, :eof}, [])
+    {:stop, :normal}
+  end
+
   # Read more data from `state.socket` and try to decrypt
   defp io_read(from, reply_as, bytes_requested, state) do
     with {:ok, state} <- read_available(state),
@@ -220,11 +230,6 @@ defmodule Sailor.Boxstream.IO do
     do
       io_read(from, reply_as, bytes_requested, state)
     else
-      # TODO: Handle graceful close by signalling EOF
-      # {:closed, chunks} ->
-      #   # Boxstream closed, graceful exit
-      #   :ok = Process.send(from, {:io_reply, reply_as, :eof}, [])
-      #   {:stop, {:error, :closed}, state}
       err ->
         :ok = Process.send(from, {:io_reply, reply_as, err}, [])
         {:stop, err, state}
