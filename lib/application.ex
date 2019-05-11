@@ -6,12 +6,19 @@ defmodule Sailor.Application do
     network_identifier = Sailor.Handshake.default_appkey
     port = 8008
 
+    rpc_handlers = [
+      {Sailor.Rpc.Handler.Blobs, ["/tmp/sailor_blobs"]}
+    ]
+
     children = [
       {Sailor.LocalIdentity, [identity_keypair, network_identifier]},
       {DynamicSupervisor, strategy: :one_for_one, name: Sailor.PeerSupervisor},
-      {Sailor.SSBServer, [port, identity_keypair]},
       Sailor.Gossip,
       {Sailor.LocalDiscover, [port, identity_keypair]},
+
+      {Sailor.Rpc.HandlerRegistry, []},
+      %{id: Sailor.RpcHandler.Supervisor, start: {Supervisor, :start_link, [rpc_handlers, [{:strategy, :one_for_one}]]}},
+      {Sailor.SSBServer, [port, identity_keypair]},
     ]
 
     opts = [strategy: :one_for_one, name: Sailor.Supervisor]

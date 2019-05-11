@@ -2,6 +2,9 @@ defmodule Sailor.Rpc do
   use GenServer
   require Logger
 
+  alias Sailor.Rpc.Packet
+
+
   defmodule State do
     defstruct [
       request_number: 1,
@@ -20,6 +23,31 @@ defmodule Sailor.Rpc do
     GenServer.call(rpc, {:send, name, type, args})
   end
 
+  def create_message_stream(reader) do
+    Stream.resource(
+      fn -> nil end,
+      fn acc ->
+        with <<packet_header :: binary>> <- IO.binread(reader, 9),
+             content_length = Packet.body_length(packet_header),
+             <<packet_body :: binary>> <- IO.binread(reader, content_length),
+             packet = packet_header <> packet_body
+        do
+          request_number = Packet.request_number(packet)
+          body_type = Packet.body_type(packet)
+          body = case body_type do
+            :binary -> Packet.body(packet)
+            :utf8   -> Packet.body(packet)
+            :json   -> Jason.decode!(Packet.body(packet))
+          end
+          {[{request_number, body_type, body}], acc}
+        else
+          _ -> {:halt, acc}
+        end
+      end,
+      fn _acc -> Process.exit(self(), :boxstream_closed) end
+    )
+  end
+
   # Callbacks
 
   def init([peer, reader, writer]) do
@@ -33,35 +61,12 @@ defmodule Sailor.Rpc do
   end
 
   def handle_continue(peer, state) do
-    alias Sailor.Rpc.Packet
+    message_stream = create_message_stream(state.reader)
 
-    message_stream = Stream.resource(
-      fn -> nil end,
-      fn acc ->
-        with <<packet_header :: binary>> <- IO.binread(state.reader, 9),
-            #  _ = Logger.debug("Got packet header: type=#{Packet.body_type(packet_header)} body_length=#{Packet.body_length(packet_header)}"),
-             content_length = Packet.body_length(packet_header),
-             <<packet_body :: binary>> <- IO.binread(state.reader, content_length),
-             packet = packet_header <> packet_body
-        do
-          request_number = Packet.request_number(packet)
-          body_type = Packet.body_type(packet)
-          body = case body_type do
-            :binary -> Packet.body(packet)
-            :utf8   -> Packet.body(packet)
-            :json   -> Jason.decode!(Packet.body(packet))
-
-          end
-          {[{request_number, body_type, body}], acc}
-        else
-          _ -> {:halt, acc}
-        end
-      end,
-      fn _acc -> Process.exit(self(), :boxstream_closed) end
-    )
-
+    # Start a task reading all messages from `state.reader` and pass them on to our parent `peer`
     Task.start_link(fn ->
       message_stream
+      |> Stream.each(fn message -> Logger.debug "Received RPC message: #{inspect message}" end)
       |> Stream.each(fn message -> :ok = Process.send(peer, {:rpc, message}, []) end)
       |> Stream.run()
     end)

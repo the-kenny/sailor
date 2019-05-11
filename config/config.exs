@@ -2,6 +2,10 @@
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
 
+config :logger, :console,
+  level: :info,
+  format: "\n$time $metadata[$level] $levelpad$message\n"
+
 config :sailor, Sailor.LocalDiscover,
   enable: true,
   broadcast_interval: 1*1000
