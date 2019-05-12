@@ -4,7 +4,7 @@ defmodule Sailor.Application do
   def start(_type, _args) do
     {:ok, identity_keypair} = Sailor.Keypair.load_secret "~/.ssb/secret"
     network_identifier = Sailor.Handshake.default_appkey
-    port = 8008
+    port = Application.get_env(:sailor, :port)
 
     rpc_handlers = [
       {Sailor.Rpc.Handler.Blobs, ["/tmp/sailor_blobs"]}

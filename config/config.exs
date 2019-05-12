@@ -6,6 +6,9 @@ config :logger, :console,
   level: :debug,
   format: "\n$time $metadata[$level] $levelpad$message\n"
 
+config :sailor,
+  port: 8008
+
 config :sailor, Sailor.LocalDiscovery,
   enable: true,
   broadcast_interval: 1*1000
