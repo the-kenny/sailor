@@ -15,7 +15,8 @@ defmodule Sailor.Peer do
   end
 
   def start_link({socket, handshake}) do
-    GenServer.start_link(__MODULE__, [socket, handshake])
+    identifier = handshake.other_pubkey |> Keypair.from_pubkey() |> Keypair.id()
+    GenServer.start_link(__MODULE__, [socket, handshake], name: {:via, Registry, {Sailor.Peer.Registry, identifier}})
   end
 
   # TODO: Move this logic to somewhere else (`Sailor.Rpc.HandlerRegistry`?)
@@ -25,6 +26,8 @@ defmodule Sailor.Peer do
     with :json <- Packet.body_type(packet),
          {:ok, %{"name" => name, "type" => type, "args" => args}} <- Jason.decode(Packet.body(packet))
     do
+      # TODO: We can use `via` instead of explicit lookups
+
       # This check has a race condition, but we only use it for logging. Nothing to worry about.
       if Registry.lookup(Sailor.Rpc.HandlerRegistry, name) == [] do
         Logger.warn "No handler found for #{inspect name}, we MAY not be able to answer request #{request_number}"

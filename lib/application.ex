@@ -12,9 +12,11 @@ defmodule Sailor.Application do
 
     children = [
       {Sailor.LocalIdentity, [identity_keypair, network_identifier]},
-      {DynamicSupervisor, strategy: :one_for_one, name: Sailor.PeerSupervisor},
-      Sailor.Gossip,
 
+      {DynamicSupervisor, strategy: :one_for_one, name: Sailor.PeerSupervisor},
+      {Sailor.Peer.Registry, []},
+
+      Sailor.Gossip, # Do we need this when we have `Sailor.Peer.Registry`?
       # TODO: Don't start LocalDiscover for tests
       {Sailor.LocalDiscovery, [port, identity_keypair]},
 

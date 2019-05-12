@@ -10,7 +10,7 @@ defmodule Sailor.SSBServer do
   end
 
   def accept(port, identity) do
-    Logger.info "Listening for peers on port #{inspect port}"
+    Logger.info "Accepting peer connections via TCP on port #{port}"
     with {:ok, listen_socket} <- :gen_tcp.listen(port, [:binary, active: false, reuseaddr: true])
     do
       acceptor_loop(listen_socket, identity, Sailor.LocalIdentity.network_identifier)
