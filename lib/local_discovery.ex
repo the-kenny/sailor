@@ -1,6 +1,6 @@
 alias Sailor.Keypair
 
-defmodule Sailor.LocalDiscover do
+defmodule Sailor.LocalDiscovery do
   use GenServer
 
   require Logger

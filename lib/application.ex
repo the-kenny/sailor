@@ -16,7 +16,7 @@ defmodule Sailor.Application do
       Sailor.Gossip,
 
       # TODO: Don't start LocalDiscover for tests
-      {Sailor.LocalDiscover, [port, identity_keypair]},
+      {Sailor.LocalDiscovery, [port, identity_keypair]},
 
       {Sailor.Rpc.HandlerRegistry, []},
       %{id: Sailor.RpcHandler.Supervisor, start: {Supervisor, :start_link, [rpc_handlers, [{:strategy, :one_for_one}]]}},

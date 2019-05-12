@@ -1,8 +1,8 @@
-defmodule Sailor.LocalDiscoverTest do
+defmodule Sailor.LocalDiscoveryTest do
   use ExUnit.Case
-  require Sailor.LocalDiscover, as: LD
+  require Sailor.LocalDiscovery, as: LD
 
-  doctest Sailor.LocalDiscover
+  doctest Sailor.LocalDiscovery
 
   test "parse_annoucement matches net:" do
     {:ok, ip, port, public_key} = LD.parse_announcement("net:fe80::aede:48ff:fe00:1122:8008~shs:mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=")
