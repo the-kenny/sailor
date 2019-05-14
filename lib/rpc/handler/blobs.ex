@@ -38,8 +38,8 @@ defmodule Sailor.Rpc.Handler.Blobs do
 
   def handle_info({:rpc_request, ["blobs", "createWants"], "source", [], request_packet, rpc}, state) do
     responses = [
-      %{"&jqp3ImUpZZ4QD/AcST54J24aGaB3lJg5IDG82TeBmN4=.sha256": -1},
-      %{"&/zFse6nZCK5eOuaAz/NrPj929olH2TMZ5ovGZBZzoQU=.sha256": -1},
+      # %{"&jqp3ImUpZZ4QD/AcST54J24aGaB3lJg5IDG82TeBmN4=.sha256": -1},
+      # %{"&/zFse6nZCK5eOuaAz/NrPj929olH2TMZ5ovGZBZzoQU=.sha256": -1},
     ]
 
     responses
