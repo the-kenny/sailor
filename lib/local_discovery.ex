@@ -1,5 +1,6 @@
 alias Sailor.Keypair
 
+# TODO: Split into Broadcast and Announce
 defmodule Sailor.LocalDiscovery do
   use GenServer
 

@@ -16,23 +16,14 @@ defmodule Sailor.Peer do
 
   def start_incoming(socket, local_identity, network_identifier) do
     with {:ok, handshake} <- Sailor.Peer.Handshake.incoming(socket, local_identity, network_identifier),
-         {:ok, peer} <- DynamicSupervisor.start_child(Sailor.PeerSupervisor, {Sailor.Peer, {socket, handshake}})
-    do
-      Logger.info "Started peer #{inspect peer}"
-      {:ok, peer}
-    end
+         {:ok, peer} <- DynamicSupervisor.start_child(Sailor.PeerSupervisor, {Sailor.Peer, {socket, handshake}}),
+    do: {:ok, peer}
   end
 
   def start_outgoing(ip, port, other_identity, local_identity, network_identifier) do
-    {:ok, socket, handshake} = Sailor.Peer.Handshake.outgoing(
-      {ip, port, local_identity.pub},
-      other_identity,
-      network_identifier
-    )
-
-    {:ok, peer} = start_link({socket, handshake})
-    # :ok = Peer.run(peer, socket, random_keypair, {:client, Sailor.LocalIdentity.keypair().pub})
-    {:ok, peer}
+    with {:ok, socket, handshake} <- Sailor.Peer.Handshake.outgoing({ip, port, other_identity.pub}, local_identity, network_identifier),
+         {:ok, peer} <- DynamicSupervisor.start_child(Sailor.PeerSupervisor, {Sailor.Peer, {socket, handshake}}),
+    do: {:ok, peer}
   end
 
   def start_link({socket, handshake}, register? \\ true) do
@@ -100,7 +91,7 @@ defmodule Sailor.Peer do
 
     {:ok, rpc} = Sailor.Rpc.subscribe_link([reader, writer])
 
-    :ok = Sailor.Rpc.call(rpc, ["createHistoryStream"], :source, [%{id: state.identifier, live: true, old: true}])
+    # :ok = Sailor.Rpc.call(rpc, ["createHistoryStream"], :source, [%{id: state.identifier, live: true, old: true}])
     # :ok = Sailor.Rpc.call(rpc, ["blobs", "has"], :async, ["&F9tH7Ci4f1AVK45S9YhV+tK0tsmkTjQLSe5kQ6nEAuo=.sha256"])
     # :ok = Sailor.Rpc.call(rpc, ["blobs", "createWants"], :source, [])
 
