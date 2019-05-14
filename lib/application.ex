@@ -3,7 +3,7 @@ defmodule Sailor.Application do
 
   def start(_type, _args) do
     {:ok, identity_keypair} = Sailor.Keypair.load_secret "~/.ssb/secret"
-    network_identifier = Sailor.Handshake.default_appkey
+    network_key = Application.get_env(:sailor, :network_key)
     port = Application.get_env(:sailor, :port)
 
     rpc_handlers = [
@@ -11,7 +11,7 @@ defmodule Sailor.Application do
     ]
 
     children = [
-      {Sailor.LocalIdentity, [identity_keypair, network_identifier]},
+      {Sailor.LocalIdentity, [identity_keypair, network_key]},
 
       {DynamicSupervisor, strategy: :one_for_one, name: Sailor.PeerSupervisor},
       {Sailor.Peer.Registry, []},

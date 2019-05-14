@@ -7,6 +7,7 @@ config :logger, :console,
   format: "\n$time $metadata[$level] $levelpad$message\n"
 
 config :sailor,
+  network_key: "1KHLiKZvAvjbY1ziZEHMXawbCEIM6qwjCDm3VYRan/s=",
   port: 8008
 
 config :sailor, Sailor.LocalDiscovery,

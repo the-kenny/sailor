@@ -6,10 +6,6 @@ defmodule Sailor.Handshake do
   alias Sailor.Keypair
   require Logger
 
-  @appkey Base.decode64!("1KHLiKZvAvjbY1ziZEHMXawbCEIM6qwjCDm3VYRan/s=")
-
-  def default_appkey(), do: @appkey
-
   defstruct [
     identity: %Keypair{},
     ephemeral: {<<>>, <<>>},

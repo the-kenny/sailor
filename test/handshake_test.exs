@@ -32,7 +32,7 @@ defmodule Sailor.HandshakeTest do
   end
 
   test "Handshake between our client and our server" do
-    network_identifier = Handshake.default_appkey
+    network_identifier = :crypto.strong_rand_bytes(32)
     server_identity = Keypair.random()
     client_identity = Keypair.random()
 

@@ -7,7 +7,7 @@ defmodule Sailor.BoxstreamTest do
   def finished_handshake() do
     alias Sailor.Handshake
     alias Sailor.Keypair
-    network_identifier = Handshake.default_appkey
+    network_identifier = :crypto.strong_rand_bytes(32)
     server_identity = Keypair.random()
     client_identity = Keypair.random()
 
