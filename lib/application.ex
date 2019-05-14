@@ -3,7 +3,7 @@ defmodule Sailor.Application do
 
   def start(_type, _args) do
     {:ok, identity_keypair} = Sailor.Keypair.load_secret "~/.ssb/secret"
-    network_key = Application.get_env(:sailor, :network_key)
+    {:ok, network_key} = Base.decode64(Application.get_env(:sailor, :network_key))
     port = Application.get_env(:sailor, :port)
 
     rpc_handlers = [
@@ -22,7 +22,7 @@ defmodule Sailor.Application do
 
       {Sailor.Rpc.HandlerRegistry, []},
       %{id: Sailor.RpcHandler.Supervisor, start: {Supervisor, :start_link, [rpc_handlers, [{:strategy, :one_for_one}]]}},
-      {Sailor.SSBServer, [port, identity_keypair]},
+      {Sailor.SSBServer, [port, identity_keypair, network_key]},
     ]
 
     opts = [strategy: :one_for_one, name: Sailor.Supervisor]

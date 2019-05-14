@@ -5,9 +5,9 @@ defmodule Sailor.Peer.Handshake do
   require Logger
 
   # Server
-  def incoming(socket, identity, network_identifier) do
+  def incoming(socket, our_identity, network_identifier) do
     handshake = H.create(
-      identity,
+      our_identity,
       nil,
       network_identifier
     )

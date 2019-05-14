@@ -14,13 +14,42 @@ defmodule Sailor.Peer do
     ]
   end
 
-  def start_link({socket, handshake}) do
-    identifier = handshake.other_pubkey |> Keypair.from_pubkey() |> Keypair.id()
-    GenServer.start_link(__MODULE__, [socket, handshake], name: {:via, Registry, {Sailor.Peer.Registry, identifier}})
+  def start_incoming(socket, local_identity, network_identifier) do
+    with {:ok, handshake} <- Sailor.Peer.Handshake.incoming(socket, local_identity, network_identifier),
+         {:ok, peer} <- DynamicSupervisor.start_child(Sailor.PeerSupervisor, {Sailor.Peer, {socket, handshake}})
+    do
+      Logger.info "Started peer #{inspect peer}"
+      {:ok, peer}
+    end
   end
 
+  def start_outgoing(ip, port, other_identity, local_identity, network_identifier) do
+    {:ok, socket, handshake} = Sailor.Peer.Handshake.outgoing(
+      {ip, port, local_identity.pub},
+      other_identity,
+      network_identifier
+    )
+
+    {:ok, peer} = start_link({socket, handshake})
+    # :ok = Peer.run(peer, socket, random_keypair, {:client, Sailor.LocalIdentity.keypair().pub})
+    {:ok, peer}
+  end
+
+  def start_link({socket, handshake}, register? \\ true) do
+    identifier = handshake.other_pubkey |> Keypair.from_pubkey() |> Keypair.id()
+    Logger.info "Starting Peer process for #{identifier}"
+    name = if register?, do: via_tuple(identifier), else: nil
+    GenServer.start_link(__MODULE__, [socket, handshake], name: name)
+  end
+
+  defp via_tuple(identifier) do
+    {:via, Registry, {Sailor.Peer.Registry, identifier}}
+  end
+
+  # Private Methods
+
   # TODO: Move this logic to somewhere else (`Sailor.Rpc.HandlerRegistry`?)
-  def handle_rpc_request(packet, state) do
+  defp handle_rpc_request(packet, state) do
     request_number = Packet.request_number(packet)
 
     with :json <- Packet.body_type(packet),
@@ -45,9 +74,9 @@ defmodule Sailor.Peer do
     {:noreply, state}
   end
 
-  def handle_rpc_response(packet, state) do
+  defp handle_rpc_response(packet, state) do
     packet = Packet.info(packet)
-    Logger.info "Received RPC response of #{packet.request_number}: #{inspect packet.body}"
+    Logger.debug "Received RPC response with number #{packet.request_number}: #{inspect packet.body}"
     {:noreply, state}
   end
 
@@ -65,15 +94,15 @@ defmodule Sailor.Peer do
   end
 
   def handle_continue({:initialize, handshake, socket}, state) do
-    Logger.info "Initializing RPC for peer #{inspect state.identifier}"
+    Logger.debug "Initializing RPC for peer #{inspect state.identifier}"
     # TODO: open this in RPC
     {:ok, reader, writer} = Sailor.Boxstream.IO.open(socket, handshake)
 
     {:ok, rpc} = Sailor.Rpc.subscribe_link([reader, writer])
 
-    # :ok = Sailor.Rpc.call(rpc, ["createHistoryStream"], :source, [%{id: state.identifier, live: true, old: true}])
+    :ok = Sailor.Rpc.call(rpc, ["createHistoryStream"], :source, [%{id: state.identifier, live: true, old: true}])
     # :ok = Sailor.Rpc.call(rpc, ["blobs", "has"], :async, ["&F9tH7Ci4f1AVK45S9YhV+tK0tsmkTjQLSe5kQ6nEAuo=.sha256"])
-    :ok = Sailor.Rpc.call(rpc, ["blobs", "createWants"], :source, [])
+    # :ok = Sailor.Rpc.call(rpc, ["blobs", "createWants"], :source, [])
 
     {:noreply, %{state | rpc: rpc}}
   end
