@@ -31,7 +31,7 @@ defmodule Sailor.Rpc.Handler.Blobs do
     |> Packet.body_type(:json)
     |> Packet.body(Jason.encode!(false))
 
-    Sailor.Rpc.respond(rpc, packet)
+    Sailor.Rpc.send_packet(rpc, packet)
 
     {:noreply, state}
   end
@@ -44,7 +44,7 @@ defmodule Sailor.Rpc.Handler.Blobs do
 
     responses
     |> Enum.map(fn response -> Packet.respond(request_packet) |> Packet.body_type(:json) |> Packet.body(Jason.encode!(response)) end)
-    |> Enum.each(&Sailor.Rpc.respond(rpc, &1))
+    |> Enum.each(&Sailor.Rpc.send_packet(rpc, &1))
 
     {:noreply, state}
   end

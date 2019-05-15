@@ -1,5 +1,4 @@
 defmodule Sailor.Rpc do
-  use GenServer
   require Logger
 
   alias Sailor.Rpc.Packet
@@ -12,29 +11,16 @@ defmodule Sailor.Rpc do
     ]
   end
 
-  def subscribe([reader, writer]) do
-    peer = self()
-    GenServer.start(__MODULE__, [peer, reader, writer])
+  def new(reader, writer) do
+    %State{
+      request_number: 1,
+      reader: reader,
+      writer: writer,
+    }
   end
 
-  def subscribe_link([reader, writer]) do
-    peer = self()
-    GenServer.start_link(__MODULE__, [peer, reader, writer])
-  end
-
-  def call(rpc, name, type, args) do
-    GenServer.call(rpc, {:send, name, type, args})
-  end
-
-  def respond(rpc, packet) do
-    GenServer.call(rpc, {:respond, packet})
-  end
-
-  def send_goodbye(rpc) do
-    GenServer.call(rpc, :goodbye)
-  end
-
-  defp create_packet_stream(reader) do
+  def create_packet_stream(rpc) do
+    reader = rpc.reader
     Stream.resource(
       fn -> reader end,
       fn reader ->
@@ -49,21 +35,6 @@ defmodule Sailor.Rpc do
           else
             Logger.debug "Received RPC packet: #{inspect Packet.info(packet)}"
             {[packet], reader}
-            # request_number = Packet.request_number(packet)
-            # stream_or_async = case Packet.stream?(packet) do
-            #   true -> :stream
-            #   false -> :async
-            # end
-            # body_type = Packet.body_type(packet)
-            # body = case body_type do
-            #   :binary -> Packet.body(packet)
-            #   :utf8   -> Packet.body(packet)
-            #   :json   -> Jason.decode!(Packet.body(packet))
-            # end
-
-            # message = {request_number, stream_or_async, body_type, body}
-
-            # {[message], reader}
           end
         else
           _ -> {:halt, reader}
@@ -73,43 +44,18 @@ defmodule Sailor.Rpc do
     )
   end
 
-  defp send_packet(packet, state) do
+  def send_packet(rpc, packet) do
     Logger.debug "Sending packet #{inspect Packet.info(packet)}"
-    :ok = IO.write(state.writer, packet)
+    :ok = IO.write(rpc.writer, packet)
+    {:ok, rpc}
   end
 
-  # Callbacks
-
-  def init([peer, reader, writer]) do
-    Process.flag(:trap_exit, true)
-
-    state = %State{
-      request_number: 1,
-      reader: reader,
-      writer: writer,
-    }
-    {:ok, state, {:continue, {:start_stream, peer}}}
+  def send_goodbye(rpc) do
+    {:ok, rpc} = send_packet(rpc, Packet.goodbye_packet())
+    {:ok, %{rpc | request_number: rpc.request_number + 1}}
   end
 
-  def handle_continue({:start_stream, peer}, state) do
-    packet_stream = create_packet_stream(state.reader)
-
-    # Start a task reading all messages from `state.reader` and pass them on to our parent `peer`
-    {:ok, _reader_task} = Task.start_link(fn ->
-      packet_stream
-      |> Stream.each(fn packet -> :ok = Process.send(peer, {:rpc, packet}, []) end)
-      |> Stream.run()
-
-      Logger.debug "RPC stream for #{inspect self()} closed. Shutting down..."
-
-      Process.exit(self(), :shutdown)
-    end)
-
-    {:noreply, state}
-  end
-
-
-  def handle_call({:send, name, type, args}, _from, state) do
+  def send_request(rpc, name, type, args) do
     {:ok, json} = Jason.encode %{
       name: name,
       type: type,
@@ -124,28 +70,12 @@ defmodule Sailor.Rpc do
     end
 
     packet = Packet.create()
-    |> Packet.request_number(state.request_number)
+    |> Packet.request_number(rpc.request_number)
     |> Packet.body_type(:json)
     |> async_or_stream.()
     |> Packet.body(json)
 
-    :ok = send_packet(packet, state)
-    {:reply, :ok, %{state | request_number: state.request_number + 1}}
-  end
-
-  def handle_call({:respond, packet}, _from, state) do
-    :ok = send_packet(packet, state)
-    {:reply, :ok, state}
-  end
-
-  def handle_call(:goodbye, _from, state) do
-    send_packet(Packet.goodbye_packet(), state)
-    # TODO: Should we shut ourself down?
-    {:reply, :ok, %{state | request_number: state.request_number + 1}}
-  end
-
-  def handle_info({:EXIT, pid, reason}, state) do
-    Logger.debug "Shutting down RPC because subprocess #{inspect pid} stopped. Reason: #{inspect reason}"
-    {:stop, reason, state}
+    {:ok, rpc} = send_packet(rpc, packet)
+    {:ok, %{rpc | request_number: rpc.request_number + 1}}
   end
 end

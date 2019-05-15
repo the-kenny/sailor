@@ -89,11 +89,21 @@ defmodule Sailor.Peer do
     # TODO: open this in RPC
     {:ok, reader, writer} = Sailor.Boxstream.IO.open(socket, handshake)
 
-    {:ok, rpc} = Sailor.Rpc.subscribe_link([reader, writer])
+    rpc = Sailor.Rpc.new(reader, writer)
+    me = self()
+    Task.start_link(fn ->
+      Sailor.Rpc.create_packet_stream(rpc)
+      |> Stream.each(fn packet -> :ok = Process.send(me, {:rpc, packet}, []) end)
+      |> Stream.run()
 
-    # :ok = Sailor.Rpc.call(rpc, ["createHistoryStream"], :source, [%{id: state.identifier, live: true, old: true}])
-    # :ok = Sailor.Rpc.call(rpc, ["blobs", "has"], :async, ["&F9tH7Ci4f1AVK45S9YhV+tK0tsmkTjQLSe5kQ6nEAuo=.sha256"])
-    # :ok = Sailor.Rpc.call(rpc, ["blobs", "createWants"], :source, [])
+      Logger.debug "RPC stream for #{state.identifier} closed. Shutting down..."
+
+      Process.exit(self(), :shutdown)
+    end)
+
+    # {:ok, rpc} = Sailor.Rpc.send_request(rpc, ["createHistoryStream"], :source, [%{id: state.identifier, live: true, old: true}])
+    # {:ok, rpc} = Sailor.Rpc.call(rpc, ["blobs", "has"], :async, ["&F9tH7Ci4f1AVK45S9YhV+tK0tsmkTjQLSe5kQ6nEAuo=.sha256"])
+    # {:ok, rpc} = Sailor.Rpc.call(rpc, ["blobs", "createWants"], :source, [])
 
     {:noreply, %{state | rpc: rpc}}
   end
