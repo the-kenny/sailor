@@ -37,6 +37,14 @@ defmodule Sailor.Peer do
     {:via, Registry, {Sailor.Peer.Registry, identifier}}
   end
 
+  def for_identifier(identifier) do
+    via_tuple(identifier)
+  end
+
+  def send_rpc_response(peer, packet) do
+    GenServer.call(peer, {:send_rpc_response, packet})
+  end
+
   # Private Methods
 
   # TODO: Move this logic to somewhere else (`Sailor.Rpc.HandlerRegistry`?)
@@ -55,7 +63,7 @@ defmodule Sailor.Peer do
 
       Registry.dispatch(Sailor.Rpc.HandlerRegistry, name, fn handlers ->
         Enum.each(handlers, fn {_pid, handler} ->
-          Process.send(handler, {:rpc_request, name, type, args, packet, state.rpc}, [])
+          Process.send(handler, {:rpc_request, name, type, args, packet, state.identifier}, [])
         end)
       end)
     else
@@ -102,10 +110,15 @@ defmodule Sailor.Peer do
     end)
 
     # {:ok, rpc} = Sailor.Rpc.send_request(rpc, ["createHistoryStream"], :source, [%{id: state.identifier, live: true, old: true}])
-    # {:ok, rpc} = Sailor.Rpc.call(rpc, ["blobs", "has"], :async, ["&F9tH7Ci4f1AVK45S9YhV+tK0tsmkTjQLSe5kQ6nEAuo=.sha256"])
-    # {:ok, rpc} = Sailor.Rpc.call(rpc, ["blobs", "createWants"], :source, [])
+    {:ok, rpc} = Sailor.Rpc.send_request(rpc, ["blobs", "has"], :async, ["&F9tH7Ci4f1AVK45S9YhV+tK0tsmkTjQLSe5kQ6nEAuo=.sha256"])
+    {:ok, rpc} = Sailor.Rpc.send_request(rpc, ["blobs", "createWants"], :source, [])
 
     {:noreply, %{state | rpc: rpc}}
+  end
+
+  def handle_call({:send_rpc_response, packet}, _from, state) do
+    {:ok, rpc} = Sailor.Rpc.send_packet(state.rpc, packet)
+    {:reply, :ok, %{state | rpc: rpc}}
   end
 
   def handle_info({:rpc, rpc_packet}, state) do
@@ -118,8 +131,6 @@ defmodule Sailor.Peer do
         handle_rpc_request(rpc_packet, state)
     end
   end
-
-  # Shutdown Handling
 
   def handle_info({:EXIT, _pid, reason}, state) do
     {:stop, reason, state}

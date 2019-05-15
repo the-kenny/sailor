@@ -24,14 +24,15 @@ defmodule Sailor.Rpc.Handler.Blobs do
     {:noreply, blobs_path}
   end
 
-  def handle_info({:rpc_request, ["blobs", "has"], "async", [blob_id], request_packet, rpc}, state) do
-    Logger.info "Searching for Blob #{blob_id} (for request #{Packet.request_number(request_packet)}"
+  def handle_info({:rpc_request, ["blobs", "has"], "async", [blob_id], request_packet, peer_identifier}, state) do
+    Logger.info "Searching for Blob #{blob_id} (for request #{Packet.request_number(request_packet)} of peer #{peer_identifier}"
 
     packet = Packet.respond(request_packet)
     |> Packet.body_type(:json)
     |> Packet.body(Jason.encode!(false))
 
-    Sailor.Rpc.send_packet(rpc, packet)
+    Sailor.Peer.for_identifier(peer_identifier)
+    |> Sailor.Peer.send_rpc_response(packet)
 
     {:noreply, state}
   end
