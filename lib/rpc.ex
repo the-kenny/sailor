@@ -74,6 +74,6 @@ defmodule Sailor.Rpc do
     |> Packet.body(json)
 
     {:ok, rpc} = send_packet(rpc, packet)
-    {:ok, %{rpc | request_number: rpc.request_number + 1}}
+    {:ok, rpc.request_number, %{rpc | request_number: rpc.request_number + 1}}
   end
 end

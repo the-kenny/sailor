@@ -11,6 +11,8 @@ defmodule Sailor.Peer do
       identifier: nil,
       keypair: nil,
       rpc: nil,
+
+      pending_calls: %{}, # maps from request-id to `from` tuple to respond to the call
     ]
   end
 
@@ -45,6 +47,14 @@ defmodule Sailor.Peer do
     GenServer.call(peer, {:send_rpc_response, packet})
   end
 
+  def rpc_call(peer, :async, name, args) do
+    GenServer.call(peer, {:rpc_call, :async, name, args})
+  end
+
+  def rpc_call(peer, :source, name, args) do
+    GenServer.call(peer, {:rpc_call, :source, name, args})
+  end
+
   # Private Methods
 
   # TODO: Move this logic to somewhere else (`Sailor.Rpc.HandlerRegistry`?)
@@ -70,13 +80,47 @@ defmodule Sailor.Peer do
       _ -> Logger.warn "Unknown RPC message #{request_number} of type: #{inspect Packet.body_type(packet)}: #{inspect Packet.body(packet)}"
     end
 
-    {:noreply, state}
+    {:ok, state}
   end
 
   defp handle_rpc_response(packet, state) do
-    packet = Packet.info(packet)
-    Logger.debug "Received RPC response with number #{packet.request_number}: #{inspect packet.body}"
-    {:noreply, state}
+    request_number = -Packet.request_number(packet)
+    stream? = Packet.stream?(packet)
+    end_or_error? = Packet.end_or_error?(packet)
+
+    if Map.has_key?(state.pending_calls, request_number) do
+      # If it's a stream we're sending the data as normal messages.
+      # If not, the caller is still waiting for a response to its
+      # `GenServer.call` and we have to reply with `GenServer.reply`
+      if(stream?) do
+        # If this match fails we're receiving a `stream` response to an `async` rpc call (is this allowed?)
+        {:source, receiver} = Map.get(state.pending_calls, request_number)
+        :ok = Process.send(receiver, {:rpc_response, request_number, packet}, [])
+      else
+        {:async, receiver} = Map.get(state.pending_calls, request_number)
+        :ok = GenServer.reply(receiver, {:ok, request_number, packet})
+      end
+
+      # This RPC call is finished when either it's not a stream, or it's a stream and the `end_or_error?` flag is set
+      state = case {stream?, end_or_error?} do
+        {false, _} -> remove_receiver(state, request_number)
+        {true, true} -> remove_receiver(state, request_number)
+        {true, false} -> state
+      end
+
+      {:ok, state}
+    else
+      Logger.warn "Received RPC response for unknown request with id #{Packet.request_number(packet)}"
+      {:ok, state}
+    end
+  end
+
+  defp add_receiver(state, request_number, receiver) do
+    %{ state | pending_calls: Map.put(state.pending_calls, request_number, receiver) }
+  end
+
+  defp remove_receiver(state, request_number) do
+    %{ state | pending_calls: Map.delete(state.pending_calls, request_number) }
   end
 
   # Callbacks
@@ -110,8 +154,8 @@ defmodule Sailor.Peer do
     end)
 
     # {:ok, rpc} = Sailor.Rpc.send_request(rpc, ["createHistoryStream"], :source, [%{id: state.identifier, live: true, old: true}])
-    {:ok, rpc} = Sailor.Rpc.send_request(rpc, ["blobs", "has"], :async, ["&F9tH7Ci4f1AVK45S9YhV+tK0tsmkTjQLSe5kQ6nEAuo=.sha256"])
-    {:ok, rpc} = Sailor.Rpc.send_request(rpc, ["blobs", "createWants"], :source, [])
+    # {:ok, rpc} = Sailor.Rpc.send_request(rpc, ["blobs", "has"], :async, ["&F9tH7Ci4f1AVK45S9YhV+tK0tsmkTjQLSe5kQ6nEAuo=.sha256"])
+    # {:ok, rpc} = Sailor.Rpc.send_request(rpc, ["blobs", "createWants"], :source, [])
 
     {:noreply, %{state | rpc: rpc}}
   end
@@ -121,8 +165,20 @@ defmodule Sailor.Peer do
     {:reply, :ok, %{state | rpc: rpc}}
   end
 
+  def handle_call({:rpc_call, :async, name, args}, from, state) do
+    {:ok, request_number, rpc} = Sailor.Rpc.send_request(state.rpc, name, :async, args)
+    state = %{state | rpc: rpc } |> add_receiver(request_number, {:async, from})
+    {:noreply, state}
+  end
+
+  def handle_call({:rpc_call, :source, name, args}, {from_pid, _}, state) do
+    {:ok, request_number, rpc} = Sailor.Rpc.send_request(state.rpc, name, :source, args)
+    state = %{state | rpc: rpc } |> add_receiver(request_number, {:source, from_pid})
+    {:reply, {:ok, request_number}, state}
+  end
+
   def handle_info({:rpc, rpc_packet}, state) do
-    case Packet.request_number(rpc_packet) do
+    {:ok, state} = case Packet.request_number(rpc_packet) do
       n when n < 0 ->
         # Logger.debug "Dispatching rpc response #{-n}: #{inspect rpc_packet}"
         handle_rpc_response(rpc_packet, state)
@@ -130,6 +186,8 @@ defmodule Sailor.Peer do
         # Logger.debug "Dispatching rpc request #{n}: #{inspect Packet.body(rpc_packet)}"
         handle_rpc_request(rpc_packet, state)
     end
+
+    {:noreply, state}
   end
 
   def handle_info({:EXIT, _pid, reason}, state) do

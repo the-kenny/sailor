@@ -18,7 +18,8 @@ defmodule User do
   end
 
   def local_test_pair() do
-    create_peer({127,0,0,1}, 8008, false)
+    port = Application.get_env(:sailor, :port)
+    create_peer({127,0,0,1}, port, false)
   end
 
   def outgoing_peer(ip, port) do
