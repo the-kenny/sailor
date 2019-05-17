@@ -47,11 +47,11 @@ defmodule Sailor.Peer do
     GenServer.call(peer, {:send_rpc_response, packet})
   end
 
-  def rpc_call(peer, :async, name, args) do
-    GenServer.call(peer, {:rpc_call, :async, name, args})
+  def rpc_call(peer, name, args, timeout \\ 5000) do
+    GenServer.call(peer, {:rpc_call, :async, name, args}, timeout)
   end
 
-  def rpc_call(peer, :source, name, args) do
+  def rpc_stream(peer, name, args) do
     GenServer.call(peer, {:rpc_call, :source, name, args})
   end
 
@@ -62,13 +62,14 @@ defmodule Sailor.Peer do
     request_number = Packet.request_number(packet)
 
     with :json <- Packet.body_type(packet),
-         {:ok, %{"name" => name, "type" => type, "args" => args}} <- Jason.decode(Packet.body(packet))
+         {:ok, body} <- Jason.decode(Packet.body(packet)),
+         %{"name" => name, "type" => type, "args" => args} <- body
     do
       # TODO: We can use `via` instead of explicit lookups
 
       # This check has a race condition, but we only use it for logging. Nothing to worry about.
       if Registry.lookup(Sailor.Rpc.HandlerRegistry, name) == [] do
-        Logger.warn "No handler found for #{inspect name}, we MAY not be able to answer request #{request_number}"
+        Logger.warn "No handler found for #{inspect name}, we MAY not be able to answer request #{request_number} (#{inspect body})"
       end
 
       Registry.dispatch(Sailor.Rpc.HandlerRegistry, name, fn handlers ->
