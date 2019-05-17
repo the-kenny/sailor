@@ -24,6 +24,6 @@ defmodule Sailor.KeypairTest do
 
   test "Keypair.load_secret(path)" do
     {:ok, keypair} = Keypair.load_secret "priv/secret.json"
-    assert Keypair.id(keypair) == "@ZKIjG289FB3fZPyKftIpPM5xqgSRBGdxB5KcYqDspx8=.ed25519"
+    assert Keypair.identifier(keypair) == "@ZKIjG289FB3fZPyKftIpPM5xqgSRBGdxB5KcYqDspx8=.ed25519"
   end
 end

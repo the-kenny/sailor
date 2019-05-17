@@ -42,7 +42,7 @@ defmodule Sailor.Handshake do
   def create(identity, other_pubkey, network_identifier) do
     %__MODULE__{
       identity: identity,
-      ephemeral: Keypair.randomCurve25519(),
+      ephemeral: Keypair.random_curve_25519(),
       other_pubkey: other_pubkey,
       other_ephemeral: %Keypair{},
       network_identifier: network_identifier,

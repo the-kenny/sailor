@@ -27,7 +27,7 @@ defmodule Sailor.Peer do
   end
 
   def start_link({socket, handshake}, register? \\ true) do
-    identifier = handshake.other_pubkey |> Keypair.from_pubkey() |> Keypair.id()
+    identifier = handshake.other_pubkey |> Keypair.from_pubkey() |> Keypair.identifier()
     Logger.info "Starting Peer process for #{identifier}"
     name = if register?, do: via_tuple(identifier), else: nil
     GenServer.start_link(__MODULE__, [socket, handshake], name: name)
@@ -87,7 +87,7 @@ defmodule Sailor.Peer do
     other = Keypair.from_pubkey(handshake.other_pubkey)
     state = %State{
       keypair: other,
-      identifier: Keypair.id(other),
+      identifier: Keypair.identifier(other),
     }
     {:ok, state, {:continue, {:initialize, handshake, socket}}}
   end

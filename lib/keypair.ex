@@ -53,11 +53,11 @@ defmodule Sailor.Keypair do
       curve: curve,
       public: base64_pub <> "." <> curve,
       private: base64_sec <> "." <> curve,
-      id: id(keypair)
+      id: identifier(keypair)
     }
   end
 
-  def id(keypair) do
+  def identifier(keypair) do
     if keypair.curve == nil do
       raise "Can't create identifier without `curve`"
     end
@@ -65,14 +65,14 @@ defmodule Sailor.Keypair do
   end
 
   def random() do
-    {:ok, pub, sec} = Salty.Sign.Ed25519.keypair
+    {:ok, pub, sec} = Salty.Sign.Ed25519.keypair()
     true = Salty.Sign.Ed25519.publickeybytes == byte_size(pub)
     true = Salty.Sign.Ed25519.secretkeybytes == byte_size(sec)
     %__MODULE__{curve: :ed25519, pub: pub, sec: sec}
   end
 
-  def randomCurve25519() do
-    {:ok, pub, sec} = Salty.Box.primitive.keypair
+  def random_curve_25519() do
+    {:ok, pub, sec} = Salty.Box.primitive.keypair()
     true = Salty.Box.primitive.publickeybytes == byte_size(pub)
     true = Salty.Box.primitive.secretkeybytes == byte_size(sec)
     %__MODULE__{curve: :curve25519, pub: pub, sec: sec}

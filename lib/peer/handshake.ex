@@ -27,7 +27,7 @@ defmodule Sailor.Peer.Handshake do
     {:ok, handshake, server_accept} = H.server_accept(handshake)
     :ok = :gen_tcp.send(socket, server_accept)
 
-    Logger.info "Successful handshake between #{Keypair.id(handshake.identity)} (us) and #{Keypair.id(Keypair.from_pubkey(handshake.other_pubkey))} (them)"
+    Logger.info "Successful handshake between #{Keypair.identifier(handshake.identity)} (us) and #{Keypair.identifier(Keypair.from_pubkey(handshake.other_pubkey))} (them)"
 
     {:ok, handshake}
   end
@@ -56,7 +56,7 @@ defmodule Sailor.Peer.Handshake do
     {:ok, server_accept} = :gen_tcp.recv(socket, 80)
     {:ok, handshake} = H.verify_server_accept(handshake, server_accept)
 
-    Logger.info "Successful handshake between #{Keypair.id(handshake.identity)} (us) and #{Keypair.id(Keypair.from_pubkey(handshake.other_pubkey))} (them)"
+    Logger.info "Successful handshake between #{Keypair.identifier(handshake.identity)} (us) and #{Keypair.identifier(Keypair.from_pubkey(handshake.other_pubkey))} (them)"
 
     {:ok, socket, handshake}
   end
