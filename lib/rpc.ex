@@ -3,16 +3,14 @@ defmodule Sailor.Rpc do
 
   alias Sailor.Rpc.Packet
 
-  defmodule State do
-    defstruct [
-      request_number: 1,
-      reader: nil,
-      writer: nil,
-    ]
-  end
+  defstruct [
+    request_number: 1,
+    reader: nil,
+    writer: nil,
+  ]
 
   def new(reader, writer) do
-    %State{
+    %__MODULE__{
       request_number: 1,
       reader: reader,
       writer: writer,
