@@ -11,6 +11,7 @@ defmodule Sailor.Peer do
       identifier: nil,
       keypair: nil,
       rpc: nil,
+      socket: nil,
 
       pending_calls: %{}, # maps from request-id to `from` tuple to respond to the call
     ]
@@ -33,6 +34,10 @@ defmodule Sailor.Peer do
     Logger.info "Starting Peer process for #{identifier}"
     name = if register?, do: via_tuple(identifier), else: nil
     GenServer.start_link(__MODULE__, [socket, handshake], name: name)
+  end
+
+  def stop(peer) do
+    GenServer.cast(peer, :shutdown)
   end
 
   defp via_tuple(identifier) do
@@ -69,7 +74,7 @@ defmodule Sailor.Peer do
 
       # This check has a race condition, but we only use it for logging. Nothing to worry about.
       if Registry.lookup(Sailor.Rpc.HandlerRegistry, name) == [] do
-        Logger.warn "No handler found for #{inspect name}, we MAY not be able to answer request #{request_number} (#{inspect body})"
+        # Logger.warn "No handler found for #{inspect name}, we MAY not be able to answer request #{request_number} (#{inspect body})"
       end
 
       Registry.dispatch(Sailor.Rpc.HandlerRegistry, name, fn handlers ->
@@ -149,16 +154,20 @@ defmodule Sailor.Peer do
       |> Stream.each(fn packet -> :ok = Process.send(me, {:rpc, packet}, []) end)
       |> Stream.run()
 
-      Logger.debug "RPC stream for #{state.identifier} closed. Shutting down..."
+      Logger.debug "RPC stream for #{state.identifier} closed."
 
-      Process.exit(self(), :shutdown)
+      stop(me)
     end)
 
     # {:ok, rpc} = Sailor.Rpc.send_request(rpc, ["createHistoryStream"], :source, [%{id: state.identifier, live: true, old: true}])
     # {:ok, rpc} = Sailor.Rpc.send_request(rpc, ["blobs", "has"], :async, ["&F9tH7Ci4f1AVK45S9YhV+tK0tsmkTjQLSe5kQ6nEAuo=.sha256"])
     # {:ok, rpc} = Sailor.Rpc.send_request(rpc, ["blobs", "createWants"], :source, [])
 
-    {:noreply, %{state | rpc: rpc}}
+    {:noreply, %{state | socket: socket, rpc: rpc}}
+  end
+
+  def handle_cast(:shutdown, state) do
+    {:stop, :normal, state}
   end
 
   def handle_call({:send_rpc_response, packet}, _from, state) do
@@ -197,5 +206,7 @@ defmodule Sailor.Peer do
 
   def terminate(reason, state) do
     Logger.info "Shutting down node #{state.identifier} with reason #{inspect reason}"
+    {:ok, _rpc} = Sailor.Rpc.send_goodbye(state.rpc)
+    :ok = :gen_tcp.close(state.socket)
   end
 end
