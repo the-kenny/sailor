@@ -35,15 +35,12 @@ defmodule Sailor.MessageTest do
     assert {:ok, "%R7lJEkz27lNijPhYNDzYoPjM0Fp+bFWzwX0SmNJB/ZE=.sha256"} = Message.message_id(message)
   end
 
-  test "Message.verify_signature" do
-    {:ok, message} = Message.from_json(@msg)
-    {:ok, author_identity} = Keypair.from_identifier(message.author)
-    assert :ok = Message.verify_signature(message, author_identity)
-  end
-
-  test "Message.verify_signature on msg2" do
-    {:ok, message} = Message.from_json(@msg2)
-    {:ok, author_identity} = Keypair.from_identifier(message.author)
-    assert :ok = Message.verify_signature(message, author_identity)
+  Enum.each [@msg, @msg2], fn msg ->
+    @msg msg
+    test "Message.verify_signature for message with signature" <> Map.get(Jason.decode!(@msg), "signature") do
+      {:ok, message} = Message.from_json(@msg)
+      {:ok, author_identity} = Keypair.from_identifier(Message.author(message))
+      assert :ok = Message.verify_signature(message, author_identity)
+    end
   end
 end
