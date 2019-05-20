@@ -1,6 +1,5 @@
 require Salty.Auth
 require Salty.Box
-require Jason
 
 defmodule Sailor.Handshake do
   alias Sailor.Keypair
