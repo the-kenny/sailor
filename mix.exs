@@ -24,6 +24,8 @@ defmodule Sailor.MixProject do
     [
       {:salty, "~> 0.1.3", git: "https://github.com/the-kenny/libsalty.git", branch: "add-ed-to-curve-conversion-functions"},
       {:jason, "~> 1.1"},
+      {:poison, "~> 4.0.1"},
+      {:jsone, "~> 1.4.7"}
     ]
   end
 end
