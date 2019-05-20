@@ -22,14 +22,15 @@ defmodule User do
     create_peer({127,0,0,1}, port, false)
   end
 
-  def outgoing_peer(ip, port) do
+  def outgoing_peer(ip, port, other_pubkey) do
     random_keypair = Sailor.Keypair.random
+    {:ok, other_identity} = Sailor.Keypair.from_identifier(other_pubkey)
     {:ok, peer} = Peer.start_outgoing(
       ip,
       port,
-      Sailor.LocalIdentity.keypair,
-      random_keypair,
-      Sailor.LocalIdentity.network_identifier
+      other_identity,
+      Sailor.LocalIdentity.keypair(),
+      Sailor.LocalIdentity.network_identifier()
     )
 
     {:ok, peer}
