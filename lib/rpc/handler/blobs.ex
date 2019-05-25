@@ -31,8 +31,8 @@ defmodule Sailor.Rpc.Handler.Blobs do
     |> Packet.body_type(:json)
     |> Packet.body(Jason.encode!(false))
 
-    Sailor.Peer.for_identifier(peer_identifier)
-    |> Sailor.Peer.send_rpc_response(packet)
+    Sailor.PeerConnection.for_identifier(peer_identifier)
+    |> Sailor.PeerConnection.send_rpc_response(packet)
 
     {:noreply, state}
   end

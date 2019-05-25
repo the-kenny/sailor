@@ -3,15 +3,16 @@
 use Mix.Config
 
 config :logger, :console,
-  level: :debug,
+  level: :info,
   format: "\n$time $metadata[$level] $levelpad$message\n"
 
 config :sailor,
   network_key: "1KHLiKZvAvjbY1ziZEHMXawbCEIM6qwjCDm3VYRan/s=",
-  port: 8008
+  port: 8009,
+  identity_file: "./test.secret.json"
 
 config :sailor, Sailor.LocalDiscovery,
-  enable: true,
+  enable: false,
   broadcast_interval: 1*1000
 
 # This configuration is loaded before any dependency and is restricted

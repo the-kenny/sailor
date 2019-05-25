@@ -2,7 +2,7 @@ defmodule Sailor.Application do
   use Application
 
   def start(_type, _args) do
-    {:ok, identity_keypair} = Sailor.Keypair.load_secret "~/.ssb/secret"
+    {:ok, identity_keypair} = Sailor.Keypair.load_secret Application.get_env(:sailor, :identity_file)
     {:ok, network_key} = Base.decode64(Application.get_env(:sailor, :network_key))
     port = Application.get_env(:sailor, :port)
 
@@ -13,10 +13,10 @@ defmodule Sailor.Application do
     children = [
       {Sailor.LocalIdentity, [identity_keypair, network_key]},
 
-      {DynamicSupervisor, strategy: :one_for_one, name: Sailor.PeerSupervisor},
-      {Sailor.Peer.Registry, []},
+      {DynamicSupervisor, strategy: :one_for_one, name: Sailor.PeerConnectionSupervisor},
+      {Sailor.PeerConnection.Registry, []},
 
-      Sailor.Gossip, # Do we need this when we have `Sailor.Peer.Registry`?
+      Sailor.Gossip, # Do we need this when we have `Sailor.PeerConnection.Registry`?
       # TODO: Don't start LocalDiscover for tests
       {Sailor.LocalDiscovery, [port, identity_keypair]},
 

@@ -1,4 +1,4 @@
-defmodule Sailor.Peer do
+defmodule Sailor.PeerConnection do
   use GenServer, restart: :temporary
 
   require Logger
@@ -18,14 +18,14 @@ defmodule Sailor.Peer do
   end
 
   def start_incoming(socket, local_identity, network_identifier) do
-    with {:ok, handshake} <- Sailor.Peer.Handshake.incoming(socket, local_identity, network_identifier),
-         {:ok, peer} <- DynamicSupervisor.start_child(Sailor.PeerSupervisor, {Sailor.Peer, {socket, handshake}}),
+    with {:ok, handshake} <- Sailor.PeerConnection.Handshake.incoming(socket, local_identity, network_identifier),
+         {:ok, peer} <- DynamicSupervisor.start_child(Sailor.PeerConnectionSupervisor, {Sailor.PeerConnection, {socket, handshake}}),
     do: {:ok, peer}
   end
 
   def start_outgoing(ip, port, other_identity, local_identity, network_identifier) do
-    with {:ok, socket, handshake} <- Sailor.Peer.Handshake.outgoing({ip, port, other_identity.pub}, local_identity, network_identifier),
-         {:ok, peer} <- DynamicSupervisor.start_child(Sailor.PeerSupervisor, {Sailor.Peer, {socket, handshake}}),
+    with {:ok, socket, handshake} <- Sailor.PeerConnection.Handshake.outgoing({ip, port, other_identity.pub}, local_identity, network_identifier),
+         {:ok, peer} <- DynamicSupervisor.start_child(Sailor.PeerConnectionSupervisor, {Sailor.PeerConnection, {socket, handshake}}),
     do: {:ok, peer}
   end
 
@@ -41,7 +41,7 @@ defmodule Sailor.Peer do
   end
 
   defp via_tuple(identifier) do
-    {:via, Registry, {Sailor.Peer.Registry, identifier}}
+    {:via, Registry, {Sailor.PeerConnection.Registry, identifier}}
   end
 
   def for_identifier(identifier) do
