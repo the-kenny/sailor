@@ -1,24 +1,29 @@
+# TODO: Support switched `author` and `sequence` fields (ugh)
+
 defmodule Sailor.Message do
   require Logger
 
-  [:previous, :author, :sequence, :timestamp, :hash, :content, :signature] |> Enum.with_index() |> Enum.each(fn {field, idx} ->
+  @message_fields [:previous, :author, :sequence, :timestamp, :hash, :content, :signature]
+
+  @message_fields |> Enum.with_index() |> Enum.each(fn {field, idx} ->
     # As the order of fields in a message always stays the same we can use index-access in our proplist.
     # In our getters we use pattern matching with the first part of the key-value tuple to verify we're
     # accessing the correct field
 
-    def unquote(field)(message) do
+    def unquote(field)({__MODULE__, message}) do
       {unquote(to_string(field)), value} = Enum.at(message, unquote(idx))
       value
     end
 
-    def unquote(field)(message, new_value) do
-      _old_value = unquote(field)(message)
-      List.replace_at(message, unquote(idx), {unquote(to_string(field)), new_value})
+    def unquote(field)({__MODULE__, message}, new_value) do
+      _old_value = unquote(field)({__MODULE__, message})
+      new = List.replace_at(message, unquote(idx), {unquote(to_string(field)), new_value})
+      {__MODULE__, new}
     end
 
   end)
 
-  defp to_json_string(raw) do
+  defp to_json_string(raw) when is_list(raw) do
     :jsone.encode(raw, indent: 2, space: 1)
     |> String.replace("\\/", "/") # Hack as jsone escapes `/` with `\/`
   end
@@ -31,16 +36,18 @@ defmodule Sailor.Message do
     list = case :proplists.get_value("key", list) do
       :undefined -> list
       message_id ->
-        message = :proplists.get_value("value", list)
-        if id(message) != message_id do
-          raise RuntimeError, message: "Received message id #{message_id} is not equal to computed message id #{id(message)}"
+        list = :proplists.get_value("value", list)
+        id = id({__MODULE__, list})
+        if id != message_id do
+          # raise RuntimeError, message: "Received message id #{message_id} is not equal to computed message id #{id}"
+          Logger.error "Received message id #{message_id} is not equal to computed message id #{id}"
         end
-        message
+        list
     end
-    {:ok, list}
+    {:ok, {__MODULE__, list}}
   end
 
-  defp signature_string(message) do
+  defp signature_string({__MODULE__, message}) do
     :proplists.delete("signature", message)
     |> to_json_string()
   end
@@ -70,10 +77,42 @@ defmodule Sailor.Message do
     to_json_string(message)
   end
 
-  def id(message) do
+  def id({__MODULE__, message}) do
     {:ok, hash} = hash_string(message)
     |> Salty.Hash.Sha256.hash()
 
     "%#{Base.encode64(hash)}.sha256"
   end
+
+  @behaviour Sailor.Database.Storable
+
+  def to_record(message) do
+    {
+      __MODULE__,
+      Sailor.Message.id(message),
+      Sailor.Message.author(message),
+      Sailor.Message.timestamp(message),
+      message
+    }
+  end
+
+  def from_record({__MODULE__, _id, _author, _timestamp, message}) do
+    message
+  end
 end
+
+# defimpl Sailor.Database.Storable, for: Sailor.Message do
+#   def to_db_tuple(message) do
+#     {
+#       Message,
+#       Sailor.Message.id(message),
+#       Sailor.Message.author(message),
+#       Sailor.Message.timestamp(message),
+#       message
+#     }
+#   end
+
+#   def from_db_tuple({Message, _id, _author, _timestamp, message}) do
+#     message
+#   end
+# end
