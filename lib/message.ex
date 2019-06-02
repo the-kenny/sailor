@@ -5,19 +5,20 @@ defmodule Sailor.Message do
 
   @message_fields [:previous, :author, :sequence, :timestamp, :hash, :content, :signature]
 
-  @message_fields |> Enum.with_index() |> Enum.each(fn {field, idx} ->
+  @message_fields |> Enum.each(fn field ->
     # As the order of fields in a message always stays the same we can use index-access in our proplist.
     # In our getters we use pattern matching with the first part of the key-value tuple to verify we're
     # accessing the correct field
 
     def unquote(field)({__MODULE__, message}) do
-      {unquote(to_string(field)), value} = Enum.at(message, unquote(idx))
+      {unquote(to_string(field)), value} = :proplists.lookup(unquote(to_string(field)), message)
       value
     end
 
     def unquote(field)({__MODULE__, message}, new_value) do
       _old_value = unquote(field)({__MODULE__, message})
-      new = List.replace_at(message, unquote(idx), {unquote(to_string(field)), new_value})
+      index = Enum.find_index(message, fn {key, _} -> key == unquote(to_string(field)) end)
+      new = List.replace_at(message, index, {unquote(to_string(field)), new_value})
       {__MODULE__, new}
     end
 
@@ -25,6 +26,11 @@ defmodule Sailor.Message do
 
   defp to_json_string(raw) when is_list(raw) do
     :jsone.encode(raw, indent: 2, space: 1)
+    |> String.replace("\\/", "/") # Hack as jsone escapes `/` with `\/`
+  end
+
+  def to_json({__MODULE__, raw}) do
+    :jsone.encode(raw, indent: 0, space: 0)
     |> String.replace("\\/", "/") # Hack as jsone escapes `/` with `\/`
   end
 

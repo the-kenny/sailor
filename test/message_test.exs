@@ -43,13 +43,11 @@ defmodule Sailor.MessageTest do
 
   Enum.each @msgs, fn {name, msg} ->
     @msg msg
+
     test "Message.from_json for " <> name  do
       {:ok, _message} = Message.from_json(@msg)
     end
-  end
 
-  Enum.each @msgs, fn {name, msg} ->
-    @msg msg
     test "Message.verify_signature for message with signature " <> name do
       {:ok, message} = Message.from_json(@msg)
       {:ok, author_identity} = Keypair.from_identifier(Message.author(message))

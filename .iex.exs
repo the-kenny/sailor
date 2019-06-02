@@ -6,13 +6,13 @@ defmodule User do
     # {:ok, socket} = :gen_tcp.connect({127,0,0,1}, 8008, [:binary, active: false])
 
     random_keypair = Sailor.Keypair.random
-    {:ok, socket, handshake} = Sailor.PeerConnection.Handshake.outgoing(
+    {:ok, socket, handshake} = PeerConnection.Handshake.outgoing(
       {ip, port, other_identity.pub},
       random_keypair,
       Sailor.LocalIdentity.network_identifier
     )
 
-    {:ok, peer} = Peer.start_link({socket, handshake}, register?)
+    {:ok, peer} = PeerConnection.start_link({socket, handshake}, register?)
     # :ok = Peer.run(peer, socket, random_keypair, {:client, Sailor.LocalIdentity.keypair().pub})
     {:ok, peer}
   end
@@ -29,7 +29,7 @@ defmodule User do
 
   def outgoing_peer(ip, port, other_pubkey) do
     {:ok, other_identity} = Sailor.Keypair.from_identifier(other_pubkey)
-    {:ok, peer} = Peer.start_outgoing(
+    {:ok, peer} = PeerConnection.start_outgoing(
       ip,
       port,
       other_identity,
@@ -40,16 +40,29 @@ defmodule User do
     {:ok, peer}
   end
 
-  def test(peer) do
-    # {:ok, peer} = User.outgoing_peer('pub.t4l3.net', 8008, "@WndnBREUvtFVF14XYEq01icpt91753bA+nVycEJIAX4=.ed25519");
-    {:ok, request_number} = Sailor.PeerConnection.rpc_stream(peer, "createHistoryStream", [%{"id" => "@WndnBREUvtFVF14XYEq01icpt91753bA+nVycEJIAX4=.ed25519"}])
-
-    receive do
-      {:rpc_response, ^request_number, packet} ->
-        {:ok, message} = Sailor.Message.from_json(Sailor.Rpc.Packet.body(packet))
-        IO.inspect message
-        message
-    end
-
+  def create_history_stream(peer) do
+    {:ok, _id} = PeerConnection.rpc_stream(peer, "createHistoryStream", [%{id: "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519"}])
+    Stream.resource(
+      fn -> peer end,
+      fn _peer ->
+        receive do
+          {:rpc_response, _sequence_number, "createHistoryStream", packet} ->
+            body = Sailor.Rpc.Packet.body(packet)
+            :json = Sailor.Rpc.Packet.body_type(packet)
+            if Sailor.Rpc.Packet.end_or_error?(packet) do
+              {:halt, []}
+            else
+              {:ok, message} = Sailor.Message.from_json(body)
+              {[message], peer}
+            end
+        after
+          5000 -> {:halt, peer}
+        end
+      end,
+      fn _peer -> nil end
+    )
   end
+
+  # {:ok, peer} = User.outgoing_peer({127,0,0,1}, 8008, "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519");
+  # User.create_history_stream(peer) |> Stream.each(&IO.inspect(&1)) |> Stream.each(&Sailor.Database.store(&1)) |> Stream.run
 end

@@ -9,11 +9,13 @@ config :logger, :console,
 config :sailor,
   network_key: "1KHLiKZvAvjbY1ziZEHMXawbCEIM6qwjCDm3VYRan/s=",
   port: 8009,
-  identity_file: "./test.secret.json"
+  identity_file: "./test.secret.json",
+  data_path: "sailor_data/"
 
 config :sailor, Sailor.LocalDiscovery,
   enable: false,
   broadcast_interval: 1*1000
+
 
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this
