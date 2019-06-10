@@ -25,8 +25,11 @@ defmodule Sailor.Peer.Tasks.DumpMessages do
         body = Sailor.Rpc.Packet.body(packet)
         :json = Sailor.Rpc.Packet.body_type(packet)
         if !Sailor.Rpc.Packet.end_or_error?(packet) do
-          {:ok, message} = Sailor.Message.from_json(body)
-          :ok = Sailor.Message.verify_signature(message)
+          {:ok, message} = Sailor.Message.from_history_stream_json(body)
+          case Sailor.Message.verify_signature(message) do
+            {:error, :forged} -> Logger.warn "Couldn't verify authenticity of message #{Sailor.Message.id(message)}"
+            :ok -> :ok
+          end
           :ok = Sailor.Gossip.Store.store(message)
           recv_message(peer_identifier, request_number)
         else

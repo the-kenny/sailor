@@ -29,15 +29,13 @@ defmodule User do
 
   def outgoing_peer(ip, port, other_pubkey) do
     {:ok, other_identity} = Sailor.Keypair.from_identifier(other_pubkey)
-    {:ok, peer} = PeerConnection.start_outgoing(
+    PeerConnection.start_outgoing(
       ip,
       port,
       other_identity,
       Sailor.LocalIdentity.keypair(),
       Sailor.LocalIdentity.network_identifier()
     )
-
-    {:ok, peer}
   end
 
   def create_history_stream(peer) do
@@ -61,6 +59,13 @@ defmodule User do
       end,
       fn _peer -> nil end
     )
+  end
+
+  def dump() do
+    identity = "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519"
+    User.outgoing_peer({127,0,0,1}, 8008, identity)
+    Sailor.Peer.Tasks.DumpMessages.run(identity, identity);
+    # Sailor.PeerConnection.stop(peer)
   end
 
   # {:ok, peer} = User.outgoing_peer({127,0,0,1}, 8008, "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519");

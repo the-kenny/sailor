@@ -1,14 +1,16 @@
 {
-  "previous": "%KTGP6W8vF80McRAZHYDWuKOD0KlNyKSq6Gb42iuV7Iw=.sha256",
-  "author": "@1+Iwm79DKvVBqYKFkhT6fWRbAVvNNVH4F2BSxwhYmx8=.ed25519",
-  "sequence": 116,
-  "timestamp": 1496696699331,
+  "previous": "%wpwKkX3srXXAm/f341MvNzaiPP7s1P218DC2KVrCJYw=.sha256",
+  "sequence": 92,
+  "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+  "timestamp": 1.55836582599900097656e+12,
   "hash": "sha256",
   "content": {
-    "type": "post",
-    "channel": "crypto",
-    "text": "Does anybody know any good resources (e.g. books) to learn cryptography? I'm not speaking of basic concepts (e.g. what's a private key) but the actual mathematics behind the whole thing.\nI have a copy of the \"Handbook of Applied Cryptography\" on my bookshelf but I found it too long/hard to follow. Are there any better alternatives?",
-    "mentions": []
+    "type": "pub",
+    "address": {
+      "host": "ssb-pub.picodevelopment.nl",
+      "port": 8008,
+      "key": "@UFDjYpDN89OTdow4sqZP5eEGGcy+1eN/HNc5DMdMI0M=.ed25519"
+    }
   },
-  "signature": "hqKePbbTXWxEi1njDnOWFsL0M0AoNoWyBFgNE6KXj//DThepaZSy9vRbygDHX5uNmCdyOrsQrwZsZhmUYKwtDQ==.sig.ed25519"
+  "signature": "1GrL6eIHDkTNduOCYHKVRQorSmULPaf/Q/b/uyEuetTvoITqXyQhFBgaQcB7ghVhs3Il/loEtxtYj0ieUal1Aw==.sig.ed25519"
 }
