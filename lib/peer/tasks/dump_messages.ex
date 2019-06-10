@@ -7,7 +7,7 @@ defmodule Sailor.Peer.Tasks.DumpMessages do
   @live_timeout 5*60*1000
 
   # TODO: Should we use hard or soft references (via identifier)?
-  def start_link(peer, history_stream_id) do
+  def start_link(peer, history_stream_id) when is_pid(peer) do
     Task.start_link(__MODULE__, :run, [peer, history_stream_id])
   end
 
