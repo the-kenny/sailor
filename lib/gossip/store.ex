@@ -13,7 +13,7 @@ defmodule Sailor.Gossip.Store do
         last_sequence >= message_sequence ->
           Logger.warn "Already stored gossip message with sequence #{message_sequence} from #{Message.author(message)}"
           :ok
-        last_sequence+1 == message_sequence -> IO.write(resource, [Message.to_json(message), "\n"])
+        last_sequence+1 == message_sequence -> IO.write(resource, [Message.to_compact_json(message), "\n"])
         :else -> {:error, "Missing messages. Latest stored sequence is #{last_sequence}, asked to store #{message_sequence}"}
       end
     end)
@@ -26,7 +26,6 @@ defmodule Sailor.Gossip.Store do
     :ok = File.mkdir_p(Path.dirname(path))
 
     {:ok, file} = File.open(path, [:read, :write, :append])
-
     {:ok, last_sequence} = verify(file)
 
     {:ok, {file, last_sequence}}

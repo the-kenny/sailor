@@ -1,7 +1,8 @@
-# TODO: Support switched `author` and `sequence` fields (ugh)
-
 defmodule Sailor.Message do
   require Logger
+
+  use Memento.Table, attributes: [:id, :data]
+
 
   @message_fields [:previous, :author, :sequence, :timestamp, :hash, :content, :signature]
 
@@ -10,36 +11,39 @@ defmodule Sailor.Message do
     # In our getters we use pattern matching with the first part of the key-value tuple to verify we're
     # accessing the correct field
 
-    def unquote(field)({__MODULE__, message}) do
-      with {unquote(to_string(field)), value} <- :proplists.lookup(unquote(to_string(field)), message) do
+    def unquote(field)(%__MODULE__{} = message) do
+      with {unquote(to_string(field)), value} <- :proplists.lookup(unquote(to_string(field)), message.data) do
         value
       else
         _ -> raise "Couldn't access field #{unquote(to_string(field))} in message #{inspect message}"
       end
     end
 
-    def unquote(field)({__MODULE__, message}, new_value) do
-      _old_value = unquote(field)({__MODULE__, message})
-      index = Enum.find_index(message, fn {key, _} -> key == unquote(to_string(field)) end)
+    def unquote(field)(%__MODULE__{} = message, new_value) do
+      _old_value = unquote(field)(message)
+      index = Enum.find_index(message.data, fn {key, _} -> key == unquote(to_string(field)) end)
       new = List.replace_at(message, index, {unquote(to_string(field)), new_value})
       {__MODULE__, new}
     end
 
   end)
 
-  def to_signing_string({__MODULE__, raw}) do
-    :jsone.encode(raw, [:native_forward_slash, indent: 2, space: 1, float_format: [{:decimals, 20}, :compact]])
+  def to_signing_string(message_data) do
+    :jsone.encode(message_data, [:native_forward_slash, indent: 2, space: 1, float_format: [{:decimals, 20}, :compact]])
   end
 
-  def to_json({__MODULE__, raw}) do
-    :jsone.encode(raw, [:native_forward_slash, indent: 0, space: 0])
+  def to_compact_json(message) do
+    :jsone.encode(message.data, [:native_forward_slash, indent: 0, space: 0])
   end
 
   def from_history_stream_json(str) do
     json = :jsone.decode(str, object_format: :proplist)
     message_id = :proplists.get_value("key", json)
-    message = {__MODULE__, :proplists.get_value("value", json)}
 
+    message = %__MODULE__{
+      id: message_id,
+      data: :proplists.get_value("value", json)
+    }
 
     with :ok <- valid?(message),
          id = id(message),
@@ -58,8 +62,15 @@ defmodule Sailor.Message do
   end
 
   def from_json(str) do
-    with message = {__MODULE__, :jsone.decode(str, object_format: :proplist)},
-         :ok <- valid?(message)
+    proplist = :jsone.decode(str, object_format: :proplist)
+    message = %__MODULE__{
+      # author: :proplists.get_value("author", proplist)
+      data: proplist
+    }
+
+    message = Map.put(message, :id, id(message))
+
+    with :ok <- valid?(message)
     do
       {:ok, message}
     end
@@ -80,8 +91,9 @@ defmodule Sailor.Message do
     end
   end
 
-  defp signature_string({__MODULE__, message}) do
-    to_signing_string({__MODULE__, :proplists.delete("signature", message)})
+  defp signature_string(message) do
+    :proplists.delete("signature", message.data)
+    |> to_signing_string()
   end
 
   def add_signature(message, signing_keypair) do
@@ -93,7 +105,7 @@ defmodule Sailor.Message do
     {:ok, message}
   end
 
-  def verify_signature(message, author) do
+  def verify_signature(%__MODULE__{} = message, author) do
     {:ok, identity} = Sailor.Keypair.from_identifier(author)
     encoded_signature = signature(message)
 
@@ -116,61 +128,24 @@ defmodule Sailor.Message do
     verify_signature(message, author(message))
   end
 
-  defp hash_string(message) do
-    to_signing_string(message)
-  end
-
   def id(message) do
-    {:ok, hash} = hash_string(message)
+    {:ok, hash} = to_signing_string(message)
     |> Salty.Hash.Sha256.hash()
 
     "%#{Base.encode64(hash)}.sha256"
   end
 
-  def legacy_id({__MODULE__, raw}) do
+  def legacy_id(message) do
+    raw = message.data
     author = :proplists.lookup("author", raw)
     sequence = :proplists.lookup("sequence", raw)
 
-    raw = raw
+    {:ok, hash} = raw
     |> List.replace_at(1, sequence)
     |> List.replace_at(2, author)
-
-    {:ok, hash} = hash_string({__MODULE__, raw})
+    |> to_signing_string()
     |> Salty.Hash.Sha256.hash()
 
     "%#{Base.encode64(hash)}.sha256"
   end
-
-
-  @behaviour Sailor.Database.Storable
-
-  def to_record(message) do
-    {
-      __MODULE__,
-      Sailor.Message.id(message),
-      Sailor.Message.author(message),
-      Sailor.Message.timestamp(message),
-      message
-    }
-  end
-
-  def from_record({__MODULE__, _id, _author, _timestamp, message}) do
-    message
-  end
 end
-
-# defimpl Sailor.Database.Storable, for: Sailor.Message do
-#   def to_db_tuple(message) do
-#     {
-#       Message,
-#       Sailor.Message.id(message),
-#       Sailor.Message.author(message),
-#       Sailor.Message.timestamp(message),
-#       message
-#     }
-#   end
-
-#   def from_db_tuple({Message, _id, _author, _timestamp, message}) do
-#     message
-#   end
-# end

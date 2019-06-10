@@ -4,11 +4,6 @@ defmodule Sailor.MessageTest do
   alias Sailor.Message
   alias Sailor.Keypair
 
-  test "Message.id" do
-    {:ok, message} = Message.from_json(List.keyfind(@msgs, "simple msg", 0) |> elem(1))
-    assert "%R7lJEkz27lNijPhYNDzYoPjM0Fp+bFWzwX0SmNJB/ZE=.sha256" = Message.id(message)
-  end
-
   @legacy_message ~s({"previous":"%5vRiWqlTOUsY6MM1I/lcQqCkw1F09BSmI6BnPD7FWcc=.sha256","sequence":32,"author":"@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519","timestamp":1557303668620,"hash":"sha256","content":{"type":"contact","contact":"@EvIllh9vj5gYABPBjNPWvkABcVp0rUbp4EoA0tXPhFY=.ed25519","following":true},"signature":"QMtIicJmiaEGxFAgyB8Hg9FABJdcPjaHlXubN5J+GrElGoVHxfU5SLle6HCSreSAutJ8CNwSVmvLbGsheGRkDA==.sig.ed25519"})
 
   test "Message.verify_signature for legacy formats" do
@@ -29,7 +24,7 @@ defmodule Sailor.MessageTest do
 
     test "Message roundtrip for msg in #{msg_file}" do
       {:ok, message} = Message.from_json(@msg)
-      assert @msg == Message.to_signing_string(message)
+      assert @msg == Message.to_signing_string(message.data)
     end
 
     test "Message.verify_signature for msg in #{msg_file}" do
