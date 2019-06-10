@@ -61,11 +61,12 @@ defmodule User do
     )
   end
 
-  def dump() do
-    identifier = "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519"
-    User.outgoing_peer({127,0,0,1}, 8008, identifier)
-    peer = GenServer.whereis(PeerConnection.for_identifier(identifier))
-    Sailor.Peer.Tasks.DumpMessages.start_link(peer, identifier);
+  def dump(identifier \\ nil) do
+    peer_identifier = "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519"
+    history_stream = identifier || peer_identifier
+    User.outgoing_peer({127,0,0,1}, 8008, peer_identifier)
+    peer = GenServer.whereis(PeerConnection.for_identifier(peer_identifier))
+    Sailor.Peer.Tasks.DumpMessages.start_link(peer, history_stream);
     # Sailor.PeerConnection.stop(peer)
   end
 
