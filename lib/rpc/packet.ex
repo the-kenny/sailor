@@ -103,6 +103,12 @@ defmodule Sailor.Rpc.Packet do
     end_or_error? == 1
   end
 
+  def end_or_error(packet) do
+    packet_binary() = packet
+    end_or_error? = 1
+    packet_binary()
+  end
+
   @goodbye_packet <<0, 0, 0, 0, 0, 0, 0, 0, 0>>
 
   def goodbye_packet?(packet) when packet == @goodbye_packet, do: true

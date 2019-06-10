@@ -1,12 +1,11 @@
 defmodule Sailor.Message do
   require Logger
 
-  use Memento.Table, attributes: [:id, :data]
-
+  use Memento.Table,
+    attributes: [:id, :author, :sequence, :data],
+    index: [:author]
 
   @message_fields [:previous, :author, :sequence, :timestamp, :hash, :content, :signature]
-
-  def id(%__MODULE__{id: id}), do: id
 
   @message_fields |> Enum.each(fn field ->
     # As the order of fields in a message always stays the same we can use index-access in our proplist.
@@ -25,10 +24,17 @@ defmodule Sailor.Message do
       _old_value = unquote(field)(message)
       index = Enum.find_index(message.data, fn {key, _} -> key == unquote(to_string(field)) end)
       new = List.replace_at(message, index, {unquote(to_string(field)), new_value})
-      {__MODULE__, new}
+      %{message | data: new} |> normalize()
     end
 
   end)
+
+  defp normalize(%__MODULE__{} = message) do
+    message
+    |> Map.put(:id, id(message))
+    |> Map.put(:author, author(message))
+    |> Map.put(:sequence, sequence(message))
+  end
 
   def to_signing_string(message_data) do
     :jsone.encode(message_data, [:native_forward_slash, indent: 2, space: 1, float_format: [{:decimals, 20}, :compact]])
@@ -40,12 +46,12 @@ defmodule Sailor.Message do
 
   def from_history_stream_json(str) do
     json = :jsone.decode(str, object_format: :proplist)
-    message_id = :proplists.get_value("key", json)
+    incoming_id = :proplists.get_value("key", json)
 
     message = %__MODULE__{
-      id: message_id,
+      id: incoming_id,
       data: :proplists.get_value("value", json)
-    }
+    } |> normalize()
 
     with :ok <- valid?(message),
          id = id(message),
@@ -53,9 +59,9 @@ defmodule Sailor.Message do
     do
       cond do
         id == legacy_id ->
-          Logger.warn "Received message id #{message_id} matches legacy id #{legacy_id}"
-        id != message_id && id != legacy_id ->
-          Logger.warn "Received message id #{message_id} matches neither legacy-id #{legacy_id} nor normal id #{id}"
+          Logger.warn "Received message id #{incoming_id} matches legacy id #{legacy_id}"
+        id != incoming_id && incoming_id != legacy_id ->
+          Logger.warn "Received message id #{incoming_id} matches neither legacy-id #{legacy_id} nor normal id #{id}"
         :else -> nil
       end
 
@@ -65,12 +71,7 @@ defmodule Sailor.Message do
 
   def from_json(str) do
     proplist = :jsone.decode(str, object_format: :proplist)
-    message = %__MODULE__{
-      # author: :proplists.get_value("author", proplist)
-      data: proplist
-    }
-
-    message = Map.put(message, :id, id(message))
+    message = %__MODULE__{data: proplist} |> normalize()
 
     with :ok <- valid?(message)
     do

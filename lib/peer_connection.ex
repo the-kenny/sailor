@@ -60,6 +60,10 @@ defmodule Sailor.PeerConnection do
     GenServer.call(peer, {:rpc_call, :source, name, args})
   end
 
+  def close_rpc_stream(peer, request_number) do
+    GenServer.call(peer, {:close_rpc_source, request_number})
+  end
+
   # Private Methods
 
   # TODO: Move this logic to somewhere else (`Sailor.Rpc.HandlerRegistry`?)
@@ -185,6 +189,19 @@ defmodule Sailor.PeerConnection do
     {:ok, request_number, rpc} = Sailor.Rpc.send_request(state.rpc, name, :source, args)
     state = %{state | rpc: rpc } |> add_receiver(request_number, name, {:source, from_pid})
     {:reply, {:ok, request_number}, state}
+  end
+
+  def handle_call({:close_rpc_source, request_number}, _from, state) do
+    packet = Sailor.Rpc.Packet.create()
+    |> Sailor.Rpc.Packet.request_number(request_number)
+    |> Sailor.Rpc.Packet.stream()
+    |> Sailor.Rpc.Packet.end_or_error()
+    |> Sailor.Rpc.Packet.body_type(:json)
+    |> Sailor.Rpc.Packet.body("true")
+
+    {:ok, rpc} = Sailor.Rpc.send_packet(state.rpc, packet)
+    state = %{state | rpc: rpc }
+    {:reply, :ok, state}
   end
 
   def handle_info({:rpc, rpc_packet}, state) do

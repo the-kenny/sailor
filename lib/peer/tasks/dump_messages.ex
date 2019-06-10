@@ -4,22 +4,36 @@ defmodule Sailor.Peer.Tasks.DumpMessages do
   require Logger
   alias Sailor.PeerConnection
 
+  @live_timeout 5*60*1000
+
   # TODO: Should we use hard or soft references (via identifier)?
-  def start_link(peer_identifier, history_stream_id) do
-    Task.start_link(__MODULE__, :run, [peer_identifier, history_stream_id])
+  def start_link(peer, history_stream_id) do
+    Task.start_link(__MODULE__, :run, [peer, history_stream_id])
   end
 
-  def start_link(peer_identifier) do
-    start_link(peer_identifier, peer_identifier)
+  def run(peer, history_stream_id) do
+    Process.link(peer)
+
+    {:ok, seq} = Memento.transaction fn ->
+      Memento.Query.select(Sailor.Message, [{:==, :author, history_stream_id}])
+      |> Stream.map(&Sailor.Message.sequence/1)
+      |> Enum.max(fn -> 0 end)
+    end
+
+    Logger.info "Calling createHistoryStream starting at #{seq} for peer #{inspect peer}"
+
+    args = %{
+      id: history_stream_id,
+      sequence: seq,
+      live: true,
+      old: true
+    }
+
+    {:ok, request_number} = PeerConnection.rpc_stream(peer, "createHistoryStream", [args])
+    recv_message(peer, history_stream_id, request_number)
   end
 
-  def run(peer_identifier, history_stream_id) do
-    peer = PeerConnection.for_identifier(peer_identifier)
-    {:ok, request_number} = PeerConnection.rpc_stream(peer, "createHistoryStream", [%{id: history_stream_id}])
-    recv_message(peer_identifier, request_number)
-  end
-
-  defp recv_message(peer_identifier, request_number) do
+  defp recv_message(peer, history_stream_id, request_number) do
     receive do
       {:rpc_response, ^request_number, "createHistoryStream", packet} ->
         body = Sailor.Rpc.Packet.body(packet)
@@ -30,16 +44,18 @@ defmodule Sailor.Peer.Tasks.DumpMessages do
             {:error, :forged} -> Logger.warn "Couldn't verify signature of message #{Sailor.Message.id(message)}"
             :ok -> :ok
           end
-          # :ok = Sailor.Gossip.Store.store(message)
           Memento.transaction! fn ->
             Memento.Query.write(message)
           end
-          recv_message(peer_identifier, request_number)
+
+          recv_message(peer, history_stream_id, request_number)
         else
-          Logger.info "DumpMessages finished for #{peer_identifier}"
         end
-    after
-      5000 -> Logger.warn "Timeout receiving messages in #{inspect __MODULE__} for #{peer_identifier}"
-    end
+      after
+        @live_timeout ->
+          Logger.info "Timeout receiving messages in #{inspect __MODULE__} for #{history_stream_id}"
+          :ok = PeerConnection.close_rpc_stream(peer, request_number)
+          Logger.info "Received no new message for stream #{history_stream_id} for #{@live_timeout} seconds. Shutting down..."
+      end
   end
 end
