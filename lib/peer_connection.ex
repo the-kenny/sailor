@@ -13,7 +13,7 @@ defmodule Sailor.PeerConnection do
       rpc: nil,
       socket: nil,
 
-      pending_calls: %{}, # maps from request-id to `from` tuple to respond to the call
+      pending_calls: %{}, # maps from request-id to `{rpc-name, from}` tuple to respond to the call
     ]
   end
 
@@ -100,11 +100,11 @@ defmodule Sailor.PeerConnection do
       # `GenServer.call` and we have to reply with `GenServer.reply`
       if(stream?) do
         # If this match fails we're receiving a `stream` response to an `async` rpc call (is this allowed?)
-        {:source, receiver} = Map.get(state.pending_calls, request_number)
-        :ok = Process.send(receiver, {:rpc_response, request_number, packet}, [])
+        {rpc_name, {:source, receiver}} = Map.get(state.pending_calls, request_number)
+        :ok = Process.send(receiver, {:rpc_response, request_number, rpc_name, packet}, [])
       else
-        {:async, receiver} = Map.get(state.pending_calls, request_number)
-        :ok = GenServer.reply(receiver, {:ok, request_number, packet})
+        {rpc_name, {:async, receiver}} = Map.get(state.pending_calls, request_number)
+        :ok = GenServer.reply(receiver, {:ok, request_number, rpc_name, packet})
       end
 
       # This RPC call is finished when either it's not a stream, or it's a stream and the `end_or_error?` flag is set
@@ -121,8 +121,8 @@ defmodule Sailor.PeerConnection do
     end
   end
 
-  defp add_receiver(state, request_number, receiver) do
-    %{ state | pending_calls: Map.put(state.pending_calls, request_number, receiver) }
+  defp add_receiver(state, request_number, rpc_name, receiver) do
+    %{ state | pending_calls: Map.put(state.pending_calls, request_number, {rpc_name, receiver}) }
   end
 
   defp remove_receiver(state, request_number) do
@@ -177,13 +177,13 @@ defmodule Sailor.PeerConnection do
 
   def handle_call({:rpc_call, :async, name, args}, from, state) do
     {:ok, request_number, rpc} = Sailor.Rpc.send_request(state.rpc, name, :async, args)
-    state = %{state | rpc: rpc } |> add_receiver(request_number, {:async, from})
+    state = %{state | rpc: rpc } |> add_receiver(request_number, name, {:async, from})
     {:noreply, state}
   end
 
   def handle_call({:rpc_call, :source, name, args}, {from_pid, _}, state) do
     {:ok, request_number, rpc} = Sailor.Rpc.send_request(state.rpc, name, :source, args)
-    state = %{state | rpc: rpc } |> add_receiver(request_number, {:source, from_pid})
+    state = %{state | rpc: rpc } |> add_receiver(request_number, name, {:source, from_pid})
     {:reply, {:ok, request_number}, state}
   end
 

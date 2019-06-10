@@ -13,26 +13,27 @@ defmodule Sailor.Peer.Tasks.DumpMessages do
     start_link(peer_identifier, peer_identifier)
   end
 
-  def run(identifier, history_stream_id) do
-    peer = PeerConnection.for_identifier(identifier)
+  def run(peer_identifier, history_stream_id) do
+    peer = PeerConnection.for_identifier(peer_identifier)
     {:ok, request_number} = PeerConnection.rpc_stream(peer, "createHistoryStream", [%{id: history_stream_id}])
-    recv_message(identifier, request_number)
+    recv_message(peer_identifier, request_number)
   end
 
-  defp recv_message(identifier, request_number) do
+  defp recv_message(peer_identifier, request_number) do
     receive do
       {:rpc_response, ^request_number, "createHistoryStream", packet} ->
         body = Sailor.Rpc.Packet.body(packet)
         :json = Sailor.Rpc.Packet.body_type(packet)
         if !Sailor.Rpc.Packet.end_or_error?(packet) do
           {:ok, message} = Sailor.Message.from_json(body)
+          :ok = Sailor.Message.verify_signature(message)
           :ok = Sailor.Gossip.Store.store(message)
-          recv_message(identifier, request_number)
+          recv_message(peer_identifier, request_number)
         else
-          Logger.info "DumpMessages finished for #{identifier}"
+          Logger.info "DumpMessages finished for #{peer_identifier}"
         end
     after
-      5000 -> Logger.warn "Timeout receiving messages in #{inspect __MODULE__} for #{identifier}"
+      5000 -> Logger.warn "Timeout receiving messages in #{inspect __MODULE__} for #{peer_identifier}"
     end
   end
 end
