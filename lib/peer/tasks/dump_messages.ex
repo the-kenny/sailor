@@ -27,10 +27,13 @@ defmodule Sailor.Peer.Tasks.DumpMessages do
         if !Sailor.Rpc.Packet.end_or_error?(packet) do
           {:ok, message} = Sailor.Message.from_history_stream_json(body)
           case Sailor.Message.verify_signature(message) do
-            {:error, :forged} -> Logger.warn "Couldn't verify authenticity of message #{Sailor.Message.id(message)}"
+            {:error, :forged} -> Logger.warn "Couldn't verify signature of message #{Sailor.Message.id(message)}"
             :ok -> :ok
           end
-          :ok = Sailor.Gossip.Store.store(message)
+          # :ok = Sailor.Gossip.Store.store(message)
+          Memento.transaction! fn ->
+            Memento.Query.write(message)
+          end
           recv_message(peer_identifier, request_number)
         else
           Logger.info "DumpMessages finished for #{peer_identifier}"

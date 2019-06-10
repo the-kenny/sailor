@@ -6,6 +6,8 @@ defmodule Sailor.Message do
 
   @message_fields [:previous, :author, :sequence, :timestamp, :hash, :content, :signature]
 
+  def id(%__MODULE__{id: id}), do: id
+
   @message_fields |> Enum.each(fn field ->
     # As the order of fields in a message always stays the same we can use index-access in our proplist.
     # In our getters we use pattern matching with the first part of the key-value tuple to verify we're

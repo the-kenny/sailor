@@ -3,6 +3,7 @@
   "jason": {:hex, :jason, "1.1.2", "b03dedea67a99223a2eaf9f1264ce37154564de899fd3d8b9a21b1a6fd64afe7", [:mix], [{:decimal, "~> 1.0", [hex: :decimal, repo: "hexpm", optional: true]}], "hexpm"},
   "jiffy": {:hex, :jiffy, "1.0.1", "4f25639772ca41202f41ba9c8f6ca0933554283dd4742c90651e03471c55e341", [:rebar3], [], "hexpm"},
   "jsone": {:git, "https://github.com/the-kenny/jsone.git", "e60c66c9014895b607b8620a4a7081d43e585056", [branch: "empty-array-formatting"]},
+  "memento": {:hex, :memento, "0.3.1", "b2909390820550d8b90b68ec96f9e15ff8a45a28b6f97fa4a62ef50e87c2f9d9", [:mix], [], "hexpm"},
   "poison": {:hex, :poison, "4.0.1", "bcb755a16fac91cad79bfe9fc3585bb07b9331e50cfe3420a24bcc2d735709ae", [:mix], [], "hexpm"},
   "salty": {:git, "https://github.com/the-kenny/libsalty.git", "1c2c00b15ba5a0144e20077e9cb676d786e0436a", [branch: "add-ed-to-curve-conversion-functions"]},
 }
