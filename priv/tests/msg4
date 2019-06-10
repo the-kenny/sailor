@@ -1,0 +1,21 @@
+{
+  "previous": "%HVxx3sLDTIasjbMK0qApd3uU7w1g2Fsa3AurnmL0chY=.sha256",
+  "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+  "sequence": 6,
+  "timestamp": 1556271225821,
+  "hash": "sha256",
+  "content": {
+    "type": "post",
+    "root": "%cddfRodgWBGw8Vg+2eha+5zFfNM0W1vCvhZjDPIkefI=.sha256",
+    "branch": "%JsG3jozVptXTZal8Y2R+AdwIzUOaoaRZCP1tLhogOCA=.sha256",
+    "reply": {
+      "%cddfRodgWBGw8Vg+2eha+5zFfNM0W1vCvhZjDPIkefI=.sha256": "@N/vWpVVdD1e8IbACUQE4EVGL6+aodQfbQZ8ByC+k79s=.ed25519",
+      "%JsG3jozVptXTZal8Y2R+AdwIzUOaoaRZCP1tLhogOCA=.sha256": "@dvV/equwl6LX4vb+CzQC1sfSrK0w1Eo03qr34Q8yJRE=.ed25519"
+    },
+    "channel": "ssb-implementations",
+    "recps": null,
+    "text": "Can you explain to me when and how the unstable features used by most libraries (`async_await`, ...) are getting stabilized? I'm having a hard time convincing myself to start working on stuff that might need a rewrite a few weeks later.",
+    "mentions": []
+  },
+  "signature": "611SaSxDQXWX04JmL+X8nNKNTKFfw7/tGivLB1MkcUvb9107uYHnp5w3cmFvfkrhrLdFivVOp6l887lPccEeCg==.sig.ed25519"
+}

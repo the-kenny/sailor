@@ -5,7 +5,7 @@ defmodule Sailor.MixProject do
     [
       app: :sailor,
       version: "0.1.0",
-      elixir: "~> 1.8",
+      elixir: "~> 1.9.0-rc.0",
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
@@ -24,7 +24,9 @@ defmodule Sailor.MixProject do
     [
       {:salty, "~> 0.1.3", git: "https://github.com/the-kenny/libsalty.git", branch: "add-ed-to-curve-conversion-functions"},
       {:jason, "~> 1.1"},
-      {:jsone, "~> 1.4.7"}
+      # {:jsone, "~> 1.5.0"}
+      {:jsone, git: "https://github.com/the-kenny/jsone.git", branch: "empty-array-formatting"},
+      {:jiffy, "~> 1.0"},
     ]
   end
 end

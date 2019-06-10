@@ -1,0 +1,12 @@
+{
+  "previous": "%ztBlbZAEnTJk03QFpGqqH8eU3IVMWMvBrGTvLyyORQY=.sha256",
+  "sequence": 39,
+  "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+  "timestamp": 1557327611749.002,
+  "hash": "sha256",
+  "content": {
+    "type": "tag",
+    "version": 1
+  },
+  "signature": "LS+xCe7znjO2IB2calIQMPmmd+WzebMcDZatQF4cYc4MXD3P74uRhr7oWK3qDHjOHGQCfxH+j92zoewyonucAg==.sig.ed25519"
+}

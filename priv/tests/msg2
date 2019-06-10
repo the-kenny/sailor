@@ -1,0 +1,14 @@
+{
+  "previous": "%KTGP6W8vF80McRAZHYDWuKOD0KlNyKSq6Gb42iuV7Iw=.sha256",
+  "author": "@1+Iwm79DKvVBqYKFkhT6fWRbAVvNNVH4F2BSxwhYmx8=.ed25519",
+  "sequence": 116,
+  "timestamp": 1496696699331,
+  "hash": "sha256",
+  "content": {
+    "type": "post",
+    "channel": "crypto",
+    "text": "Does anybody know any good resources (e.g. books) to learn cryptography? I'm not speaking of basic concepts (e.g. what's a private key) but the actual mathematics behind the whole thing.\nI have a copy of the \"Handbook of Applied Cryptography\" on my bookshelf but I found it too long/hard to follow. Are there any better alternatives?",
+    "mentions": []
+  },
+  "signature": "hqKePbbTXWxEi1njDnOWFsL0M0AoNoWyBFgNE6KXj//DThepaZSy9vRbygDHX5uNmCdyOrsQrwZsZhmUYKwtDQ==.sig.ed25519"
+}
