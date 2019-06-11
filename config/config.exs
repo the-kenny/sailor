@@ -1,10 +1,13 @@
 # This file is responsible for configuring your application
 # and its dependencies with the aid of the Mix.Config module.
-use Mix.Config
+import Config
 
 config :logger, :console,
   level: :info,
   format: "\n$time $metadata[$level] $levelpad$message\n"
+
+config :mnesia,
+  dir: 'mnesia/#{Mix.env}/#{node()}'
 
 config :sailor,
   network_key: "1KHLiKZvAvjbY1ziZEHMXawbCEIM6qwjCDm3VYRan/s=",
@@ -12,12 +15,9 @@ config :sailor,
   identity_file: "./test.secret.json",
   data_path: "sailor_data/"
 
-config :sailor, Sailor.LocalDiscovery,
+  config :sailor, Sailor.LocalDiscovery,
   enable: false,
   broadcast_interval: 1*1000
-
-  config :mnesia,
-  dir: 'mnesia/#{Mix.env}/#{node()}'
 
 
 # This configuration is loaded before any dependency and is restricted
