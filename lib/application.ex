@@ -16,8 +16,6 @@ defmodule Sailor.Application do
       {DynamicSupervisor, strategy: :one_for_one, name: Sailor.PeerConnectionSupervisor},
       {Sailor.PeerConnection.Registry, []},
 
-      Sailor.Gossip, # Do we need this when we have `Sailor.PeerConnection.Registry`?
-      # TODO: Don't start LocalDiscover for tests
       {Sailor.LocalDiscovery, [port, identity_keypair]},
 
       {Sailor.Rpc.HandlerRegistry, []},

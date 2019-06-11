@@ -74,11 +74,7 @@ defmodule Sailor.LocalDiscovery do
   def handle_info({:udp, _socket, _address, _port, data}, state) do
     Enum.each(parse_announcements(data), fn {:ok, ip, port, keypair} ->
       identifier = Keypair.identifier(keypair)
-      if Sailor.Gossip.get_peer(identifier) == nil do
-        Logger.debug "Received broadcast from #{identifier} at #{inspect {:inet.ntoa(ip), port}}"
-      end
-
-      Sailor.Gossip.remember_peer(identifier, {ip, port})
+      Logger.debug "Received broadcast from #{identifier} at #{inspect {:inet.ntoa(ip), port}}"
     end)
 
     {:noreply, state}
