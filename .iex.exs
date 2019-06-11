@@ -50,7 +50,7 @@ defmodule User do
             if Sailor.Rpc.Packet.end_or_error?(packet) do
               {:halt, []}
             else
-              {:ok, message} = Sailor.Message.from_json(body)
+              {:ok, message} = Sailor.Stream.Message.from_json(body)
               {[message], peer}
             end
         after
@@ -72,8 +72,8 @@ defmodule User do
 
   def foo() do
     Memento.transaction! fn ->
-      Memento.Query.select(Sailor.Message, [{:==, :author, "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519"}])
-      |> Enum.map(&Sailor.Message.sequence/1)
+      Memento.Query.select(Sailor.Stream.Message, [{:==, :author, "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519"}])
+      |> Enum.map(&Sailor.Stream.Message.sequence/1)
     end
   end
   # {:ok, peer} = User.outgoing_peer({127,0,0,1}, 8008, "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519");

@@ -1,4 +1,4 @@
-defmodule Sailor.Message do
+defmodule Sailor.Stream.Message do
   require Logger
 
   use Memento.Table,

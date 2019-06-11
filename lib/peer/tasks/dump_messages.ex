@@ -3,6 +3,7 @@ defmodule Sailor.Peer.Tasks.DumpMessages do
 
   require Logger
   alias Sailor.PeerConnection
+  alias Sailor.Stream.Message
 
   @live_timeout 5*60*1000
 
@@ -15,8 +16,8 @@ defmodule Sailor.Peer.Tasks.DumpMessages do
     Process.link(peer)
 
     {:ok, seq} = Memento.transaction fn ->
-      Memento.Query.select(Sailor.Message, [{:==, :author, history_stream_id}])
-      |> Stream.map(&Sailor.Message.sequence/1)
+      Memento.Query.select(Message, [{:==, :author, history_stream_id}])
+      |> Stream.map(&Message.sequence/1)
       |> Enum.max(fn -> 0 end)
     end
 
@@ -39,9 +40,9 @@ defmodule Sailor.Peer.Tasks.DumpMessages do
         body = Sailor.Rpc.Packet.body(packet)
         :json = Sailor.Rpc.Packet.body_type(packet)
         if !Sailor.Rpc.Packet.end_or_error?(packet) do
-          {:ok, message} = Sailor.Message.from_history_stream_json(body)
-          case Sailor.Message.verify_signature(message) do
-            {:error, :forged} -> Logger.warn "Couldn't verify signature of message #{Sailor.Message.id(message)}"
+          {:ok, message} = Message.from_history_stream_json(body)
+          case Message.verify_signature(message) do
+            {:error, :forged} -> Logger.warn "Couldn't verify signature of message #{Message.id(message)}"
             :ok -> :ok
           end
           Memento.transaction! fn ->
