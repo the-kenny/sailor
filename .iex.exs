@@ -61,13 +61,30 @@ defmodule User do
     )
   end
 
+  @me "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519"
+
   def dump(identifier \\ nil) do
-    peer_identifier = "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519"
+    peer_identifier = @me
     history_stream = identifier || peer_identifier
     User.outgoing_peer({127,0,0,1}, 8008, peer_identifier)
     peer = GenServer.whereis(PeerConnection.for_identifier(peer_identifier))
     Sailor.Peer.Tasks.DumpMessages.start_link(peer, history_stream);
     # Sailor.PeerConnection.stop(peer)
+  end
+
+  def dump_all_peers() do
+
+    peers = Memento.transaction!(fn -> Memento.Query.all(Sailor.Stream.Message) end)
+    |> Sailor.Stream.extract_peers()
+    |> Stream.into(MapSet.new())
+
+    User.outgoing_peer({127,0,0,1}, 8008, @me)
+    peer = GenServer.whereis(PeerConnection.for_identifier(@me))
+
+    peers
+    |> Stream.take(100)
+    |> Stream.each(&Sailor.Peer.Tasks.DumpMessages.start_link(peer, &1))
+    |> Stream.run()
   end
 
   def foo() do
