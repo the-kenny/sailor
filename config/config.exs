@@ -2,8 +2,13 @@
 # and its dependencies with the aid of the Mix.Config module.
 import Config
 
+config :logger,
+  compile_time_purge_matching: [
+    [module: Sailor.Rpc]
+  ]
+
 config :logger, :console,
-  level: :info,
+  level: :debug,
   format: "\n$time $metadata[$level] $levelpad$message\n"
 
 config :mnesia,
@@ -15,7 +20,7 @@ config :sailor,
   identity_file: "./test.secret.json",
   data_path: "sailor_data/"
 
-  config :sailor, Sailor.LocalDiscovery,
+config :sailor, Sailor.LocalDiscovery,
   enable: false,
   broadcast_interval: 1*1000
 
