@@ -2,7 +2,8 @@ defmodule Mix.Tasks.Db.Reset do
   use Mix.Task
 
   @modules [
-    Sailor.Stream.Message
+    Sailor.Stream.Message,
+    Sailor.Stream
   ]
 
   @shortdoc "Resets the local Mnesia database and initializes the schema"

@@ -63,6 +63,8 @@ defmodule User do
 
   @me "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519"
 
+  def me(), do: @me
+
   def dump(identifier \\ nil) do
     peer_identifier = @me
     history_stream = identifier || peer_identifier
@@ -74,6 +76,7 @@ defmodule User do
 
   def dump_all_peers() do
 
+    # TODO: Broken
     peers = Memento.transaction!(fn -> Memento.Query.all(Sailor.Stream.Message) end)
     |> Sailor.Stream.extract_peers()
     |> Stream.into(MapSet.new())

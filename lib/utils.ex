@@ -7,4 +7,8 @@ defmodule Sailor.Utils do
     Regex.run(~r(@[a-zA-Z0-9\+/=]+\.ed25519), str) || []
   end
 
+  def extract_blobs() do
+
+  end
+
 end

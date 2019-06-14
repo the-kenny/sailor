@@ -1,11 +1,43 @@
 defmodule Sailor.Stream do
   alias Sailor.Stream.Message
 
+  use Memento.Table, attributes: [:identifier, :sequence, :messages]
+
+  # TODO: Instead of storing single messages we want to store the whole stream
+
+  def from_messages(identifier, messages) do
+    Enum.each(messages, fn message ->
+      if Message.author(message) != identifier do
+        raise "Message #{Message.id(message)} doesn't match author #{identifier}"
+      end
+    end)
+
+    sequence = Enum.max_by(messages, &Message.sequence/1, fn -> 0 end)
+
+    %__MODULE__{
+      identifier: identifier,
+      sequence: sequence,
+      messages: Enum.sort_by(messages, &Message.sequence/1)
+    }
+  end
+
+  def persist!(stream) do
+    Memento.transaction! fn ->
+      Memento.Query.write(stream)
+    end
+  end
+
   def for_peer(identifier) do
+    Memento.transaction! fn ->
+      Memento.Query.select(Message, [{:==, :identifier, identifier}])
+    end
+  end
+
+  def from_legacy(identifier) do
     {:ok, stream} = Memento.transaction fn ->
       Memento.Query.select(Message, [{:==, :author, identifier}]) |> validate()
     end
-    stream
+    from_messages(identifier, stream)
   end
 
   @doc """
