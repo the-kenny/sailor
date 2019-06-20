@@ -71,8 +71,10 @@ defmodule Sailor.LocalDiscovery do
     {:noreply, state}
   end
 
-  def handle_info({:udp, _socket, _address, _port, data}, state) do
-    Enum.each(parse_announcements(data), fn {:ok, ip, port, keypair} ->
+  def handle_info({:udp, _socket, _address, _port, data}, {_, identity} = state) do
+    parse_announcements(data)
+    |> Enum.filter(fn {:ok, _, _, keypair} -> Keypair.identifier(keypair) != Keypair.identifier(identity) end)
+    |> Enum.each(fn {:ok, ip, port, keypair} ->
       identifier = Keypair.identifier(keypair)
       Logger.debug "Received broadcast from #{identifier} at #{inspect {:inet.ntoa(ip), port}}"
     end)
