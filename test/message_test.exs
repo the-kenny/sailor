@@ -22,11 +22,13 @@ defmodule Sailor.Stream.MessageTest do
   Enum.each @msg_files, fn msg_file ->
     @msg File.read!(msg_file)
 
+    @tag skip: String.contains?(msg_file, "@skip")
     test "Message roundtrip for msg in #{msg_file}" do
       {:ok, message} = Message.from_json(@msg)
       assert @msg == Message.to_signing_string(message.data)
     end
 
+    @tag skip: String.contains?(msg_file, "@skip")
     test "Message.verify_signature for msg in #{msg_file}" do
       {:ok, message} = Message.from_json(@msg)
       assert :ok = Message.verify_signature(message)
