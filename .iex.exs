@@ -70,7 +70,7 @@ defmodule User do
     history_stream = identifier || peer_identifier
     User.outgoing_peer({127,0,0,1}, 8008, peer_identifier)
     peer = GenServer.whereis(PeerConnection.for_identifier(peer_identifier))
-    Sailor.Peer.Tasks.DumpMessages.run(peer, history_stream, false);
+    Sailor.Peer.Tasks.DumpFeed.run(peer, history_stream, 1000);
     # Sailor.PeerConnection.stop(peer)
   end
 
@@ -82,7 +82,7 @@ defmodule User do
     peer = GenServer.whereis(PeerConnection.for_identifier(@me))
 
     peers
-    |> Stream.each(&Sailor.Peer.Tasks.DumpMessages.run(peer, &1))
+    |> Stream.each(&Sailor.Peer.Tasks.DumpFeed.run(peer, &1, 1000))
     |> Stream.run()
   end
 

@@ -48,6 +48,10 @@ defmodule Sailor.PeerConnection do
     via_tuple(identifier)
   end
 
+  def identifier(peer) do
+    GenServer.call(peer, :identifier)
+  end
+
   def send_rpc_response(peer, packet) do
     GenServer.call(peer, {:send_rpc_response, packet})
   end
@@ -163,15 +167,24 @@ defmodule Sailor.PeerConnection do
       stop(me)
     end)
 
-    # {:ok, rpc} = Sailor.Rpc.send_request(rpc, ["createHistoryStream"], :source, [%{id: state.identifier, live: true, old: true}])
-    # {:ok, rpc} = Sailor.Rpc.send_request(rpc, ["blobs", "has"], :async, ["&F9tH7Ci4f1AVK45S9YhV+tK0tsmkTjQLSe5kQ6nEAuo=.sha256"])
-    # {:ok, rpc} = Sailor.Rpc.send_request(rpc, ["blobs", "createWants"], :source, [])
+    tasks = Application.get_env(:sailor, __MODULE__) |> Keyword.get(:tasks, [])
+    peer = self()
+
+    for {module, args} <- tasks do
+      Task.start(fn ->
+        apply(module, :run, [peer] ++ args)
+      end)
+    end
 
     {:noreply, %{state | socket: socket, rpc: rpc}}
   end
 
   def handle_cast(:shutdown, state) do
     {:stop, :normal, state}
+  end
+
+  def handle_call(:identifier, _from, state) do
+    {:reply, state.identifier, state}
   end
 
   def handle_call({:send_rpc_response, packet}, _from, state) do

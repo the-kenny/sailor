@@ -1,34 +1,34 @@
-defmodule Sailor.Peer.Tasks.DumpMessages do
-  use Task
-
+defmodule Sailor.Peer.Tasks.DumpFeed do
   require Logger
   alias Sailor.PeerConnection
   alias Sailor.Stream.Message
 
-  @live_timeout 10*1000
+  @default_live_timeout 10*1000
   @chunk_size 1000
 
-  # TODO: Should we use hard or soft references (via identifier)?
-  def start_link(peer, history_stream_id) when is_pid(peer) do
-    Task.start_link(__MODULE__, :run, [peer, history_stream_id, true])
+  def run(peer), do: run(peer, @default_live_timeout)
+
+  def run(peer, timeout) do
+    history_stream_id = PeerConnection.identifier(peer)
+    run(peer, history_stream_id, timeout)
   end
 
-  def run(peer, history_stream_id, live? \\ false) do
-    # TODO: Monitor `peer` and exit if we get the EXIT message
+  def run(peer, history_stream_id, timeout) do
+    Logger.info "Running #{inspect __MODULE__} for #{PeerConnection.identifier(peer)} for stream #{history_stream_id} with timeout of #{timeout}"
+
+    _ref = Process.monitor(peer)
 
     stream = Sailor.Stream.for_peer(history_stream_id)
-
-    Logger.info "Calling createHistoryStream starting at #{stream.sequence} for peer #{inspect peer}"
 
     args = %{
       id: history_stream_id,
       sequence: stream.sequence+1,
-      live: live?,
+      live: true,
       old: true
     }
 
     {:ok, request_number} = PeerConnection.rpc_stream(peer, "createHistoryStream", [args])
-    message_stream(peer, history_stream_id, request_number)
+    message_stream(peer, history_stream_id, request_number, timeout)
     |> Stream.each(fn message -> Logger.debug "Received message #{Message.id(message)} from #{Message.author(message)}" end)
     |> Stream.chunk_every(@chunk_size)
     |> Stream.transform(stream, fn (messages, stream) ->
@@ -38,11 +38,7 @@ defmodule Sailor.Peer.Tasks.DumpMessages do
     end)
     |> Stream.run()
 
-    if live? do
-      Logger.info "Received no new message for stream #{history_stream_id} for #{@live_timeout/1000} seconds. Shutting down..."
-    else
-      Logger.info "Received all messages for stream #{history_stream_id}. Shutting down..."
-    end
+    Logger.info "Received no new message for stream #{history_stream_id}. Shutting down..."
   end
 
   def packet_to_message(packet) do
@@ -60,25 +56,26 @@ defmodule Sailor.Peer.Tasks.DumpMessages do
     end
   end
 
-  def message_stream(peer, history_stream_id, request_number) do
+  def message_stream(peer, _history_stream_id, request_number, timeout) do
     Stream.resource(
       fn -> nil end,
       fn _ ->
         receive do
+          {:DOWN, _ref, :process, _object, _reason} ->
+            {:halt, nil}
+
           {:rpc_response, ^request_number, "createHistoryStream", packet} ->
             case packet_to_message(packet) do
               {:ok, message} -> {[message], nil}
               :halt -> {:halt, nil}
             end
         after
-          @live_timeout ->
-            Logger.info "Timeout receiving messages in #{inspect __MODULE__} for #{history_stream_id}"
+          timeout ->
+            PeerConnection.close_rpc_stream(peer, request_number)
             {:halt, nil}
         end
       end,
-      fn _ ->
-        PeerConnection.close_rpc_stream(peer, request_number)
-      end
+      fn _ -> nil end
     )
   end
 end

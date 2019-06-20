@@ -94,17 +94,25 @@ defmodule Sailor.Stream do
     end)
   end
 
-  @doc """
 
-  """
   def extract_peers(stream) do
+    message_content_stream(stream)
+    |> Stream.flat_map(&Sailor.Utils.extract_identifiers/1)
+    |> Enum.into(MapSet.new())
+  end
+
+  def blobs(stream) do
+    message_content_stream(stream)
+    |> Stream.flat_map(&Sailor.Utils.extract_blobs/1)
+    |> Enum.into(MapSet.new())
+  end
+
+  defp message_content_stream(stream) do
     stream.messages
     |> Stream.map(&Message.content/1)
     |> Stream.reject(&is_binary/1)
     |> Stream.map(&:proplists.get_value("text", &1, nil))
     |> Stream.filter(&is_binary/1)
-    |> Stream.flat_map(&Sailor.Utils.extract_identifiers/1)
-    |> Enum.into(MapSet.new())
   end
 
   # defp validate(stream) do
