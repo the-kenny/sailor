@@ -35,16 +35,13 @@ defmodule Sailor.Stream do
       {:ok, [[sequence: seq]]} = Sqlitex.query(db, "select max(sequence) as sequence from stream_messages where author = ?", bind: [stream.identifier])
       seq = seq || 0
 
-      {:ok, statement} = Sqlitex.Statement.prepare(db, "insert or ignore into stream_messages (id, author, sequence, json) values (?1, ?2, ?3, ?4)");
-
       for message <- Enum.filter(stream.messages, &Message.sequence(&1) > seq) do
-        {:ok, statement} = Sqlitex.Statement.bind_values(statement, [
+        Sqlitex.query!(db, "insert or ignore into stream_messages (id, author, sequence, json) values (?1, ?2, ?3, ?4)", bind: [
           Message.id(message),
           Message.author(message),
           Message.sequence(message),
           Message.to_compact_json(message)
         ])
-        :ok = Sqlitex.Statement.exec(statement)
       end
       :ok = Sqlitex.exec(db, "commit");
       :ok

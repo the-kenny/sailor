@@ -154,4 +154,20 @@ defmodule Sailor.Stream.Message do
 
     "%#{Base.encode64(hash)}.sha256"
   end
+
+  def all() do
+    all(:infinity)
+  end
+
+  def all(:ininity) do
+    all(-1)
+  end
+
+  # TODO
+  def all(limit) do
+    Sailor.Db.with_db(fn db ->
+      {:ok, rows} = Sqlitex.query(db, "select json from stream_messages limit ?", bind: [ limit ])
+      rows |> Enum.map(&from_json/1) |> Enum.map(fn {:ok, message} -> message end)
+    end)
+  end
 end
