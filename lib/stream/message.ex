@@ -1,9 +1,12 @@
 defmodule Sailor.Stream.Message do
   require Logger
 
-  use Memento.Table,
-    attributes: [:id, :author, :sequence, :data],
-    index: [:author]
+  defstruct [
+    id: nil,
+    author: nil,
+    sequence: nil,
+    data: nil,
+  ]
 
   @message_fields [:previous, :author, :sequence, :timestamp, :hash, :content, :signature]
 

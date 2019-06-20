@@ -10,22 +10,20 @@ defmodule Sailor.Peer.Tasks.DumpMessages do
 
   # TODO: Should we use hard or soft references (via identifier)?
   def start_link(peer, history_stream_id) when is_pid(peer) do
-    Task.start_link(__MODULE__, :run, [peer, history_stream_id])
+    Task.start_link(__MODULE__, :run, [peer, history_stream_id, true])
   end
 
-  def run(peer, history_stream_id) do
+  def run(peer, history_stream_id, live? \\ false) do
     # TODO: Monitor `peer` and exit if we get the EXIT message
 
-    seq = Sailor.Stream.for_peer(history_stream_id)
-    |> Stream.map(&Message.sequence/1)
-    |> Enum.max(fn -> 0 end)
+    stream = Sailor.Stream.for_peer(history_stream_id)
 
-    Logger.info "Calling createHistoryStream starting at #{seq} for peer #{inspect peer}"
+    Logger.info "Calling createHistoryStream starting at #{stream.sequence} for peer #{inspect peer}"
 
     args = %{
       id: history_stream_id,
-      sequence: seq+1,
-      live: true,
+      sequence: stream.sequence+1,
+      live: live?,
       old: true
     }
 
@@ -33,14 +31,18 @@ defmodule Sailor.Peer.Tasks.DumpMessages do
     message_stream(peer, history_stream_id, request_number)
     |> Stream.each(fn message -> Logger.debug "Received message #{Message.id(message)} from #{Message.author(message)}" end)
     |> Stream.chunk_every(@chunk_size)
-    |> Stream.each(fn messages ->
-      Memento.transaction! fn ->
-        Enum.each(messages, &Memento.Query.write/1)
-      end
+    |> Stream.transform(stream, fn (messages, stream) ->
+      {:ok, stream} = Sailor.Stream.append(stream, messages)
+      :ok = Sailor.Stream.persist!(stream)
+      {[], stream}
     end)
     |> Stream.run()
 
-    Logger.info "Received no new message for stream #{history_stream_id} for #{@live_timeout/1000} seconds. Shutting down..."
+    if live? do
+      Logger.info "Received no new message for stream #{history_stream_id} for #{@live_timeout/1000} seconds. Shutting down..."
+    else
+      Logger.info "Received all messages for stream #{history_stream_id}. Shutting down..."
+    end
   end
 
   def packet_to_message(packet) do

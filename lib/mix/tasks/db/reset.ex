@@ -1,20 +1,19 @@
 defmodule Mix.Tasks.Db.Reset do
   use Mix.Task
 
-  @modules [
-    Sailor.Stream.Message,
-    Sailor.Stream
-  ]
+  alias Sqlitex
 
-  @shortdoc "Resets the local Mnesia database and initializes the schema"
+  @shortdoc "Resets the local sqlite database and initializes the schema"
   def run(_) do
-    Memento.stop
-    nodes = [node()]
-    Memento.Schema.delete(nodes)
-    Memento.Schema.create(nodes)
-    Memento.start
+    db_path = Path.join([Application.get_env(:sailor, :data_path), "data.sqlite"])
+    File.mkdir_p!(Path.dirname(db_path))
+    File.touch!(db_path)
 
-    Enum.each(@modules, &Memento.Table.create!(&1, disc_copies: nodes))
+    schema_file = Path.join([Application.app_dir(:sailor), "priv", "schema.sql"])
 
+    :ok = Sqlitex.with_db(db_path, fn(db) ->
+      :ok = Sqlitex.exec(db, File.read!(schema_file))
+      :ok = Sqlitex.exec(db, "vacuum")
+    end)
   end
 end

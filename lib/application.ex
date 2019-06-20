@@ -2,7 +2,7 @@ defmodule Sailor.Application do
   use Application
 
   def start(_type, _args) do
-    {:ok, identity_keypair} = Sailor.Keypair.load_secret Application.get_env(:sailor, :identity_file)
+    {:ok, identity_keypair} = Sailor.Keypair.load_secret(Application.get_env(:sailor, :identity_file))
     {:ok, network_key} = Base.decode64(Application.get_env(:sailor, :network_key))
     port = Application.get_env(:sailor, :port)
 
@@ -10,8 +10,13 @@ defmodule Sailor.Application do
       {Sailor.Rpc.Handler.Blobs, ["/tmp/sailor_blobs"]}
     ]
 
+    data_path = Application.get_env(:sailor, :data_path)
+    db_path = Path.expand(Path.join([data_path, "data.sqlite"]))
+
     children = [
       {Sailor.LocalIdentity, [identity_keypair, network_key]},
+
+      {Sailor.Db, [db_path]},
 
       {DynamicSupervisor, strategy: :one_for_one, name: Sailor.PeerConnectionSupervisor},
       {Sailor.PeerConnection.Registry, []},

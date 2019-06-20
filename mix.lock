@@ -1,9 +1,13 @@
 %{
+  "decimal": {:hex, :decimal, "1.7.0", "30d6b52c88541f9a66637359ddf85016df9eb266170d53105f02e4a67e00c5aa", [:mix], [], "hexpm"},
   "elixir_make": {:hex, :elixir_make, "0.5.2", "96a28c79f5b8d34879cd95ebc04d2a0d678cfbbd3e74c43cb63a76adf0ee8054", [:mix], [], "hexpm"},
+  "esqlite": {:hex, :esqlite, "0.4.0", "8d0b88a774dceaec4fff0a6f63248efe811684591f186b6b21d4390be19bf1db", [:rebar3], [], "hexpm"},
   "jason": {:hex, :jason, "1.1.2", "b03dedea67a99223a2eaf9f1264ce37154564de899fd3d8b9a21b1a6fd64afe7", [:mix], [{:decimal, "~> 1.0", [hex: :decimal, repo: "hexpm", optional: true]}], "hexpm"},
   "jiffy": {:hex, :jiffy, "1.0.1", "4f25639772ca41202f41ba9c8f6ca0933554283dd4742c90651e03471c55e341", [:rebar3], [], "hexpm"},
   "jsone": {:git, "https://github.com/the-kenny/jsone.git", "e60c66c9014895b607b8620a4a7081d43e585056", [branch: "empty-array-formatting"]},
   "memento": {:hex, :memento, "0.3.1", "b2909390820550d8b90b68ec96f9e15ff8a45a28b6f97fa4a62ef50e87c2f9d9", [:mix], [], "hexpm"},
   "poison": {:hex, :poison, "4.0.1", "bcb755a16fac91cad79bfe9fc3585bb07b9331e50cfe3420a24bcc2d735709ae", [:mix], [], "hexpm"},
+  "poolboy": {:hex, :poolboy, "1.5.2", "392b007a1693a64540cead79830443abf5762f5d30cf50bc95cb2c1aaafa006b", [:rebar3], [], "hexpm"},
   "salty": {:git, "https://github.com/the-kenny/libsalty.git", "1c2c00b15ba5a0144e20077e9cb676d786e0436a", [branch: "add-ed-to-curve-conversion-functions"]},
+  "sqlitex": {:hex, :sqlitex, "1.7.0", "bf8a90f056c46e6e27c33722cb632b302b83847a88ac7545b3db940edfdab745", [:mix], [{:decimal, "~> 1.7", [hex: :decimal, repo: "hexpm", optional: false]}, {:esqlite, "~> 0.4", [hex: :esqlite, repo: "hexpm", optional: false]}], "hexpm"},
 }
