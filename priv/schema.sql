@@ -14,4 +14,9 @@ create table stream_messages (
 create index stream_message_author_idx on stream_messages(author);
 create index stream_message_sequence_idx on stream_messages(sequence);
 
+create table peers (
+  identifier text not null primary key,
+  following boolean default false
+);
+
 end;
