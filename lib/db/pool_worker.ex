@@ -9,7 +9,7 @@ defmodule Sailor.Db.PoolWorker do
 
   def init([db_path]) do
     {:ok, db} = Sqlitex.open(db_path)
-    :ok = Sqlitex.exec(db, "pragma busy_timeout=5000")
+    :ok = Sqlitex.exec(db, "PRAGMA foreign_keys = ON;")
     {:ok, db}
   end
 
