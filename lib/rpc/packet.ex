@@ -141,21 +141,46 @@ defmodule Sailor.Rpc.Packet do
     |> body(<<>>)
   end
 
-  defstruct [
-    request_number: nil,
-    stream?: nil,
-    end_or_error?: nil,
-    body_type: nil,
-    body_length: nil,
-    body: nil,
-  ]
+  # Utility Functions
+
+  @spec rpc_call?(binary()) :: boolean
+  def rpc_call?(packet) do
+    rpc_call(packet) != nil
+  end
+
+  @spec rpc_call(binary()) :: %Sailor.Rpc.Call{} | nil
+  def rpc_call(packet) do
+    case {body_type(packet), Jason.decode(body(packet))} do
+      {:json, {:ok, %{"name" => name, "type" => type, "args" => args}}} ->
+        %Sailor.Rpc.Call{
+          name: name,
+          args: args,
+          type: type,
+          packet: packet,
+        }
+      _ -> nil
+    end
+  end
+
+  # Packet Info Struct
+
+  defmodule Info do
+    defstruct [
+      request_number: nil,
+      stream?: nil,
+      end_or_error?: nil,
+      body_type: nil,
+      body_length: nil,
+      body: nil,
+    ]
+  end
 
   @doc """
   ## Examples
 
       iex> packet = create() |> stream() |> request_number(42) |> body_type(:utf8) |> body("HELLO")
       iex> info(packet)
-      %Sailor.Rpc.Packet{
+      %Sailor.Rpc.Packet.Info{
         request_number: 42,
         stream?: true,
         end_or_error?: false,
@@ -165,6 +190,7 @@ defmodule Sailor.Rpc.Packet do
       }
 
   """
+  @spec info(binary()) :: %Sailor.Rpc.Packet.Info{}
   def info(packet) do
     packet_binary() = packet
 
@@ -174,7 +200,7 @@ defmodule Sailor.Rpc.Packet do
       2 -> :json
     end
 
-    %__MODULE__{
+    %Sailor.Rpc.Packet.Info{
       request_number: request_number,
       stream?: stream? == 1,
       end_or_error?: end_or_error? == 1,

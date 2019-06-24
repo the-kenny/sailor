@@ -26,4 +26,20 @@ defmodule Sailor.Rpc.PacketTest do
     assert Packet.body_length(packet) == 0
     assert Packet.request_number(packet) == 0
   end
+
+  test "rpc_call()" do
+    rpc_packet = Packet.create()
+    |> Packet.body_type(:json)
+    |> Packet.body(Jason.encode!(%{
+      name: ["blob", "has"],
+      type: "async",
+      args: [],
+    }))
+
+    assert Packet.rpc_call?(rpc_packet)
+    assert !Packet.rpc_call?(@packet)
+
+    assert %Sailor.Rpc.Call{} = Packet.rpc_call(rpc_packet)
+    assert Packet.rpc_call(@packet) == nil
+  end
 end
