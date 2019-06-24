@@ -25,3 +25,5 @@ sailor-*.tar
 /.vscode
 
 *.sqlite
+
+/sailor_data
