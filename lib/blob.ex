@@ -44,11 +44,24 @@ defmodule Sailor.Blob do
     File.write!(path(blob), binary)
   end
 
+  def persist_file!(path) do
+    {:ok, blob} = from_file(path)
+    blob_path = path(blob)
+    :ok = File.mkdir_p(Path.dirname(blob_path))
+    File.cp!(path, blob_path)
+  end
+
   # Database Operations
 
   def mark_wanted!(blob, severity \\ -1) do
     Sailor.Db.with_db(fn(db) ->
       {:ok, _} = Sqlitex.query(db, "insert into wanted_blobs (blob, severity) values (?, ?)", bind: [blob, severity])
+    end)
+  end
+
+  def remove_wanted!(blob) do
+    Sailor.Db.with_db(fn(db) ->
+      {:ok, _} = Sqlitex.query(db, "delete from wanted_blobs where blob = ?", bind: [blob])
     end)
   end
 
