@@ -39,13 +39,8 @@ defmodule Sailor.Rpc.HandlerRegistry.Blobs do
   # end
 
   def create_wants(peer, packet) do
-    wanted_blobs = [
-      %{"&jqp3ImUpZZ4QD/AcST54J24aGaB3lJg5IDG82TeBmN4=.sha256": -1},
-      %{"&/zFse6nZCK5eOuaAz/NrPj929olH2TMZ5ovGZBZzoQU=.sha256": -1},
-    ]
-
-    wanted_blobs
-    |> Enum.map(fn response -> Packet.respond(packet) |> Packet.body_type(:json) |> Packet.body(Jason.encode!(response)) end)
+    Sailor.Blob.all_wanted()
+    |> Enum.map(fn {blob, severity} -> Packet.respond(packet) |> Packet.body_type(:json) |> Packet.body(Jason.encode!(%{blob => severity})) end)
     |> Enum.each(&Sailor.PeerConnection.send_rpc_response(peer, &1))
 
     :ok
