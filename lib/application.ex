@@ -6,10 +6,6 @@ defmodule Sailor.Application do
     {:ok, network_key} = Base.decode64(Application.get_env(:sailor, :network_key))
     port = Application.get_env(:sailor, :port)
 
-    rpc_handlers = [
-      {Sailor.Rpc.Handler.Blobs, ["/tmp/sailor_blobs"]}
-    ]
-
     data_path = Application.get_env(:sailor, :data_path)
     db_path = Path.expand(Path.join([data_path, "data.sqlite"]))
 
@@ -23,8 +19,10 @@ defmodule Sailor.Application do
 
       {Sailor.LocalDiscovery, [port, identity_keypair]},
 
+      {Sailor.Rpc.HandlerSupervisor, []},
       {Sailor.Rpc.HandlerRegistry, []},
-      %{id: Sailor.RpcHandler.Supervisor, start: {Supervisor, :start_link, [rpc_handlers, [{:strategy, :one_for_one}]]}},
+      # %{id: Sailor.RpcHandler.Supervisor, start: {Supervisor, :start_link, [rpc_handlers, [{:strategy, :one_for_one}]]}},
+
       {Sailor.SSBServer, [port, identity_keypair, network_key]},
     ]
 

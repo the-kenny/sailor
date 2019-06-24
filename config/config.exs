@@ -26,7 +26,8 @@ config :sailor, Sailor.LocalDiscovery,
 
 config :sailor, Sailor.PeerConnection,
   tasks: [
-    {Sailor.Peer.Tasks.DumpFeed, [:infinity]}
+    {Sailor.Peer.Tasks.DumpFeed, [:infinity]},
+    {Sailor.Peer.Tasks.BlobSync, []}
   ]
 
 # This configuration is loaded before any dependency and is restricted

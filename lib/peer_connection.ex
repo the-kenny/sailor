@@ -78,18 +78,16 @@ defmodule Sailor.PeerConnection do
          {:ok, body} <- Jason.decode(Packet.body(packet)),
          %{"name" => name, "type" => type, "args" => args} <- body
     do
-      # TODO: We can use `via` instead of explicit lookups
-
-      # This check has a race condition, but we only use it for logging. Nothing to worry about.
-      if Registry.lookup(Sailor.Rpc.HandlerRegistry, name) == [] do
-        # Logger.warn "No handler found for #{inspect name}, we MAY not be able to answer request #{request_number} (#{inspect body})"
+      call = %Sailor.Rpc.Call{
+        name: name,
+        type: type,
+        args: args,
+        packet: packet
+      }
+      case Sailor.Rpc.HandlerRegistry.dispatch_async(self(), call) do
+        :ok -> :ok
+        {:error, error} -> Logger.warn "Couldn't handle RPC request: #{inspect call.name}: #{error}"
       end
-
-      Registry.dispatch(Sailor.Rpc.HandlerRegistry, name, fn handlers ->
-        Enum.each(handlers, fn {_pid, handler} ->
-          Process.send(handler, {:rpc_request, name, type, args, packet, state.identifier}, [])
-        end)
-      end)
     else
       _ -> Logger.warn "Unknown RPC message #{request_number} of type: #{inspect Packet.body_type(packet)}: #{inspect Packet.body(packet)}"
     end
@@ -188,6 +186,7 @@ defmodule Sailor.PeerConnection do
   end
 
   def handle_call({:send_rpc_response, packet}, _from, state) do
+    IO.inspect packet
     {:ok, rpc} = Sailor.Rpc.send_packet(state.rpc, packet)
     {:reply, :ok, %{state | rpc: rpc}}
   end
