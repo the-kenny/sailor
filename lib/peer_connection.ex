@@ -74,25 +74,21 @@ defmodule Sailor.PeerConnection do
   defp handle_rpc_request(packet, state) do
     request_number = Packet.request_number(packet)
 
-    with :json <- Packet.body_type(packet),
-         {:ok, body} <- Jason.decode(Packet.body(packet)),
-         %{"name" => name, "type" => type, "args" => args} <- body
-    do
-      call = %Sailor.Rpc.Call{
-        name: name,
-        type: type,
-        args: args,
-        packet: packet
-      }
-      case Sailor.Rpc.HandlerRegistry.dispatch_async(self(), call) do
-        :ok -> :ok
-        {:error, error} -> Logger.warn "Couldn't handle RPC request: #{inspect call.name}: #{error}"
-      end
-    else
-      _ -> Logger.warn "Unknown RPC message #{request_number} of type: #{inspect Packet.body_type(packet)}: #{inspect Packet.body(packet)}"
+    case Packet.rpc_call(packet) do
+      nil ->
+        Logger.warn "Unknown RPC message #{request_number} of type: #{inspect Packet.body_type(packet)}: #{inspect Packet.body(packet)}"
+      call ->
+        dispatch_rpc_call(call)
     end
 
     {:ok, state}
+  end
+
+  defp dispatch_rpc_call(call) do
+    case Sailor.Rpc.HandlerRegistry.dispatch_async(self(), call) do
+      :ok -> :ok
+      {:error, error} -> Logger.warn "Couldn't handle RPC request: #{inspect call.name}: #{error}"
+    end
   end
 
   defp handle_rpc_response(packet, state) do

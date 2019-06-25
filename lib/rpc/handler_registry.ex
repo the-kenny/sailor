@@ -39,8 +39,8 @@ defmodule Sailor.Rpc.HandlerRegistry do
     {:ok, child}
   end
 
-  @spec dispatch(pid(), %Sailor.Rpc.Call{}) :: :ok, {:error, String.t}
-  @spec dispatch(term(), pid(), %Sailor.Rpc.Call{}) :: :ok, {:error, String.t}
+  @spec dispatch(pid(), %Sailor.Rpc.Call{}) :: :ok | {:error, String.t}
+  @spec dispatch(term(), pid(), %Sailor.Rpc.Call{}) :: :ok | {:error, String.t}
   def dispatch(registry \\ __MODULE__, peer, call) do
     case Registry.lookup(registry, call.name) do
       [{handler, _}] ->
@@ -50,6 +50,8 @@ defmodule Sailor.Rpc.HandlerRegistry do
     end
   end
 
+  @spec dispatch_async(pid(), %Sailor.Rpc.Call{}) :: :ok | {:error, String.t}
+  @spec dispatch_async(term(), pid(), %Sailor.Rpc.Call{}) :: :ok | {:error, String.t}
   def dispatch_async(registry \\ __MODULE__, peer, call) do
     case Registry.lookup(registry, call.name) do
       [{handler, _}] ->
