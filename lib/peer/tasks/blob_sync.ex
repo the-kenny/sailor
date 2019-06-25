@@ -18,9 +18,10 @@ defmodule Sailor.Peer.Tasks.BlobSync do
 
         # TODO: Persist this information and let a separate process pull the data
         Logger.info "Peer #{PeerConnection.identifier(peer)} has: #{inspect has}"
-        for {blob, _} <- has do
-          Sailor.Peer.Tasks.DownloadBlob.run(peer, blob)
-        end
+
+        has
+        |> Task.async_stream(fn {blob, _severity} -> Sailor.Peer.Tasks.DownloadBlob.run(peer, blob) end)
+        |> Stream.run()
     end
 
     handle_blobs(peer, request_number)

@@ -1,6 +1,13 @@
 defmodule Sailor.Blob do
   @max_size 1024 * 1024 * 5
 
+  def valid?(blob) do
+    case hash_binary(blob) do
+      {:ok, _} -> true
+      _ -> false
+    end
+  end
+
   def from_file(path) do
     {:ok, stat} = File.stat(path)
     if stat.size > @max_size do
@@ -21,11 +28,17 @@ defmodule Sailor.Blob do
 
   @base_path Path.join(Application.get_env(:sailor, :data_path) , "blobs")
 
-  def path(blob) do
-    id = blob
+  defp hash_binary(blob) do
+    blob
     |> String.trim_leading("&")
     |> String.trim_trailing(".sha256")
-    |> Base.decode64!()
+    |> Base.decode64()
+  end
+
+  def path(blob) do
+    {:ok, binary} = hash_binary(blob)
+
+    id = binary
     |> Base.encode16()
     |> String.downcase()
 
@@ -55,7 +68,10 @@ defmodule Sailor.Blob do
 
   def mark_wanted!(blob, severity \\ -1) do
     Sailor.Db.with_db(fn(db) ->
-      {:ok, _} = Sqlitex.query(db, "insert into wanted_blobs (blob, severity) values (?, ?)", bind: [blob, severity])
+      case Sqlitex.query(db, "insert or ignore into wanted_blobs (blob, severity) values (?, ?)", bind: [blob, severity]) do
+        {:ok, _} -> :ok
+        err -> err
+      end
     end)
   end
 
@@ -65,6 +81,7 @@ defmodule Sailor.Blob do
     end)
   end
 
+  @spec all_wanted() :: %{String.t => number}
   def all_wanted() do
     Sailor.Db.with_db(fn(db) ->
       {:ok, rows} = Sqlitex.query(db, "select blob, severity from wanted_blobs order by severity desc")

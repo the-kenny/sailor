@@ -182,7 +182,6 @@ defmodule Sailor.PeerConnection do
   end
 
   def handle_call({:send_rpc_response, packet}, _from, state) do
-    IO.inspect packet
     {:ok, rpc} = Sailor.Rpc.send_packet(state.rpc, packet)
     {:reply, :ok, %{state | rpc: rpc}}
   end

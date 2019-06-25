@@ -61,6 +61,8 @@ defmodule Sailor.Stream do
       end
     end)
 
+    # TODO: Validate that `row.id` matches `Message.id(message)`
+
     from_messages(identifier, Enum.into(message_stream, []))
   end
 

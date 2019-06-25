@@ -16,7 +16,13 @@ defmodule Sailor.MessageProcessing.Consumer do
     Logger.info("Marking #{length events} messages as processed")
 
     Sailor.Db.with_db(fn db ->
-      for {db_id, _message} <- events do
+      for {db_id, message} <- events do
+        for blob <- Sailor.Utils.message_blobs(message) do
+          if !Sailor.Blob.available?(blob) do
+            :ok = Sailor.Blob.mark_wanted!(blob)
+          end
+        end
+
         {:ok, _} = Sqlitex.query(db, "update stream_messages set processed = true where id = ?", bind: [db_id])
       end
     end)
