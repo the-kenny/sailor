@@ -23,6 +23,8 @@ defmodule Sailor.Application do
       {Sailor.Rpc.HandlerRegistry, []},
       # %{id: Sailor.RpcHandler.Supervisor, start: {Supervisor, :start_link, [rpc_handlers, [{:strategy, :one_for_one}]]}},
 
+      {Sailor.MessageProcessing.Supervisor, []},
+
       {Sailor.SSBServer, [port, identity_keypair, network_key]},
     ]
 

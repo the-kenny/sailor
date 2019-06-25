@@ -1,6 +1,7 @@
 defmodule Sailor.Stream.Message do
   require Logger
 
+  # TODO: Store `swapped?` flag to decide which ID to use
   defstruct [
     id: nil,
     author: nil,
@@ -78,6 +79,9 @@ defmodule Sailor.Stream.Message do
 
     with :ok <- valid?(message)
     do
+      if verify_signature(message) != :ok do
+        Logger.warn "Failed to verify signature for message #{inspect message}"
+      end
       {:ok, message}
     end
   end
@@ -135,7 +139,7 @@ defmodule Sailor.Stream.Message do
   end
 
   def id(message) do
-    {:ok, hash} = to_signing_string(message)
+    {:ok, hash} = to_signing_string(message.data)
     |> Salty.Hash.Sha256.hash()
 
     "%#{Base.encode64(hash)}.sha256"
@@ -159,15 +163,16 @@ defmodule Sailor.Stream.Message do
     all(:infinity)
   end
 
-  def all(:ininity) do
+  def all(:infinity) do
     all(-1)
   end
 
   # TODO
   def all(limit) do
-    Sailor.Db.with_db(fn db ->
-      {:ok, rows} = Sqlitex.query(db, "select json from stream_messages limit ?", bind: [ limit ])
-      rows |> Enum.map(&from_json/1) |> Enum.map(fn {:ok, message} -> message end)
+    {:ok, rows} = Sailor.Db.with_db(fn db ->
+      Sqlitex.query(db, "select json from stream_messages limit ?", bind: [ limit ])
     end)
+
+    rows |> Stream.map(&Keyword.get(&1, :json)) |> Stream.map(&from_json/1) |> Enum.map(fn {:ok, message} -> message end)
   end
 end

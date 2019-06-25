@@ -8,6 +8,8 @@ create table stream_messages (
   sequence number not null,
   json text not null,
 
+  processed boolean not null default false,
+
   UNIQUE (author, sequence)
 );
 
