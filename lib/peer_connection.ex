@@ -17,6 +17,7 @@ defmodule Sailor.PeerConnection do
     ]
   end
 
+  # TODO: We should run the whole connection process in `init` (and handle the registration for `start_incoming` there as it would prevent connecting to a peer twice
   def start_incoming(socket, local_identity, network_identifier) do
     with {:ok, handshake} <- Sailor.PeerConnection.Handshake.incoming(socket, local_identity, network_identifier),
          {:ok, peer} <- DynamicSupervisor.start_child(Sailor.PeerConnectionSupervisor, {Sailor.PeerConnection, {socket, handshake}}),
@@ -31,7 +32,6 @@ defmodule Sailor.PeerConnection do
 
   def start_link({socket, handshake}, register? \\ true) do
     identifier = handshake.other_pubkey |> Keypair.from_pubkey() |> Keypair.identifier()
-    Logger.info "Starting Peer process for #{identifier}"
     name = if register?, do: via_tuple(identifier), else: nil
     GenServer.start_link(__MODULE__, [socket, handshake], name: name)
   end
@@ -134,12 +134,16 @@ defmodule Sailor.PeerConnection do
   # Callbacks
 
   def init([socket, handshake]) do
+    other_keypair = Keypair.from_pubkey(handshake.other_pubkey)
+    identifier = Keypair.identifier(other_keypair)
+
+    Logger.info "Started Peer process for #{identifier}"
+
     Process.flag(:trap_exit, true)
 
-    other = Keypair.from_pubkey(handshake.other_pubkey)
     state = %State{
-      keypair: other,
-      identifier: Keypair.identifier(other),
+      keypair: other_keypair,
+      identifier: identifier,
     }
     {:ok, state, {:continue, {:initialize, handshake, socket}}}
   end

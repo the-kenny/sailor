@@ -13,11 +13,13 @@ defmodule Sailor.Peer.Tasks.BlobSync do
       {:rpc_response, ^request_number, _, packet} ->
         :json = Packet.body_type(packet)
         {:ok, blobs} = packet |> Packet.body() |> Jason.decode()
-        _wants = Enum.filter(blobs, fn {_blob, n} -> n < 0 end)
+        wants = Enum.filter(blobs, fn {_blob, n} -> n < 0 end)
         has = Enum.filter(blobs, fn {_blob, n} -> n > 0 end)
 
+        identifier = PeerConnection.identifier(peer)
         # TODO: Persist this information and let a separate process pull the data
-        Logger.info "Peer #{PeerConnection.identifier(peer)} has: #{inspect has}"
+        Logger.debug "#{identifier} has: #{inspect has}"
+        Logger.debug "#{identifier} wants: #{inspect wants}"
 
         task_stream = Task.Supervisor.async_stream_nolink(Sailor.Peer.TaskSupervisor, has, fn {blob, _severity} ->
           Sailor.Peer.Tasks.DownloadBlob.run(peer, blob)

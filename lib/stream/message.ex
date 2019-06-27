@@ -62,9 +62,10 @@ defmodule Sailor.Stream.Message do
          legacy_id = legacy_id(message)
     do
       cond do
-        id == legacy_id ->
-          Logger.warn "Received message id #{incoming_id} matches legacy id #{legacy_id}"
-        id != incoming_id && incoming_id != legacy_id ->
+        incoming_id == id -> nil
+        incoming_id == legacy_id ->
+          Logger.warn "Received message id #{incoming_id} matches legacy id"
+        incoming_id != id && incoming_id != legacy_id ->
           Logger.warn "Received message id #{incoming_id} matches neither legacy-id #{legacy_id} nor normal id #{id}"
         :else -> nil
       end
