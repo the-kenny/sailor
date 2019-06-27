@@ -5,11 +5,10 @@ defmodule Sailor.Peer.Tasks.BlobSync do
 
   def run(peer) do
     {:ok, request_number} = PeerConnection.rpc_stream(peer, ["blobs", "createWants"], [])
-    {:ok, sup} = Task.Supervisor.start_link([])
-    handle_blobs(peer, request_number, sup)
+    handle_blobs(peer, request_number)
   end
 
-  def handle_blobs(peer, request_number, task_supervisor) do
+  def handle_blobs(peer, request_number) do
     receive do
       {:rpc_response, ^request_number, _, packet} ->
         :json = Packet.body_type(packet)
@@ -20,7 +19,7 @@ defmodule Sailor.Peer.Tasks.BlobSync do
         # TODO: Persist this information and let a separate process pull the data
         Logger.info "Peer #{PeerConnection.identifier(peer)} has: #{inspect has}"
 
-        task_stream = Task.Supervisor.async_stream_nolink(task_supervisor, has, fn {blob, _severity} ->
+        task_stream = Task.Supervisor.async_stream_nolink(Sailor.Peer.TaskSupervisor, has, fn {blob, _severity} ->
           Sailor.Peer.Tasks.DownloadBlob.run(peer, blob)
         end)
 
@@ -28,7 +27,7 @@ defmodule Sailor.Peer.Tasks.BlobSync do
         Stream.run(task_stream)
     end
 
-    handle_blobs(peer, request_number, task_supervisor)
+    handle_blobs(peer, request_number)
   end
 
 end

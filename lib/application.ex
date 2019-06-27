@@ -14,6 +14,8 @@ defmodule Sailor.Application do
 
       {Sailor.Db, [db_path]},
 
+      {Task.Supervisor, name: Sailor.Peer.TaskSupervisor},
+
       {DynamicSupervisor, strategy: :one_for_one, name: Sailor.PeerConnectionSupervisor},
       {Sailor.PeerConnection.Registry, []},
 

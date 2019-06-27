@@ -149,6 +149,7 @@ defmodule Sailor.PeerConnection do
     # TODO: open this in RPC
     {:ok, reader, writer} = Sailor.Boxstream.IO.open(socket, handshake)
 
+    # TODO: mov to helper function
     rpc = Sailor.Rpc.new(reader, writer)
     me = self()
     Task.start_link(fn ->
@@ -166,9 +167,7 @@ defmodule Sailor.PeerConnection do
     peer = self()
 
     for {module, args} <- tasks do
-      Task.start(fn ->
-        apply(module, :run, [peer] ++ args)
-      end)
+      Task.Supervisor.start_child(Sailor.Peer.TaskSupervisor, module, :run, [peer] ++ args)
     end
 
     {:noreply, %{state | socket: socket, rpc: rpc}}
