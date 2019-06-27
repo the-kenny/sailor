@@ -72,6 +72,4 @@ defmodule Sailor.Boxstream.IOTest do
   use ExUnit.Case
   doctest Sailor.Boxstream
 
-  alias Sailor.Boxstream
-
 end

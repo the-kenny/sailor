@@ -13,14 +13,11 @@ defmodule Sailor.LocalDiscovery do
   def init({port, identity}) do
     config = Application.get_env(:sailor, __MODULE__)
 
-    if !Keyword.get(config, :enable) do
-      Logger.info "Disabling local discovery and broadcast"
-      :ignore
-    else
+    if Keyword.get(config, :enable) do
       Logger.info "Starting local discovery and broadcast"
 
       case Keyword.get(config, :broadcast_interval) do
-        nil -> Logger.info "No `:broadcast_interval` configured."
+        0 -> Logger.info "No `:broadcast_interval` configured. Peer address will not be broadcasted."
         n ->
           Logger.info "Broadcasting every #{inspect n}ms"
           :timer.send_interval(n, :broadcast)
@@ -34,6 +31,8 @@ defmodule Sailor.LocalDiscovery do
           Logger.warn "Couldn't start local discovery and broadcast: #{inspect err}"
           err
       end
+    else
+      :ignore
     end
   end
 
@@ -53,7 +52,8 @@ defmodule Sailor.LocalDiscovery do
   end
 
   def parse_announcements(data) do
-    String.split(data, ";")
+    data
+    |> String.split(";")
     |> Stream.map(&parse_announcement/1)
     |> Stream.filter(&Kernel.match?({:ok, _ip, _port, _public_key}, &1))
   end
@@ -72,7 +72,8 @@ defmodule Sailor.LocalDiscovery do
   end
 
   def handle_info({:udp, _socket, _address, _port, data}, {_, identity} = state) do
-    parse_announcements(data)
+    data
+    |> parse_announcements()
     |> Enum.filter(fn {:ok, _, _, keypair} -> Keypair.identifier(keypair) != Keypair.identifier(identity) end)
     |> Enum.each(fn {:ok, ip, port, keypair} ->
       identifier = Keypair.identifier(keypair)

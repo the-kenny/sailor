@@ -100,7 +100,7 @@ defmodule Sailor.PeerConnection do
       # If it's a stream we're sending the data as normal messages.
       # If not, the caller is still waiting for a response to its
       # `GenServer.call` and we have to reply with `GenServer.reply`
-      if(stream?) do
+      if stream? do
         # If this match fails we're receiving a `stream` response to an `async` rpc call (is this allowed?)
         {rpc_name, {:source, receiver}} = Map.get(state.pending_calls, request_number)
         :ok = Process.send(receiver, {:rpc_response, request_number, rpc_name, packet}, [])
@@ -152,7 +152,8 @@ defmodule Sailor.PeerConnection do
     rpc = Sailor.Rpc.new(reader, writer)
     me = self()
     Task.start_link(fn ->
-      Sailor.Rpc.create_packet_stream(rpc)
+      rpc
+      |> Sailor.Rpc.create_packet_stream()
       |> Stream.each(fn packet -> :ok = Process.send(me, {:rpc, packet}, []) end)
       |> Stream.run()
 

@@ -2,7 +2,6 @@ defmodule Sailor.Stream.MessageTest do
   use ExUnit.Case
 
   alias Sailor.Stream.Message
-  alias Sailor.Keypair
 
   @legacy_message ~s({"previous":"%5vRiWqlTOUsY6MM1I/lcQqCkw1F09BSmI6BnPD7FWcc=.sha256","sequence":32,"author":"@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519","timestamp":1557303668620,"hash":"sha256","content":{"type":"contact","contact":"@EvIllh9vj5gYABPBjNPWvkABcVp0rUbp4EoA0tXPhFY=.ed25519","following":true},"signature":"QMtIicJmiaEGxFAgyB8Hg9FABJdcPjaHlXubN5J+GrElGoVHxfU5SLle6HCSreSAutJ8CNwSVmvLbGsheGRkDA==.sig.ed25519"})
 

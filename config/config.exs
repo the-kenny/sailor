@@ -21,8 +21,8 @@ config :sailor,
   data_path: "sailor_data/"
 
 config :sailor, Sailor.LocalDiscovery,
-  enable: false,
-  broadcast_interval: 1*1000
+  enable: true,
+  broadcast_interval: 1*1000 # 0 to disable
 
 config :sailor, Sailor.PeerConnection,
   tasks: [

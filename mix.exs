@@ -5,7 +5,7 @@ defmodule Sailor.MixProject do
     [
       app: :sailor,
       version: "0.1.0",
-      elixir: "~> 1.9.0-rc.0",
+      elixir: "~> 1.9.0",
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
@@ -27,7 +27,9 @@ defmodule Sailor.MixProject do
       {:jsone, git: "https://github.com/the-kenny/jsone.git", branch: "empty-array-formatting"},
       {:sqlitex, "~> 1.7"},
       {:poolboy, "~> 1.5.2"},
-      {:gen_stage, "~> 0.14.2"}
+      {:gen_stage, "~> 0.14.2"},
+
+      {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
     ]
   end
 end

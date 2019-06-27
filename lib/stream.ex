@@ -43,7 +43,7 @@ defmodule Sailor.Stream do
           Message.to_compact_json(message)
         ])
       end
-      :ok = Sqlitex.exec(db, "commit");
+      :ok = Sqlitex.exec(db, "commit")
       :ok
     end)
   end
@@ -98,13 +98,15 @@ defmodule Sailor.Stream do
 
 
   def extract_peers(stream) do
-    message_content_stream(stream)
+    stream
+    |> message_content_stream()
     |> Stream.flat_map(&Sailor.Utils.extract_identifiers/1)
     |> Enum.into(MapSet.new())
   end
 
   def blobs(stream) do
-    message_content_stream(stream)
+    stream
+    |> message_content_stream()
     |> Stream.flat_map(&Sailor.Utils.extract_blobs/1)
     |> Enum.into(MapSet.new())
   end

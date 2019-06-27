@@ -23,7 +23,7 @@ defmodule Sailor.Rpc.HandlerRegistryTest do
       end
     end
 
-    {:ok, child} = HandlerRegistry.register_handler(Sailor.Rpc.HandlerRegistryTest.Test, [])
+    {:ok, _child} = HandlerRegistry.register_handler(Sailor.Rpc.HandlerRegistryTest.Test, [])
     peer = self() # Hack
     assert :ok = HandlerRegistry.dispatch(peer, %Call{name: ["foo", "bar"]})
     assert {:error, _} = HandlerRegistry.dispatch(peer, %Call{name: ["asdf"]})

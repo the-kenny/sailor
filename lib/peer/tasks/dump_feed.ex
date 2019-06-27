@@ -28,7 +28,10 @@ defmodule Sailor.Peer.Tasks.DumpFeed do
     }
 
     {:ok, request_number} = PeerConnection.rpc_stream(peer, "createHistoryStream", [args])
-    message_stream(peer, history_stream_id, request_number, timeout)
+
+    messages = message_stream(peer, history_stream_id, request_number, timeout)
+
+    messages
     |> Stream.each(fn message -> Logger.debug "Received message #{Message.id(message)} from #{Message.author(message)}" end)
     |> Stream.chunk_every(@chunk_size)
     |> Stream.transform(stream, fn (messages, stream) ->
@@ -44,15 +47,15 @@ defmodule Sailor.Peer.Tasks.DumpFeed do
   def packet_to_message(packet) do
     body = Sailor.Rpc.Packet.body(packet)
     :json = Sailor.Rpc.Packet.body_type(packet)
-    if !Sailor.Rpc.Packet.end_or_error?(packet) do
+    if Sailor.Rpc.Packet.end_or_error?(packet) do
+      :halt
+    else
       {:ok, message} = Message.from_history_stream_json(body)
       case Message.verify_signature(message) do
         {:error, :forged} -> Logger.warn "Couldn't verify signature of message #{Message.id(message)}"
         :ok -> :ok
       end
       {:ok, message}
-    else
-      :halt
     end
   end
 

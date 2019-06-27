@@ -108,7 +108,7 @@ defmodule Sailor.Stream.Message do
 
   def add_signature(message, signing_keypair) do
     json = signature_string(message)
-    {:ok, signature} = Salty.Sign.Ed25519.sign_detached(json, signing_keypair.sec);
+    {:ok, signature} = Salty.Sign.Ed25519.sign_detached(json, signing_keypair.sec)
     signature = "#{Base.encode64(signature)}.sig.ed25519"
 
     message = signature(message, signature)
@@ -139,7 +139,8 @@ defmodule Sailor.Stream.Message do
   end
 
   def id(message) do
-    {:ok, hash} = to_signing_string(message.data)
+    {:ok, hash} = message.data
+    |> to_signing_string()
     |> Salty.Hash.Sha256.hash()
 
     "%#{Base.encode64(hash)}.sha256"
