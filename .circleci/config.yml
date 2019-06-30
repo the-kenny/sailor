@@ -8,10 +8,15 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
+      
+      - run: |
+          echo "deb http://archive.debian.org/debian/ jessie-backports main" | sudo tee -a /etc/apt/sources.list
+          echo "deb-src http://archive.debian.org/debian/ jessie-backports main" | sudo tee -a /etc/apt/sources.list
+          sudo apt-get update
+          sudo apt-get install -y libsodium23
+
       - run: mix local.hex --force 
       - run: mix local.rebar --force
-      - run: sudo apt-get update
-      - run: sudo apt-get install -y libsodium-dev
 
       - run: mix deps.get
       - run: mix db.reset
