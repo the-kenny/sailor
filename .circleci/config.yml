@@ -10,7 +10,8 @@ jobs:
       - checkout
       - run: mix local.hex --force 
       - run: mix local.rebar --force
-      - run: apt-get update && apt-get install -y libsodium
+      - run: sudo apt-get update
+      - run: sudo apt-get install -y libsodium
 
       - run: mix deps.get
       - run: mix db.reset
