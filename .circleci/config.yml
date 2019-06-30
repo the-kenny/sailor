@@ -10,8 +10,8 @@ jobs:
       - checkout
       
       - run: |
-          echo "deb http://archive.debian.org/debian/ stretch-backports main" | sudo tee -a /etc/apt/sources.list
-          echo "deb-src http://archive.debian.org/debian/ stretch-backports main" | sudo tee -a /etc/apt/sources.list
+          echo "deb http://deb.debian.org/debian stretch-backports main" | sudo tee -a /etc/apt/sources.list
+          echo "deb-src http://deb.debian.org/debian stretch-backports main" | sudo tee -a /etc/apt/sources.list
           sudo apt-get update
           sudo apt-get install -y libsodium23
 
