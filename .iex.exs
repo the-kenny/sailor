@@ -22,13 +22,13 @@ defmodule User do
   #   create_peer({127,0,0,1}, port, Sailor.LocalIdentity.keypair)
   # end
 
-  # def test_pair(ip, port, other_pubkey) do
-  #   {:ok, other_identity} = Sailor.Keypair.from_identifier(other_pubkey)
+  # def test_pair(ip, port, other_identifier) do
+  #   {:ok, other_identity} = Sailor.Keypair.from_identifier(other_identifier)
   #   create_peer(ip, port, other_identity)
   # end
 
-  def outgoing_peer(ip, port, other_pubkey) do
-    {:ok, other_identity} = Sailor.Keypair.from_identifier(other_pubkey)
+  def outgoing_peer(ip, port, other_identifier) do
+    {:ok, other_identity} = Sailor.Keypair.from_identifier(other_identifier)
     PeerConnection.start_outgoing(
       ip,
       port,
@@ -56,7 +56,7 @@ defmodule User do
     peer = GenServer.whereis(PeerConnection.for_identifier(@me))
 
     peers
-    |> Stream.each(&Sailor.Peer.Tasks.DumpFeed.run(peer, &1, 1000))
+    |> Stream.each(&Sailor.Peer.Tasks.DumpFeed.run(peer, &1))
     |> Stream.run()
   end
 
