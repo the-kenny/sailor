@@ -27,7 +27,10 @@ defmodule Sailor.Stream do
     }
   end
 
+  @spec persist!(%Sailor.Stream{}) :: :ok
   def persist!(stream) do
+    Logger.debug "Persisting stream for #{stream.identifier} with sequence #{stream.sequence}"
+
     Sailor.Db.with_db(fn(db) ->
       # TODO: Use `with_transaction`
       :ok = Sqlitex.exec(db, "begin")
@@ -66,6 +69,7 @@ defmodule Sailor.Stream do
     from_messages(identifier, Enum.into(message_stream, []))
   end
 
+  @spec append(%Sailor.Stream{}, [%Sailor.Stream.Message{}]) :: {:ok, %Sailor.Stream{}} | {:error, String.t}
   def append(stream, []), do: {:ok, stream}
 
   def append(stream, [message]) do
@@ -78,7 +82,7 @@ defmodule Sailor.Stream do
       seq <= stream.sequence ->
         {:ok, stream}
       author != stream.identifier ->
-        {:error, "Wrong wuthor #{author}"}
+        {:error, "Wrong author #{author}"}
       :else ->
         {:ok, %{ stream |
           sequence: seq,
