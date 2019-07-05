@@ -43,9 +43,9 @@ defmodule User do
   def me(), do: @me
 
   def outgoing_peer() do
-    _ = User.outgoing_peer({127,0,0,1}, 8008, @me)
-    GenServer.whereis(PeerConnection.for_identifier(@me))
-    # Sailor.PeerConnection.stop(peer)
+    case User.outgoing_peer({127,0,0,1}, 8008, @me) do
+      {:ok, peer} -> peer
+    end
   end
 
   def dump_all_peers() do

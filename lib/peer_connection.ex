@@ -19,33 +19,23 @@ defmodule Sailor.PeerConnection do
 
   # TODO: We should run the whole connection process in `init` (and handle the registration for `start_incoming` there as it would prevent connecting to a peer twice
   def start_incoming(socket, local_identity, network_identifier) do
-    with {:ok, handshake} <- Sailor.PeerConnection.Handshake.incoming(socket, local_identity, network_identifier),
-         {:ok, peer} <- DynamicSupervisor.start_child(Sailor.PeerConnectionSupervisor, {Sailor.PeerConnection, {socket, handshake}}),
-    do: {:ok, peer}
+    DynamicSupervisor.start_child(Sailor.PeerConnectionSupervisor, {Sailor.PeerConnection, [socket, local_identity, network_identifier]})
   end
 
   def start_outgoing(ip, port, other_identity, local_identity, network_identifier) do
-    with {:ok, socket, handshake} <- Sailor.PeerConnection.Handshake.outgoing({ip, port, other_identity.pub}, local_identity, network_identifier),
-         {:ok, peer} <- DynamicSupervisor.start_child(Sailor.PeerConnectionSupervisor, {Sailor.PeerConnection, {socket, handshake}}),
-    do: {:ok, peer}
+    DynamicSupervisor.start_child(Sailor.PeerConnectionSupervisor, {Sailor.PeerConnection, [ip, port, other_identity, local_identity, network_identifier]})
   end
 
-  def start_link({socket, handshake}, register? \\ true) do
-    identifier = handshake.other_pubkey |> Keypair.from_pubkey() |> Keypair.identifier()
-    name = if register?, do: via_tuple(identifier), else: nil
-    GenServer.start_link(__MODULE__, [socket, handshake], name: name)
+  def start_link(args) do
+    GenServer.start_link(__MODULE__, args)
   end
 
   def stop(peer) do
     GenServer.cast(peer, :shutdown)
   end
 
-  defp via_tuple(identifier) do
-    {:via, Registry, {Sailor.PeerConnection.Registry, identifier}}
-  end
-
   def for_identifier(identifier) do
-    via_tuple(identifier)
+    GenServer.whereis({:global, {__MODULE__, identifier}})
   end
 
   def identifier(peer) do
@@ -133,11 +123,24 @@ defmodule Sailor.PeerConnection do
 
   # Callbacks
 
+  def init([socket, local_identity, network_identifier]) do
+    with {:ok, handshake} <- Sailor.PeerConnection.Handshake.incoming(socket, local_identity, network_identifier),
+    do: init([socket, handshake])
+  end
+
+  def init([ip, port, other_identity, local_identity, network_identifier]) do
+    with {:ok, socket, handshake} <- Sailor.PeerConnection.Handshake.outgoing({ip, port, other_identity.pub}, local_identity, network_identifier),
+    do: init([socket, handshake])
+  end
+
   def init([socket, handshake]) do
     other_keypair = Keypair.from_pubkey(handshake.other_pubkey)
     identifier = Keypair.identifier(other_keypair)
 
+    :global.register_name({__MODULE__, identifier}, self())
+
     Logger.info "Started Peer process for #{identifier}"
+
 
     Process.flag(:trap_exit, true)
 
