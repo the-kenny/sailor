@@ -12,7 +12,7 @@ defmodule Sailor.MessageProcessing.Producer do
 
   # TODO: Use `GenStage.call` as in https://hexdocs.pm/gen_stage/GenStage.html#module-buffering-demand to push new messages automatically
 
-  def notify() do
+  def notify!() do
     GenStage.call(__MODULE__, :notify)
   end
 

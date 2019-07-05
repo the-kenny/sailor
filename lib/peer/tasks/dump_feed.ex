@@ -28,6 +28,8 @@ defmodule Sailor.Peer.Tasks.DumpFeed do
     receive_loop(peer, request_number, stream)
 
     Logger.info "#{inspect __MODULE__} finished for #{identifier} for stream #{history_stream_id}"
+
+    Sailor.MessageProcessing.Producer.notify!()
     Sailor.Peer.close_rpc_stream(peer, request_number)
   end
 
