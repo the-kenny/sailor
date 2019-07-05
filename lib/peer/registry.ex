@@ -1,4 +1,4 @@
-defmodule Sailor.PeerConnection.Registry do
+defmodule Sailor.Peer.Registry do
 
   def child_spec([]) do
     %{

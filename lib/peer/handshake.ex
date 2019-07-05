@@ -1,4 +1,4 @@
-defmodule Sailor.PeerConnection.Handshake do
+defmodule Sailor.Peer.Handshake do
   alias Sailor.Handshake, as: H
   alias Sailor.Keypair
 

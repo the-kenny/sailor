@@ -24,7 +24,7 @@ config :sailor, Sailor.LocalDiscovery,
   enable: true,
   broadcast_interval: 1*1000 # 0 to disable
 
-config :sailor, Sailor.PeerConnection,
+config :sailor, Sailor.Peer,
   tasks: [
     {Sailor.Peer.Tasks.DumpFeed, []},
     {Sailor.Peer.Tasks.BlobSync, []}

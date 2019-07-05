@@ -1,17 +1,17 @@
 defmodule Sailor.Peer.Tasks.DumpFeed do
   require Logger
-  alias Sailor.PeerConnection
+  alias Sailor.Peer
   alias Sailor.Stream.Message
 
   @timeout 60_000
 
   def run(peer) do
-    history_stream_id = PeerConnection.identifier(peer)
+    history_stream_id = Peer.identifier(peer)
     run(peer, history_stream_id)
   end
 
   def run(peer, history_stream_id) do
-    identifier = PeerConnection.identifier(peer)
+    identifier = Peer.identifier(peer)
     stream = Sailor.Stream.for_peer(history_stream_id)
 
     Logger.info "Running #{inspect __MODULE__} for #{identifier} for stream #{history_stream_id} starting at #{stream.sequence+1}"
@@ -23,12 +23,12 @@ defmodule Sailor.Peer.Tasks.DumpFeed do
       sequence: stream.sequence+1,
     }
 
-    {:ok, request_number} = PeerConnection.rpc_stream(peer, "createHistoryStream", [args])
+    {:ok, request_number} = Peer.rpc_stream(peer, "createHistoryStream", [args])
 
     receive_loop(peer, request_number, stream)
 
     Logger.info "#{inspect __MODULE__} finished for #{identifier} for stream #{history_stream_id}"
-    Sailor.PeerConnection.close_rpc_stream(peer, request_number)
+    Sailor.Peer.close_rpc_stream(peer, request_number)
   end
 
   def receive_loop(peer, request_number, stream) do

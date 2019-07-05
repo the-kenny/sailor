@@ -2,7 +2,7 @@ defmodule Sailor.Rpc.HandlerRegistry.Blobs do
   require Logger
   alias Sailor.Rpc.Packet
   alias Sailor.Rpc.Call
-  alias Sailor.PeerConnection
+  alias Sailor.Peer
 
   @behaviour Sailor.Rpc.Handler
 
@@ -32,8 +32,8 @@ defmodule Sailor.Rpc.HandlerRegistry.Blobs do
   #   |> Packet.body_type(:json)
   #   |> Packet.body(Jason.encode!(false))
 
-  #   Sailor.PeerConnection.for_identifier(peer_identifier)
-  #   |> Sailor.PeerConnection.send_rpc_response(packet)
+  #   Sailor.Peer.for_identifier(peer_identifier)
+  #   |> Sailor.Peer.send_rpc_response(packet)
 
   #   {:noreply, state}
   # end
@@ -41,7 +41,7 @@ defmodule Sailor.Rpc.HandlerRegistry.Blobs do
   def create_wants(peer, packet) do
     Sailor.Blob.all_wanted()
     |> Enum.map(fn {blob, severity} -> Packet.respond(packet) |> Packet.body_type(:json) |> Packet.body(Jason.encode!(%{blob => severity})) end)
-    |> Enum.each(&Sailor.PeerConnection.send_rpc_response(peer, &1))
+    |> Enum.each(&Sailor.Peer.send_rpc_response(peer, &1))
 
     :ok
   end

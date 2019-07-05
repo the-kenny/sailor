@@ -1,11 +1,11 @@
 defmodule Sailor.Peer.Tasks.DownloadBlob do
   require Logger
-  alias Sailor.PeerConnection
+  alias Sailor.Peer
   alias Sailor.Rpc.Packet
   alias Sailor.Blob
 
   def run(peer, blob_id) do
-    {:ok, _request_number} = PeerConnection.rpc_stream(peer, ["blobs", "get"], [ blob_id ])
+    {:ok, _request_number} = Peer.rpc_stream(peer, ["blobs", "get"], [ blob_id ])
 
     temp_path = Path.join([System.tmp_dir!(), "tmp_blob_#{:erlang.phash2(make_ref())}"])
     Logger.info "Starting to stream data for blob #{blob_id} into #{temp_path}"
