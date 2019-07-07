@@ -1,10 +1,10 @@
 defmodule Sailor.Peer.Tasks.BlobSync do
   require Logger
-  alias Sailor.Peer
+  alias Sailor.PeerConnection
   alias Sailor.Rpc.Packet
 
   def run(peer) do
-    {:ok, request_number} = Peer.rpc_stream(peer, ["blobs", "createWants"], [])
+    {:ok, request_number} = PeerConnection.rpc_stream(peer, ["blobs", "createWants"], [])
     handle_blobs(peer, request_number)
   end
 
@@ -16,7 +16,7 @@ defmodule Sailor.Peer.Tasks.BlobSync do
         wants = Enum.filter(blobs, fn {_blob, n} -> n < 0 end)
         has = Enum.filter(blobs, fn {_blob, n} -> n > 0 end)
 
-        identifier = Peer.identifier(peer)
+        identifier = PeerConnection.identifier(peer)
 
         if !Enum.empty?(has) do
           # TODO: Persist this information and let a separate process pull the data

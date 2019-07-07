@@ -1,4 +1,4 @@
-defmodule Sailor.Peer do
+defmodule Sailor.PeerConnection do
   use GenServer, restart: :temporary
 
   require Logger
@@ -19,11 +19,11 @@ defmodule Sailor.Peer do
 
   # TODO: We should run the whole connection process in `init` (and handle the registration for `start_incoming` there as it would prevent connecting to a peer twice
   def start_incoming(socket, local_identity, network_identifier) do
-    DynamicSupervisor.start_child(Sailor.PeerSupervisor, {Sailor.Peer, [socket, local_identity, network_identifier]})
+    DynamicSupervisor.start_child(Sailor.PeerConnectionSupervisor, {Sailor.PeerConnection, [socket, local_identity, network_identifier]})
   end
 
   def start_outgoing(ip, port, other_identity, local_identity, network_identifier) do
-    DynamicSupervisor.start_child(Sailor.PeerSupervisor, {Sailor.Peer, [ip, port, other_identity, local_identity, network_identifier]})
+    DynamicSupervisor.start_child(Sailor.PeerConnectionSupervisor, {Sailor.PeerConnection, [ip, port, other_identity, local_identity, network_identifier]})
   end
 
   def start_link(args) do
@@ -124,12 +124,12 @@ defmodule Sailor.Peer do
   # Callbacks
 
   def init([socket, local_identity, network_identifier]) do
-    with {:ok, handshake} <- Sailor.Peer.Handshake.incoming(socket, local_identity, network_identifier),
+    with {:ok, handshake} <- Sailor.PeerConnection.Handshake.incoming(socket, local_identity, network_identifier),
     do: init([socket, handshake])
   end
 
   def init([ip, port, other_identity, local_identity, network_identifier]) do
-    with {:ok, socket, handshake} <- Sailor.Peer.Handshake.outgoing({ip, port, other_identity.pub}, local_identity, network_identifier),
+    with {:ok, socket, handshake} <- Sailor.PeerConnection.Handshake.outgoing({ip, port, other_identity.pub}, local_identity, network_identifier),
     do: init([socket, handshake])
   end
 

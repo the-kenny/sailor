@@ -1,18 +1,18 @@
 
 defmodule User do
-  alias Sailor.Peer
+  alias Sailor.PeerConnection
 
   # def create_peer(ip, port, other_identity, register? \\ false) do
   #   # {:ok, socket} = :gen_tcp.connect({127,0,0,1}, 8008, [:binary, active: false])
 
   #   random_keypair = Sailor.Keypair.random
-  #   {:ok, socket, handshake} = Peer.Handshake.outgoing(
+  #   {:ok, socket, handshake} = PeerConnection.Handshake.outgoing(
   #     {ip, port, other_identity.pub},
   #     random_keypair,
   #     Sailor.LocalIdentity.network_identifier
   #   )
 
-  #   {:ok, peer} = Peer.start_link({socket, handshake}, register?)
+  #   {:ok, peer} = PeerConnection.start_link({socket, handshake}, register?)
   #   # :ok = Peer.run(peer, socket, random_keypair, {:client, Sailor.LocalIdentity.keypair().pub})
   #   {:ok, peer}
   # end
@@ -29,7 +29,7 @@ defmodule User do
 
   def outgoing_peer(ip, port, other_identifier) do
     {:ok, other_identity} = Sailor.Keypair.from_identifier(other_identifier)
-    Peer.start_outgoing(
+    PeerConnection.start_outgoing(
       ip,
       port,
       other_identity,
@@ -53,7 +53,7 @@ defmodule User do
     |> Sailor.Stream.extract_peers()
 
     User.outgoing_peer({127,0,0,1}, 8008, @me)
-    peer = GenServer.whereis(Peer.for_identifier(@me))
+    peer = GenServer.whereis(PeerConnection.for_identifier(@me))
 
     peers
     |> Stream.each(&Sailor.Peer.Tasks.DumpFeed.run(peer, &1))
