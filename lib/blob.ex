@@ -66,19 +66,23 @@ defmodule Sailor.Blob do
 
   # Database Operations
 
-  def mark_wanted!(blob, severity \\ -1) do
-    Sailor.Db.with_db(fn(db) ->
-      case Sqlitex.query(db, "insert or ignore into wanted_blobs (blob, severity) values (?, ?)", bind: [blob, severity]) do
-        {:ok, _} -> :ok
-        err -> err
-      end
-    end)
+  def mark_wanted!(db, blob, severity) do
+    case Sqlitex.query(db, "insert or ignore into wanted_blobs (blob, severity) values (?, ?)", bind: [blob, severity]) do
+      {:ok, _} -> :ok
+      err -> err
+    end
+  end
+
+  def mark_wanted!(blob, severity) do
+    Sailor.Db.with_db(&mark_wanted!(&1, blob, severity))
+  end
+
+  def remove_wanted!(db, blob) do
+    {:ok, _} = Sqlitex.query(db, "delete from wanted_blobs where blob = ?", bind: [blob])
   end
 
   def remove_wanted!(blob) do
-    Sailor.Db.with_db(fn(db) ->
-      {:ok, _} = Sqlitex.query(db, "delete from wanted_blobs where blob = ?", bind: [blob])
-    end)
+    Sailor.Db.with_db(&remove_wanted!(&1, blob))
   end
 
   @spec all_wanted() :: %{String.t => number}

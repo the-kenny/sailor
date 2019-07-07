@@ -13,9 +13,16 @@ defmodule Sailor.MessageProcessing.Decryptor do
 
   def handle_events(events, _from, state) do
     Logger.info "Decrypting #{length events} messages"
-    messages = Enum.map(events, fn {db_id, json} ->
+    messages = Enum.flat_map(events, fn {db_id, json} ->
       {:ok, message} = Message.from_json(json)
-      {db_id, maybe_decrypt_content(message)}
+      case maybe_decrypt_content(message) do
+        [] ->
+          Logger.warn "Unimplemented: decryption for message content of #{message.id}"
+          Sailor.Db.with_db(fn db -> Message.mark_processed!(db, db_id) end)
+          []
+        [msg] ->
+          [{db_id, msg}]
+      end
     end)
 
     {:noreply, messages, state}
@@ -23,8 +30,10 @@ defmodule Sailor.MessageProcessing.Decryptor do
 
   defp maybe_decrypt_content(message) do
     if is_binary(Message.content(message)) do
-      # Logger.warn "Unimplemented: decryption for message content of #{message.id}"
+
+      []
+    else
+      [message]
     end
-    message
   end
 end

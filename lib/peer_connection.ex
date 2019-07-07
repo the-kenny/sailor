@@ -137,7 +137,10 @@ defmodule Sailor.PeerConnection do
     other_keypair = Keypair.from_pubkey(handshake.other_pubkey)
     identifier = Keypair.identifier(other_keypair)
 
-    :global.register_name({__MODULE__, identifier}, self())
+    case :global.register_name({__MODULE__, identifier}, self()) do
+      :yes -> nil
+      :no -> raise "PeerConnection already exists for #{identifier}"
+    end
 
     Logger.info "Started Peer process for #{identifier}"
 
