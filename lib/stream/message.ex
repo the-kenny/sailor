@@ -81,7 +81,7 @@ defmodule Sailor.Stream.Message do
     with :ok <- valid?(message)
     do
       if verify_signature(message) != :ok do
-        Logger.warn "Failed to verify signature for message #{inspect message}"
+        Logger.warn "Failed to verify signature for message with id #{id(message)}"
       end
       {:ok, message}
     end
@@ -176,5 +176,9 @@ defmodule Sailor.Stream.Message do
     end)
 
     rows |> Stream.map(&Keyword.get(&1, :json)) |> Stream.map(&from_json/1) |> Enum.map(fn {:ok, message} -> message end)
+  end
+
+  def mark_processed!(db, message_id) do
+    {:ok, _} = Sqlitex.query(db, "update stream_messages set processed = true where id = ?", bind: [message_id])
   end
 end

@@ -4,7 +4,7 @@ defmodule Sailor.MessageProcessing.Consumer do
 
   alias Sailor.Stream.Message
 
-  def start_link(opts) do
+   def start_link(opts) do
     GenStage.start_link(__MODULE__, nil, opts)
   end
 
@@ -13,18 +13,30 @@ defmodule Sailor.MessageProcessing.Consumer do
   end
 
   def handle_events(events, _from, state) do
-    Logger.info("Marking #{length events} messages as processed")
 
     Sailor.Db.with_db(fn db ->
       for {db_id, message} <- events do
-        for blob <- Sailor.Utils.message_blobs(message) do
-          if !Sailor.Blob.available?(blob) do
-            :ok = Sailor.Blob.mark_wanted!(blob)
-          end
+        message_content = Message.content(message) |> Enum.into(%{})
+        %{"type" => message_type} = message_content
+        module = Module.concat(Sailor.MessageProcessing.Handlers, String.capitalize(message_type))
+
+        case Code.ensure_loaded(module) do
+          {:module, handler} -> handler.handle!(db, db_id, message_content)
+          {:error, _err} -> Logger.warn "Found no handler for message type #{inspect message_type}. Is #{inspect module} loaded?"
         end
 
-        {:ok, _} = Sqlitex.query(db, "update stream_messages set processed = true where id = ?", bind: [db_id])
+        # handler.handle!(db, db_id, message_content)
+
+        # for blob <- Sailor.Utils.message_blobs(message) do
+        #   if !Sailor.Blob.available?(blob) do
+        #     :ok = Sailor.Blob.mark_wanted!(blob)
+        #   end
+        # end
+
+        Message.mark_processed!(db, db_id)
       end
+
+      Logger.info("Marked #{length events} messages as processed")
     end)
 
     # We are a consumer, so we would never emit items.

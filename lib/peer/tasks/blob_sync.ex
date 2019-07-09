@@ -17,9 +17,15 @@ defmodule Sailor.Peer.Tasks.BlobSync do
         has = Enum.filter(blobs, fn {_blob, n} -> n > 0 end)
 
         identifier = PeerConnection.identifier(peer)
-        # TODO: Persist this information and let a separate process pull the data
-        Logger.debug "#{identifier} has: #{inspect has}"
-        Logger.debug "#{identifier} wants: #{inspect wants}"
+
+        if !Enum.empty?(has) do
+          # TODO: Persist this information and let a separate process pull the data
+          Logger.debug "#{identifier} has: #{inspect has}"
+        end
+
+        if !Enum.empty?(wants) do
+          Logger.debug "#{identifier} wants: #{inspect wants}"
+        end
 
         task_stream = Task.Supervisor.async_stream_nolink(Sailor.Peer.TaskSupervisor, has, fn {blob, _severity} ->
           Sailor.Peer.Tasks.DownloadBlob.run(peer, blob)

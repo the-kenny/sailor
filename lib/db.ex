@@ -9,6 +9,8 @@ defmodule Sailor.Db do
     }
   end
 
+  # TODO: Add a `Registry` to make announcement about table updates
+
   def start_link(db_path) do
     pool_config = [
       name: {:local, __MODULE__},

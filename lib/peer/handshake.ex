@@ -4,6 +4,8 @@ defmodule Sailor.PeerConnection.Handshake do
 
   require Logger
 
+  @connect_timeout 5000
+
   # Server
   def incoming(socket, our_identity, network_identifier) do
     handshake = H.create(
@@ -34,7 +36,7 @@ defmodule Sailor.PeerConnection.Handshake do
 
   # Client
   def outgoing({ip, port, other_pubkey}, identity, network_identifier) do
-    {:ok, socket} = :gen_tcp.connect(ip, port, [:binary, active: false])
+    {:ok, socket} = :gen_tcp.connect(ip, port, [:binary, active: false], @connect_timeout)
 
     handshake = H.create(
       identity,

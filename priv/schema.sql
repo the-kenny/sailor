@@ -21,12 +21,14 @@ create index stream_message_sequence_idx on stream_messages(sequence);
 --   sequence number not null
 -- );
 
--- create table peers (
---   identifier text not null primary key,
---   following boolean default false
--- );
+create table peers (
+  identifier text not null primary key,
+  name text,
+  image_blob,
+  following boolean default false
+);
 
-create table wanted_blobs(
+create table wanted_blobs (
   blob text not null primary key,
   severity number not null default -1
 );
