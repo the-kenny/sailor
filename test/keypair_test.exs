@@ -11,9 +11,9 @@ defmodule Sailor.KeypairTest do
   end
 
   test "Keypair.from_identifier(id) error" do
-    :error = Keypair.from_identifier("ZKIjG289FB3fZPyKftIpPM5xqgSRBGdxB5KcYqDspx8=.ed25519")
-    :error = Keypair.from_identifier("@ZKIjG289FB3fZPyKftIpPM5xqgSRBGdxB5KcYqDspx8.ed25519")
-    :error = Keypair.from_identifier("@ZKIjG289FB3fZPyKftIpPM5xqgSRBGdxB5KcYqDspx8=")
+    {:error, :invalid} = Keypair.from_identifier("ZKIjG289FB3fZPyKftIpPM5xqgSRBGdxB5KcYqDspx8=.ed25519")
+    {:error, :invalid} = Keypair.from_identifier("@ZKIjG289FB3fZPyKftIpPM5xqgSRBGdxB5KcYqDspx8.ed25519")
+    {:error, :invalid} = Keypair.from_identifier("@ZKIjG289FB3fZPyKftIpPM5xqgSRBGdxB5KcYqDspx8=")
   end
 
   test "Keypair.{from_secret, to_secret}" do
