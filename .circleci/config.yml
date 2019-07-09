@@ -4,7 +4,8 @@ jobs:
   build:
     docker:
       - image: circleci/elixir:1.9
-
+        environment:
+          MIX_ENV: test
     working_directory: ~/repo
     steps:
       - checkout
@@ -13,11 +14,10 @@ jobs:
           echo "deb http://deb.debian.org/debian stretch-backports main" | sudo tee -a /etc/apt/sources.list
           echo "deb-src http://deb.debian.org/debian stretch-backports main" | sudo tee -a /etc/apt/sources.list
           sudo apt-get update
-          sudo apt-get install -y libsodium23 libsodium-dev
+          sudo apt-get -t stretch-backports install -y libsodium23 libsodium-dev
 
-      - run: mix local.hex --force 
-      - run: mix local.rebar --force
-
-      - run: mix deps.get
+      - run: mix local.hex --force && mix local.rebar --force
+      - run: mix deps.get && mix deps.compile
+      
       - run: mix db.reset
       - run: mix test
