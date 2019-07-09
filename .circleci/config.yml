@@ -13,7 +13,7 @@ jobs:
           echo "deb http://deb.debian.org/debian stretch-backports main" | sudo tee -a /etc/apt/sources.list
           echo "deb-src http://deb.debian.org/debian stretch-backports main" | sudo tee -a /etc/apt/sources.list
           sudo apt-get update
-          sudo apt-get install -y libsodium23 libsodium23-dev
+          sudo apt-get install -y libsodium23 libsodium-dev
 
       - run: mix local.hex --force 
       - run: mix local.rebar --force
