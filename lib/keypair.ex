@@ -12,8 +12,7 @@ defmodule Sailor.Keypair do
 
       {:ok, keypair}
     else
-      {:error, err} -> {:error, err}
-      err -> {:error, err}
+      _ -> {:error, :invalid}
     end
   end
 
