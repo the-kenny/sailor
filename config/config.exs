@@ -18,7 +18,7 @@ config :sailor,
   network_key: "1KHLiKZvAvjbY1ziZEHMXawbCEIM6qwjCDm3VYRan/s=",
   port: 8009,
   identity_file: "./test.secret.json",
-  data_path: "sailor_data/"
+  data_path: "sailor_data#{inspect Mix.env}/"
 
 config :sailor, Sailor.LocalDiscovery,
   enable: true,

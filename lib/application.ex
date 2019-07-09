@@ -1,8 +1,18 @@
 defmodule Sailor.Application do
   use Application
 
+  require Logger
+
   def start(_type, _args) do
-    {:ok, identity_keypair} = Sailor.Keypair.load_secret(Application.get_env(:sailor, :identity_file))
+    identity_file = Application.get_env(:sailor, :identity_file)
+
+    identity_keypair = case Sailor.Keypair.load_secret(identity_file) do
+      {:ok, kp} -> kp
+      {:error, error} -> Logger.error "Failed to load keypair: #{inspect error}"
+    end
+
+    Logger.info "Starting with identity #{Sailor.Keypair.identifier(identity_keypair)} loaded from #{identity_file}"
+
     {:ok, network_key} = Base.decode64(Application.get_env(:sailor, :network_key))
     port = Application.get_env(:sailor, :port)
 

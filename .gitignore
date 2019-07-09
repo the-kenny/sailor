@@ -26,4 +26,4 @@ sailor-*.tar
 
 *.sqlite
 
-/sailor_data
+/sailor_data*/
