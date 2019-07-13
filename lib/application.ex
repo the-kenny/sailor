@@ -27,7 +27,6 @@ defmodule Sailor.Application do
       {Task.Supervisor, name: Sailor.Peer.TaskSupervisor},
 
       {DynamicSupervisor, strategy: :one_for_one, name: Sailor.PeerConnectionSupervisor},
-      {Sailor.PeerConnection.Registry, []},
 
       {Sailor.LocalDiscovery, [port, identity_keypair]},
 
