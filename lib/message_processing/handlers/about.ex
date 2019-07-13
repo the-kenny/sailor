@@ -1,14 +1,18 @@
 defmodule Sailor.MessageProcessing.Handlers.About do
   require Logger
 
-  alias Sailor.Keypair
   alias Sailor.Peer
   alias Sailor.Blob
+  alias Sailor.Stream.Message
 
-  def handle!(db, _message_id, message_content) do
+  def handle!(db, _message_id, message) do
+    message_content = Message.content(message) |> Enum.into(%{})
     identifier = message_content["about"]
     if identifier && String.starts_with?(identifier, "@") do
-      peer = Peer.for_identifier(identifier)
+      peer = case Peer.for_identifier(identifier) do
+        nil -> Peer.persist!(%Peer{identifier: identifier})
+        peer -> peer
+      end
 
       image_blob = case message_content["image"] do
         blob when is_binary(blob) -> blob

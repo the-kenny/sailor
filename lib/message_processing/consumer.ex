@@ -4,25 +4,28 @@ defmodule Sailor.MessageProcessing.Consumer do
 
   alias Sailor.Stream.Message
 
+  @max_batch_size 10
+
    def start_link(opts) do
     GenStage.start_link(__MODULE__, nil, opts)
   end
 
   def init(nil) do
-    {:consumer, nil, subscribe_to: [Sailor.MessageProcessing.Decryptor]}
+    {:consumer, nil, subscribe_to: [{Sailor.MessageProcessing.Decryptor, max_demand: @max_batch_size}]}
   end
 
   def handle_events(events, _from, state) do
 
     Sailor.Db.with_db(fn db ->
       for {db_id, message} <- events do
-        message_content = Message.content(message) |> Enum.into(%{})
+         message_content = Message.content(message) |> Enum.into(%{})
         %{"type" => message_type} = message_content
         module = Module.concat(Sailor.MessageProcessing.Handlers, String.capitalize(message_type))
 
+        # TODO: `Code.ensure_loaded` is slow. Use an explicit map (in config.exs)
         case Code.ensure_loaded(module) do
-          {:module, handler} -> handler.handle!(db, db_id, message_content)
-          {:error, _err} -> Logger.warn "Found no handler for message type #{inspect message_type}. Is #{inspect module} loaded?"
+          {:module, handler} -> handler.handle!(db, db_id, message)
+          {:error, _err} -> nil #Logger.warn "Found no handler for message type #{inspect message_type}. Is #{inspect module} loaded?"
         end
 
         # handler.handle!(db, db_id, message_content)
