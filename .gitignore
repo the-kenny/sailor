@@ -27,3 +27,5 @@ sailor-*.tar
 *.sqlite
 
 /sailor_data*/
+
+/.elixir_ls
