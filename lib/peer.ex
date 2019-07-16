@@ -5,11 +5,11 @@ defmodule Sailor.Peer do
     identifier: nil,
     name: nil,
     image_blob: nil,
-    followed_peers: MapSet.new(),
+    contacts: MapSet.new(),
   ]
 
   def for_identifier(identifier) do
-    {:ok, [row]} = Db.with_db(&Sqlitex.query(&1, "select peers.*, group_concat(peer_edges.followed_peer) as following from peers left join peer_edges on peers.identifier = peer_edges.peer where identifier = ?", bind: [identifier]))
+    {:ok, [row]} = Db.with_db(&Sqlitex.query(&1, "select peers.*, group_concat(peer_contacts.contact) as following from peers left join peer_contacts on peers.identifier = peer_contacts.peer where peers.identifier = ?", bind: [identifier]))
     from_row(row)
   end
 
@@ -27,7 +27,7 @@ defmodule Sailor.Peer do
         identifier: identifier,
         name: Keyword.get(row, :name, nil),
         image_blob: Keyword.get(row, :image_blob, nil),
-        followed_peers: peers
+        contacts: peers
       }
     else
       nil
@@ -43,14 +43,16 @@ defmodule Sailor.Peer do
       peer.image_blob,
     ])
 
-    # TODO: Delete/insert only when necessary
+    with {:ok, rows} <- Sqlitex.query(db, "select contact from peer_contacts where peer = ? and status = 1", bind: [peer.identifier]),
+         old_contacts = rows |> Enum.map(&Keyword.get(&1, :contact)) |> Enum.into(MapSet.new)
+    do
+      for removed_contact <- MapSet.difference(old_contacts, peer.contacts) do
+        {:ok, _} = Sqlitex.query(db, "delete from peer_contacts where peer = ? and contact = ?", bind: [peer.identifier, removed_contact])
+      end
 
-    {:ok, _} = Sqlitex.query(db, "delete from peer_edges where peer = ?", bind: [peer.identifier])
-    for identifier <- peer.followed_peers do
-      {:ok, _} = Sqlitex.query(db, "insert into peer_edges (peer, followed_peer, status) values (?, ?, 1)", bind: [
-        peer.identifier,
-        identifier
-      ])
+      for added_contact <- MapSet.difference(peer.contacts, old_contacts) do
+        {:ok, _} = Sqlitex.query(db, "insert into peer_contacts (peer, contact) values (?, ?)", bind: [peer.identifier, added_contact])
+      end
     end
 
     peer

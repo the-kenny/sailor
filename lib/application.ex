@@ -18,6 +18,7 @@ defmodule Sailor.Application do
 
     data_path = Application.get_env(:sailor, :data_path)
     File.mkdir_p!(data_path)
+
     db_path = Path.expand(Path.join([data_path, "data.sqlite"]))
 
     children = [

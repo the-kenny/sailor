@@ -30,7 +30,6 @@ defmodule Sailor.MessageProcessing.Decryptor do
 
   defp maybe_decrypt_content(message) do
     if is_binary(Message.content(message)) do
-
       []
     else
       [message]

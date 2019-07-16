@@ -28,16 +28,10 @@ defmodule Sailor.MessageProcessing.Handlers.Contact do
       end
     end
 
-    if following? do
-      {:ok, _} = Sqlitex.query(db, "insert into peer_edges (peer, followed_peer, status) values(?, ?, 1)", bind: [
-        peer,
-        identifier
-      ])
+    {:ok, _} = if following? do
+      Sqlitex.query(db, "insert or ignore into peer_contacts (peer, contact) values(?, ?)", bind: [ peer, identifier ])
     else
-      {:ok, _} = Sqlitex.query(db, "delete from peer_edges where peer = ? and followed_peer = ?", bind: [
-        peer,
-        identifier
-      ])
+      Sqlitex.query(db, "delete from peer_contacts where peer = ? and contact = ?", bind: [ peer, identifier ])
     end
 
   end

@@ -4,7 +4,7 @@ defmodule Sailor.MessageProcessing.Consumer do
 
   alias Sailor.Stream.Message
 
-  @max_batch_size 10
+  @max_batch_size 50
 
    def start_link(opts) do
     GenStage.start_link(__MODULE__, nil, opts)
