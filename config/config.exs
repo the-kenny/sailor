@@ -26,7 +26,7 @@ config :sailor, Sailor.LocalDiscovery,
 
 config :sailor, Sailor.PeerConnection,
   tasks: [
-    {Sailor.Peer.Tasks.DumpFeed, []},
+    {Sailor.Peer.Tasks.FetchGossip, []},
     {Sailor.Peer.Tasks.BlobSync, []}
   ]
 

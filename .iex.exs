@@ -56,7 +56,7 @@ defmodule User do
     peer = GenServer.whereis(PeerConnection.for_identifier(@me))
 
     peers
-    |> Stream.each(&Sailor.Peer.Tasks.DumpFeed.run(peer, &1))
+    |> Stream.each(&Sailor.Peer.Tasks.FetchGossip.run(peer, &1))
     |> Stream.run()
   end
 

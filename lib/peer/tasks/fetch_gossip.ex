@@ -1,4 +1,4 @@
-defmodule Sailor.Peer.Tasks.DumpFeed do
+defmodule Sailor.Peer.Tasks.FetchGossip do
   require Logger
   alias Sailor.PeerConnection
   alias Sailor.Stream.Message
