@@ -26,7 +26,7 @@ create table peers (
 
 create table peer_contacts (
   peer text not null references peers,
-  contact text not null references peers,
+  contact text not null,
   status integer not null default 1 -- 1 is following, -1 is blocking
 );
 
