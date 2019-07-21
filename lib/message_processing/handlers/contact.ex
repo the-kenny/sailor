@@ -23,9 +23,7 @@ defmodule Sailor.MessageProcessing.Handlers.Contact do
     identifier = Sailor.Keypair.identifier(keypair)
 
     for identifier <- [peer, identifier] do
-      if !Peer.for_identifier(identifier) do
-        Peer.persist!(db, %Peer{identifier: identifier})
-      end
+      Peer.for_identifier(identifier)
     end
 
     {:ok, _} = if following? do

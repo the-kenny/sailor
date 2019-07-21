@@ -1,9 +1,36 @@
 defmodule Sailor.Peer.Tasks.FetchGossip do
   require Logger
+
+  def run(peer_connection) do
+    peer = Sailor.Peer.for_identifier(Sailor.PeerConnection.identifier(peer_connection))
+
+    streams = [peer.identifier] ++ MapSet.to_list(peer.contacts)
+
+    task = fn identifier ->
+      Sailor.Peer.Tasks.FetchGossip.SingleFeed.run(peer_connection, identifier)
+    end
+
+    persist_stream = fn arg ->
+      case arg do
+        {:ok, stream} -> Sailor.Stream.persist!(stream)
+        {:error, err} -> Logger.warn "Failed to fetch stream: #{err}"
+      end
+    end
+
+    Task.Supervisor.async_stream_nolink(Sailor.Peer.TaskSupervisor, streams, task, max_concurrency: 5, ordered: false, timeout: :infinity)
+    |> Stream.each(persist_stream)
+    |> Stream.run()
+
+    Sailor.MessageProcessing.Producer.notify!()
+  end
+end
+
+defmodule Sailor.Peer.Tasks.FetchGossip.SingleFeed do
+  require Logger
   alias Sailor.PeerConnection
   alias Sailor.Stream.Message
 
-  @timeout 60_000
+  @timeout 3_000
 
   def run(peer) do
     history_stream_id = PeerConnection.identifier(peer)
@@ -25,12 +52,13 @@ defmodule Sailor.Peer.Tasks.FetchGossip do
 
     {:ok, request_number} = PeerConnection.rpc_stream(peer, "createHistoryStream", [args])
 
-    receive_loop(peer, request_number, stream)
+    {:ok, stream} = receive_loop(peer, request_number, stream)
 
     Logger.info "#{inspect __MODULE__} finished for #{identifier} for stream #{history_stream_id}"
 
-    Sailor.MessageProcessing.Producer.notify!()
     Sailor.PeerConnection.close_rpc_stream(peer, request_number)
+
+    stream
   end
 
   def receive_loop(peer, request_number, stream) do
@@ -40,18 +68,19 @@ defmodule Sailor.Peer.Tasks.FetchGossip do
         receive_loop(peer, request_number, stream)
 
       :timeout ->
-        Sailor.Stream.persist!(stream)
+        {:ok, stream}
 
       :halt ->
-        Sailor.Stream.persist!(stream)
+        {:ok, stream}
 
       {:error, error} ->
         Logger.error "Error in #{inspect __MODULE__}: #{error}"
-        Sailor.Stream.persist!(stream)
+        {:ok, stream}
       end
     end
 
 
+  @spec packet_to_message(binary()) :: {:ok, %Message{}} | :halt
   def packet_to_message(packet) do
     body = Sailor.Rpc.Packet.body(packet)
     :json = Sailor.Rpc.Packet.body_type(packet)
@@ -59,10 +88,10 @@ defmodule Sailor.Peer.Tasks.FetchGossip do
       :halt
     else
       {:ok, message} = Message.from_history_stream_json(body)
-      case Message.verify_signature(message) do
-        {:error, :forged} -> Logger.warn "Couldn't verify signature of message #{Message.id(message)}"
-        :ok -> :ok
-      end
+      # case Message.verify_signature(message) do
+      #   {:error, :forged} -> Logger.warn "Couldn't verify signature of message #{Message.id(message)}"
+      #   :ok -> nil
+      # end
       {:ok, message}
     end
   end

@@ -9,15 +9,12 @@ defmodule Sailor.MessageProcessing.Handlers.About do
     message_content = Message.content(message) |> Enum.into(%{})
     identifier = message_content["about"]
     if identifier && String.starts_with?(identifier, "@") do
-      peer = case Peer.for_identifier(identifier) do
-        nil -> Peer.persist!(%Peer{identifier: identifier})
-        peer -> peer
-      end
+      peer = Peer.for_identifier(identifier)
 
       image_blob = case message_content["image"] do
         blob when is_binary(blob) -> blob
         proplist when is_list(proplist) -> :proplists.get_value("link", proplist, nil)
-        nil -> nil
+        _ -> nil
       end
 
       if image_blob && Blob.valid?(image_blob) do

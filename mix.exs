@@ -27,6 +27,7 @@ defmodule Sailor.MixProject do
       {:jsone, git: "https://github.com/the-kenny/jsone.git", branch: "empty-array-formatting"},
       {:sqlitex, "~> 1.7"},
       {:poolboy, "~> 1.5.2"},
+      {:worker_pool, "~> 4.0"},
       {:gen_stage, "~> 0.14.2"},
 
       {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},

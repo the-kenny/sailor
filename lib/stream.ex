@@ -31,38 +31,44 @@ defmodule Sailor.Stream do
   def persist!(stream) do
     Logger.debug "Persisting stream for #{stream.identifier} with sequence #{stream.sequence}"
 
+    rows = Enum.map(stream.messages, fn message ->
+      [
+        Message.id(message),
+        Message.author(message),
+        Message.sequence(message),
+        Message.to_compact_json(message)
+      ]
+    end)
+
     Sailor.Db.with_db(fn(db) ->
-      # TODO: Use `with_transaction`
-      :ok = Sqlitex.exec(db, "begin")
+      Sailor.Db.with_transaction(db, fn db ->
+        {:ok, stmt} = Sqlitex.Statement.prepare(db, "insert or ignore into stream_messages (id, author, sequence, json) values (?1, ?2, ?3, ?4)")
 
-      {:ok, [[sequence: seq]]} = Sqlitex.query(db, "select max(sequence) as sequence from stream_messages where author = ?", bind: [stream.identifier])
-      seq = seq || 0
+        {:ok, [[sequence: seq]]} = Sqlitex.query(db, "select max(sequence) as sequence from stream_messages where author = ?", bind: [stream.identifier])
+        seq = seq || 0
 
-      for message <- Enum.filter(stream.messages, &Message.sequence(&1) > seq) do
-        Sqlitex.query!(db, "insert or ignore into stream_messages (id, author, sequence, json) values (?1, ?2, ?3, ?4)", bind: [
-          Message.id(message),
-          Message.author(message),
-          Message.sequence(message),
-          Message.to_compact_json(message)
-        ])
-      end
-      :ok = Sqlitex.exec(db, "commit")
-      :ok
+        rows
+        |> Enum.filter(fn [_, _, mseq, _] -> mseq > seq end)
+        |> Enum.each(fn row ->
+          {:ok, stmt} = Sqlitex.Statement.bind_values(stmt, row)
+          :ok = Sqlitex.Statement.exec(stmt)
+        end)
+
+        :ok
+      end)
     end)
   end
 
   def for_peer(identifier) do
-    message_stream = Sailor.Db.with_db(fn db ->
-      with {:ok, result} <- Sqlitex.query(db, "select json from stream_messages where author = ? order by sequence", bind: [identifier])
-      do
-        result
-        |> Stream.map(&Keyword.get(&1, :json))
-        |> Stream.map(fn json ->
-          {:ok, message} = Message.from_json(json)
-          message
-        end)
-      end
-    end)
+    message_stream = with {:ok, result} <- Sailor.Db.with_db(&Sqlitex.query(&1, "select json from stream_messages where author = ? order by sequence", bind: [identifier]))
+    do
+      result
+      |> Stream.map(&Keyword.get(&1, :json))
+      |> Stream.map(fn json ->
+        {:ok, message} = Message.from_json(json)
+        message
+      end)
+    end
 
     # TODO: Validate that `row.id` matches `Message.id(message)`
 

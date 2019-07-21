@@ -8,15 +8,17 @@ defmodule Sailor.Peer do
     contacts: MapSet.new(),
   ]
 
+  @spec for_identifier(String.t()) :: %Sailor.Peer{}
   def for_identifier(identifier) do
     {:ok, [row]} = Db.with_db(&Sqlitex.query(&1, "select peers.*, group_concat(peer_contacts.contact) as following from peers left join peer_contacts on peers.identifier = peer_contacts.peer where peers.identifier = ?", bind: [identifier]))
-    from_row(row)
+    case from_row(identifier, row) do
+      nil -> persist!(%__MODULE__{identifier: identifier})
+      peer -> peer
+    end
   end
 
-  defp from_row(row) do
-    identifier = Keyword.get(row, :identifier)
-
-    if identifier do
+  defp from_row(identifier, row) do
+    if Keyword.get(row, :identifier) do
       peers = case Keyword.get(row, :following, nil) do
         nil -> MapSet.new()
         "" -> MapSet.new()

@@ -13,4 +13,5 @@
   "poolboy": {:hex, :poolboy, "1.5.2", "392b007a1693a64540cead79830443abf5762f5d30cf50bc95cb2c1aaafa006b", [:rebar3], [], "hexpm"},
   "salty": {:git, "https://github.com/the-kenny/libsalty.git", "1c2c00b15ba5a0144e20077e9cb676d786e0436a", [branch: "add-ed-to-curve-conversion-functions"]},
   "sqlitex": {:hex, :sqlitex, "1.7.0", "bf8a90f056c46e6e27c33722cb632b302b83847a88ac7545b3db940edfdab745", [:mix], [{:decimal, "~> 1.7", [hex: :decimal, repo: "hexpm", optional: false]}, {:esqlite, "~> 0.4", [hex: :esqlite, repo: "hexpm", optional: false]}], "hexpm"},
+  "worker_pool": {:hex, :worker_pool, "4.0.0", "cd94d94d3b1a2442e54db001b0b3ba0bd1f9d8098f4253f57228c021524bb55b", [:rebar3], [], "hexpm"},
 }
