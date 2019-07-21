@@ -88,10 +88,10 @@ defmodule Sailor.Peer.Tasks.FetchGossip.SingleFeed do
       :halt
     else
       {:ok, message} = Message.from_history_stream_json(body)
-      # case Message.verify_signature(message) do
-      #   {:error, :forged} -> Logger.warn "Couldn't verify signature of message #{Message.id(message)}"
-      #   :ok -> nil
-      # end
+      case Message.verify_signature(message) do
+        {:error, :forged} -> Logger.warn "Couldn't verify signature of message #{Message.id(message)}"
+        :ok -> nil
+      end
       {:ok, message}
     end
   end
