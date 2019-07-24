@@ -1,0 +1,4767 @@
+{
+  "key": "%9sEB7QtT9uM2sn6NuzepSzaM7YIUQujFpFHPWVmM8zo=.sha256",
+  "value": {
+    "previous": null,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 1,
+    "timestamp": 1556230044827,
+    "hash": "sha256",
+    "content": {
+      "type": "about",
+      "about": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+      "name": "Jacko"
+    },
+    "signature": "GdkFvewWpJJx0oK7I15pRFyaX7crKNQGZYQxXZVM4cQyEn6vdTltklwpYEbb65mlmNKol7IbS/r9ByUWQttHDQ==.sig.ed25519"
+  },
+  "timestamp": 1556230044829
+}
+
+{
+  "key": "%XhAn/cvap3lXxPFgWeLHpbCwujeZiz17lEicXT4ITuA=.sha256",
+  "value": {
+    "previous": "%9sEB7QtT9uM2sn6NuzepSzaM7YIUQujFpFHPWVmM8zo=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 2,
+    "timestamp": 1556230105643,
+    "hash": "sha256",
+    "content": {
+      "type": "pub",
+      "address": {
+        "host": "zie.one",
+        "port": 8008,
+        "key": "@tgzHDm9HEN0k5wFRLFmNPyGZYNF/M5KpkZqCRhgowVE=.ed25519"
+      }
+    },
+    "signature": "vpf1jPpcVf1EGbLbzb2cjoCFuSsLlvQfL2l0ZY5PbbKwGWFSCxhnCIzc8FVTl1rZWudZfDbO5e+fVA7THToyBQ==.sig.ed25519"
+  },
+  "timestamp": 1556230105644
+}
+
+{
+  "key": "%Ffxt6X1FHoD/Qn0sWANGHI89sCP/ZWfWN0EoMmKJIUg=.sha256",
+  "value": {
+    "previous": "%XhAn/cvap3lXxPFgWeLHpbCwujeZiz17lEicXT4ITuA=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 3,
+    "timestamp": 1556230105757,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@tgzHDm9HEN0k5wFRLFmNPyGZYNF/M5KpkZqCRhgowVE=.ed25519",
+      "following": true,
+      "autofollow": true
+    },
+    "signature": "wzD6MLuu8g2RZw3xjgMezk0rn92N30ex3FhBZ471VrdS49DVLIuaNCKXG6ZCYQPg34HqHeexi4Vgw8UwSW67Ag==.sig.ed25519"
+  },
+  "timestamp": 1556230105758
+}
+
+{
+  "key": "%t3K0Lzg8rMr6Xhu8+yPQg5tf/5xoa4y76qss4pGczEA=.sha256",
+  "value": {
+    "previous": "%Ffxt6X1FHoD/Qn0sWANGHI89sCP/ZWfWN0EoMmKJIUg=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 4,
+    "timestamp": 1556269361199,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@N/vWpVVdD1e8IbACUQE4EVGL6+aodQfbQZ8ByC+k79s=.ed25519",
+      "following": true
+    },
+    "signature": "w2gSqT2HodcnIyE/ouBpVc9GANC5hxJvhRkIVzLrtJh8/Xw/swzJDmMXUIqtSpWf0z52673nVZrFmNtgM2dfBA==.sig.ed25519"
+  },
+  "timestamp": 1556269361200
+}
+
+{
+  "key": "%HVxx3sLDTIasjbMK0qApd3uU7w1g2Fsa3AurnmL0chY=.sha256",
+  "value": {
+    "previous": "%t3K0Lzg8rMr6Xhu8+yPQg5tf/5xoa4y76qss4pGczEA=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 5,
+    "timestamp": 1556269857559,
+    "hash": "sha256",
+    "content": {
+      "type": "about",
+      "about": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+      "name": "mulrich",
+      "description": "Software developer specializing in functional languages."
+    },
+    "signature": "UmEuMVBB8Sgt6b7eDZcMxWG88A4sx9uWL8MXuFFDM1VYgQs9aiUeC8Og+y987fuFd9R/cKpbhzLJ+fKEJocZDg==.sig.ed25519"
+  },
+  "timestamp": 1556269857559
+}
+
+{
+  "key": "%JAlxQ9ORXy5XucsP4q7dwNPcXDz18vs2ck46RsoYtwo=.sha256",
+  "value": {
+    "previous": "%HVxx3sLDTIasjbMK0qApd3uU7w1g2Fsa3AurnmL0chY=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 6,
+    "timestamp": 1556271225821,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%cddfRodgWBGw8Vg+2eha+5zFfNM0W1vCvhZjDPIkefI=.sha256",
+      "branch": "%JsG3jozVptXTZal8Y2R+AdwIzUOaoaRZCP1tLhogOCA=.sha256",
+      "reply": {
+        "%cddfRodgWBGw8Vg+2eha+5zFfNM0W1vCvhZjDPIkefI=.sha256": "@N/vWpVVdD1e8IbACUQE4EVGL6+aodQfbQZ8ByC+k79s=.ed25519",
+        "%JsG3jozVptXTZal8Y2R+AdwIzUOaoaRZCP1tLhogOCA=.sha256": "@dvV/equwl6LX4vb+CzQC1sfSrK0w1Eo03qr34Q8yJRE=.ed25519"
+      },
+      "channel": "ssb-implementations",
+      "recps": null,
+      "text": "Can you explain to me when and how the unstable features used by most libraries (`async_await`, ...) are getting stabilized? I'm having a hard time convincing myself to start working on stuff that might need a rewrite a few weeks later.",
+      "mentions": []
+    },
+    "signature": "611SaSxDQXWX04JmL+X8nNKNTKFfw7/tGivLB1MkcUvb9107uYHnp5w3cmFvfkrhrLdFivVOp6l887lPccEeCg==.sig.ed25519"
+  },
+  "timestamp": 1556271225821
+}
+
+{
+  "key": "%bfF+R+04C/uoUitaIrAdQn3W+dttYpzxKYnfqgNCiXo=.sha256",
+  "value": {
+    "previous": "%JAlxQ9ORXy5XucsP4q7dwNPcXDz18vs2ck46RsoYtwo=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 7,
+    "timestamp": 1556271366756,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "text": "The more I read about the protocol the more I like Scuttlebutt. However, the missing ecosystem of server implementations really hinders the adoption. A lightweight (no plugins, no nonsense) but rock-stable and self-contained implementation of the protocol (in Rust, Go, or some other embeddable language) would really bring the ecosystem forward.\n\n#thoughtoftheday #scuttlebutt #dev ",
+      "mentions": [
+        {
+          "link": "#thoughtoftheday"
+        },
+        {
+          "link": "#scuttlebutt"
+        },
+        {
+          "link": "#dev"
+        }
+      ]
+    },
+    "signature": "7bYLynL7ft2rWb/Cit94zXnJBKxLuarkGBMuBnOWyvkXnfWQExPzGBDfO/ijaMMlYtxntVh9n3vfcn+ykqM3BQ==.sig.ed25519"
+  },
+  "timestamp": 1556271366757
+}
+
+{
+  "key": "%NGrSgPiOgYAAJ+aSlya5/TTmzqxheXD/Tm3iRmKv9Vs=.sha256",
+  "value": {
+    "previous": "%bfF+R+04C/uoUitaIrAdQn3W+dttYpzxKYnfqgNCiXo=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 8,
+    "timestamp": 1556620742890,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "text": "The Erlang + Elixir ecosystem is really great. One of the most mind-blowing features is the ability to implement an IO device as an Erlang process.",
+      "mentions": []
+    },
+    "signature": "QUOJCMgB8MOjuS+/aRUz3CCoJ/HKHbfzGCMbsjH5GCE4jou3ocy6D4UOkinwDkpVLkKOJvkFqnE+Gbn8B51QCg==.sig.ed25519"
+  },
+  "timestamp": 1556620742891
+}
+
+{
+  "key": "%TpudOTq78gHs7mtnYEJsCLIRHFPVR9C63pbeV3dp+SU=.sha256",
+  "value": {
+    "previous": "%NGrSgPiOgYAAJ+aSlya5/TTmzqxheXD/Tm3iRmKv9Vs=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 9,
+    "timestamp": 1557092433157,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%cddfRodgWBGw8Vg+2eha+5zFfNM0W1vCvhZjDPIkefI=.sha256",
+      "branch": "%HE8hoyJEC/g4gTpH12Zx+VQRaqnnZuhyIIDv4AfdLqU=.sha256",
+      "reply": {
+        "%cddfRodgWBGw8Vg+2eha+5zFfNM0W1vCvhZjDPIkefI=.sha256": "@N/vWpVVdD1e8IbACUQE4EVGL6+aodQfbQZ8ByC+k79s=.ed25519",
+        "%HE8hoyJEC/g4gTpH12Zx+VQRaqnnZuhyIIDv4AfdLqU=.sha256": "@N/vWpVVdD1e8IbACUQE4EVGL6+aodQfbQZ8ByC+k79s=.ed25519"
+      },
+      "channel": "ssb-implementations",
+      "recps": null,
+      "text": "Sorry for not getting back earlier - I was actually busy with some vacation time.\n\nYour deal sounds good - however, I'm not sure I'll have the time for this right now. I might have some cool stuff to announce soon - but it's not related to Rust (but another cool language ecosystem!). I'll definitely keep following your projects and will contribute some stuff when I've got some time on my hand.",
+      "mentions": []
+    },
+    "signature": "HpfaimUrRpP2jHm6+Knikm0mr6+59sa/mtHRXofJCXEOr1hwcy+xtdpS2lRbBG0X8GND8/gYWvaNLuLv+x6IAg==.sig.ed25519"
+  },
+  "timestamp": 1557092433159
+}
+
+{
+  "key": "%3jIJW/Ygm486qv+TfmBC32eQojkM0OL4OkjQI3vtDU0=.sha256",
+  "value": {
+    "previous": "%TpudOTq78gHs7mtnYEJsCLIRHFPVR9C63pbeV3dp+SU=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 10,
+    "timestamp": 1557092838485,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%cddfRodgWBGw8Vg+2eha+5zFfNM0W1vCvhZjDPIkefI=.sha256",
+      "branch": "%TpudOTq78gHs7mtnYEJsCLIRHFPVR9C63pbeV3dp+SU=.sha256",
+      "reply": {
+        "%cddfRodgWBGw8Vg+2eha+5zFfNM0W1vCvhZjDPIkefI=.sha256": "@N/vWpVVdD1e8IbACUQE4EVGL6+aodQfbQZ8ByC+k79s=.ed25519",
+        "%TpudOTq78gHs7mtnYEJsCLIRHFPVR9C63pbeV3dp+SU=.sha256": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519"
+      },
+      "channel": "ssb-implementations",
+      "recps": null,
+      "text": "My earlier hesitation might stem from the whole evolving async ecosystem in Rust itself, not from your work in it. Sorry if that made my reply look too aggressive.\n\nTo me Rust is a language with great potential - I already wrote some cool stuff in it and love working with it. However, I feel that the async story needs a bit more time to settle before it's time for me to dive in and really start using it in \"real\" projects like a SSB node. \n\nAs I said, I totally plan to contribute in the future. Right now the combination of unfamiliar async support and the usual \"Too many fun projects\" stands in the way :-)\n\n(Also, I'm just getting into the whole Scuttlebutt ecosystem - your comments on the default hop limit etc. etc. are really helpful - thanks!)",
+      "mentions": []
+    },
+    "signature": "XnUIWlprWxWhHAeeWOBy0C6rN9w+pfJQYnqlB2z9FMen5R4IPqJZ+AtQ6MlJ02wisUuCznrE9oqdQtWr2GRbAQ==.sig.ed25519"
+  },
+  "timestamp": 1557092838486
+}
+
+{
+  "key": "%/Z8xI3sKV2oCjwXwHjbKk0WtHlTpbV6rsBRpB5dCOzY=.sha256",
+  "value": {
+    "previous": "%3jIJW/Ygm486qv+TfmBC32eQojkM0OL4OkjQI3vtDU0=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 11,
+    "timestamp": 1557094470032,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "vote": {
+        "link": "%5Sn9TT4g2JQGmftND5F3oiHWBOekDQ2ESxizjmwCCKE=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "ioCLRyeqa8bGrQ853enmX0hDWN/RAvo1yb0kIU8ee2a5nPxOC5tVB2EtQ4Iq/wXTe7jDCmMQDDC0aPyTzeLLDQ==.sig.ed25519"
+  },
+  "timestamp": 1557094470034
+}
+
+{
+  "key": "%2mi0xJ4cTLiNWD2JmqLzYSE6I9nc1LhzVyoHol3e2P8=.sha256",
+  "value": {
+    "previous": "%/Z8xI3sKV2oCjwXwHjbKk0WtHlTpbV6rsBRpB5dCOzY=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 12,
+    "timestamp": 1557094473441,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@mPSjUjY7mCamoC0q0yJFq6k0uKFMpg4oS9VuPMDjGtA=.ed25519",
+      "following": true
+    },
+    "signature": "fsh8kIlbkAiftg1PBw7IfzNSDKO1Bb6E1FbiJnFh0+aUv4KtWRyQOWCWNDGaxERNVwSA5I79A2m9dv+kR8wuDA==.sig.ed25519"
+  },
+  "timestamp": 1557094473442
+}
+
+{
+  "key": "%iS+NesngXUg9+tcCGCA2F0hgkz1/Jmaso3niEHaUmy8=.sha256",
+  "value": {
+    "previous": "%2mi0xJ4cTLiNWD2JmqLzYSE6I9nc1LhzVyoHol3e2P8=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 13,
+    "timestamp": 1557130917066,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@tgzHDm9HEN0k5wFRLFmNPyGZYNF/M5KpkZqCRhgowVE=.ed25519",
+      "following": false
+    },
+    "signature": "ZyOChTXeM+uLI5Lhp8m+Rc4wdfcWjqghlG0N/UYKAoPUd/ovdIgyE1o6i4+SxHHsnzXWGs73ZeK2AKXzCrWDDw==.sig.ed25519"
+  },
+  "timestamp": 1557130917066
+}
+
+{
+  "key": "%wKmBoIN44boYnx0A76tpNKD/BsAaAZ0vdnYmnQMWvmM=.sha256",
+  "value": {
+    "previous": "%iS+NesngXUg9+tcCGCA2F0hgkz1/Jmaso3niEHaUmy8=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 14,
+    "timestamp": 1557130917903,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@tgzHDm9HEN0k5wFRLFmNPyGZYNF/M5KpkZqCRhgowVE=.ed25519",
+      "following": true
+    },
+    "signature": "kDBhSj88wmAhrSAcYHnAWni4PULtSAg5C/ua36cwNYDZH1WQzjR+eUFW+i1lntQ9P3WyB5I8vZiR56VlXfpEBQ==.sig.ed25519"
+  },
+  "timestamp": 1557130917903
+}
+
+{
+  "key": "%6dLpWuhBHsovmoGoaLyxpqaJIwBXLMlcMgJcqEZIBkw=.sha256",
+  "value": {
+    "previous": "%wKmBoIN44boYnx0A76tpNKD/BsAaAZ0vdnYmnQMWvmM=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 15,
+    "timestamp": 1557130922372,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@tgzHDm9HEN0k5wFRLFmNPyGZYNF/M5KpkZqCRhgowVE=.ed25519",
+      "following": false
+    },
+    "signature": "pGIXp7XEAmDBPt8JgB2wU2z1k8qJbH0gF91mfjfnf7ClpLacEZVUxqWggRnIAJUVQJzlDnzXn/1wl1CZuRXdBw==.sig.ed25519"
+  },
+  "timestamp": 1557130922372
+}
+
+{
+  "key": "%csdVuHJhDC2pxH3UxEBa3lrnOJo5X9RkQwq1Aq5a7f4=.sha256",
+  "value": {
+    "previous": "%6dLpWuhBHsovmoGoaLyxpqaJIwBXLMlcMgJcqEZIBkw=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 16,
+    "timestamp": 1557130922634,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@tgzHDm9HEN0k5wFRLFmNPyGZYNF/M5KpkZqCRhgowVE=.ed25519",
+      "following": true
+    },
+    "signature": "ZHl63g5XA2ZNgbH56GvQE6ZCoyWIDmkcJCjTviFMOBKtF5wvb6LX9RWacE33qqDMqKebd/wt31WqKv/xeeXwAQ==.sig.ed25519"
+  },
+  "timestamp": 1557130922639
+}
+
+{
+  "key": "%OeahRKofSqi6JOlRq37I5Vx3TUugXlOnvmTfZ82nd9U=.sha256",
+  "value": {
+    "previous": "%csdVuHJhDC2pxH3UxEBa3lrnOJo5X9RkQwq1Aq5a7f4=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 17,
+    "timestamp": 1557130923189,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@tgzHDm9HEN0k5wFRLFmNPyGZYNF/M5KpkZqCRhgowVE=.ed25519",
+      "following": false
+    },
+    "signature": "xwaiAR6ttLeNnRLHIA4LSaWbPBWidWtzW2FFy3SVPd7F92Ni7kKNxzksgACKs53cyPCeV9mpD7EsYVw49W3+AA==.sig.ed25519"
+  },
+  "timestamp": 1557130923197
+}
+
+{
+  "key": "%frfXlEO0nXkh/+szH3octGmC7TAA2GMweXO62zM25KE=.sha256",
+  "value": {
+    "previous": "%OeahRKofSqi6JOlRq37I5Vx3TUugXlOnvmTfZ82nd9U=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 18,
+    "timestamp": 1557130928183,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@tgzHDm9HEN0k5wFRLFmNPyGZYNF/M5KpkZqCRhgowVE=.ed25519",
+      "following": true
+    },
+    "signature": "PBqsp+CgxPongHrwugx28RGVbD6FJTaTvphqa/dsxNc544Vvjq5r4+72mS2ZFVUzhwdmRy1YQIU1m36tcXjRBQ==.sig.ed25519"
+  },
+  "timestamp": 1557130928184
+}
+
+{
+  "key": "%SBOkOYO2/Y4EVMYhuy4479Efb0Ld7e+cedlf+gnmIMA=.sha256",
+  "value": {
+    "previous": "%frfXlEO0nXkh/+szH3octGmC7TAA2GMweXO62zM25KE=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 19,
+    "timestamp": 1557261757796,
+    "hash": "sha256",
+    "content": {
+      "type": "pub",
+      "address": {
+        "host": "publibertynetwork.tk",
+        "port": 8008,
+        "key": "@FWHrnoH/YwtiVSng8MiWrb6ekZDX9R+i3XlXLlmtaiE=.ed25519"
+      }
+    },
+    "signature": "aFRGyp4tsr53n/WeVcYspAM1kqjb5H15fR1NRdQYrkrr629RvXjzPIASmcZjrjvWOCbt2Y6Ray/UPZnMMvzzBg==.sig.ed25519"
+  },
+  "timestamp": 1557261757797
+}
+
+{
+  "key": "%xXbN6BcsxCvPl5T156qhb5QNd8V5MSMBTHpJtnRwXVQ=.sha256",
+  "value": {
+    "previous": "%SBOkOYO2/Y4EVMYhuy4479Efb0Ld7e+cedlf+gnmIMA=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 20,
+    "timestamp": 1557261757965,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@FWHrnoH/YwtiVSng8MiWrb6ekZDX9R+i3XlXLlmtaiE=.ed25519",
+      "following": true,
+      "autofollow": true
+    },
+    "signature": "nPnVyWUv01w9F8uv8NW6uFaCB7l9KuvZ08ZhwpWGJ4yMucFqolLfU99+j2Sn6du3McDXwfzIAq0aUAmfWd3tAg==.sig.ed25519"
+  },
+  "timestamp": 1557261757966
+}
+
+{
+  "key": "%SlMrAsHmVNwescpeirGHnUVOFz/3R2VbRZ2Yk9qLwVE=.sha256",
+  "value": {
+    "previous": "%xXbN6BcsxCvPl5T156qhb5QNd8V5MSMBTHpJtnRwXVQ=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 21,
+    "timestamp": 1557261892775,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@UhORGzAhEE3gqy/pH5vK+EgbpZfnyYvdI46TVBJH6Mw=.ed25519",
+      "following": true
+    },
+    "signature": "Yp/+MMafWTASfazBCmEH6qKe6mK/gQfYDN2wMHUPDjVwcggAdfPngargBkCLNx1xZqPVtlH0TB1T86Ijw1x6Bg==.sig.ed25519"
+  },
+  "timestamp": 1557261892775
+}
+
+{
+  "key": "%FFfgju2Q5UlGR/uyx/zps/WWgHKL0b0rvauDv+KNvMY=.sha256",
+  "value": {
+    "previous": "%SlMrAsHmVNwescpeirGHnUVOFz/3R2VbRZ2Yk9qLwVE=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 22,
+    "timestamp": 1557262357463,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@FWHrnoH/YwtiVSng8MiWrb6ekZDX9R+i3XlXLlmtaiE=.ed25519",
+      "following": false
+    },
+    "signature": "VhEp5vfRrr2yYuIrv3ffbtUPm2Fs6LTejs3kYBMf/5pq40Ln3XJeDD+zSOzNgtvbd9o7BRb4bH/P8jHghZjCBw==.sig.ed25519"
+  },
+  "timestamp": 1557262357463
+}
+
+{
+  "key": "%dDnj+ph2gUT6IwQdfvpzWNyRbycY7UXuguiR/ptAUq0=.sha256",
+  "value": {
+    "previous": "%FFfgju2Q5UlGR/uyx/zps/WWgHKL0b0rvauDv+KNvMY=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 23,
+    "timestamp": 1557262362013,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@tgzHDm9HEN0k5wFRLFmNPyGZYNF/M5KpkZqCRhgowVE=.ed25519",
+      "following": false
+    },
+    "signature": "jgdI5mXRoNB6r/nv0ynTGfUGhVKOqnpy3IahgZso+XkIKMkzpiuQ49SjoCbHWlOPVJe1r+9febaKGssB5wTzCg==.sig.ed25519"
+  },
+  "timestamp": 1557262362014
+}
+
+{
+  "key": "%U+a3n+qKW9iv2canivPZEJ6HKMTjPHWIfc0Za8EhYCE=.sha256",
+  "value": {
+    "previous": "%dDnj+ph2gUT6IwQdfvpzWNyRbycY7UXuguiR/ptAUq0=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 24,
+    "timestamp": 1557262391882,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@/6Xvv3L7eYrQDsJQQkhcxf1G8xaP9HIj4LDqAJmYXyw=.ed25519",
+      "following": true
+    },
+    "signature": "p3AZG0b2SY1/c+272C97+AOLIgOT1SR9Y2M9/HUCBBiSc3NDJcIQrWeIlj5RKtkfWef3Wb51xgASEr+6HLlrDw==.sig.ed25519"
+  },
+  "timestamp": 1557262391883
+}
+
+{
+  "key": "%O7yiVuqAiTjtwGd7s/ABTy9R72RoXPK4Te/XGI2H3gA=.sha256",
+  "value": {
+    "previous": "%U+a3n+qKW9iv2canivPZEJ6HKMTjPHWIfc0Za8EhYCE=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 25,
+    "timestamp": 1557262431569,
+    "hash": "sha256",
+    "content": {
+      "type": "about",
+      "about": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+      "description": "Software developer specializing in functional languages. Loving Elixir, Clojure, Forth and Haskell."
+    },
+    "signature": "hbAkm1BrxApGX1KOp5QwpnwqkQ565S1rWE4GfnfFZtfTpMOh0DTAJi7sCvGzajRgvpkMQvewFES92zW/I2olDQ==.sig.ed25519"
+  },
+  "timestamp": 1557262431674
+}
+
+{
+  "key": "%VcoPxtgMpwxvLoq8yP9S+mnJYg+uMbSU1ETUaZOlv0o=.sha256",
+  "value": {
+    "previous": "%O7yiVuqAiTjtwGd7s/ABTy9R72RoXPK4Te/XGI2H3gA=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 26,
+    "timestamp": 1557301941863,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@gaQw6z30GpfsW9k8V5ED4pHrg8zmrqku24zTSAINhRg=.ed25519",
+      "following": true
+    },
+    "signature": "BlbWG4DxfVJTN/tZ8kkD6CTgNbR1GfMMZdqgNt+r0m/hQwTXxfHeoTkk3qkd6U8R8rKMf/JkJiYPxTWhfBYtAA==.sig.ed25519"
+  },
+  "timestamp": 1557301941864
+}
+
+{
+  "key": "%Q0LdkDBF7B2kWu7n+hHWcfU8RtwkBYK3hIhSqAaiiYQ=.sha256",
+  "value": {
+    "previous": "%VcoPxtgMpwxvLoq8yP9S+mnJYg+uMbSU1ETUaZOlv0o=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 27,
+    "timestamp": 1557302698857,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@5fYRrgyJON0r0R9SPrK0oxR1XKhqNXqiN0FBX+MgfH4=.ed25519",
+      "following": true
+    },
+    "signature": "iUgXAtm6wDqGvF3EYc3KirWAQ/WJBx5MXMQ7S03yKYPL6LHr0+V6Vb222pezx9a2wsyp/LgnMKb2eY0eHE4ICw==.sig.ed25519"
+  },
+  "timestamp": 1557302698857
+}
+
+{
+  "key": "%2D1egwbdFQXwfXWYcuU7ljOD07Cr5z9y+ZX9eDc+z+c=.sha256",
+  "value": {
+    "previous": "%Q0LdkDBF7B2kWu7n+hHWcfU8RtwkBYK3hIhSqAaiiYQ=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 28,
+    "timestamp": 1557302718740,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "channel": "ssb",
+      "vote": {
+        "link": "%3ZOZIOb3aBwu1O5voHRX0N+If+mAu3u4K6JVVIJtt1k=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "KrGZPVDjhFC1o9BXvvvLKZkyNxbEooPWv6JHCI9f6/c9WvVGTciaNpk0fnEVBv1oIaH0T3JE8fh9aDv613ydBQ==.sig.ed25519"
+  },
+  "timestamp": 1557302718815
+}
+
+{
+  "key": "%RR/LxU2/8o9vEUJElcQTXDbIPZ8/nLetbwKoD65CC3Q=.sha256",
+  "value": {
+    "previous": "%2D1egwbdFQXwfXWYcuU7ljOD07Cr5z9y+ZX9eDc+z+c=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 29,
+    "timestamp": 1557302728005,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "vote": {
+        "link": "%/2lVw5KwAmmTRKvCew3BiZpm9vTVj5N2Tdl1btvcUkY=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "w1wnPzIdtNswhKTe8YSpI5CE2Ohh0ICWHy0dKHEoQ7A6CWTKkzFzoqG4AVpv0R9nrOlfYdLmeBYnCIQFwi7WAg==.sig.ed25519"
+  },
+  "timestamp": 1557302728249
+}
+
+{
+  "key": "%k5EVWU6X1uVfXFZgNl9j+9YyeIVFHIo8t7Mm/1VSivM=.sha256",
+  "value": {
+    "previous": "%RR/LxU2/8o9vEUJElcQTXDbIPZ8/nLetbwKoD65CC3Q=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 30,
+    "timestamp": 1557302988800,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "vote": {
+        "link": "%frjPNWYpsEm7S3Ihjt3d9IjAwaIhcJoPsGSdndYr6xQ=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "hSOQe7BhXE/6RCZuSBLo2M6rSrxgXphLBlW0jbd6UhC7Hse0sAhclcl2kK+rDTu+aFsA1zu/1Gsr5czjc+PFBg==.sig.ed25519"
+  },
+  "timestamp": 1557302988800
+}
+
+{
+  "key": "%5vRiWqlTOUsY6MM1I/lcQqCkw1F09BSmI6BnPD7FWcc=.sha256",
+  "value": {
+    "previous": "%k5EVWU6X1uVfXFZgNl9j+9YyeIVFHIo8t7Mm/1VSivM=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 31,
+    "timestamp": 1557303077317,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%bfF+R+04C/uoUitaIrAdQn3W+dttYpzxKYnfqgNCiXo=.sha256",
+      "branch": "%frjPNWYpsEm7S3Ihjt3d9IjAwaIhcJoPsGSdndYr6xQ=.sha256",
+      "reply": {
+        "%frjPNWYpsEm7S3Ihjt3d9IjAwaIhcJoPsGSdndYr6xQ=.sha256": "@N/vWpVVdD1e8IbACUQE4EVGL6+aodQfbQZ8ByC+k79s=.ed25519",
+        "%bX8bq7BDOp1yxo4NxsSWnWc0bi9AMESEoNlg7LEJEUU=.sha256": "@p13zSAiOpguI9nsawkGijsnMfWmFd5rlUNpzekEE+vI=.ed25519"
+      },
+      "channel": null,
+      "recps": null,
+      "text": "This is great to hear! A go implementation is a big step in the right direction. Aside the obvious benefits for easier integration into other software, mobile, or even embedded devices, a more diverse implementation ecosystem is always a big benefit.",
+      "mentions": []
+    },
+    "signature": "7h8rWU+FWgUXdn+dcffsIw6fnksnx3ZvMoPrSNDPIVJuDdpBzTrnd3a9eA2YV5K+qayxr/6nKru+2F/FWfqDCQ==.sig.ed25519"
+  },
+  "timestamp": 1557303077318
+}
+
+{
+  "key": "%lp3Ev8vnaL9X9IpSjV4FmqD/pBRknyBSIFVbfyxjP9o=.sha256",
+  "value": {
+    "previous": "%5vRiWqlTOUsY6MM1I/lcQqCkw1F09BSmI6BnPD7FWcc=.sha256",
+    "sequence": 32,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557303668620,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@EvIllh9vj5gYABPBjNPWvkABcVp0rUbp4EoA0tXPhFY=.ed25519",
+      "following": true
+    },
+    "signature": "QMtIicJmiaEGxFAgyB8Hg9FABJdcPjaHlXubN5J+GrElGoVHxfU5SLle6HCSreSAutJ8CNwSVmvLbGsheGRkDA==.sig.ed25519"
+  },
+  "timestamp": 1557303668622
+}
+
+{
+  "key": "%TU1gauKDprdGuicboLZWoyAgQG91FIQdpD1FYkdWlfE=.sha256",
+  "value": {
+    "previous": "%lp3Ev8vnaL9X9IpSjV4FmqD/pBRknyBSIFVbfyxjP9o=.sha256",
+    "sequence": 33,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557303802662,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@p13zSAiOpguI9nsawkGijsnMfWmFd5rlUNpzekEE+vI=.ed25519",
+      "following": true
+    },
+    "signature": "dSthx/oILyMXE27x/zUlRrd9pH3pmo5zGyWCMBvwSwMkzLXipxgJGYv/NoyXhiGmst3GAL209orysLzHyK/GBw==.sig.ed25519"
+  },
+  "timestamp": 1557303802663
+}
+
+{
+  "key": "%cNsFSXnR2i5QzOMRO0COe2aHm30n4e/nieWqPiQEMFg=.sha256",
+  "value": {
+    "previous": "%TU1gauKDprdGuicboLZWoyAgQG91FIQdpD1FYkdWlfE=.sha256",
+    "sequence": 34,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557303893813,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "channel": "scuttle-shell",
+      "vote": {
+        "link": "%UQ8mavv8N3AXdc6Sve0a0kO2oyhj5kfoTRnWgwV9PIk=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "fiAcKIf3wPsloFgboPWC6zZedhJRrdiHYsXTRDnmrh8gq/uLdpZwBGpwrGY9yxBLq7Mq5qPgghAvBeJVVDiIBw==.sig.ed25519"
+  },
+  "timestamp": 1557303893814
+}
+
+{
+  "key": "%0yzaNqNGLdY41IlNW6JsuaeBdQKDvs8UUmrEqMdRZ8I=.sha256",
+  "value": {
+    "previous": "%cNsFSXnR2i5QzOMRO0COe2aHm30n4e/nieWqPiQEMFg=.sha256",
+    "sequence": 35,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557320357541,
+    "hash": "sha256",
+    "content": "CLbe8FMStvoHybWCQebNlXUml0jJmIwVFWJIFLFrzxeaeJOdzUFduHNGCfJ2u+5Yfwqjxz7NKke8b+Na2Rj/2c5Atos+81PyQIgjMbzWVJmLj77+vHZ/vkSgFPtGoslvWu7i3uvFc7YbQK/xgBVHqFfnA0Q41+V6u8qn2Jm2Me1Syl2wi+lJZJwiXuLMpxfUUUzc6voGvhUwoM/UAm6qSAp+HhVXSSN4z+UTFmbj/Kq+9K4O+2vp2wY1EAKKB2KfCBR5+24N2ya5AUGF7sGr/MAOLyR2pk+8PigekRPOl9QkeqcBPr9NPWUqe1MqxYbuTqwfo6a3QoPsqtAzJex4bcRpkVKS95kfbL0a26jcu+TVyazew0gyy2x+kb5wBOTcu40yFgd2s9Ov4Uo40jhq2HlX5+hrShdXanTnPly4S87VLQnY5NLR/RFaV1g6/9ls+MITwZWURVc+2/8L9oX6EhjsjTBOHhewy7Jq3Hn439/XYUAqbLseITkV3rClp6PMhYkDDE3TFL9qFvlc1kjzQIzgaV1nk0Ymguh9oUsGIrRvld2WaL6YgjkAKFyXVnWs40SLPdg16RCy+CWk1+Y38GMKED5liAA8QU5IyyyFFCh7YP77pY0TPT4cJkpLUM7Mfm8YCDM5vqgK.box",
+    "signature": "LtIAg6chF2B09pg9R/TZ1iNOYIlHMsSW96vf5CJH9/2xELYsKSGQ9J/gUt1C49lrWC4s6tWNt/H18TD+jZWoBA==.sig.ed25519"
+  },
+  "timestamp": 1557320357541.001
+}
+
+{
+  "key": "%zdQjzx7vejfLXeW3uebIgHj2R/YCOA0aPi5D/MqDAn0=.sha256",
+  "value": {
+    "previous": "%0yzaNqNGLdY41IlNW6JsuaeBdQKDvs8UUmrEqMdRZ8I=.sha256",
+    "sequence": 36,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557321221122,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "text": "I seem to have some issues with Patchwork broadcasting the wrong interface's IPv6 address via UDP. My macbook pro running the current beta1 release of Patchwork broadcasts the IP of a random interface and not of the currently active wifi interface.\n\nIs this a known bug or is this configurable somehow? \n\n#patchwork #dev #bug #scuttlebutt ",
+      "mentions": [
+        {
+          "link": "#patchwork"
+        },
+        {
+          "link": "#dev"
+        },
+        {
+          "link": "#bug"
+        },
+        {
+          "link": "#scuttlebutt"
+        }
+      ]
+    },
+    "signature": "hBg+a7C/KBzCzIkCvBSAsMlSa/n796TV9zYof4qmAlBg+4BQDew9urCyGL+HJhnishD6ICcNugj3/lSlLT7vCg==.sig.ed25519"
+  },
+  "timestamp": 1557321221122.001
+}
+
+{
+  "key": "%YJnQUl2tQDbVp8gY0qD6wIxhWpwUTCdUYg7wcPnHY9Q=.sha256",
+  "value": {
+    "previous": "%zdQjzx7vejfLXeW3uebIgHj2R/YCOA0aPi5D/MqDAn0=.sha256",
+    "sequence": 37,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557327569999,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%zdQjzx7vejfLXeW3uebIgHj2R/YCOA0aPi5D/MqDAn0=.sha256",
+      "branch": "%zdQjzx7vejfLXeW3uebIgHj2R/YCOA0aPi5D/MqDAn0=.sha256",
+      "reply": {
+        "%zdQjzx7vejfLXeW3uebIgHj2R/YCOA0aPi5D/MqDAn0=.sha256": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519"
+      },
+      "channel": null,
+      "recps": null,
+      "text": "Update: It seems like it's a known bug (under investigation) and unfortunately not fixed yet: https://github.com/ssbc/patchwork/issues/958\n\nI wonder why there isn't a config option to tell `sbot` the interfaces it should enable discovery on. The `local` plugin seems to pick one randomly for me.",
+      "mentions": []
+    },
+    "signature": "qVwlQMoW7Q9zbdg0Hb6IRW9fGrihmJ9uJGEzrWCAAuVFsmHRQ8/iEuEhd379zDd1mXxyGYZ/L1kWPyIqdGW7Bw==.sig.ed25519"
+  },
+  "timestamp": 1557327570000
+}
+
+{
+  "key": "%ztBlbZAEnTJk03QFpGqqH8eU3IVMWMvBrGTvLyyORQY=.sha256",
+  "value": {
+    "previous": "%YJnQUl2tQDbVp8gY0qD6wIxhWpwUTCdUYg7wcPnHY9Q=.sha256",
+    "sequence": 38,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557327611749,
+    "hash": "sha256",
+    "content": {
+      "type": "tag",
+      "version": 1
+    },
+    "signature": "9kOg6JGslzqCCZhbFDfAzYtaVVtuk8x5pTieDRIsz7inilrXIVmDwRu37RXnbI7o2HOU2Y98xgNn261hj89eCg==.sig.ed25519"
+  },
+  "timestamp": 1557327611749.001
+}
+
+{
+  "key": "%HL8m5NVEuds21xlv2WgdCVntDBmQnzHzqa6LdY/sxP4=.sha256",
+  "value": {
+    "previous": "%ztBlbZAEnTJk03QFpGqqH8eU3IVMWMvBrGTvLyyORQY=.sha256",
+    "sequence": 39,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557327611749.002,
+    "hash": "sha256",
+    "content": {
+      "type": "tag",
+      "version": 1
+    },
+    "signature": "LS+xCe7znjO2IB2calIQMPmmd+WzebMcDZatQF4cYc4MXD3P74uRhr7oWK3qDHjOHGQCfxH+j92zoewyonucAg==.sig.ed25519"
+  },
+  "timestamp": 1557327611749.003
+}
+
+{
+  "key": "%kzO4U29132oqyaIo19x8VHYjywS+zsqNd9IPoANTbzc=.sha256",
+  "value": {
+    "previous": "%HL8m5NVEuds21xlv2WgdCVntDBmQnzHzqa6LdY/sxP4=.sha256",
+    "sequence": 40,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557327611890,
+    "hash": "sha256",
+    "content": {
+      "type": "about",
+      "about": "%ztBlbZAEnTJk03QFpGqqH8eU3IVMWMvBrGTvLyyORQY=.sha256",
+      "name": "sbot"
+    },
+    "signature": "uXDCw7sPX05SBcpmt9bEM2oifv6hWz/plyf3CU9YIxBRwfeUgce2GRo+oiVfZ00bx9j7bRvTHXLkpS3t1TWOCw==.sig.ed25519"
+  },
+  "timestamp": 1557327611890.001
+}
+
+{
+  "key": "%dVah0ISz+gx9tntDrYP7tKgt+9ETIHnk6BjeILz2NsE=.sha256",
+  "value": {
+    "previous": "%kzO4U29132oqyaIo19x8VHYjywS+zsqNd9IPoANTbzc=.sha256",
+    "sequence": 41,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557327611891,
+    "hash": "sha256",
+    "content": {
+      "type": "about",
+      "about": "%HL8m5NVEuds21xlv2WgdCVntDBmQnzHzqa6LdY/sxP4=.sha256",
+      "name": "sbot-issues"
+    },
+    "signature": "tadzQ74+a0dLTAQ3eCefxzydUfsoXgnkT5ZTZvPej8zHFWS7+4mCXpRL01lNGBnyC2VBknN/fFPLvmPRQLRBAQ==.sig.ed25519"
+  },
+  "timestamp": 1557327611891.001
+}
+
+{
+  "key": "%oJMkItqe+UmM8CnpnQgHlqrVM4XDUNXO9vT6KwmluLs=.sha256",
+  "value": {
+    "previous": "%dVah0ISz+gx9tntDrYP7tKgt+9ETIHnk6BjeILz2NsE=.sha256",
+    "sequence": 42,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557327611892,
+    "hash": "sha256",
+    "content": {
+      "type": "tag",
+      "version": 1,
+      "tagged": true,
+      "message": "%zdQjzx7vejfLXeW3uebIgHj2R/YCOA0aPi5D/MqDAn0=.sha256",
+      "root": "%ztBlbZAEnTJk03QFpGqqH8eU3IVMWMvBrGTvLyyORQY=.sha256",
+      "branch": []
+    },
+    "signature": "v/iEYyGbcNMeA3gfWpFgP/GaRpZI89AQWxXN4Uz9oZVkQSHnHNRENvMIaV3Yjy9hRaZ2ulWBbcMDGSIbfrl6BQ==.sig.ed25519"
+  },
+  "timestamp": 1557327611892.001
+}
+
+{
+  "key": "%Q6pXsSEBcA2dOr5vm8IauqPtZuNCBDzVvoglbRzCrKk=.sha256",
+  "value": {
+    "previous": "%oJMkItqe+UmM8CnpnQgHlqrVM4XDUNXO9vT6KwmluLs=.sha256",
+    "sequence": 43,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557327611892.002,
+    "hash": "sha256",
+    "content": {
+      "type": "tag",
+      "version": 1,
+      "tagged": true,
+      "message": "%zdQjzx7vejfLXeW3uebIgHj2R/YCOA0aPi5D/MqDAn0=.sha256",
+      "root": "%HL8m5NVEuds21xlv2WgdCVntDBmQnzHzqa6LdY/sxP4=.sha256",
+      "branch": []
+    },
+    "signature": "Y6+xNQJrOGN+tLGWGnqO9bJDDfYrCWSdckVXDX8hd3s85i8WX4t6YXlNTJnzB9dwU8olvAQmrLoqPHC+QD9mCQ==.sig.ed25519"
+  },
+  "timestamp": 1557327611892.003
+}
+
+{
+  "key": "%n+2rOxK/+nUpgP/5puJsv95EdIEVloRj3qkjJmXpPxI=.sha256",
+  "value": {
+    "previous": "%Q6pXsSEBcA2dOr5vm8IauqPtZuNCBDzVvoglbRzCrKk=.sha256",
+    "sequence": 44,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557327632565,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@+oaWWDs8g73EZFUMfW37R/ULtFEjwKN/DczvdYihjbU=.ed25519",
+      "following": true
+    },
+    "signature": "EVk2JcZHS2JMWkcs2ibvKbdiEqq2MXbVOKTOizcpqYNzV1T4+k08SYTxCWfloG7V1nn/RmZ740s7SIbAABCQDg==.sig.ed25519"
+  },
+  "timestamp": 1557327632566
+}
+
+{
+  "key": "%IhYY0TCprfTyCxKAsRCksuUPLihpo5aNNX1UELvxrNQ=.sha256",
+  "value": {
+    "previous": "%n+2rOxK/+nUpgP/5puJsv95EdIEVloRj3qkjJmXpPxI=.sha256",
+    "sequence": 45,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557332026556,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@1Wc5iBViAUN3/NDBTZKz9IFcDHjThYKTQ2GH9gqRa6Y=.ed25519",
+      "following": true
+    },
+    "signature": "eA41QWXOSCOSIE6nMAS7PEkgBQkZsbKlPZntu8Zl7KgQ6LKJ4kWkR8hg3rNMdRte4lT8p23eAV9bBTBTaqeADQ==.sig.ed25519"
+  },
+  "timestamp": 1557332026557
+}
+
+{
+  "key": "%2Hk4kG3IOPZ4q4tZ32GRgCs5POz7xz/cK88h1CEaTSA=.sha256",
+  "value": {
+    "previous": "%IhYY0TCprfTyCxKAsRCksuUPLihpo5aNNX1UELvxrNQ=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 46,
+    "timestamp": 1557333575497,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@kS1GT34Sg+Kzjcqoehz//afmIQC5+CGo8O/KvMddVrM=.ed25519",
+      "following": true
+    },
+    "signature": "UPV5KXHN97n3D6RiNpZcj1Lg+SpZQiL/aMDjcys1HWXDp4AhRvBg07l4ufiZgIJzeFSXZBFqYlSUHF9Hd7bwBw==.sig.ed25519"
+  },
+  "timestamp": 1557333575498
+}
+
+{
+  "key": "%H2BlOHSJ1FMmjZJcp355tf4GNmYRKgcKS56FNzZfskU=.sha256",
+  "value": {
+    "previous": "%2Hk4kG3IOPZ4q4tZ32GRgCs5POz7xz/cK88h1CEaTSA=.sha256",
+    "sequence": 47,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557335599372,
+    "hash": "sha256",
+    "content": {
+      "type": "about",
+      "about": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+      "image": "&F9tH7Ci4f1AVK45S9YhV+tK0tsmkTjQLSe5kQ6nEAuo=.sha256"
+    },
+    "signature": "9gW2yAnbFymjqfeFTGubKaxBrWCleqJsGlJ6KG+43UyZt7DEDs8qfAMvWuWGdh8db9BnkF54MxxbfI9Mf1q4Dg==.sig.ed25519"
+  },
+  "timestamp": 1557335599372.001
+}
+
+{
+  "key": "%lRb3RKvQywp4DUR1NslQEYTd17/3Ip44E8gaSONVH0Q=.sha256",
+  "value": {
+    "previous": "%H2BlOHSJ1FMmjZJcp355tf4GNmYRKgcKS56FNzZfskU=.sha256",
+    "sequence": 48,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557357123839,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "vote": {
+        "link": "%G6lTQ8vtYbbbrQIIPlqe9fSE9xjPWR6yTyGPUEYlLA4=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "cA0fp4/VJWGEIcL6EBIFgpsuoGCaALy05CENavT+US2xRzHJE1bxg2b3eaaEx5GMVxasMuuYtyWE+d8cx5E6Aw==.sig.ed25519"
+  },
+  "timestamp": 1557357123840
+}
+
+{
+  "key": "%8mL/+ErgSA+0sB9tXQHcVZsadVfw/HgsBbM0DCtf/Gg=.sha256",
+  "value": {
+    "previous": "%lRb3RKvQywp4DUR1NslQEYTd17/3Ip44E8gaSONVH0Q=.sha256",
+    "sequence": 49,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557357147564,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "vote": {
+        "link": "%zr+8IBBJatJ04XrC86L85LiavzodEvtX3QKLs5g9C6A=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "YOvzMNeogf+WVd00gE4WzI13PuTUuEvbjMf1yNyMh2lkpb8VDlP1y++P98O68nkYpbw6KHHc48uMuFAp8G3tAQ==.sig.ed25519"
+  },
+  "timestamp": 1557357147564.001
+}
+
+{
+  "key": "%H5A+5VAVArvGlUfTNXu2DFbssLsYQApM1u3fpeziaj0=.sha256",
+  "value": {
+    "previous": "%8mL/+ErgSA+0sB9tXQHcVZsadVfw/HgsBbM0DCtf/Gg=.sha256",
+    "sequence": 50,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557358556678,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "text": "My new profile picture was generated by http://www.tinygraphs.com using my ssb identity string.\n\nI wonder if Patchwork could use generative avatars like these as fallback if no custom image was set by the user.\n\n#patchwork #scuttlebutt ",
+      "mentions": [
+        {
+          "link": "#patchwork"
+        },
+        {
+          "link": "#scuttlebutt"
+        }
+      ]
+    },
+    "signature": "8VioVijNX1jc6Qy4LQfGoi/PT1tKr6wdP0V48DR2pYAGYxzSiFWyCs/ZO4iV5cF/45PVAcG1gy1WXTYJHG+uAQ==.sig.ed25519"
+  },
+  "timestamp": 1557358556679
+}
+
+{
+  "key": "%Ce5yvVGj/n4+wjqdhLThfenjqCU0+hZvRS2RGQ0+OGo=.sha256",
+  "value": {
+    "previous": "%H5A+5VAVArvGlUfTNXu2DFbssLsYQApM1u3fpeziaj0=.sha256",
+    "sequence": 51,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557359175232,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "text": "Did you know I've got a cat? If you touch her she instantly starts purring. She's also an expert in being sleepy.\n\n(I just want to test the \"attachment\" functionality of Patchwork)\n\n![Ebs+Y7n0SROgyEbuwwRQFw_thumb_1693.jpg](&nIkaCuVnvcBhlpQC6MWx7YhAZZdZgoGAFJnNjcVSQE8=.sha256)\n\n#cats #cat #cat-pics ",
+      "mentions": [
+        {
+          "link": "&nIkaCuVnvcBhlpQC6MWx7YhAZZdZgoGAFJnNjcVSQE8=.sha256",
+          "name": "Ebs+Y7n0SROgyEbuwwRQFw_thumb_1693.jpg",
+          "type": "image/jpeg",
+          "size": 322627
+        },
+        {
+          "link": "#cats"
+        },
+        {
+          "link": "#cat"
+        },
+        {
+          "link": "#cat-pics"
+        }
+      ]
+    },
+    "signature": "Itfu/EfFw3INrswCPi2nKlQB/zJ8lW6kjomzu4VJct8qxWiHHyMa5cezCD38exBaBw4x7rLE4KTKmhD3EhdyDQ==.sig.ed25519"
+  },
+  "timestamp": 1557359175233
+}
+
+{
+  "key": "%E9VybpkEm3Ar+Mw7jwZuaXeFRGXxeO3ZagqymT5IE7A=.sha256",
+  "value": {
+    "previous": "%Ce5yvVGj/n4+wjqdhLThfenjqCU0+hZvRS2RGQ0+OGo=.sha256",
+    "sequence": 52,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557359474676,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "vote": {
+        "link": "%FIljyLgBy7T2SSGuH2brNg+INDx6sT6J9eWLrxPlILI=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "iNU3srZPzxt5YpDfvEtAR6Q0O2KDIqRstw1jNFgf6f70NITzzMAvx6NEBlvAZfRCNql2farz1MkbVgJ7FQ68DQ==.sig.ed25519"
+  },
+  "timestamp": 1557359474676.001
+}
+
+{
+  "key": "%U2J2yAN1VPZlXf+5TmkeExNCIkNEQhTDQIo/m1NsGVQ=.sha256",
+  "value": {
+    "previous": "%E9VybpkEm3Ar+Mw7jwZuaXeFRGXxeO3ZagqymT5IE7A=.sha256",
+    "sequence": 53,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557359478668,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "channel": null,
+      "vote": {
+        "link": "%S2O7kux0vlNcbESGd8dncImKdufmwPWUjuLvG0Usd3k=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "GNXn3CYIKNhUfJ237oirgrfXj3pjowwq26uUSxn0jurTnCFPyjN9GwXW1ASK8krWAzO7/IVAVXGVa5bNmFrXAg==.sig.ed25519"
+  },
+  "timestamp": 1557359478669
+}
+
+{
+  "key": "%bzMTRKOHfzfzPfzjWp5beOYVLk3EiINaqZ4JcuaonTA=.sha256",
+  "value": {
+    "previous": "%U2J2yAN1VPZlXf+5TmkeExNCIkNEQhTDQIo/m1NsGVQ=.sha256",
+    "sequence": 54,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557384566419,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%S2O7kux0vlNcbESGd8dncImKdufmwPWUjuLvG0Usd3k=.sha256",
+      "fork": "%Ce5yvVGj/n4+wjqdhLThfenjqCU0+hZvRS2RGQ0+OGo=.sha256",
+      "branch": "%S2O7kux0vlNcbESGd8dncImKdufmwPWUjuLvG0Usd3k=.sha256",
+      "reply": {
+        "%S2O7kux0vlNcbESGd8dncImKdufmwPWUjuLvG0Usd3k=.sha256": "@+oaWWDs8g73EZFUMfW37R/ULtFEjwKN/DczvdYihjbU=.ed25519"
+      },
+      "channel": null,
+      "recps": null,
+      "text": "She (Lucy) likes to sleep wherever she wants. Her biggest issue is our household is not knowing where to sleep when me and my significant other are working in different rooms. She will pace back and forth between both rooms and meow to show her displeasure.",
+      "mentions": []
+    },
+    "signature": "zF8Mq9wu81BufLLu9RnyZLeqNfc1XbXLTgCP8WRPflgm12ot2+wNWzXk7O6511ficsl04xZkxW8xYM/tvElNCA==.sig.ed25519"
+  },
+  "timestamp": 1557384566419.001
+}
+
+{
+  "key": "%bGZ5DP31OqHyMOUFOGzIaik3tD9Uy7Ie1MS2Kngfdac=.sha256",
+  "value": {
+    "previous": "%bzMTRKOHfzfzPfzjWp5beOYVLk3EiINaqZ4JcuaonTA=.sha256",
+    "sequence": 55,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557415166626,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@2RNGJafZtMHzd76gyvqH6EJiK7kBnXeak5mBWzoO/iU=.ed25519",
+      "following": true
+    },
+    "signature": "556zC3Dkw/BCGWvILKstPpXliBbw/C+obKc6getKAz1sKzZd5HCFKQ5IPVFjGXhSRXvDoM4M0HSmVZoqieHBBQ==.sig.ed25519"
+  },
+  "timestamp": 1557415166626.001
+}
+
+{
+  "key": "%d15nZJBwPLWc1XVOrgdg6UEWawN+C5+b6MvkK68NEvA=.sha256",
+  "value": {
+    "previous": "%bGZ5DP31OqHyMOUFOGzIaik3tD9Uy7Ie1MS2Kngfdac=.sha256",
+    "sequence": 56,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557438127654,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@iVPi/B73hJSpsUB8XbSnlxe3NembPXLjOfIexlYdgJA=.ed25519",
+      "following": true
+    },
+    "signature": "I1UYRiLXvaG50DgzZZ10DvowPAgx6t2EBnTZ5izl38qwqPE4fe/sNVMwtZ+XMJlUXqVCyiYjGuHopwiMvDCpAw==.sig.ed25519"
+  },
+  "timestamp": 1557438127654.001
+}
+
+{
+  "key": "%yEJ3EOj5WZaRPjPZXdzWRu1Lgv8fbngExRi7uo/2Yo4=.sha256",
+  "value": {
+    "previous": "%d15nZJBwPLWc1XVOrgdg6UEWawN+C5+b6MvkK68NEvA=.sha256",
+    "sequence": 57,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557438231208,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "channel": "technology",
+      "vote": {
+        "link": "%9XSAlP6+av3iWl41OW89QRqrmKFq14d02UkA5jAihN8=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "zuuffhyq/wUCAlBV72nWnFMkQzLUxo+XVrJQ/MfbxIUMTVf312+dMBRUadHN1MAJC+QTk86I5FewLE04G/GiBQ==.sig.ed25519"
+  },
+  "timestamp": 1557438231210
+}
+
+{
+  "key": "%Cir1CDRbns4Gd0cuFJOxUO3Ch6t7i+vRENoHyCRXsNs=.sha256",
+  "value": {
+    "previous": "%yEJ3EOj5WZaRPjPZXdzWRu1Lgv8fbngExRi7uo/2Yo4=.sha256",
+    "sequence": 58,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557490538908,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "text": "Has anybody read the The Expanse book series? Every time the functionality of their hand terminals is described I'm amazed about the similarities with ssb.\n\n#books #scifi #thoughtoftheday #ssb ",
+      "mentions": [
+        {
+          "link": "#books"
+        },
+        {
+          "link": "#scifi"
+        },
+        {
+          "link": "#thoughtoftheday"
+        },
+        {
+          "link": "#ssb"
+        }
+      ]
+    },
+    "signature": "l53xlw5viWn4nXKgngG76wwthOOfnfsp4jb4sFtD197dDpYtuyVchZdVGvyvpBH1z26bi8EUP/oxHBpWkFwKCQ==.sig.ed25519"
+  },
+  "timestamp": 1557490538908.001
+}
+
+{
+  "key": "%Xy1e2rGWV/1XivrxNUxNbSwuhf7YZOEwZcU8KVadIHo=.sha256",
+  "value": {
+    "previous": "%Cir1CDRbns4Gd0cuFJOxUO3Ch6t7i+vRENoHyCRXsNs=.sha256",
+    "sequence": 59,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557506963366,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@KUHPz1fGlcZDeeM+cNVadMab46x/FAgyz+jtRPTb1nU=.ed25519",
+      "following": true
+    },
+    "signature": "v+QQzHarU9garoUvgCWTXaODTDt7Fk/Qew+z46HqC230ebnkMQ8mfRT29TBbmpxLI14cxsZXQkk2EvhZTV71Cg==.sig.ed25519"
+  },
+  "timestamp": 1557506963366.001
+}
+
+{
+  "key": "%7+TJtNoeJ8pIM1tV+xRcyZJ4mHjPPUI4cZv/XP2ayjY=.sha256",
+  "value": {
+    "previous": "%Xy1e2rGWV/1XivrxNUxNbSwuhf7YZOEwZcU8KVadIHo=.sha256",
+    "sequence": 60,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557519465164,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "channel": "tightbeam",
+      "vote": {
+        "link": "%XUWSCZhIzRIfjEYffPdJNhmezQvAmecXtogj9Jwo5NM=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "HSMtw1sAU2v8GEjqzq8bU9f3OutOI79O5Tft+W/ClvCxJugKIl4NIl797dHu9p8z9wxZhn6eFM5VqWwmpbFDCg==.sig.ed25519"
+  },
+  "timestamp": 1557519465165
+}
+
+{
+  "key": "%1TVv3sQBtzWME4F582UmqfYHue1vxahqS4o0V6dfXuY=.sha256",
+  "value": {
+    "previous": "%7+TJtNoeJ8pIM1tV+xRcyZJ4mHjPPUI4cZv/XP2ayjY=.sha256",
+    "sequence": 61,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557524108580,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@TXKFQehlyoSn8UJAIVP/k2BjFINC591MlBC2e2d24mA=.ed25519",
+      "following": true
+    },
+    "signature": "n8E4xRJLQ9wxDC2aZZIt+ZiaXtuttFkCaiyonhz86KSZdXkdebi+8sPMAaUn2EIkeAk3sCrg8DlLljcT3Ak1Cg==.sig.ed25519"
+  },
+  "timestamp": 1557524108581
+}
+
+{
+  "key": "%D1KOFSiCIEMNvjPJK3c0gGc1/CWKT52mxPEIV5nivXA=.sha256",
+  "value": {
+    "previous": "%1TVv3sQBtzWME4F582UmqfYHue1vxahqS4o0V6dfXuY=.sha256",
+    "sequence": 62,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557524394152,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "text": "Finally got around to practicing the Piano again. I just started learning some time ago and it's really fascinating how fast your muscles can learn new movements. On one day your fingers completely fail to to a specific sequence and a few days later that same sequence feels totally natural.\n\n#piano #music",
+      "mentions": [
+        {
+          "link": "#piano"
+        },
+        {
+          "link": "#music"
+        }
+      ]
+    },
+    "signature": "B3iMYhLfMw68kjjbTOyRZUwWaQym2JkvQS8jLlRhwcVL5hKRvCfgdKKm3sKrdrd6OvkfluLytZ3cWMXNm0FeDQ==.sig.ed25519"
+  },
+  "timestamp": 1557524394152.001
+}
+
+{
+  "key": "%e/LaxXzJ5FY8MnewqhLNcIQCoO4Y1pkHQ7svxndPuB8=.sha256",
+  "value": {
+    "previous": "%D1KOFSiCIEMNvjPJK3c0gGc1/CWKT52mxPEIV5nivXA=.sha256",
+    "sequence": 63,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557619106124,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@TXKFQehlyoSn8UJAIVP/k2BjFINC591MlBC2e2d24mA=.ed25519",
+      "following": false
+    },
+    "signature": "rbQ+ImjdmEx/VHtpFsj93PXVi4+b9BQqUww97l0vkKYemnu1GK9KNdTiotUhAtYbbpZ0nAT5IRNB0ysVTsh2DQ==.sig.ed25519"
+  },
+  "timestamp": 1557619106125
+}
+
+{
+  "key": "%UBq2DAmROuZkLwTtvB6Lhbt1Vp04+J+AYX2/1FqcSX8=.sha256",
+  "value": {
+    "previous": "%e/LaxXzJ5FY8MnewqhLNcIQCoO4Y1pkHQ7svxndPuB8=.sha256",
+    "sequence": 64,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557653726876,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@QlCTpvY7p9ty2yOFrv1WU1AE88aoQc4Y7wYal7PFc+w=.ed25519",
+      "following": true
+    },
+    "signature": "UCn8BAYNIdwDRg/CPxkL3OeSTR7UfNYw8iVuBUn6WLw4NFjN3pB1MMO/BSmHWTFFK6a5g000azAz1TqvETX1Aw==.sig.ed25519"
+  },
+  "timestamp": 1557653726877
+}
+
+{
+  "key": "%GJIYZnu7ZN5at8qDYj6mmGfdM4ci7wFzEePdopXx/As=.sha256",
+  "value": {
+    "previous": "%UBq2DAmROuZkLwTtvB6Lhbt1Vp04+J+AYX2/1FqcSX8=.sha256",
+    "sequence": 65,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557696955865,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@f/6sQ6d2CMxRUhLpspgGIulDxDCwYD7DzFzPNr7u5AU=.ed25519",
+      "following": true
+    },
+    "signature": "mZuMZA2K5xsgTnjcH2UCPpy+EKzkE38HhxwZAbBVbGtsPxNXdGXvFy31ZRtqF+kkAUKm4LEIBbrjXMB5wuXWDQ==.sig.ed25519"
+  },
+  "timestamp": 1557696955865.001
+}
+
+{
+  "key": "%6K87RGa+OnHRvNNHg8F3x2KBVF9/DC11DsPRgf6Lvo4=.sha256",
+  "value": {
+    "previous": "%GJIYZnu7ZN5at8qDYj6mmGfdM4ci7wFzEePdopXx/As=.sha256",
+    "sequence": 66,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557701114600,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "vote": {
+        "link": "%pQzu5vyw9gacPyStidYeahcQPv6P2A9JTw2U+ofxXsc=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "NNujHuBFPA44v3zoV9sSvyX1RnujNlT2k1Dqku11BO6GOGKzhxqdqD7QG+jATZPSvDcdQQRP34wnZuZm4LMxBQ==.sig.ed25519"
+  },
+  "timestamp": 1557701114601
+}
+
+{
+  "key": "%7LJTPmtIUXrWI+fyFg9OFxVUX37SRqf1EmqugWJsi4w=.sha256",
+  "value": {
+    "previous": "%6K87RGa+OnHRvNNHg8F3x2KBVF9/DC11DsPRgf6Lvo4=.sha256",
+    "sequence": 67,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557701118596,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@TnHMrf/MZBJuUQL8/i322mMK5fJ5+KJo1DLsAPoh2Gs=.ed25519",
+      "following": true
+    },
+    "signature": "d7tBaS/pQMupC05+NE3K7H3ePAZYn/WSoaXyu4lVcETwjXY1pTc7xqDgnXovOMmwV93jReyVtri1IQyzEr4JCw==.sig.ed25519"
+  },
+  "timestamp": 1557701118597
+}
+
+{
+  "key": "%oSWlTX879dSxDzBBPC3bATpzGRFpTVZZMkzb+6RA0yc=.sha256",
+  "value": {
+    "previous": "%7LJTPmtIUXrWI+fyFg9OFxVUX37SRqf1EmqugWJsi4w=.sha256",
+    "sequence": 68,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557739695317,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "text": "My Peruvian chili plants are growing nicely. I was going to move them outside just a few days ago, right before temperatures dropped from cozy 20s down to minus degrees. They're still alive thanks to my laziness. \n\n![IMG_1737.jpg](&snVJ2TwnOnA9G3+UtYWNZjnRNVa8TDqjAgFnDSZPTf4=.sha256)\n",
+      "mentions": [
+        {
+          "link": "&snVJ2TwnOnA9G3+UtYWNZjnRNVa8TDqjAgFnDSZPTf4=.sha256",
+          "name": "IMG_1737.jpg",
+          "type": "image/jpeg",
+          "size": 2289929
+        }
+      ]
+    },
+    "signature": "TPc20MxyTRAbSQ4kmcBWe5bzCB/HEk3RGS2ub/KFgks1tPPebHJe2y1jw7JlUWj4I9z6/h5ZYKk0HhtgIraJBA==.sig.ed25519"
+  },
+  "timestamp": 1557739695318
+}
+
+{
+  "key": "%z0kJNuJBS96dShLB/owtbmKhosKzdHwWtAsiWerEoaI=.sha256",
+  "value": {
+    "previous": "%oSWlTX879dSxDzBBPC3bATpzGRFpTVZZMkzb+6RA0yc=.sha256",
+    "sequence": 69,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557743623411,
+    "hash": "sha256",
+    "content": {
+      "type": "tag",
+      "version": 1
+    },
+    "signature": "D/6oOOyuIJ3eAzZU3tHm+KIrF8gLjnIaIr4FtRlD0qZg+AVdWVXKElWTe73s0RYcyoglTqo7UIZjpxz9X8xOBg==.sig.ed25519"
+  },
+  "timestamp": 1557743623411.001
+}
+
+{
+  "key": "%EWnQ6ELq6EHRC2IGM6ANiBelX0db1h+qXjkTcgSqARU=.sha256",
+  "value": {
+    "previous": "%z0kJNuJBS96dShLB/owtbmKhosKzdHwWtAsiWerEoaI=.sha256",
+    "sequence": 70,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557743623542,
+    "hash": "sha256",
+    "content": {
+      "type": "about",
+      "about": "%z0kJNuJBS96dShLB/owtbmKhosKzdHwWtAsiWerEoaI=.sha256",
+      "name": "gardening"
+    },
+    "signature": "cQywZeLPT5kYXvMpM79haafMoPbyNhDK4HmEvIYsmeD6YvvvPNBIyNLD/0pN3KjI3TDlv+fxZ4tA96JUNZNgAw==.sig.ed25519"
+  },
+  "timestamp": 1557743623542.001
+}
+
+{
+  "key": "%KeSIdAL2MmFzUtuk+tC8/2e+RVHViND5r/Zim0d3og4=.sha256",
+  "value": {
+    "previous": "%EWnQ6ELq6EHRC2IGM6ANiBelX0db1h+qXjkTcgSqARU=.sha256",
+    "sequence": 71,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557743623545,
+    "hash": "sha256",
+    "content": {
+      "type": "tag",
+      "version": 1,
+      "tagged": true,
+      "message": "%oSWlTX879dSxDzBBPC3bATpzGRFpTVZZMkzb+6RA0yc=.sha256",
+      "root": "%z0kJNuJBS96dShLB/owtbmKhosKzdHwWtAsiWerEoaI=.sha256",
+      "branch": []
+    },
+    "signature": "vVrTWCZP82Mkw/lW2FwIMRvdsNUfC/J9ZZps32hr8E7BSrihjKrX0qr8bMLuBAXMTvJS6TX8rr6lw+VwJ3sbBg==.sig.ed25519"
+  },
+  "timestamp": 1557743623545.001
+}
+
+{
+  "key": "%OygaxFDRtqes9yduxwqJa2wE1EJQXq2qiG6RZ0T/RLA=.sha256",
+  "value": {
+    "previous": "%KeSIdAL2MmFzUtuk+tC8/2e+RVHViND5r/Zim0d3og4=.sha256",
+    "sequence": 72,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557743718043,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@LMkiSqWlqiGPsGErLq5PphsduuN4d5tkmUO0+lcgBlM=.ed25519",
+      "following": true
+    },
+    "signature": "2UCWCZgfe8WEiyVXfuCVHNGHlTS4o53lRoVfAifPU0tlMXDsysdEdX/8droaA3OA6P/a2hOIn+5Z66XlQfmEDA==.sig.ed25519"
+  },
+  "timestamp": 1557743718043.001
+}
+
+{
+  "key": "%HBnxu1f93PSB/qjji3/ujkCSVSNRsY/OzgjaLcPHgso=.sha256",
+  "value": {
+    "previous": "%OygaxFDRtqes9yduxwqJa2wE1EJQXq2qiG6RZ0T/RLA=.sha256",
+    "sequence": 73,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557744804073,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "text": "A few days ago I had the chance to visit the CERN in Geneva, Switzerland.\n\nThe highlight for me was the very first WWW server from Tim Berners-Lee. The second highlight was the gift shop: For a donation, you can get a magnetic tape used to store collision data from the LHC.\n\n![image.png](&mWkbHH2vAeEQQ7hCnSAjA9aTwscmE+H5ameXWhCz4Lc=.sha256)\n![image.png](&I7L7Nrj91rQCNXoCiS891ya6FTFhjOk6S8IGLE75tgI=.sha256)\n\n#history #web #internet #physics ",
+      "mentions": [
+        {
+          "link": "&mWkbHH2vAeEQQ7hCnSAjA9aTwscmE+H5ameXWhCz4Lc=.sha256",
+          "name": "image.png",
+          "type": "image/png",
+          "size": 861404
+        },
+        {
+          "link": "&I7L7Nrj91rQCNXoCiS891ya6FTFhjOk6S8IGLE75tgI=.sha256",
+          "name": "image.png",
+          "type": "image/png",
+          "size": 1713602
+        },
+        {
+          "link": "#history"
+        },
+        {
+          "link": "#web"
+        },
+        {
+          "link": "#internet"
+        },
+        {
+          "link": "#physics"
+        }
+      ]
+    },
+    "signature": "oMq0MaxDS4sOr7VFLaMRHEuh1/kh0fxRR5O3kOVKTxrbVsCq+4OaY4y6GRCQfFv7ZHsicAfVOH6qntFF5LOoAA==.sig.ed25519"
+  },
+  "timestamp": 1557744804074
+}
+
+{
+  "key": "%ZPjKerjezHH6j0HJBucqEL010V6jl2/oNREi0Ap//hA=.sha256",
+  "value": {
+    "previous": "%HBnxu1f93PSB/qjji3/ujkCSVSNRsY/OzgjaLcPHgso=.sha256",
+    "sequence": 74,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557833549994,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "channel": "ssb-implementations",
+      "vote": {
+        "link": "%06Ec6oRe1PiMoo2+3k99nDYsMNH0xTj28qIBVzWcFCg=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "bv2C7xoR9BaJBh7vJc1ke8XXDG1/CLL/rmk3EhP/SFw0qBlaRmguQgRAIoTnz+ALU/gyJA2lDKA6SGd49vabAA==.sig.ed25519"
+  },
+  "timestamp": 1557833549994.001
+}
+
+{
+  "key": "%HZlw7IU0gkGg7oVPMmzKYasks8DRne44JrsKIsTBfP8=.sha256",
+  "value": {
+    "previous": "%ZPjKerjezHH6j0HJBucqEL010V6jl2/oNREi0Ap//hA=.sha256",
+    "sequence": 75,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557833551274,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "channel": "ssb-implementations",
+      "vote": {
+        "link": "%06Ec6oRe1PiMoo2+3k99nDYsMNH0xTj28qIBVzWcFCg=.sha256",
+        "value": 0,
+        "expression": "Unlike"
+      }
+    },
+    "signature": "DVZ8p90J6rk+V+03QvXijRuTZux3TaIYLhyfwtM24ATZk/1k0wTpuDhDI0f9ABXjDWYFreRJFDoCBUQIWJfuDg==.sig.ed25519"
+  },
+  "timestamp": 1557833551274.001
+}
+
+{
+  "key": "%PI1ZaFcHo8wkt+CC4QhdW0DJU/LWwCOfbCZGRRCinYE=.sha256",
+  "value": {
+    "previous": "%HZlw7IU0gkGg7oVPMmzKYasks8DRne44JrsKIsTBfP8=.sha256",
+    "sequence": 76,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557833587886,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%7ZPyXQDejphk892xKm9Onf703w3h43zzXMtjnPrku2I=.sha256",
+      "branch": "%06Ec6oRe1PiMoo2+3k99nDYsMNH0xTj28qIBVzWcFCg=.sha256",
+      "reply": {
+        "%7ZPyXQDejphk892xKm9Onf703w3h43zzXMtjnPrku2I=.sha256": "@gaQw6z30GpfsW9k8V5ED4pHrg8zmrqku24zTSAINhRg=.ed25519",
+        "%06Ec6oRe1PiMoo2+3k99nDYsMNH0xTj28qIBVzWcFCg=.sha256": "@gaQw6z30GpfsW9k8V5ED4pHrg8zmrqku24zTSAINhRg=.ed25519"
+      },
+      "channel": "ssb-implementations",
+      "recps": null,
+      "text": "Did you forget to add an empty line after `## Foo`? markdown defines a headline as \"One or more # followed by an empty line\".",
+      "mentions": []
+    },
+    "signature": "7ov/iw+vp9UbZtXfe7PoXP6zc6qq092OErhbSuGtXF3DShRuxOjeklI5lsSIt8qTeKcCpEjeuEHl9nrnCHILDg==.sig.ed25519"
+  },
+  "timestamp": 1557833587887
+}
+
+{
+  "key": "%/lhytW6qrvvO0wbRzeIY5xd49ULQY5SYyTqmktOLtTM=.sha256",
+  "value": {
+    "previous": "%PI1ZaFcHo8wkt+CC4QhdW0DJU/LWwCOfbCZGRRCinYE=.sha256",
+    "sequence": 77,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557833833314,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%7ZPyXQDejphk892xKm9Onf703w3h43zzXMtjnPrku2I=.sha256",
+      "branch": "%PI1ZaFcHo8wkt+CC4QhdW0DJU/LWwCOfbCZGRRCinYE=.sha256",
+      "reply": {
+        "%7ZPyXQDejphk892xKm9Onf703w3h43zzXMtjnPrku2I=.sha256": "@gaQw6z30GpfsW9k8V5ED4pHrg8zmrqku24zTSAINhRg=.ed25519",
+        "%PI1ZaFcHo8wkt+CC4QhdW0DJU/LWwCOfbCZGRRCinYE=.sha256": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519"
+      },
+      "channel": "ssb-implementations",
+      "recps": null,
+      "text": "I actually like this idea. This way we can treat SSB as a distribute database for personal data. The first thing that pops into my head for an implementation could be something like the [data model of Datomic](https://docs.datomic.com/cloud/whatis/data-model.html). I don't have that much experience with the SSB internals itself, but it might be a good fit :-)",
+      "mentions": []
+    },
+    "signature": "DGwyibpqPq64bZZQnrGME27UwDnIykDKpoxWDhG3DbdSCcIthpJ1iIF11vp31MmiovlewZrJr8vJnNmnLWTFBA==.sig.ed25519"
+  },
+  "timestamp": 1557833833314.001
+}
+
+{
+  "key": "%/fqAEf5phfsqdPaoyKf2AS++znVPC6B6n0QgIE+F58o=.sha256",
+  "value": {
+    "previous": "%/lhytW6qrvvO0wbRzeIY5xd49ULQY5SYyTqmktOLtTM=.sha256",
+    "sequence": 78,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557866356790,
+    "hash": "sha256",
+    "content": {
+      "type": "channel",
+      "channel": "gardening",
+      "subscribed": true
+    },
+    "signature": "joESsugNaL/GvdV8t4UksX/gP+RJt7J4lAdPwv3ciavthBk03y12FKfmVvY+PTMuXsaoCs2bFrkhyDFdlYO0Bw==.sig.ed25519"
+  },
+  "timestamp": 1557866356790.001
+}
+
+{
+  "key": "%isG9m2ZFhm7uap+lyItXCE8BDZRvORraAuDr9FISQdo=.sha256",
+  "value": {
+    "previous": "%/fqAEf5phfsqdPaoyKf2AS++znVPC6B6n0QgIE+F58o=.sha256",
+    "sequence": 79,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557907424782,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@R7l7UgUskKS4deaOa0CtGv09Q7jmtR/y2urB+dFA61I=.ed25519",
+      "following": true
+    },
+    "signature": "B0OZXsrDkaKtqVinJHKWYf46AJdD8OFAYXpqJeV/ID/Fi5q7hDyKkEIOZXsap5PVfws7ennbq6C5q9Es+xZoDw==.sig.ed25519"
+  },
+  "timestamp": 1557907424782.001
+}
+
+{
+  "key": "%pdAboP/8ZiWYd1VSIr9TAx4buJ3rV2su08dR3o/sdts=.sha256",
+  "value": {
+    "previous": "%isG9m2ZFhm7uap+lyItXCE8BDZRvORraAuDr9FISQdo=.sha256",
+    "sequence": 80,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1557919266149,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@EMovhfIrFk4NihAKnRNhrfRaqIhBv1Wj8pTxJNgvCCY=.ed25519",
+      "following": true
+    },
+    "signature": "nEHtaeP9RG3oizabWxzul2JmJMALKPANzSibKCsgje9gornPUBzyH5drRJIJ/fT5U972VY/vDwt4sWpA9Oh0DQ==.sig.ed25519"
+  },
+  "timestamp": 1557919266150
+}
+
+{
+  "key": "%R9JU6PwFuD+GFnZfFKkktipG6Zw/af/mdHwy/o2RhRA=.sha256",
+  "value": {
+    "previous": "%pdAboP/8ZiWYd1VSIr9TAx4buJ3rV2su08dR3o/sdts=.sha256",
+    "sequence": 81,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1558009670294,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "channel": "gardening",
+      "vote": {
+        "link": "%FfNqQGyQzX0MYie1Nv2Jm0Ss7RnHMreuRODvPxk3s68=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "ost99972NRycQVXK0878L6bXBK5KCKZwtTmzGIhxCCwSAEoCzAkhVDFVilAIJZMLviRgxsvAG335+gBSkyOXCA==.sig.ed25519"
+  },
+  "timestamp": 1558009670294.001
+}
+
+{
+  "key": "%mp3QUg2z0lyuIYPaKyVBcPNpq94Ktj4cJ3uTGDBVgcc=.sha256",
+  "value": {
+    "previous": "%R9JU6PwFuD+GFnZfFKkktipG6Zw/af/mdHwy/o2RhRA=.sha256",
+    "sequence": 82,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1558015264766,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "channel": "ssb-implementations",
+      "vote": {
+        "link": "%L6RScSr1kvWkHG+CxuZLwFPeLMC9BJ8OTY/nb/2YjQs=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "p3R/lIU/ENqgNbciqVLe7Y2L1f+Eoz30PFzYnYsWRUmDr2qZyut6Ytk2PjfF6DwDU0eIr0tVSd8c+FjaF2hMAA==.sig.ed25519"
+  },
+  "timestamp": 1558015264767
+}
+
+{
+  "key": "%D9ONeEgSUJMuIDHSunM3C524J8u8F5lD6tk1nDTKKuE=.sha256",
+  "value": {
+    "previous": "%mp3QUg2z0lyuIYPaKyVBcPNpq94Ktj4cJ3uTGDBVgcc=.sha256",
+    "sequence": 83,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1558015268707,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "channel": "ssb-implementations",
+      "vote": {
+        "link": "%L6RScSr1kvWkHG+CxuZLwFPeLMC9BJ8OTY/nb/2YjQs=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "QCfXLGTGnmzIRHd6xlPaGRT9oBO/0fywE5qf2Z+q0MqOcv0FD5+au/p5iDpl25j26WgPZxjSdvciMDEr7efpDA==.sig.ed25519"
+  },
+  "timestamp": 1558015268707.001
+}
+
+{
+  "key": "%ImXolCmwiMQ92Xjbvzs1FYDmE18T6ZAmFmN840O+oTM=.sha256",
+  "value": {
+    "previous": "%D9ONeEgSUJMuIDHSunM3C524J8u8F5lD6tk1nDTKKuE=.sha256",
+    "sequence": 84,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1558077036115,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%bUTtumcGZIlONgVmc3RPrvZJN7fBp0pSoPGLqs+RAfA=.sha256",
+      "fork": "%F0ePtbVPwWY5PaT77V6mKwvkQqgXh5EnHqHtIxeBbWo=.sha256",
+      "branch": "%bUTtumcGZIlONgVmc3RPrvZJN7fBp0pSoPGLqs+RAfA=.sha256",
+      "reply": {
+        "%bUTtumcGZIlONgVmc3RPrvZJN7fBp0pSoPGLqs+RAfA=.sha256": "@6ilZq3kN0F+dXFHAPjAwMm87JEb/VdB+LC9eIMW3sa0=.ed25519"
+      },
+      "channel": "maintenance",
+      "recps": null,
+      "text": "I'm with [@dinoƧ𝔸Ⓤᖇ](@6ilZq3kN0F+dXFHAPjAwMm87JEb/VdB+LC9eIMW3sa0=.ed25519) on many things he said. We should strive for multiple implementations where each implements a shared spec. It's crucial that this spec is written down somewhere as a single source of truth so every implementation can use it as a reference. \n\n# M1\n\nI'm working (in secrecy right now) on a server implementation in Elixir. I've got the handshake, RPC, discovery, and most of the blob support going, with `createHistoryStream` being next. \n\nI'm writing extensive unit and integration tests by testing the implementation against itself as well as test it against a running `ssb-server` instance. \n\nThe only dependency other than Elixir itself is on `libsodium` being available on the host, so building and running is pretty easy. I might be able to get rid of even this dependency by using the native Erlang crypto library, which would simplify deployment in a test environment even further.\n\nAs for a shared test suite, I imagine some sort of structured test data approach where implementations are fed a set of control commands (\"connect to peer at <ip>\", \"publish message <x> to your stream\") mixed with assertions (\"check that you received a `whoami` from the peer you just connected to\", \"check that message X was replicated to peer Y\") would be a good start. \n\nThis allows us to write integration tests and to test implementations against each other, without having to implement each integration test on all implementations.\n\nAs for the test approaches, I think both are important. We should test implementations on a one-on-one network first, and if they pass all tests throw them into a shared network with multiple instances of all known implementations.\n",
+      "mentions": [
+        {
+          "link": "@6ilZq3kN0F+dXFHAPjAwMm87JEb/VdB+LC9eIMW3sa0=.ed25519",
+          "name": "dinoƧ𝔸Ⓤᖇ"
+        }
+      ]
+    },
+    "signature": "12usQrBRKtljtUMtR8V/QKZVMk5wpoLPJzzzFhTuLJEqaegqPn3Qa4g5lNVDfNJve2DIpQ95sd261pcT0aVbBg==.sig.ed25519"
+  },
+  "timestamp": 1558077036116
+}
+
+{
+  "key": "%j51pES9XJxVkTcrXDnN7AMV3mcczS1s/nJEnDti9unQ=.sha256",
+  "value": {
+    "previous": "%ImXolCmwiMQ92Xjbvzs1FYDmE18T6ZAmFmN840O+oTM=.sha256",
+    "sequence": 85,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1558077045971,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@ye+QM09iPcDJD6YvQYjoQc7sLF/IFhmNbEqgdzQo3lQ=.ed25519",
+      "following": true
+    },
+    "signature": "IVwNKXP317vpQWLtIv0oWMdIX9D2219FKqIgi5Zp2Lrl5Ynd41b6nY4cdfeix7AigXvygarY/WfLwy5Ojuf4Dg==.sig.ed25519"
+  },
+  "timestamp": 1558077045971.001
+}
+
+{
+  "key": "%abJD+bltMeuUQg5Jz0LABwsir5yV5q01rsCgfkKj+Oc=.sha256",
+  "value": {
+    "previous": "%j51pES9XJxVkTcrXDnN7AMV3mcczS1s/nJEnDti9unQ=.sha256",
+    "sequence": 86,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1558077156605,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@6ilZq3kN0F+dXFHAPjAwMm87JEb/VdB+LC9eIMW3sa0=.ed25519",
+      "following": true
+    },
+    "signature": "SQ3i962k0psoU0IcKtoa7u/N++Cij04BVA8MX+B2DBRSNrwpf9kZ4WvqEY4MQMmBV/iA5QWXn5PZ1LaQNqAlAA==.sig.ed25519"
+  },
+  "timestamp": 1558077156606
+}
+
+{
+  "key": "%iRaDcAS2dO8v28mBxxboecMRh7c8uGahduhBjkQws0k=.sha256",
+  "value": {
+    "previous": "%abJD+bltMeuUQg5Jz0LABwsir5yV5q01rsCgfkKj+Oc=.sha256",
+    "sequence": 87,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1558095273654,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%ImXolCmwiMQ92Xjbvzs1FYDmE18T6ZAmFmN840O+oTM=.sha256",
+      "fork": "%bUTtumcGZIlONgVmc3RPrvZJN7fBp0pSoPGLqs+RAfA=.sha256",
+      "branch": "%ImXolCmwiMQ92Xjbvzs1FYDmE18T6ZAmFmN840O+oTM=.sha256",
+      "reply": {
+        "%ImXolCmwiMQ92Xjbvzs1FYDmE18T6ZAmFmN840O+oTM=.sha256": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519"
+      },
+      "channel": "maintenance",
+      "recps": null,
+      "text": "Whoops - this fork wasn't intentional. Sorry :-)",
+      "mentions": []
+    },
+    "signature": "h5Z+9Flx9yDZYq8YJlPe4N6rcBknZWrVMrKpxJmu1bVM/mWAbwtTmSTAGFSV3BLpR7dtyVwWK/wlEViE2Ag5CA==.sig.ed25519"
+  },
+  "timestamp": 1558095273656
+}
+
+{
+  "key": "%fIeDnY53LcHsB+ik/EIqen/8/p1h0pkqTVetywZ6i4s=.sha256",
+  "value": {
+    "previous": "%iRaDcAS2dO8v28mBxxboecMRh7c8uGahduhBjkQws0k=.sha256",
+    "sequence": 88,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1558097507927,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%WmQ2U4klqioOvOQHYHJhyDnadWX76jVWlHEXUF8Yuxg=.sha256",
+      "branch": "%WmQ2U4klqioOvOQHYHJhyDnadWX76jVWlHEXUF8Yuxg=.sha256",
+      "reply": {
+        "%WmQ2U4klqioOvOQHYHJhyDnadWX76jVWlHEXUF8Yuxg=.sha256": "@2RNGJafZtMHzd76gyvqH6EJiK7kBnXeak5mBWzoO/iU=.ed25519"
+      },
+      "channel": null,
+      "recps": null,
+      "text": "Is this for large attachments & links, or is there a deeper integration? ",
+      "mentions": []
+    },
+    "signature": "TW1s8pi/0wEQNXDUHlyVhD2cnYbiBwsOGBtdU3DidVGEbGFoBClkwMeeZlslhav2MPX7MxRBUMZMWSeZYyrPCQ==.sig.ed25519"
+  },
+  "timestamp": 1558097507927.001
+}
+
+{
+  "key": "%vFrhsI7JrhOgQQol59Jkk3Kl8lJlBKtmWh1+yQSLTyU=.sha256",
+  "value": {
+    "previous": "%fIeDnY53LcHsB+ik/EIqen/8/p1h0pkqTVetywZ6i4s=.sha256",
+    "sequence": 89,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1558225932492,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "text": "Today I gave a workshop about analog film photography at the town library. Four people learned how to photograph with and develop black & white film at home on a budget. All films were developed successfully and everyone was able to take home a strip of their own pictures.\n\nMy personal highlight was the Leica M5 one of the participants brought - a really nice camera.\n\nVerdict: Support your local library. Ours is great and really goes with the time. Aside from the usual stuff you find in a library they have a grand piano and other instruments, a 3d printer, various sewing machines and all kinds of cool stuff available for everyone.",
+      "mentions": []
+    },
+    "signature": "R9CYmoAiwpBz2FbBkWkPgNkBXevpX+Nc/X5cZU1iKTs6iFLPRygbC6qLuwn5EfGY3cI6iFKbdu8wEO/W8V1wAg==.sig.ed25519"
+  },
+  "timestamp": 1558225932494
+}
+
+{
+  "key": "%jqoe6fTIwHJGEXs7Jaq+czarJrpJ6GjS7VOW4okRQBE=.sha256",
+  "value": {
+    "previous": "%vFrhsI7JrhOgQQol59Jkk3Kl8lJlBKtmWh1+yQSLTyU=.sha256",
+    "sequence": 90,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1558289851362,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@LzTjF5eAVC6xprPMGeNzqEP/EEBIGpM6hDaaY10hrz8=.ed25519",
+      "following": true
+    },
+    "signature": "t26WSM4CUnRr2TYxqr0FUMCrSlLbaNwTvwmYMxeQTu9JbEWNAWNaKS14jwyCl+T1MNkKiKmRSrBcWe/7cJhNDQ==.sig.ed25519"
+  },
+  "timestamp": 1558289851363
+}
+
+{
+  "key": "%wpwKkX3srXXAm/f341MvNzaiPP7s1P218DC2KVrCJYw=.sha256",
+  "value": {
+    "previous": "%jqoe6fTIwHJGEXs7Jaq+czarJrpJ6GjS7VOW4okRQBE=.sha256",
+    "sequence": 91,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1558363082169,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@Bp5Z5TQKv6E/Y+QZn/3LiDWMPi63EP8MHsXZ4tiIb2w=.ed25519",
+      "following": true
+    },
+    "signature": "hkTBQ6iBIP5KUBKuV66TIjZXXIi8PQdoA8WaEz+gLGpy2/evKm4QBH7MgEyNYT/SijrX31NEDr3QtO8pmtjeCg==.sig.ed25519"
+  },
+  "timestamp": 1558363082170
+}
+
+{
+  "key": "%9rfCyPDHVna/4Fi7iFKf5DtTjmdp3cQc5m9xyuftQUI=.sha256",
+  "value": {
+    "previous": "%wpwKkX3srXXAm/f341MvNzaiPP7s1P218DC2KVrCJYw=.sha256",
+    "sequence": 92,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1558365825999.001,
+    "hash": "sha256",
+    "content": {
+      "type": "pub",
+      "address": {
+        "host": "ssb-pub.picodevelopment.nl",
+        "port": 8008,
+        "key": "@UFDjYpDN89OTdow4sqZP5eEGGcy+1eN/HNc5DMdMI0M=.ed25519"
+      }
+    },
+    "signature": "1GrL6eIHDkTNduOCYHKVRQorSmULPaf/Q/b/uyEuetTvoITqXyQhFBgaQcB7ghVhs3Il/loEtxtYj0ieUal1Aw==.sig.ed25519"
+  },
+  "timestamp": 1558365826000
+}
+
+{
+  "key": "%UAczrHz25AQ8UizCg4B1YpwyP2m3JHa4eN3dBS3GLxs=.sha256",
+  "value": {
+    "previous": "%9rfCyPDHVna/4Fi7iFKf5DtTjmdp3cQc5m9xyuftQUI=.sha256",
+    "sequence": 93,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1558365826000.001,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@UFDjYpDN89OTdow4sqZP5eEGGcy+1eN/HNc5DMdMI0M=.ed25519",
+      "following": true,
+      "autofollow": true
+    },
+    "signature": "LUTSYaSVSUJtnYaQh13f8ZXvqViS9equJq3dvhPZ77XdUpxbVrA6bnmMOtUwk23fjbNnmU0FcgZy5jAqmC76BQ==.sig.ed25519"
+  },
+  "timestamp": 1558365826001
+}
+
+{
+  "key": "%2q3gWxYZzlK+Co/xKWK6387Te+u6nEAYk4U5jhSqHkE=.sha256",
+  "value": {
+    "previous": "%UAczrHz25AQ8UizCg4B1YpwyP2m3JHa4eN3dBS3GLxs=.sha256",
+    "sequence": 94,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1558369062862,
+    "hash": "sha256",
+    "content": "rvjqrJJrzbBWaB0PvgroWC65MnmAnJgTaGxl1efR4tSGZhX0vPWUjBe65PqbCktYU1PEPdcKEk+qSdrHVD3Q5Dw/kN/H51GGx0q5Z8r0L4zDXwhdeadL0y01JB6hXlDt87hj7IMBFlx5zQ8WPcXSaY0Exe/m4HLXw2dVS4LZel0rnJ6fUeOvoRVV/KNwO3Q2EBcPd27KuioQI2+v8N9jcUbd5NBuM319GojWfMqf8mE8ikxI4e8dnVqu7Mszfg8O2tqHSibz7pMZccB+0EckJdGOCVS9wQRG9cHEf4lj3B7Kl1WYSvwBirs1GzslZi/M0X3U1D8AhK/T1hZ4UG5c47ZydZa3m0bcDNlvX1hA4KFrLDmFGU3WXyXHQt//Qwo=.box",
+    "signature": "Q4zl6Pqd8YIVPfW7gKATsGMqEpp2afiSbfIheOfbKzKlMijNaZeHe3R8QzQhCcCfe/qd4lmVR8w5ZYiQXmYPCA==.sig.ed25519"
+  },
+  "timestamp": 1558369062863
+}
+
+{
+  "key": "%GSP4sgJDGMWBdxvE4Dwmopcu/IkUpyHi6HmWd8v9K54=.sha256",
+  "value": {
+    "previous": "%2q3gWxYZzlK+Co/xKWK6387Te+u6nEAYk4U5jhSqHkE=.sha256",
+    "sequence": 95,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1558369075270,
+    "hash": "sha256",
+    "content": "t2Z5x07hqTAAUBZ+50B3PTlILkl/lH8czCExCuGSV3ANITKZx0bRSxqYS/n2cyh8MLC2j9vi+CjqLzUzpiaKLftehxCN9ulhRCXtY2h2++Ll3mbllvYdBRWDjTL1ZvBC+xDC3a14Shfsm0W8KKenp0Eqde47CY5Nqo1arfwp6NHZxNe9CPMJ4QXSuymDtiGnPV/QL2lLPe89PR5b1SK+mehQ8BxZAEy17pFtb+7jstQDdOhqsfHh/A3y6/6Q3Mhh4Zh5p+LERl6rrJqrS66GW3L2UbtTp6VpY682eOYHuZvZL51gRAHruv2QOppVXDh+UG2ri3vBD9aiYl6/eQbcCN9UnRMIHFKDT4p1u9AOL+KO9EhKzTAkx7HeI+ooUBAt.box",
+    "signature": "bk4nZbsBfbyRLXSjm+TJPGPHKawOJsITSnPrPU/kDpsVhVEyP4OYpIH4Rto9cZ623JLewJ1oB2Y7tW09A3U6BQ==.sig.ed25519"
+  },
+  "timestamp": 1558369075270.001
+}
+
+{
+  "key": "%5Fff/jT3U3YIypi9PmzqEySkw3FTK+nxO4fCfCplD0g=.sha256",
+  "value": {
+    "previous": "%GSP4sgJDGMWBdxvE4Dwmopcu/IkUpyHi6HmWd8v9K54=.sha256",
+    "sequence": 96,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1558369979679,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@RuNxm8SRujPcJx6GjtTQHp6hprAFv5voEkcvoAkB8Pk=.ed25519",
+      "following": true
+    },
+    "signature": "BHLe8YEH/gOxEgpYfctEzzdqehchDJntfOOktMHLzBVjsHhqrxDNgue27Zng3GrUyM6cDUHUJUDAfFk9dmtIDg==.sig.ed25519"
+  },
+  "timestamp": 1558369979680
+}
+
+{
+  "key": "%YkIRDN0lzifJ1eq1Shy8L+emBsBXgSk9ieiLZCTr5bM=.sha256",
+  "value": {
+    "previous": "%5Fff/jT3U3YIypi9PmzqEySkw3FTK+nxO4fCfCplD0g=.sha256",
+    "sequence": 97,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1558382496127,
+    "hash": "sha256",
+    "content": "7mDTqX+YVSiuLa8BvtTQvcOEpoDf4ioh8A7vM1baUUVxRuKKAouBQHmlr35xApRqcqpavKy0MSn9fLB9DBJ9wuMtONnVjWdoRefLwnmK+ZvozVvpvi8PWwEhsipXB3npy/vXcNrRwPJN/qy0p0rEbo5uR4osZ2HlQB3Zn3nskkf/CYXPsLNlIujBkRw8GNZGKOAWUWapqOgWUa/z0hYvUBTOkaexSY+dsMvoP+IMbt6Kfws2hQurdD78aHSo6pZq3bawOsvrzrLNij9WWlokPfDIwG/TKxGc/vJMHaEzcORzy95fWUgYLQt/r13AAUl7sZDrVR4oUofsJ9behpvxZbGp9VR5b5DNCxFrstx3KCDSGsiFc/P8sQOSu/1KL+w=.box",
+    "signature": "IDyGekUN/az9H2+5I+V2/SWQ1ApmWiFxRS3LDdbDZgrtJ3BkDd92OlTn3aqAYfsxwGESxjXGg4GtFdT0Uh7gAA==.sig.ed25519"
+  },
+  "timestamp": 1558382496128
+}
+
+{
+  "key": "%z386veB27WrNIZ/m1jtqxbvPntk2LBkbHl0kSSWyjyw=.sha256",
+  "value": {
+    "previous": "%YkIRDN0lzifJ1eq1Shy8L+emBsBXgSk9ieiLZCTr5bM=.sha256",
+    "sequence": 98,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1558382729016,
+    "hash": "sha256",
+    "content": {
+      "type": "about",
+      "about": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+      "description": "Software developer from Germany specializing in functional languages. Also interested in gardening, photography and cycling."
+    },
+    "signature": "4t7Y1ynCSj+YT1bgfeyW+NdKKEbKn3aOsMMR9l/nHU9iHQTy/1cI5m8zcBKTEb6XzzryiHLsC7aCBcBbVAtBCA==.sig.ed25519"
+  },
+  "timestamp": 1558382729017
+}
+
+{
+  "key": "%cxhQLmn80oSTJfaq71d8aAp5H5c6zrTYTSpM3oA9Hvc=.sha256",
+  "value": {
+    "previous": "%z386veB27WrNIZ/m1jtqxbvPntk2LBkbHl0kSSWyjyw=.sha256",
+    "sequence": 99,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1558383462338,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "text": "Can someone explain the difference between using \"hashtags\" like #scuttlebutt vs. channels vs. tags in Patchwork to me? Where is the difference between writing the text '#patchwork' vs adding the tag 'patchwork' vs. writing the message in a channel named '#patchwork'?\n\n#asktheverse #questions ",
+      "mentions": [
+        {
+          "link": "#scuttlebutt"
+        },
+        {
+          "link": "#asktheverse"
+        },
+        {
+          "link": "#questions"
+        }
+      ]
+    },
+    "signature": "FVnweN0Yd5AjML15n0SAbVYRuxFr30oMNYd9eF57cimbsaasBEleDWFjuvO68IP0PnpFEH1SS94JQGidM4FxAA==.sig.ed25519"
+  },
+  "timestamp": 1558383462339
+}
+
+{
+  "key": "%nmacCiScu2XM5f4tbHKmFmhDxwHH9RZigUvbvUMtzGI=.sha256",
+  "value": {
+    "previous": "%cxhQLmn80oSTJfaq71d8aAp5H5c6zrTYTSpM3oA9Hvc=.sha256",
+    "sequence": 100,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1558385024367,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "channel": null,
+      "vote": {
+        "link": "%rYnAxrNQVGOEr1ZscuN3FKl0jYw0/ho3eP7LsrRdOqE=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "JgS5k6MlOD66m3zys6fuKBZG0lLh3niJphikLnkB+F8cZvcRdMNwrhb767Ke2fYivsga0zKXa7NbaVOa+on5AA==.sig.ed25519"
+  },
+  "timestamp": 1558385024367.001
+}
+
+{
+  "key": "%xBKFMb7UoZkyHA17yMe8xMCq+VJLvBgVq65jZiM4onA=.sha256",
+  "value": {
+    "previous": "%nmacCiScu2XM5f4tbHKmFmhDxwHH9RZigUvbvUMtzGI=.sha256",
+    "sequence": 101,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1558385050466,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%cxhQLmn80oSTJfaq71d8aAp5H5c6zrTYTSpM3oA9Hvc=.sha256",
+      "branch": "%rYnAxrNQVGOEr1ZscuN3FKl0jYw0/ho3eP7LsrRdOqE=.sha256",
+      "reply": {
+        "%cxhQLmn80oSTJfaq71d8aAp5H5c6zrTYTSpM3oA9Hvc=.sha256": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+        "%rYnAxrNQVGOEr1ZscuN3FKl0jYw0/ho3eP7LsrRdOqE=.sha256": "@+oaWWDs8g73EZFUMfW37R/ULtFEjwKN/DczvdYihjbU=.ed25519"
+      },
+      "channel": null,
+      "recps": null,
+      "text": "[@Christian Bundy](@+oaWWDs8g73EZFUMfW37R/ULtFEjwKN/DczvdYihjbU=.ed25519) Thanks for the explanation!",
+      "mentions": [
+        {
+          "link": "@+oaWWDs8g73EZFUMfW37R/ULtFEjwKN/DczvdYihjbU=.ed25519",
+          "name": "Christian Bundy"
+        }
+      ]
+    },
+    "signature": "RpUlezBnFbeRKHpi0I+uHw7aH+ywgksSXZTqUrjYJR518R+8D21RE9Lm9ow/YSACesxHi9D3i+3ki1bK/V6NDA==.sig.ed25519"
+  },
+  "timestamp": 1558385050466.001
+}
+
+{
+  "key": "%JTsmqZ/PZg/Yk+W/FZlj5LiNSN1LkXWQ3p+bJxIRcII=.sha256",
+  "value": {
+    "previous": "%xBKFMb7UoZkyHA17yMe8xMCq+VJLvBgVq65jZiM4onA=.sha256",
+    "sequence": 102,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1558387045391,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@URIdonHSF4eAIZVqPPe6I+lkDd19Bl0T/t4/umwtbo4=.ed25519",
+      "following": true
+    },
+    "signature": "B5X2FCKhWzQn+weNkaMckaMWvUpw8oWDe3fs924YuylrjRZ5P3a8bQmHZnwEeU9ZQEK9wfZAC6A1UBFFWl09CA==.sig.ed25519"
+  },
+  "timestamp": 1558387045391.001
+}
+
+{
+  "key": "%gcKRQZlIUEGvRBWEZeat9UevFHA+UOsVT13bgTGcZ4U=.sha256",
+  "value": {
+    "previous": "%JTsmqZ/PZg/Yk+W/FZlj5LiNSN1LkXWQ3p+bJxIRcII=.sha256",
+    "sequence": 103,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1558431424350,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "vote": {
+        "link": "%zSumhNNOcMG3m0htDYt/SHDyrMOxyrrgO7CbXMhEMHg=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "UU6bns5hu5eVgDsslrB0ZOeCtR4LHOisDPHL18pmKU5NHIUTJZDdIp08ZEAHv/IR5AHEtL/W7EVsg/iOLxBUBA==.sig.ed25519"
+  },
+  "timestamp": 1558431424351
+}
+
+{
+  "key": "%Sj6D/4BOpUiUwDLWJBC1OgzeLPN3nBEcp7i3p4jQsVk=.sha256",
+  "value": {
+    "previous": "%gcKRQZlIUEGvRBWEZeat9UevFHA+UOsVT13bgTGcZ4U=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 104,
+    "timestamp": 1558469290212,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@BCM6DHYJvWzwWi1lFl2tjDXjaqyZAEmJH5ZONSpXhtc=.ed25519",
+      "following": true
+    },
+    "signature": "tuOJhuLjJp5omfhJf5ggjgIXbfhvQo/v9lD9pmnBJlX850T29QzWdjb9V5NcMh1288cprlTXLgpZjFpM0B4VAA==.sig.ed25519"
+  },
+  "timestamp": 1558469290212
+}
+
+{
+  "key": "%2s3WZxM9YCZAzhNpfbpFyWqFlKIYQn+AMENeKKSZUAQ=.sha256",
+  "value": {
+    "previous": "%Sj6D/4BOpUiUwDLWJBC1OgzeLPN3nBEcp7i3p4jQsVk=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 105,
+    "timestamp": 1558469485703,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%HBnxu1f93PSB/qjji3/ujkCSVSNRsY/OzgjaLcPHgso=.sha256",
+      "branch": "%UvA16uor5leWLMmpts2WlZzJxsdP1dsHECXvWg2aKbg=.sha256",
+      "text": "[@joey](@BCM6DHYJvWzwWi1lFl2tjDXjaqyZAEmJH5ZONSpXhtc=.ed25519) The admins there are just people after all :-) What I love most about such research institutions is the widespread usage of open source software instead of expense (and often worse) commercial offerings. ",
+      "mentions": [
+        {
+          "link": "@BCM6DHYJvWzwWi1lFl2tjDXjaqyZAEmJH5ZONSpXhtc=.ed25519",
+          "name": "joey"
+        }
+      ]
+    },
+    "signature": "ARG0yE1oqfKuZy4dPfiQlI97tUoFIIsqXk9jNk0jOl8zLXz8h1Jl6an7XgYEG5iJpTAXYVoUMLOQQPLwZk4yCw==.sig.ed25519"
+  },
+  "timestamp": 1558469485706
+}
+
+{
+  "key": "%jT29Igc+wtbauLuyAA3anY44BRIy78i21ao+d0ZFmE4=.sha256",
+  "value": {
+    "previous": "%2s3WZxM9YCZAzhNpfbpFyWqFlKIYQn+AMENeKKSZUAQ=.sha256",
+    "sequence": 106,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1558526660248,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "root": "%AjsVHeyUBDMBB0gA0jfDDDF+ihcYTW/Mot1EjPR0mAk=.sha256",
+      "vote": {
+        "link": "%AjsVHeyUBDMBB0gA0jfDDDF+ihcYTW/Mot1EjPR0mAk=.sha256",
+        "value": 1,
+        "expression": "heart"
+      },
+      "branch": [
+        "%if3F6Jm+Jq9nedFl6x62eeW73GEQPHGD+oMj1bzHHm0=.sha256"
+      ]
+    },
+    "signature": "tQ9XMaTcRuTmbFzjr0UAWm4l+IONwsQMSbm85fm11JWan2sW8Ma9Tho8KrQBQ6KAdr+9Ku92Ysxx58oDDxkYCQ==.sig.ed25519"
+  },
+  "timestamp": 1558526660248.001
+}
+
+{
+  "key": "%5F8sqfn+eUFKtHMXcbRcqOdMChDIU7gcSkwFVBVt+Wg=.sha256",
+  "value": {
+    "previous": "%jT29Igc+wtbauLuyAA3anY44BRIy78i21ao+d0ZFmE4=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 107,
+    "timestamp": 1558534942472,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@UFDjYpDN89OTdow4sqZP5eEGGcy+1eN/HNc5DMdMI0M=.ed25519",
+      "blocking": false
+    },
+    "signature": "WpsHsqE5gliHVGOY3lvvZkSyqFt55Ysx0cFhanD6X/RlqRiAoq2AeSW4sG0ID7SsngUxm9oEUOMKQCUe7EXsAQ==.sig.ed25519"
+  },
+  "timestamp": 1558534942473
+}
+
+{
+  "key": "%D8bdDttQBRka306DqR6/J3/VLXbMRpkfVbdvJYeuDE8=.sha256",
+  "value": {
+    "previous": "%5F8sqfn+eUFKtHMXcbRcqOdMChDIU7gcSkwFVBVt+Wg=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 108,
+    "timestamp": 1558536455218,
+    "hash": "sha256",
+    "content": {
+      "type": "channel",
+      "channel": "cccamp19",
+      "subscribed": true
+    },
+    "signature": "6k/+yVE+jJ6o3J8iMqZ/9hxvgD8GEwR26L5kqEB8NL0TeRJqI8jVmwL3Z1AisthBN9uxdkgSEVwSeeHJsKY+AQ==.sig.ed25519"
+  },
+  "timestamp": 1558536455219
+}
+
+{
+  "key": "%8nV9kLlcjl9cjGMM6czAWZiGmHiOTMc+uBsVP9FzUPY=.sha256",
+  "value": {
+    "previous": "%D8bdDttQBRka306DqR6/J3/VLXbMRpkfVbdvJYeuDE8=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 109,
+    "timestamp": 1558537048734,
+    "hash": "sha256",
+    "content": "7ZINPf6v3uS8OLBRfbP3lb+aL+AfWLfvR7DZ+wd3hdkjwDV5qQLZHzb5NfIcCSzv1f436gJPPhwg1wqkLGv5fhHnhLCVXlslJwwrB6XL+OFBnoX2z6hxDT8xc1OX9uNfr2XMh+ppr3z3txflBYWzrwsZ152Q+gpg2Iw1Lln82rJEJh5Aqu3nTb6mtQqzvU2OeemJ0zJ0Oo7yuvyVyCb99/iIIZ4DOovXsrBNTnnNvOK/3vYWtpxfTc1HAiK9Zc6SrGRbPxnvhrvjB78hS516cGw6KaWCGcc9i9oe2S18YN+WzSzC8ORO7rWnGfnzLvelD4UsHoFCOWnx6zYg2CBY8BbUQ4xgj1GaWQ0BiZ4ikmH1GQjdVQBkX8fNDuLbCC3L07S8LbHVgkFfZNuKTD7VEq3AnrymWaWo2+ShQMGYabRlto2khgXwFhNOSR8iqzZiwuykmLKSiZAeQgE7GM1s3Ml0BirjRRJkCXE3BQeHTWS7orf3N/PUdfLAfDoWeJRY/rQ9UORMGT4Rk4idMbvA6KTp/NLNaRMEYXdyuvF2DB80uGhomTZ7nUOyvPLav39Ex63b49/TWImUmq/JW6KsUyKJVm11qAfNC033+DgMSpvwiCJhS7HiAIPRqXR6ZTXqc339Q8z9RG0mbXv3bDoyObZnpvvbKvEYGTrHIxG2iOv6C8S3fN0KJ7Wa+Utjyyk6usA=.box",
+    "signature": "lzTqJee2lt+AOxzWCd5g93gLEsvB3iQGmLOuMXGxd9LN1IpUwsf4fVeaFbSosc4/n0TFVWiPxMjUadMUMCAVBA==.sig.ed25519"
+  },
+  "timestamp": 1558537048734
+}
+
+{
+  "key": "%PxqFqvAPFJd7wp7o0En5NMkqz9FtlaaHH+G2k844zCI=.sha256",
+  "value": {
+    "previous": "%8nV9kLlcjl9cjGMM6czAWZiGmHiOTMc+uBsVP9FzUPY=.sha256",
+    "sequence": 110,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1558541511343,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "root": "%7ZPyXQDejphk892xKm9Onf703w3h43zzXMtjnPrku2I=.sha256",
+      "vote": {
+        "link": "%7ZPyXQDejphk892xKm9Onf703w3h43zzXMtjnPrku2I=.sha256",
+        "value": 1,
+        "expression": "heart"
+      },
+      "branch": [
+        "%00N42oP+qsEoCouashlh3dwR+nC4jJB5Z7dfi/Wk0l8=.sha256",
+        "%H8LwfkmO741TDfBbMmlnTABaDse+X7F2eXDqhphC16c=.sha256"
+      ]
+    },
+    "signature": "ne6SZDBOO7WyeJhpaKEm9GW7kGQQS/3MQrimXdQmzTfY+c2lVTRc5QZM/eatC3L8x/IvORDNPHLlp4IPrYSpDQ==.sig.ed25519"
+  },
+  "timestamp": 1558541511343.001
+}
+
+{
+  "key": "%VGjB34FVEmq2Ezc03zlAFY3/4w2VWuHpCE0/UqazM+w=.sha256",
+  "value": {
+    "previous": "%PxqFqvAPFJd7wp7o0En5NMkqz9FtlaaHH+G2k844zCI=.sha256",
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "sequence": 111,
+    "timestamp": 1558541514095,
+    "hash": "sha256",
+    "content": {
+      "type": "channel",
+      "channel": "ssb-implementations",
+      "subscribed": true
+    },
+    "signature": "dp38ws7ZEH9Fyo0b6VnL8XrPy4VoSd8q2xjRevfWwHh6Wac3yGV3pVXtzg9e0vXwFQuUneqzXP3epgq31i5TAQ==.sig.ed25519"
+  },
+  "timestamp": 1558541514096
+}
+
+{
+  "key": "%UJ2tqYZeGuFq+Xc/wwohWEsJyCqnKoIWKsU3ZxaoFSg=.sha256",
+  "value": {
+    "previous": "%VGjB34FVEmq2Ezc03zlAFY3/4w2VWuHpCE0/UqazM+w=.sha256",
+    "sequence": 112,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1558589682077,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%jguz11YZtKHwwqT9M+LzgwrbjgWYiiTdOk+r9vzi9SM=.sha256",
+      "branch": "%jguz11YZtKHwwqT9M+LzgwrbjgWYiiTdOk+r9vzi9SM=.sha256",
+      "reply": {
+        "%jguz11YZtKHwwqT9M+LzgwrbjgWYiiTdOk+r9vzi9SM=.sha256": "@Bk5uzkFxdMJnJR+rKVd+X4LO/u+8VV+lA14e+XLabXQ=.ed25519"
+      },
+      "channel": "cccamp19",
+      "recps": null,
+      "text": "Erdgeist on Twitter just [confirmed](https://twitter.com/erdgeist/status/1131323548402966528) that vouchers will be chainable. ",
+      "mentions": []
+    },
+    "signature": "vtAJ6uTTq/r5DH+VGCvM9mqHzFVosxV92vVEfb4wZSZkO4KqYdli2iwNUrGYhOC8SzBGrF5Q3oetaDew7c0SBQ==.sig.ed25519"
+  },
+  "timestamp": 1558589682078
+}
+
+{
+  "key": "%zPxkxGa2VudI44Uur8EKgyH4u8te+RvDQ3QKfVSEwt0=.sha256",
+  "value": {
+    "previous": "%UJ2tqYZeGuFq+Xc/wwohWEsJyCqnKoIWKsU3ZxaoFSg=.sha256",
+    "sequence": 113,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1558591340969,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@zoexGS1fZqt+9fZ3QptY5LnraohC8DYfhFshoP5tZMY=.ed25519",
+      "blocking": true
+    },
+    "signature": "BJtHqLUVdP+1HyPeCUx6sGM0wviNThKnTgtbLCwWMw5zBYI5oB3NxvAu44QxYtxkxu+1nDlgBfqDN+M3R4kPBw==.sig.ed25519"
+  },
+  "timestamp": 1558591340969.001
+}
+
+{
+  "key": "%wpDTWVJoMTyN92hQnuE3wyYguTlEmkfefZJhNGZ7BFk=.sha256",
+  "value": {
+    "previous": "%zPxkxGa2VudI44Uur8EKgyH4u8te+RvDQ3QKfVSEwt0=.sha256",
+    "sequence": 114,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1558634264484,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "channel": "cooking",
+      "text": "Has anyone tried making Pizza dough with fresh yeast and maple sirup instead of sugar? Let's see how it goes...",
+      "mentions": []
+    },
+    "signature": "Ig+qIHKuFom8gblN59kwrIi26qm9rxQ+MMM67rhS784pOOg+xQqytr9lBqLK11qLOl9S87dYWSJA1NDJWtvUBQ==.sig.ed25519"
+  },
+  "timestamp": 1558634264485
+}
+
+{
+  "key": "%OccvKqpXMf76yhg8lV0DAyxWMxXxUP91hlUFilgfilM=.sha256",
+  "value": {
+    "previous": "%wpDTWVJoMTyN92hQnuE3wyYguTlEmkfefZJhNGZ7BFk=.sha256",
+    "sequence": 115,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1558646951192,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%wpDTWVJoMTyN92hQnuE3wyYguTlEmkfefZJhNGZ7BFk=.sha256",
+      "branch": "%sgrxzbhPBilGTTnUtvJpmqcdIw9+OG3/oN61wNmeN7M=.sha256",
+      "reply": {
+        "%wpDTWVJoMTyN92hQnuE3wyYguTlEmkfefZJhNGZ7BFk=.sha256": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+        "%sgrxzbhPBilGTTnUtvJpmqcdIw9+OG3/oN61wNmeN7M=.sha256": "@IO8uWgeOFXaUO6nojk2wQ2KMGfm8flwzJ6+Z/G5sqFE=.ed25519"
+      },
+      "channel": "cooking",
+      "recps": null,
+      "text": "The dough has risen :-) So maple sirup works just fine for the yeast. I'll post an update in the next 1-2 days with some pizza made with the dough. ",
+      "mentions": []
+    },
+    "signature": "jCpDNlmceyPVtZrLsknGQpMiHmP3Ksk783BzOqbbbhvTrqUqR5I6QYUfG58BLHKDjOncB7AunMbfruiINR0bDg==.sig.ed25519"
+  },
+  "timestamp": 1558646951192.001
+}
+
+{
+  "key": "%m/yn25a/QAjaesKjbHh56u1ie4Hlo/rem4tFjmQV2MU=.sha256",
+  "value": {
+    "previous": "%OccvKqpXMf76yhg8lV0DAyxWMxXxUP91hlUFilgfilM=.sha256",
+    "sequence": 116,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1558700235656,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "channel": "cooking",
+      "text": "Short update on my [Pizza dough with maple sirup instead of sugar](%wpDTWVJoMTyN92hQnuE3wyYguTlEmkfefZJhNGZ7BFk=.sha256): It went great!\n\nThe dough is smooth, easy to work with, and tastes great.\n\nFinished the pizza with a sauce cooked from tomatoes and fresh basil from the balcony. Added some ham and mozzarella and baked it for about 5 minutes on a preheated hot stone in the oven. \n\n![IMG_1757.jpg](&Q2+x7MWw/a0SKn8Sl9rl8N8iddkL6t4dHKYRInhBXAM=.sha256)\n",
+      "mentions": [
+        {
+          "link": "%wpDTWVJoMTyN92hQnuE3wyYguTlEmkfefZJhNGZ7BFk=.sha256",
+          "name": "Pizza dough with maple sirup instead of sugar"
+        },
+        {
+          "link": "&Q2+x7MWw/a0SKn8Sl9rl8N8iddkL6t4dHKYRInhBXAM=.sha256",
+          "name": "IMG_1757.jpg",
+          "type": "image/jpeg",
+          "size": 4415326
+        }
+      ]
+    },
+    "signature": "EGQmlWy5HWHZgr2AL8ShO/kJQ282qx9RZfUbSeliHaZMIXr3KQ5kGAMmlWxOd0uMO73beLo8d7m8Ujp8cUyNDQ==.sig.ed25519"
+  },
+  "timestamp": 1558700235656.001
+}
+
+{
+  "key": "%bXtDBvJe+4r6ERmCwHwDPGKH+j0e8n4hDgRlJzPgfY4=.sha256",
+  "value": {
+    "previous": "%m/yn25a/QAjaesKjbHh56u1ie4Hlo/rem4tFjmQV2MU=.sha256",
+    "sequence": 117,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1558712020279,
+    "hash": "sha256",
+    "content": {
+      "type": "channel",
+      "channel": "cooking-channel",
+      "subscribed": true
+    },
+    "signature": "sWjEzYsUFtdfavoz5z+gtdABUQNPpkp7JDiDiwzJdWZ3xFaMmPQtHe7vlNxEHhO1GONytNvcuA09KpcaHwESDA==.sig.ed25519"
+  },
+  "timestamp": 1558712020279.001
+}
+
+{
+  "key": "%aIdb6dE+zuIdRyitZ6lJbQn+ljXX6Vre7skrzOM4RXo=.sha256",
+  "value": {
+    "previous": "%bXtDBvJe+4r6ERmCwHwDPGKH+j0e8n4hDgRlJzPgfY4=.sha256",
+    "sequence": 118,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1558712080541,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@U5GvOKP/YUza9k53DSXxT0mk3PIrnyAmessvNfZl5E0=.ed25519",
+      "following": true
+    },
+    "signature": "p+2x2lU+fBSs7zU/4OFzw6wNzeLCw+nRg55LMR1TqpT4e2L4xfKw5+9i1/cKktlyjOfk8cW7JYjNX7Jxzl/LDQ==.sig.ed25519"
+  },
+  "timestamp": 1558712080541.001
+}
+
+{
+  "key": "%UmJHaKVZdV9knfApjcjUljVB0WC+5uqdaun+FpLA3Ik=.sha256",
+  "value": {
+    "previous": "%aIdb6dE+zuIdRyitZ6lJbQn+ljXX6Vre7skrzOM4RXo=.sha256",
+    "sequence": 119,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1558805874183,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%Sm5OnoNawdSrkRy3L9SmtsQR9oN+Yv+aG6go3KqKiQA=.sha256",
+      "fork": "%m/yn25a/QAjaesKjbHh56u1ie4Hlo/rem4tFjmQV2MU=.sha256",
+      "branch": "%Sm5OnoNawdSrkRy3L9SmtsQR9oN+Yv+aG6go3KqKiQA=.sha256",
+      "reply": {
+        "%Sm5OnoNawdSrkRy3L9SmtsQR9oN+Yv+aG6go3KqKiQA=.sha256": "@+D0ku/LReK6kqd3PSrcVCfbLYbDtTmS4Bd21rqhpYNA=.ed25519"
+      },
+      "channel": "cooking",
+      "recps": null,
+      "text": "[@nanomonkey](@+D0ku/LReK6kqd3PSrcVCfbLYbDtTmS4Bd21rqhpYNA=.ed25519) Hard to tell if it makes a difference. The dough is really nice and gets crispy without much effort, but it as well might just be a good batch. \n\nAnd yeah, you're right: I usually put just a pinch of sugar into the lukewarm water when mixing the (fresh) yeast in to get it going, immediately before mixing it with the flour. Other recipes call for a very careful mix of fresh yeast with a little bit of flour and water and some waiting time to get it going, but I just dump everything together and never had an issue.\n\nGreat idea on the caramelized maple ham! I'll try that the next time :-)",
+      "mentions": [
+        {
+          "link": "@+D0ku/LReK6kqd3PSrcVCfbLYbDtTmS4Bd21rqhpYNA=.ed25519",
+          "name": "nanomonkey"
+        }
+      ]
+    },
+    "signature": "gDqYSz06sDCLFNsVbAam+kw3oblisfsVl7VnljvCU6BBSAnPN3u1Szsr3Il1uxO+cY8OK3T097Ob6fpRg+tgDw==.sig.ed25519"
+  },
+  "timestamp": 1558805874183.001
+}
+
+{
+  "key": "%4jNelX6hcB8gVJ0b41ptxxK9sQhpPowSsrQjokDATc8=.sha256",
+  "value": {
+    "previous": "%UmJHaKVZdV9knfApjcjUljVB0WC+5uqdaun+FpLA3Ik=.sha256",
+    "sequence": 120,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1558806320067,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "channel": "cooking-channel",
+      "text": "# Pizza Experiment: Cast-Iron Barbecue Pizza \n\n- Fresh yeast dough (made the day before, stored in the fridge)\n- Fresh tomato sauce\n- Mozzarella & Ham\n- Cast-Iron Pan\n- Gas grill with a lid\n\nPrepared the pizza in the cold pan, then put it on the preheated grill at about 220 degrees celsius. Baked for about 12 minutes. Dough is crispy all around and it tastes great :-) I personally prefer thinner crust, but this one is nice for a change. \n\n![IMG_1778.jpg](&AN7e6ZvnjDNT3MUh5Rfn0vFmdipLtUi+VjH/5FQ773U=.sha256)",
+      "mentions": [
+        {
+          "link": "&AN7e6ZvnjDNT3MUh5Rfn0vFmdipLtUi+VjH/5FQ773U=.sha256",
+          "name": "IMG_1778.jpg",
+          "type": "image/jpeg",
+          "size": 3306305
+        }
+      ]
+    },
+    "signature": "1Oz39abgZRm+bF3Q91L/bYzIk7JEUpQWJxngJi2eTcs5OJG7VZSbQClVd7tbjdugYCdVODA7At1Jj2AOYWYEDA==.sig.ed25519"
+  },
+  "timestamp": 1558806320067.001
+}
+
+{
+  "key": "%bMl+1YX6sDTIVI3w8oSgKqTfHMFYwRCn/lGTTHWk7qk=.sha256",
+  "value": {
+    "previous": "%4jNelX6hcB8gVJ0b41ptxxK9sQhpPowSsrQjokDATc8=.sha256",
+    "sequence": 121,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1558958561554,
+    "hash": "sha256",
+    "content": "16xabVBwwXGIgU0spNn9lX5muw9JUi6XPnhvaW+Lkoen91/5rqpECbtOC/oo18jHvWMg/EBLQwCQ2doV2VaubroFFpfqcB0xlrY/8iEbkPuybEOisMpgish6EVdqB88p8uaxDO6Ns1u+xyUA2caI3HAMayIXQu+rV2O7BKYaGBdwU4MJ0TTopqeBLLfOpmphiG7RDlm9QybmKK2KR492W1jUNUzem8jiRUoMbnmyVAqbyVhs7FM2mEMXVnc1Tx45T5f1a7nP1paMTvGuCrCXQC+mURl3LOeZ/zvVOfZuAiClqA2tfscbG08uQNRM+oUaiv5l3blcV6hTEKX7Aqd845zvtO88VFDMukYfBrhr2xUL9wgD1qJjhxtJQdcWmhI=.box",
+    "signature": "JCcM3l26hH3gYk4TaGLZ0lGLPi91gHhGU1GNW8+NaLhOhh2xornoJZK4+gVlXVjAcn/nsDxbuf783EtuYBz9Bw==.sig.ed25519"
+  },
+  "timestamp": 1558958561554.001
+}
+
+{
+  "key": "%h6nfFk1REhwtMvWOiNWuAXH3XnMY0qVgGWYMpqqbY+k=.sha256",
+  "value": {
+    "previous": "%bMl+1YX6sDTIVI3w8oSgKqTfHMFYwRCn/lGTTHWk7qk=.sha256",
+    "sequence": 122,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1559058411616,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "channel": "sfpc",
+      "vote": {
+        "link": "%iJ716FS40ijEFXK3ryuYP2LvJa937YMSW4HeXBNUpmg=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "ty2JmlWnkqyNiTO6rc/Dn/IuNf+F7xMDbTxpbWfSGfMJrASI7TMhRXloKbXucSo+WgjaIEOXnAGmbe69J8gUDQ==.sig.ed25519"
+  },
+  "timestamp": 1559058411616.001
+}
+
+{
+  "key": "%ugkK0dxnrNUxuc/+J8TAw6h5lBZKYo+Z16rY2vi9+Qc=.sha256",
+  "value": {
+    "previous": "%h6nfFk1REhwtMvWOiNWuAXH3XnMY0qVgGWYMpqqbY+k=.sha256",
+    "sequence": 123,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1559064136294,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%m/yn25a/QAjaesKjbHh56u1ie4Hlo/rem4tFjmQV2MU=.sha256",
+      "branch": "%mQG8FKMBxkIF3MaSfKbJW1eibZeYFuYsZI5plyh7FsM=.sha256",
+      "reply": {
+        "%m/yn25a/QAjaesKjbHh56u1ie4Hlo/rem4tFjmQV2MU=.sha256": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+        "%mQG8FKMBxkIF3MaSfKbJW1eibZeYFuYsZI5plyh7FsM=.sha256": "@LzTjF5eAVC6xprPMGeNzqEP/EEBIGpM6hDaaY10hrz8=.ed25519"
+      },
+      "channel": "cooking",
+      "recps": null,
+      "text": "[@masukomi](@LzTjF5eAVC6xprPMGeNzqEP/EEBIGpM6hDaaY10hrz8=.ed25519) sure! \n\n## Ingredients\n\n- 460g flour\n- 250ml lukewarm water\n- 20-40g fresh yeast\n- 10g salt\n- 10ml olive oil\n- a pinch of sugar (or maple sirup)\n\n- Mozzarella\n- Tomato sauce & some herbs\n- Ham, Tuna, or whatever you like\n\n## Dough\n\n1. Mix everything excluding the flour in a cup, make sure the yeast is dissolved; then dump it into the flour. \n2. Knead until the dough is nice and smooth, make sure to fold the dough repeatedly over itself.\n3. Cover bowl with a cloth and let it rest in a warm place for an hour or so.\n4. Knead again, then partition the dough into 4-6 balls\n\nThe dough is ready for baking immediately, but it will get better when left in the fridge for a day or so.\n\n## Toppings\n\nI use fresh mozzarella - just make sure to dry it well to get rid of the moisture. Grated mozzarella is good too. As for the sauce, I usually cook up a spicy one from canned (or fresh) tomatoes, some basic herbs and spices, and a pinch of sugar. \n\n## Baking\n\n250 degrees celsius, on a hot surface (stone or baking tray) for 10 minutes or so. ",
+      "mentions": [
+        {
+          "link": "@LzTjF5eAVC6xprPMGeNzqEP/EEBIGpM6hDaaY10hrz8=.ed25519",
+          "name": "masukomi"
+        }
+      ]
+    },
+    "signature": "380wzzA84bnQoEsAAJ4Eb/AMXY0t09o1b+1rxLt+Q9NVoDmXFGcHlLUH6p6kL+dvYzGJuu3/d9dUyx97jmhvCw==.sig.ed25519"
+  },
+  "timestamp": 1559064136295
+}
+
+{
+  "key": "%X1l7UQP5bC9prtlAlZbGpgAdUTXz/Q0HhuKSz6c2kxA=.sha256",
+  "value": {
+    "previous": "%ugkK0dxnrNUxuc/+J8TAw6h5lBZKYo+Z16rY2vi9+Qc=.sha256",
+    "sequence": 124,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1559244340576,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@EMovhfIrFk4NihAKnRNhrfRaqIhBv1Wj8pTxJNgvCCY=.ed25519",
+      "following": false
+    },
+    "signature": "+hZcr8kngIEo4vqcygTBk6bwDYBdfanVih37/kQN+oi3EjpPEnInqvozfnR1NDqgqWGjAw/UXU3m0Yjz/TZXCg==.sig.ed25519"
+  },
+  "timestamp": 1559244340577
+}
+
+{
+  "key": "%2PlHOkVfderEq36/1vqUzinNnXslvqVs2dxN8sJ3OdE=.sha256",
+  "value": {
+    "previous": "%X1l7UQP5bC9prtlAlZbGpgAdUTXz/Q0HhuKSz6c2kxA=.sha256",
+    "sequence": 125,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1559247116169,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%0vqWwxCda8Qam4tIBVYISf0ouz2aKWaDb93kO5Bj9I8=.sha256",
+      "branch": "%j+Ps44SBg5oQHdPQQNSuDhl1dy2U1VwWGJwon0QqzWQ=.sha256",
+      "reply": {
+        "%0vqWwxCda8Qam4tIBVYISf0ouz2aKWaDb93kO5Bj9I8=.sha256": "@qv10rF4IsmxRZb7g5ekJ33EakYBpdrmV/vtP1ij5BS4=.ed25519",
+        "%j+Ps44SBg5oQHdPQQNSuDhl1dy2U1VwWGJwon0QqzWQ=.sha256": "@qv10rF4IsmxRZb7g5ekJ33EakYBpdrmV/vtP1ij5BS4=.ed25519"
+      },
+      "channel": "ssb-implementations",
+      "recps": null,
+      "text": "Is there even a way to request a list of all blobs a peer \"has\"? As far as I know in the protocol a peer can only specify \"wants\" and the other side answers with the sizes of the requested blobs (if it has them). ",
+      "mentions": []
+    },
+    "signature": "vQOJobzC/x8KmXMc/V4XGsgVOX7fJxpTzo/5CK5H0QBCN2/uZZsTNA8SbOvXBNMIhRmJKt/yZJI2pvvkQJFyBg==.sig.ed25519"
+  },
+  "timestamp": 1559247116169.001
+}
+
+{
+  "key": "%gmmhAJgRJhoJ4428NcFSbEY/YatPUYrQX74V0Gr4E4k=.sha256",
+  "value": {
+    "previous": "%2PlHOkVfderEq36/1vqUzinNnXslvqVs2dxN8sJ3OdE=.sha256",
+    "sequence": 126,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1559318543293,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%0vqWwxCda8Qam4tIBVYISf0ouz2aKWaDb93kO5Bj9I8=.sha256",
+      "branch": "%404WgI4DFi3dm6WL/m3zW5PzFMm8hyBxwzm4ANWeeeY=.sha256",
+      "reply": {
+        "%0vqWwxCda8Qam4tIBVYISf0ouz2aKWaDb93kO5Bj9I8=.sha256": "@qv10rF4IsmxRZb7g5ekJ33EakYBpdrmV/vtP1ij5BS4=.ed25519",
+        "%404WgI4DFi3dm6WL/m3zW5PzFMm8hyBxwzm4ANWeeeY=.sha256": "@EaYYQo5nAQRabB9nxAn5i2uiIZ665b90Qk2U/WHNVE8=.ed25519"
+      },
+      "channel": "ssb-implementations",
+      "recps": null,
+      "text": "[@punkmonk](@EaYYQo5nAQRabB9nxAn5i2uiIZ665b90Qk2U/WHNVE8=.ed25519) that's what I thought! Thanks for clarifying that.",
+      "mentions": [
+        {
+          "link": "@EaYYQo5nAQRabB9nxAn5i2uiIZ665b90Qk2U/WHNVE8=.ed25519",
+          "name": "punkmonk"
+        }
+      ]
+    },
+    "signature": "crfBp4IpYorircMYQLuJBL4g5CCxHLZvtgpIZ1fAw9MRx2W/cg9DOADAzt+G9/f4r3Bv7gXNV5L9W/qZY14XDg==.sig.ed25519"
+  },
+  "timestamp": 1559318543293.001
+}
+
+{
+  "key": "%Ar/xpvSGXwtz3dA4XVmRXQBaIoyR7j/mlHfRmS9VpEI=.sha256",
+  "value": {
+    "previous": "%gmmhAJgRJhoJ4428NcFSbEY/YatPUYrQX74V0Gr4E4k=.sha256",
+    "sequence": 127,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560200503532,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "vote": {
+        "link": "%1hBstjhVs4KHzpSYq4PyQP4KzwG0zFc1sq/psTdR9QI=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "yzvNBUu9Wlp48H69HERuamKjqPMuj+Z6SbydUvz4x/YHlLn3GbmTl6Vijor5q2sm8nra7o0YuGC7KpnplM9/BA==.sig.ed25519"
+  },
+  "timestamp": 1560200503532.001
+}
+
+{
+  "key": "%lGHT9VlZCoRc32ENRBGi/JDB9lMYwCpQ2YHM3aJ+YwQ=.sha256",
+  "value": {
+    "previous": "%Ar/xpvSGXwtz3dA4XVmRXQBaIoyR7j/mlHfRmS9VpEI=.sha256",
+    "sequence": 128,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560201400027,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "channel": "cccamp19",
+      "text": "Anyone going to the Camp this year? I finally got the chance to order my ticket a few days ago and couldn't be more excited. The last one four years ago was terrific.\n\nMaybe it's possible to set up a gathering there?",
+      "mentions": []
+    },
+    "signature": "AaqrGpeFkE56zfIlcbjytaH1hsTWD10ToccK0omGLJ6pIe4MaLv2l5+FnAbLUfhz2CJOSOeEN5eG0I1AN4jzDQ==.sig.ed25519"
+  },
+  "timestamp": 1560201400028
+}
+
+{
+  "key": "%67+bjW32FSC1xK8ve1KWP1C9s8chhq2OH3kIZ2RCOAM=.sha256",
+  "value": {
+    "previous": "%lGHT9VlZCoRc32ENRBGi/JDB9lMYwCpQ2YHM3aJ+YwQ=.sha256",
+    "sequence": 129,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560202612411,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "channel": "cccamp19",
+      "vote": {
+        "link": "%sCttTYQHiN+201S+rq1FXlMZr0pMzBtLg+KDoNcNlo4=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "Ywyw7t4DY4f1jQVeFtMRyYDdRIWi7hvCAu+BN12vQPAoGHugAjlZ4fDuf7O+LetHX57ZHWQxqibCvugz/VwsDg==.sig.ed25519"
+  },
+  "timestamp": 1560202612411.001
+}
+
+{
+  "key": "%+tBd9kS74YpKnWb4MGaMxmjNNYCD38wCFMnJlzMb7YM=.sha256",
+  "value": {
+    "previous": "%67+bjW32FSC1xK8ve1KWP1C9s8chhq2OH3kIZ2RCOAM=.sha256",
+    "sequence": 130,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560203842317,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%lGHT9VlZCoRc32ENRBGi/JDB9lMYwCpQ2YHM3aJ+YwQ=.sha256",
+      "branch": "%SeyrdF8otQg3emtm61aTtPWICt+3W/MPPwDDA2Hnwk8=.sha256",
+      "reply": {
+        "%lGHT9VlZCoRc32ENRBGi/JDB9lMYwCpQ2YHM3aJ+YwQ=.sha256": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+        "%SeyrdF8otQg3emtm61aTtPWICt+3W/MPPwDDA2Hnwk8=.sha256": "@MRiJ+CvDnD9ZjqunY1oy6tsk0IdbMDC4Q3tTC8riS3s=.ed25519"
+      },
+      "channel": "cccamp19",
+      "recps": null,
+      "text": "[@Daan](@MRiJ+CvDnD9ZjqunY1oy6tsk0IdbMDC4Q3tTC8riS3s=.ed25519) Sadly I already gave my voucher away, sorry. Maybe someone else here has a voucher for you (if there are still tickets left).",
+      "mentions": [
+        {
+          "link": "@MRiJ+CvDnD9ZjqunY1oy6tsk0IdbMDC4Q3tTC8riS3s=.ed25519",
+          "name": "Daan"
+        }
+      ]
+    },
+    "signature": "BpwxWcv0KA+rUTBu6AlYt2qJMVECgAfwIVDR0MZ0WEJJ4NU0mRYoZ02TBTiZUVZI4bp+C4egygMhwAMQyYltBg==.sig.ed25519"
+  },
+  "timestamp": 1560203842317.001
+}
+
+{
+  "key": "%AsIb/nMFtjX3r+znFF7PAFJAOq18viDrsG/u0ZZul2U=.sha256",
+  "value": {
+    "previous": "%+tBd9kS74YpKnWb4MGaMxmjNNYCD38wCFMnJlzMb7YM=.sha256",
+    "sequence": 131,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560255992464,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%FLKPHlK0B+P8U7zNnYtpbkgLN9OsmSGEuDIW5pSEQZI=.sha256",
+      "branch": "%wvBqZnRqgHXOhcp4CNT1OonAKvQJnKOZvyQIFDX3z2Q=.sha256",
+      "reply": {
+        "%FLKPHlK0B+P8U7zNnYtpbkgLN9OsmSGEuDIW5pSEQZI=.sha256": "@ye+QM09iPcDJD6YvQYjoQc7sLF/IFhmNbEqgdzQo3lQ=.ed25519",
+        "%wvBqZnRqgHXOhcp4CNT1OonAKvQJnKOZvyQIFDX3z2Q=.sha256": "@qv10rF4IsmxRZb7g5ekJ33EakYBpdrmV/vtP1ij5BS4=.ed25519"
+      },
+      "channel": "markup",
+      "recps": null,
+      "text": "I, for one, like the simplicity of Markdown. It isn't a perfect format, but it's easy to learn and memorize. You can teach it in about 15 minutes and people will be able to do pretty much anything they need. It's also a de-facto standard for plain text communication in the internet. Another benefit is that it's easily readable - rendered or not.\n\nThe idea of having a `content-type` field for messages is great, but we have to consider the consequences: Introducing it might cause compatibility issues as different patchwork-like clients might use different formats. Suddenly we might not be able to read posts in Patchwork that were created in Patchbay. \n\nTo prevent this, I suggest that we add a mandatory `plaintext` field: All messages *must* contain a human-readable version of the markup. Clients can use whatever format they want, but they have to include a plain text (or at least easily-readable version) of the message text. That way, all clients can fall back to the plaintext version of the message text if they can't render the markup format of the message.\n\nAs [@SoapDog (SurfaceGo)](@qv10rF4IsmxRZb7g5ekJ33EakYBpdrmV/vtP1ij5BS4=.ed25519) said: The analogue is Email. However, I *strongly* suggest we target a simpler thing than full-blown `mime/multipart` which is a pain to get right :-) We might just get away with a `{\"representations\": [{\"type\": \"text/plain\", \"content\": \"...\"}]}` array.",
+      "mentions": [
+        {
+          "link": "@qv10rF4IsmxRZb7g5ekJ33EakYBpdrmV/vtP1ij5BS4=.ed25519",
+          "name": "SoapDog (SurfaceGo)"
+        }
+      ]
+    },
+    "signature": "ytFYaSCh1Hm2aUSFQlyn73gUMWtO4Ze+H0971PaBeeaYPj3juEQZgfWLa0L/TDmDnTKEVON8U6iboe96zSV4Dw==.sig.ed25519"
+  },
+  "timestamp": 1560255992464.001
+}
+
+{
+  "key": "%UDxHwXqdph2xLVDkQV0KQpbzeBSLMr3icuLuA797XrA=.sha256",
+  "value": {
+    "previous": "%AsIb/nMFtjX3r+znFF7PAFJAOq18viDrsG/u0ZZul2U=.sha256",
+    "sequence": 132,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560256006312,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "channel": "markup",
+      "vote": {
+        "link": "%FLKPHlK0B+P8U7zNnYtpbkgLN9OsmSGEuDIW5pSEQZI=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "G0pwGukr/rqJliiVW+G6JKVFMTA7veuT45yKtbkkrpNYy2NutQP9PdSNa0ELWvzw7k9hKg+nl8sN9Y4ijOlRAg==.sig.ed25519"
+  },
+  "timestamp": 1560256006312.001
+}
+
+{
+  "key": "%I7KV8BZa3cjGWPKPf3TkvTBkBmZ7nHsXPnnhE3JlQuo=.sha256",
+  "value": {
+    "previous": "%UDxHwXqdph2xLVDkQV0KQpbzeBSLMr3icuLuA797XrA=.sha256",
+    "sequence": 133,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560257664207,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%FLKPHlK0B+P8U7zNnYtpbkgLN9OsmSGEuDIW5pSEQZI=.sha256",
+      "branch": "%Gw6tdKQvv3FXMJujchE07YP6ule6uBsQ9pKXdXqoW+0=.sha256",
+      "reply": {
+        "%FLKPHlK0B+P8U7zNnYtpbkgLN9OsmSGEuDIW5pSEQZI=.sha256": "@ye+QM09iPcDJD6YvQYjoQc7sLF/IFhmNbEqgdzQo3lQ=.ed25519",
+        "%Gw6tdKQvv3FXMJujchE07YP6ule6uBsQ9pKXdXqoW+0=.sha256": "@YXkE3TikkY4GFMX3lzXUllRkNTbj5E+604AkaO1xbz8=.ed25519"
+      },
+      "channel": "markup",
+      "recps": null,
+      "text": "[@keks](@YXkE3TikkY4GFMX3lzXUllRkNTbj5E+604AkaO1xbz8=.ed25519) This is also a big issue with multipart-mails: Some MUAs just add a \"If you see this, change to <other-mua>\" message as the plain text representation which I find horrible. \n\nWe also have to think about the ecosystem itself: If we choose a new markup format now, we should strive for a simple, future-proof format where it is easy to find libraries for various languages. If we go for something with a sole reference implementation in Javascript, it will slow down the development of other patchwork-like clients for other platforms (think Android and iOS) as we will have to write libraries to handle that markup for those platforms. ",
+      "mentions": [
+        {
+          "link": "@YXkE3TikkY4GFMX3lzXUllRkNTbj5E+604AkaO1xbz8=.ed25519",
+          "name": "keks"
+        }
+      ]
+    },
+    "signature": "ujvj4R9y4K2kZ0N+e+dOajaEvRpPX+mgFzuyYLRFrymt9l9dPToYh2syzYcRtFcnJrytvd2rH5df1ZWguvBcBg==.sig.ed25519"
+  },
+  "timestamp": 1560257664207.001
+}
+
+{
+  "key": "%yk69U53FWQxv1UNlTyVdc4nLS7Q8ufmurJEFOTq4fso=.sha256",
+  "value": {
+    "previous": "%I7KV8BZa3cjGWPKPf3TkvTBkBmZ7nHsXPnnhE3JlQuo=.sha256",
+    "sequence": 134,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560257705542,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@zVgfPY/wrpIetVMenUnokwcmrqlDderiZr7jCbOpR1k=.ed25519",
+      "following": true
+    },
+    "signature": "gzIasjDUKooppn7b3G/vXujAxR8gvZ9e8TF5CHHEPsKhBlWmNMNlLW2RWxHjWD+P7GwtECRoDYk/AZ4DgYb4DQ==.sig.ed25519"
+  },
+  "timestamp": 1560257705542.001
+}
+
+{
+  "key": "%6kDF2TZNAumUkxvR3Z1JRPCagIIijewmMr5JwthcPYk=.sha256",
+  "value": {
+    "previous": "%yk69U53FWQxv1UNlTyVdc4nLS7Q8ufmurJEFOTq4fso=.sha256",
+    "sequence": 135,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560257743809,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "channel": "markup",
+      "vote": {
+        "link": "%1qrZ/YwBmPkliAd00doTMEYhBQIv/s1RWaMhjBHDdaw=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "wy9LXjTq+25GYqK+VFn2Ur3HB9jtCubPaXQigjSlTGk84Nbt7OIFTzqkG5DNH+awg4WkNmD2yr0xZfGI86G+Aw==.sig.ed25519"
+  },
+  "timestamp": 1560257743809.001
+}
+
+{
+  "key": "%Sm5YI93tzRSHjjdRTqiu273DjhvaXNGOCGv4a6Zlong=.sha256",
+  "value": {
+    "previous": "%6kDF2TZNAumUkxvR3Z1JRPCagIIijewmMr5JwthcPYk=.sha256",
+    "sequence": 136,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560257748633,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@YXkE3TikkY4GFMX3lzXUllRkNTbj5E+604AkaO1xbz8=.ed25519",
+      "following": true
+    },
+    "signature": "ycoIh/Xk4SChxgHjhwF8o47SevWQZlrDYTPPJ3sASB4OhBARLoKymdNf7otUpFsypW/Tc1TuLJ0vbZHLYvKoBQ==.sig.ed25519"
+  },
+  "timestamp": 1560257748633.001
+}
+
+{
+  "key": "%yBDFu0r6EYrLkSgt47hSH7me04ZnWCSFRQaxiWK0B24=.sha256",
+  "value": {
+    "previous": "%Sm5YI93tzRSHjjdRTqiu273DjhvaXNGOCGv4a6Zlong=.sha256",
+    "sequence": 137,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560258027815,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@RJ09Kfs3neEZPrbpbWVDxkN92x9moe3aPusOMOc4S2I=.ed25519",
+      "following": true
+    },
+    "signature": "pi4M8+xxAVQNVfs3UuVcJw1NmWaArEEKmcHHNRT/TV9bwQ7TSNUlZDFi0OcQ9gxKKPXSP6o64FKP4HYrZ8PDCQ==.sig.ed25519"
+  },
+  "timestamp": 1560258027815.001
+}
+
+{
+  "key": "%o8VD0qIUx3GlHzqOe2SDNlWHO92qv/8I0TB0IK39oB0=.sha256",
+  "value": {
+    "previous": "%yBDFu0r6EYrLkSgt47hSH7me04ZnWCSFRQaxiWK0B24=.sha256",
+    "sequence": 138,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560263329682,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%1qrZ/YwBmPkliAd00doTMEYhBQIv/s1RWaMhjBHDdaw=.sha256",
+      "fork": "%FLKPHlK0B+P8U7zNnYtpbkgLN9OsmSGEuDIW5pSEQZI=.sha256",
+      "branch": "%gB6V/UAEgTM9x3w7Q+cEUxuuLdDByBL/NcP3YFrA8rA=.sha256",
+      "reply": {
+        "%1qrZ/YwBmPkliAd00doTMEYhBQIv/s1RWaMhjBHDdaw=.sha256": "@zVgfPY/wrpIetVMenUnokwcmrqlDderiZr7jCbOpR1k=.ed25519",
+        "%gB6V/UAEgTM9x3w7Q+cEUxuuLdDByBL/NcP3YFrA8rA=.sha256": "@qv10rF4IsmxRZb7g5ekJ33EakYBpdrmV/vtP1ij5BS4=.ed25519"
+      },
+      "channel": "markup",
+      "recps": null,
+      "text": "[@SoapDog (SurfaceGo)](@qv10rF4IsmxRZb7g5ekJ33EakYBpdrmV/vtP1ij5BS4=.ed25519) \n\n\n> PS: I do think that instead of markdown, a subset of HTML is a better solution for the long-term minimal representation.\n\nThe original markdown spec explicitly states that inline HTML is supported and should be used when the markdown syntax isn't good enough.",
+      "mentions": [
+        {
+          "link": "@qv10rF4IsmxRZb7g5ekJ33EakYBpdrmV/vtP1ij5BS4=.ed25519",
+          "name": "SoapDog (SurfaceGo)"
+        }
+      ]
+    },
+    "signature": "AX0mPQQ/QAfkLOEbsTOasxjPE6L1c5z/2BeejguE1J5Qju39a3K86qn2ZMGbVhHYbDKcUD9hdiqG1cRZS181Dw==.sig.ed25519"
+  },
+  "timestamp": 1560263329683
+}
+
+{
+  "key": "%Q8pAcuuapfJqCi4iHzZCJDv0yYV7i0UZXZI2ZmnLNgU=.sha256",
+  "value": {
+    "previous": "%o8VD0qIUx3GlHzqOe2SDNlWHO92qv/8I0TB0IK39oB0=.sha256",
+    "sequence": 139,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560266067710,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%1qrZ/YwBmPkliAd00doTMEYhBQIv/s1RWaMhjBHDdaw=.sha256",
+      "fork": "%FLKPHlK0B+P8U7zNnYtpbkgLN9OsmSGEuDIW5pSEQZI=.sha256",
+      "branch": "%a9PNfIrckDD9S1wvM7NmXAWtrjKiSMbbSn+4VcTkA6I=.sha256",
+      "reply": {
+        "%1qrZ/YwBmPkliAd00doTMEYhBQIv/s1RWaMhjBHDdaw=.sha256": "@zVgfPY/wrpIetVMenUnokwcmrqlDderiZr7jCbOpR1k=.ed25519",
+        "%a9PNfIrckDD9S1wvM7NmXAWtrjKiSMbbSn+4VcTkA6I=.sha256": "@qv10rF4IsmxRZb7g5ekJ33EakYBpdrmV/vtP1ij5BS4=.ed25519"
+      },
+      "channel": "markup",
+      "recps": null,
+      "text": "[@Christian Bundy](@+oaWWDs8g73EZFUMfW37R/ULtFEjwKN/DczvdYihjbU=.ed25519) Is the ambiguousness really an issue here? Based on the comments in this (and it's parent) thread I get the feeling that the rendering issues mentioned are much less worse than having a zoo of markup formats where one client can't render the others.\n\nAs for plain markdown not supporting video: I mentioned earlier that the original spec from daringfireball [explicitly mentions the use of inline HTML for unsupported elements](https://daringfireball.net/projects/markdown/syntax#html). I guess it's only a matter of specifying which html tags (`<video>`, `<image>`, maybe semantic tags like `<author>`) we want to support.\n\n[@SoapDog (SurfaceGo)](@qv10rF4IsmxRZb7g5ekJ33EakYBpdrmV/vtP1ij5BS4=.ed25519) \n\nWith (at least some) inline html tags allowed, what constrains of markdown are you specifically referring to?",
+      "mentions": [
+        {
+          "link": "@+oaWWDs8g73EZFUMfW37R/ULtFEjwKN/DczvdYihjbU=.ed25519",
+          "name": "Christian Bundy"
+        },
+        {
+          "link": "@qv10rF4IsmxRZb7g5ekJ33EakYBpdrmV/vtP1ij5BS4=.ed25519",
+          "name": "SoapDog (SurfaceGo)"
+        }
+      ]
+    },
+    "signature": "sL+uRVQcA+6elOS1at4YXtWnAX3maIM8LgUooILwta4USppf/FEEgnnBsnny0MSTUCuI5gNfHznGSNttcRWLDQ==.sig.ed25519"
+  },
+  "timestamp": 1560266067710.001
+}
+
+{
+  "key": "%s3U0ArS4Jz3Zujmx6HsopxYEjDgerEG5atSrUar8XPU=.sha256",
+  "value": {
+    "previous": "%Q8pAcuuapfJqCi4iHzZCJDv0yYV7i0UZXZI2ZmnLNgU=.sha256",
+    "sequence": 140,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560266161024,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "channel": "cccamp19",
+      "vote": {
+        "link": "%CvCq01wII7ia/+S/hYvICS3kC0iRbrWN3se3Z9fOyzE=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "rZiiU/KjBu22thfGY607nVeYDy8xfS4UIh74Q1lg0pceVvTAZIc25guCc6OCWpzH7pUYJlRcGFJ8mL+4hr0iBw==.sig.ed25519"
+  },
+  "timestamp": 1560266161024.001
+}
+
+{
+  "key": "%gK7NnuRC8E3nPz+54LQnMv6uBZUze7V+DUHXhE2coGk=.sha256",
+  "value": {
+    "previous": "%s3U0ArS4Jz3Zujmx6HsopxYEjDgerEG5atSrUar8XPU=.sha256",
+    "sequence": 141,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560267421485,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%1qrZ/YwBmPkliAd00doTMEYhBQIv/s1RWaMhjBHDdaw=.sha256",
+      "fork": "%FLKPHlK0B+P8U7zNnYtpbkgLN9OsmSGEuDIW5pSEQZI=.sha256",
+      "branch": "%QIIj8hrUXSw2XbdGHbEB9qhtI+h0PDkppbAJTW4tKUM=.sha256",
+      "reply": {
+        "%1qrZ/YwBmPkliAd00doTMEYhBQIv/s1RWaMhjBHDdaw=.sha256": "@zVgfPY/wrpIetVMenUnokwcmrqlDderiZr7jCbOpR1k=.ed25519",
+        "%QIIj8hrUXSw2XbdGHbEB9qhtI+h0PDkppbAJTW4tKUM=.sha256": "@YXkE3TikkY4GFMX3lzXUllRkNTbj5E+604AkaO1xbz8=.ed25519"
+      },
+      "channel": "markup",
+      "recps": null,
+      "text": "[@SoapDog (SurfaceGo)](@qv10rF4IsmxRZb7g5ekJ33EakYBpdrmV/vtP1ij5BS4=.ed25519) Ah! That clears it up a bit.\n\n> I can’t really try any form of prettier(?) type setting, can’t choose colors or fonts or any typographic properties.\n\nThis is something I wouldn't want you to decide for me in a message-like post. Emphasizing things, adding some headlines, and clickable are good and useful, but I don't want that the author to decide the font, the color, or maybe the number of columns a post uses. Just think about the mess the latter would create on smaller screens or for vision-impaired users. For reference: http://motherfuckingwebsite.com\n\nTo me, layout isn't something the markup is responsible for. \n\n> I can’t post with a richer UI in both UX and semantic terms. If I’m doing a technical post, I can’t really tag parts of the code to their documentation or make it something you can execute or interact. We can’t ship interactive posts at all.\n\nAgain, I don't think this belongs to a normal post. Interactive things like this immediately force all clients to include a complete html, css, and javascript stack. So for me, this instantly screams \"new message type\".\n\n> Maybe what I am talking about is more pertinent to messages of type blog than post…\n\nI get that feeling too.",
+      "mentions": [
+        {
+          "link": "@qv10rF4IsmxRZb7g5ekJ33EakYBpdrmV/vtP1ij5BS4=.ed25519",
+          "name": "SoapDog (SurfaceGo)"
+        }
+      ]
+    },
+    "signature": "en1skGkgThcuCTafYQffjy9+TZI54l4hV8Nq0PITp5mt/9GZIqdkAtpHBjfXbAy+W4WmuQ1TXy9XT6x95lq8Bg==.sig.ed25519"
+  },
+  "timestamp": 1560267421485.001
+}
+
+{
+  "key": "%gynhQd8r9p0Kh/p/+IOadxWmVvMAvAwlKoj95RYq8ho=.sha256",
+  "value": {
+    "previous": "%gK7NnuRC8E3nPz+54LQnMv6uBZUze7V+DUHXhE2coGk=.sha256",
+    "sequence": 142,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560267457176,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "channel": "markup",
+      "vote": {
+        "link": "%e00cCxs8eQ/3Lg8hg2Jxd55F4+P2zR9UYmZBJMksxhw=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "GCSt5f0gcE2iRWESTCE1MsSV09sXYmmyI4W+klwLxEjSkIzz2GCTJ0NmgMZiqs0L+hekmF70LH0bsmEFojJIBw==.sig.ed25519"
+  },
+  "timestamp": 1560267457176.001
+}
+
+{
+  "key": "%13Hz/sVHOa5pDkOGVTmIimtxQxrazwAXKJsdyixe1Lk=.sha256",
+  "value": {
+    "previous": "%gynhQd8r9p0Kh/p/+IOadxWmVvMAvAwlKoj95RYq8ho=.sha256",
+    "sequence": 143,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560267516466,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%1qrZ/YwBmPkliAd00doTMEYhBQIv/s1RWaMhjBHDdaw=.sha256",
+      "fork": "%FLKPHlK0B+P8U7zNnYtpbkgLN9OsmSGEuDIW5pSEQZI=.sha256",
+      "branch": "%e00cCxs8eQ/3Lg8hg2Jxd55F4+P2zR9UYmZBJMksxhw=.sha256",
+      "reply": {
+        "%1qrZ/YwBmPkliAd00doTMEYhBQIv/s1RWaMhjBHDdaw=.sha256": "@zVgfPY/wrpIetVMenUnokwcmrqlDderiZr7jCbOpR1k=.ed25519",
+        "%e00cCxs8eQ/3Lg8hg2Jxd55F4+P2zR9UYmZBJMksxhw=.sha256": "@qv10rF4IsmxRZb7g5ekJ33EakYBpdrmV/vtP1ij5BS4=.ed25519"
+      },
+      "channel": "markup",
+      "recps": null,
+      "text": "[@SoapDog (SurfaceGo)](@qv10rF4IsmxRZb7g5ekJ33EakYBpdrmV/vtP1ij5BS4=.ed25519) [@keks](@YXkE3TikkY4GFMX3lzXUllRkNTbj5E+604AkaO1xbz8=.ed25519) <3 to both of you for keeping this civilized. I realize I do have some strong feelings about this too. Sorry if any of my message sounded too harsh :-)",
+      "mentions": [
+        {
+          "link": "@qv10rF4IsmxRZb7g5ekJ33EakYBpdrmV/vtP1ij5BS4=.ed25519",
+          "name": "SoapDog (SurfaceGo)"
+        },
+        {
+          "link": "@YXkE3TikkY4GFMX3lzXUllRkNTbj5E+604AkaO1xbz8=.ed25519",
+          "name": "keks"
+        }
+      ]
+    },
+    "signature": "kTcJBhrU9ovRUOSr9rMFCMwU21COJPbqTosYANLHo3oQsa7SiC/7mopx1vw6NgFMnsn3Sfr9kLL4fR7uzk+yBQ==.sig.ed25519"
+  },
+  "timestamp": 1560267516466.001
+}
+
+{
+  "key": "%bTxRyPkPikrY1OgXK6wY+sxaDkVkPKembyrQ41V2azQ=.sha256",
+  "value": {
+    "previous": "%13Hz/sVHOa5pDkOGVTmIimtxQxrazwAXKJsdyixe1Lk=.sha256",
+    "sequence": 144,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560267546381,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "channel": "cooking-channel",
+      "vote": {
+        "link": "%st1UtvYowTn4HiOZmxe8jxjlatfsg2xs1wwqdfLEKLY=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "gS4rZGOsw3MVq8jjzqG+Z2HD8LkrO+CEcigUH1KEOZSa1MvuUK+S9c8CmdWtECYH0xVbWLj9nDDYLI4KdJL+Dg==.sig.ed25519"
+  },
+  "timestamp": 1560267546381.001
+}
+
+{
+  "key": "%9VtxttWO7bbJXIxAICdZgngF5+s73/ZRc2j537SbiLI=.sha256",
+  "value": {
+    "previous": "%bTxRyPkPikrY1OgXK6wY+sxaDkVkPKembyrQ41V2azQ=.sha256",
+    "sequence": 145,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560267559363,
+    "hash": "sha256",
+    "content": {
+      "type": "tag",
+      "version": 1,
+      "tagged": true,
+      "message": "%st1UtvYowTn4HiOZmxe8jxjlatfsg2xs1wwqdfLEKLY=.sha256",
+      "root": "%poRTwGsv3xYFZXnnT9hmkJZcLt/Ksjy4wgKWp8igxLI=.sha256",
+      "branch": [
+        "%v1nBV0mWniJ8xVcoZVNTbn5v0IojtHLiEMh7bG8dLrw=.sha256"
+      ]
+    },
+    "signature": "8dKSC/MVPUgUa2fCkGcxMbOSwGwLT4YfGJHC76ZyHnBqCSHOprJLG4K9J9QTABEd51o0euQ7fozaoUBIQG4iBQ==.sig.ed25519"
+  },
+  "timestamp": 1560267559364
+}
+
+{
+  "key": "%7L8uvdDhXqUIbrHIaP0TlCaX0hQ4L3jcFwWY1cXJ2+Q=.sha256",
+  "value": {
+    "previous": "%9VtxttWO7bbJXIxAICdZgngF5+s73/ZRc2j537SbiLI=.sha256",
+    "sequence": 146,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560267726995,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%4jNelX6hcB8gVJ0b41ptxxK9sQhpPowSsrQjokDATc8=.sha256",
+      "branch": [
+        "%oQWG8iQyER3X8QUUbMb/Pg+z2Ik/W6v16JwjGqSEfkQ=.sha256",
+        "%rMntTaIIrJf9U2jzB8VwY38gzOKDwm1H5A9SD/WMCDU=.sha256"
+      ],
+      "reply": {
+        "%4jNelX6hcB8gVJ0b41ptxxK9sQhpPowSsrQjokDATc8=.sha256": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+        "%rMntTaIIrJf9U2jzB8VwY38gzOKDwm1H5A9SD/WMCDU=.sha256": "@IO8uWgeOFXaUO6nojk2wQ2KMGfm8flwzJ6+Z/G5sqFE=.ed25519"
+      },
+      "channel": "cooking-channel",
+      "recps": null,
+      "text": "[@radio nerd](@IO8uWgeOFXaUO6nojk2wQ2KMGfm8flwzJ6+Z/G5sqFE=.ed25519) If you have a \"normal sized\" oven, go to the local hardware store and buy a 2cm 40x40cm granite plate. You will have to dry it by gently heating it up in the oven over a period of a few hours, but afterwards, it's just as good (and much much cheaper) than a real pizza stone. \n",
+      "mentions": [
+        {
+          "link": "@IO8uWgeOFXaUO6nojk2wQ2KMGfm8flwzJ6+Z/G5sqFE=.ed25519",
+          "name": "radio nerd"
+        }
+      ]
+    },
+    "signature": "Wo7Ivdcvhttzlkf28CIybdHZVxp6aAUp5O4WkNW3dYCbN1O0/jYnNPt1lrXD9zqHDhefdffZhZvarrEOF7e1Cg==.sig.ed25519"
+  },
+  "timestamp": 1560267726995.001
+}
+
+{
+  "key": "%O+CNk1N9Cpf6wfy7Q87V3pVN7+iZH9Q0QrhafUK3TaQ=.sha256",
+  "value": {
+    "previous": "%7L8uvdDhXqUIbrHIaP0TlCaX0hQ4L3jcFwWY1cXJ2+Q=.sha256",
+    "sequence": 147,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560267802904,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@+D0ku/LReK6kqd3PSrcVCfbLYbDtTmS4Bd21rqhpYNA=.ed25519",
+      "following": true
+    },
+    "signature": "yS/ITxE3lvhkTp185Sd/KPby6JZZw8kk/kJ/7HngBoQ3Vf6bXc/lr5p7De3tLe+xYZBzvmeL2M1X68QZRE/IBA==.sig.ed25519"
+  },
+  "timestamp": 1560267802904.001
+}
+
+{
+  "key": "%fLti5FwOA31bTTNPeF5eax8c4/U9s3kg5vWW+BlFURc=.sha256",
+  "value": {
+    "previous": "%O+CNk1N9Cpf6wfy7Q87V3pVN7+iZH9Q0QrhafUK3TaQ=.sha256",
+    "sequence": 148,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560267828254,
+    "hash": "sha256",
+    "content": {
+      "type": "tag",
+      "version": 1,
+      "tagged": true,
+      "message": "%ugkK0dxnrNUxuc/+J8TAw6h5lBZKYo+Z16rY2vi9+Qc=.sha256",
+      "root": "%poRTwGsv3xYFZXnnT9hmkJZcLt/Ksjy4wgKWp8igxLI=.sha256",
+      "branch": [
+        "%9VtxttWO7bbJXIxAICdZgngF5+s73/ZRc2j537SbiLI=.sha256"
+      ]
+    },
+    "signature": "/+unzekfUttZe8YCh6122UahcfJN4zjbx8UyuGBugx+599IX6aIVtXVL/dn8uk1qRjyOfjUaVLFPh7G/1WzQAQ==.sig.ed25519"
+  },
+  "timestamp": 1560267828254.001
+}
+
+{
+  "key": "%n6QxkzInTsMDKYTfMLeb/dXxX0KvCSUuF19CEzHp0lM=.sha256",
+  "value": {
+    "previous": "%fLti5FwOA31bTTNPeF5eax8c4/U9s3kg5vWW+BlFURc=.sha256",
+    "sequence": 149,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560269927361,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%FLKPHlK0B+P8U7zNnYtpbkgLN9OsmSGEuDIW5pSEQZI=.sha256",
+      "branch": "%/kPhFiOfPV0zRqDCfzep6ewSSjHSXtn96qPYgvt3oZk=.sha256",
+      "reply": {
+        "%FLKPHlK0B+P8U7zNnYtpbkgLN9OsmSGEuDIW5pSEQZI=.sha256": "@ye+QM09iPcDJD6YvQYjoQc7sLF/IFhmNbEqgdzQo3lQ=.ed25519",
+        "%/kPhFiOfPV0zRqDCfzep6ewSSjHSXtn96qPYgvt3oZk=.sha256": "@ye+QM09iPcDJD6YvQYjoQc7sLF/IFhmNbEqgdzQo3lQ=.ed25519"
+      },
+      "channel": "markup",
+      "recps": null,
+      "text": "[@mixmix](@ye+QM09iPcDJD6YvQYjoQc7sLF/IFhmNbEqgdzQo3lQ=.ed25519) \n\n- An external format like atjson makes writing clients much, much harder as you need to implement a full-blown wysiwyg editor to even add something mundane as a link. Same for display: The plain text string above is useless, as the information for the link to google is lost. With markdown, the plain text representation is more or less readable, even if you have no idea how markdown works.\n\n- Right now, copy&pasting the same message into multiple clients will always result in the same message. With external markup like atjson, you would have to serialize that data to the operating system clipboard and serialize it back, which is hard to get right.\n\nIf what you're going after is a wysiwyg editor, why not use one that renders to markdown?",
+      "mentions": [
+        {
+          "link": "@ye+QM09iPcDJD6YvQYjoQc7sLF/IFhmNbEqgdzQo3lQ=.ed25519",
+          "name": "mixmix"
+        }
+      ]
+    },
+    "signature": "BqiIlCjpbJN3wND74Dadzwaj5iBZc9ZA+Mx2W4ehfCjC0EjfyC4kAAkadxUTZlfCfFAPtu7EdSXh4CoOINduDw==.sig.ed25519"
+  },
+  "timestamp": 1560269927362
+}
+
+{
+  "key": "%0wBKpSDQHJPZV45+Fuu0VmnwDowtrk5+mnlZOTKoyp8=.sha256",
+  "value": {
+    "previous": "%n6QxkzInTsMDKYTfMLeb/dXxX0KvCSUuF19CEzHp0lM=.sha256",
+    "sequence": 150,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560270495434,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%FLKPHlK0B+P8U7zNnYtpbkgLN9OsmSGEuDIW5pSEQZI=.sha256",
+      "branch": "%VXRDuaE/eAATrRc2vmo040Ju+U0bH2dacDflmpq5fGE=.sha256",
+      "reply": {
+        "%FLKPHlK0B+P8U7zNnYtpbkgLN9OsmSGEuDIW5pSEQZI=.sha256": "@ye+QM09iPcDJD6YvQYjoQc7sLF/IFhmNbEqgdzQo3lQ=.ed25519",
+        "%VXRDuaE/eAATrRc2vmo040Ju+U0bH2dacDflmpq5fGE=.sha256": "@ye+QM09iPcDJD6YvQYjoQc7sLF/IFhmNbEqgdzQo3lQ=.ed25519"
+      },
+      "channel": "markup",
+      "recps": null,
+      "text": "> Also remember this is a pluralistic space - you’re not obliged to follow or adopt anything I end up making.\n\nRight! That's a good point :-) Sorry for taking over the thread.\n\nI wonder if this is a good approach at what [@SoapDog (SurfaceGo)](@qv10rF4IsmxRZb7g5ekJ33EakYBpdrmV/vtP1ij5BS4=.ed25519) thought about something similar to publishing of interactive posts in %JscJq4mVwh5u8fAZ7qd220uQOCS6L+IfMD1tj97LPk0=.sha256",
+      "mentions": [
+        {
+          "link": "@qv10rF4IsmxRZb7g5ekJ33EakYBpdrmV/vtP1ij5BS4=.ed25519",
+          "name": "SoapDog (SurfaceGo)"
+        },
+        {
+          "link": "%JscJq4mVwh5u8fAZ7qd220uQOCS6L+IfMD1tj97LPk0=.sha256"
+        }
+      ]
+    },
+    "signature": "j/qkve3RfljP8GEb7d3XN9RQ0EcMwUhFt5YTuPzrruRey80rXLGv7K3MyidxBcz69jlHR8P2t4HNyLHQJTC9DA==.sig.ed25519"
+  },
+  "timestamp": 1560270495435
+}
+
+{
+  "key": "%X7dwIM+MV+cM0Yl4yWNev9zqazl+xoAQF0LuKLS3vx0=.sha256",
+  "value": {
+    "previous": "%0wBKpSDQHJPZV45+Fuu0VmnwDowtrk5+mnlZOTKoyp8=.sha256",
+    "sequence": 151,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560289327295,
+    "hash": "sha256",
+    "content": {
+      "type": "about",
+      "about": "%hQz0goTAVTe3YQOhHJsSMqtDZvSpQsKVnYKxw+WFmJM=.sha256",
+      "attendee": {
+        "link": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519"
+      }
+    },
+    "signature": "3dwcwIyFMBDqJ7dYlDHtqrHNyWvGUVkvOFdYJR5XVHNZa+JVA+k0xymFfQEDWb1YhlLaPB9hg27yAUXR43U2Ag==.sig.ed25519"
+  },
+  "timestamp": 1560289327295.001
+}
+
+{
+  "key": "%vRV5dacNMnrYvnJMsaP5lkiz0rBv5xQ4mcsaCFq8T+0=.sha256",
+  "value": {
+    "previous": "%X7dwIM+MV+cM0Yl4yWNev9zqazl+xoAQF0LuKLS3vx0=.sha256",
+    "sequence": 152,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560289331118,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "vote": {
+        "link": "%hQz0goTAVTe3YQOhHJsSMqtDZvSpQsKVnYKxw+WFmJM=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "tuGcQ+Jz+ZXJF3g01cYoi5oW1pzb+XIiZLRLyQkhRTAo8zvf1jxbFBlwIqSSsOYVzK8SP0mIfX/Yd5qb79mbBw==.sig.ed25519"
+  },
+  "timestamp": 1560289331118.001
+}
+
+{
+  "key": "%r0Mm1Np9yBLZtbnFtbHFYoa2Cd6AO6pz28y15dQTaHw=.sha256",
+  "value": {
+    "previous": "%vRV5dacNMnrYvnJMsaP5lkiz0rBv5xQ4mcsaCFq8T+0=.sha256",
+    "sequence": 153,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560289386527,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@o3eDT3n9urv1cyIWDuF+wQHBFj3I8OcE3L4Tla9RR8A=.ed25519",
+      "following": true
+    },
+    "signature": "b0tDgz4UFo3KG+72mQxOsI+6h0K7IKc1gV0VQvKKEdkoYhg1/TF1tQZwGdXAjUPcPaY9+jtCHch1rcZUaahdCQ==.sig.ed25519"
+  },
+  "timestamp": 1560289386527.001
+}
+
+{
+  "key": "%3Ogqq7RqdTsOx4PckL4dODBFg1xIgcH8ewNhA10P7kE=.sha256",
+  "value": {
+    "previous": "%r0Mm1Np9yBLZtbnFtbHFYoa2Cd6AO6pz28y15dQTaHw=.sha256",
+    "sequence": 154,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560289469751,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@dArlBpL16fq8eJp49rT/i9+efp5g4qT/XTiFehWYmYY=.ed25519",
+      "following": true
+    },
+    "signature": "O5rD7N/UHDWzjfFoZphsjRHYGTYWop6SF5hwCSrZ76tUBk0yBXVHicHyudMR5eSP1uq+YtobbV7jPt2zpJyZBA==.sig.ed25519"
+  },
+  "timestamp": 1560289469751.001
+}
+
+{
+  "key": "%AuN9JGt73qE3axSSXwvAc58kEPhVojMUt7+rhBuxsgU=.sha256",
+  "value": {
+    "previous": "%3Ogqq7RqdTsOx4PckL4dODBFg1xIgcH8ewNhA10P7kE=.sha256",
+    "sequence": 155,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560292520513,
+    "hash": "sha256",
+    "content": "y4YFlo+ItyqywWXMZ6XfxomqVoajRChESEWq8Lb1SyTAWRedZsUnHHKMCwsrCZ/tKhzJDdtfPCpe0DW1IxSZ/lsGoJLa52GJEYe/v0HIBDHvDtwC336A5GP9uAT+H8g6gd27vcE3/WZtXz7U1poa1u2H3LNBTEz24/QTz1gxXQsFj1NgBviX6zS9FKFQHmr96Q0QzRepJpfXUyi4G9a2W2XFYxPypnxP01UzW230DuuT4MDsFSriXVKI3l0Hr47gbGKMeNfFwhZ4mLXfN2zQjrBDCWVSVMnDVqniFw90Ce072CZb1nm53p2O0BK6dDHAIC5q33RyDwS2PRFSj7bB7r6mv/Q19lfRjLeSY2PC4Pp3T0Od6+dvB2q5oj834Asa5Adkdh7v3mXGbkNzvCG+1sgnnz6Yp3+fsof78Dexa/vrs/o9UKa59HFJ6qCKEJYr7hjFFdxnOUx1IWxpgfqbEmsiNUt8I+fA1yBNtaVWE2/AMmt7oowEJMZ0ThWP7Mb5VwhIQAI66wNTXe3o9v7EOyJ1aouhTysblgcdm8qHBCDt/a907loj/KOvt5QJZgsiahwdHfPM7sjVP5tRDbXUQ+31/HwIgVqGScbIB8e4IjPKRbx+2/cNj/8SpNxksmhNBJ73G+g+8SV9ZkkPovijPRURg0HdHmBtFW8tACYLd5Y/PzPR3d33gkf+Qsx8b7eDcWknsndPZxTrHN21WnHejzlzbCdqCSe6+u9cltcEFzehhCW3N00JPYb2qZH5o03GC0QREYQNZbZdBn1FQrLuGYPlXDNskirMQ5hY3zwRTvO3yuxs/tkWgXO8kDDzOJhP6kLlqx7lTO21wyDRhySyP/Ik/vph4GQ9wx36+ILnWxckyTZAph+wEEk79pKPmn/6j8U=.box",
+    "signature": "b4ovFEQFcXDiAcS5TL3oJJXWMq5OVBUGztb+4arW1lJAorsWOSvmC/CDgEjcalHFe8+IFBCRSbsaIVSy94QUCg==.sig.ed25519"
+  },
+  "timestamp": 1560292520513.001
+}
+
+{
+  "key": "%3ZSfdFRa4zdR2lDsXfL+EoEmcWGod9qUnDBofRYo8wY=.sha256",
+  "value": {
+    "previous": "%AuN9JGt73qE3axSSXwvAc58kEPhVojMUt7+rhBuxsgU=.sha256",
+    "sequence": 156,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560293404195,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "vote": {
+        "link": "%aKjoLSEWMhD/XEluNk0dztMsPiQzF8aqtjSEoSJ7FdA=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "4fqSX8TDpRjglNXlAB6Vr6SBQz8hVzlk4HlAA3iwBq1UfXbum7rUG7W1kc2m772run/0vEY5qO1pgL6Hox08Cg==.sig.ed25519"
+  },
+  "timestamp": 1560293404196
+}
+
+{
+  "key": "%GYM6DR4+XMqx3uqqqLQLiKAL77YlmTLBXit2kXyIx8E=.sha256",
+  "value": {
+    "previous": "%3ZSfdFRa4zdR2lDsXfL+EoEmcWGod9qUnDBofRYo8wY=.sha256",
+    "sequence": 157,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560293485352,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "vote": {
+        "link": "%aKjoLSEWMhD/XEluNk0dztMsPiQzF8aqtjSEoSJ7FdA=.sha256",
+        "value": 0,
+        "expression": "Unlike"
+      }
+    },
+    "signature": "iThE1WejWRI+Ztf2DjAxaxZB0ZSGwMQDrAQJDo9gLqc18wDN2j3nQUhiynsfkLCOqawhK8KXNRxkAqFQWlMdAQ==.sig.ed25519"
+  },
+  "timestamp": 1560293485352.001
+}
+
+{
+  "key": "%fuFbOzzrpwEk5zwDRZHLWgFMpj9aeXhXL2CG7VttOgo=.sha256",
+  "value": {
+    "previous": "%GYM6DR4+XMqx3uqqqLQLiKAL77YlmTLBXit2kXyIx8E=.sha256",
+    "sequence": 158,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560293548052,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "vote": {
+        "link": "%aKjoLSEWMhD/XEluNk0dztMsPiQzF8aqtjSEoSJ7FdA=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "4sx0O3hvWMhciP5k0jnmyyRdDb5sgEH0nC6MlDpPvDXTeF/ZVBF8pKjh4UHmmdEzFv1fVnFCFiLhGOoOp19TDw==.sig.ed25519"
+  },
+  "timestamp": 1560293548052.001
+}
+
+{
+  "key": "%v5CFvK5e3nm9FVQhyqAr5KgpBEkUlVhqKh6FwdI3V/s=.sha256",
+  "value": {
+    "previous": "%fuFbOzzrpwEk5zwDRZHLWgFMpj9aeXhXL2CG7VttOgo=.sha256",
+    "sequence": 159,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560293558982,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "vote": {
+        "link": "%aKjoLSEWMhD/XEluNk0dztMsPiQzF8aqtjSEoSJ7FdA=.sha256",
+        "value": 0,
+        "expression": "Unlike"
+      }
+    },
+    "signature": "Ex8jcymXLNgIHxyc2jMD/2tZ0CIIdI+4O0Yz206Ig4LSoay11tZZoWcKjYfgt+X5dIylXYiINHxULofAklWQAg==.sig.ed25519"
+  },
+  "timestamp": 1560293558982.001
+}
+
+{
+  "key": "%jVRdi7U6MapHJh/r+aOvrx4YXv9gvtOMFTpCKObPLAQ=.sha256",
+  "value": {
+    "previous": "%v5CFvK5e3nm9FVQhyqAr5KgpBEkUlVhqKh6FwdI3V/s=.sha256",
+    "sequence": 160,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560293559910,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "vote": {
+        "link": "%aKjoLSEWMhD/XEluNk0dztMsPiQzF8aqtjSEoSJ7FdA=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "OSycuuzBzyBm5+6ffw578kcE/5YcjLlQkB3SMSqGV80kkiYFKkMqHEWikDc7uZopY4arrlwS8mi12U6GptHPBQ==.sig.ed25519"
+  },
+  "timestamp": 1560293559910.001
+}
+
+{
+  "key": "%BdhNruRhONMGSTn9HbNuO6DPUW5PFgSayk0bXHXMl+s=.sha256",
+  "value": {
+    "previous": "%jVRdi7U6MapHJh/r+aOvrx4YXv9gvtOMFTpCKObPLAQ=.sha256",
+    "sequence": 161,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560334181918,
+    "hash": "sha256",
+    "content": {
+      "type": "pub",
+      "address": {
+        "host": "chaos.family",
+        "port": 8008,
+        "key": "@1Wc5iBViAUN3/NDBTZKz9IFcDHjThYKTQ2GH9gqRa6Y=.ed25519"
+      }
+    },
+    "signature": "FZkvFt2gXQf6YwrAPdgOgR4XMkt3A5JYWCOvatrz5nxbHre4Di3PrO/VslaYkn4zR5pV1dDaMpT+7o4zgNwPDw==.sig.ed25519"
+  },
+  "timestamp": 1560334181918.001
+}
+
+{
+  "key": "%x9nPd9Fmw4QyrNHF1+vMX7fLI9x5ptfIdIumuMW2YMk=.sha256",
+  "value": {
+    "previous": "%BdhNruRhONMGSTn9HbNuO6DPUW5PFgSayk0bXHXMl+s=.sha256",
+    "sequence": 162,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560334181919,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@1Wc5iBViAUN3/NDBTZKz9IFcDHjThYKTQ2GH9gqRa6Y=.ed25519",
+      "following": true,
+      "autofollow": true
+    },
+    "signature": "6PaKZp1g382I4qGvHH4sYNULt4ZzqGzOt578gP1cD6QllxybzvcA0ToXu2vKcpGwh3TGSRAtNYKF8uphc6zfCw==.sig.ed25519"
+  },
+  "timestamp": 1560334181919.001
+}
+
+{
+  "key": "%LD8qIKCRs7TMUkTvOIMGbjJXycLAB53Xjw52Yszd38U=.sha256",
+  "value": {
+    "previous": "%x9nPd9Fmw4QyrNHF1+vMX7fLI9x5ptfIdIumuMW2YMk=.sha256",
+    "sequence": 163,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560334348126,
+    "hash": "sha256",
+    "content": "uv/mE72LtfAabRwfvvLDVo/SblpzxYazWlAuP1CW7BEhf5X4wozMWwPkM5gDKPa1z9sVJDQa9zzmQ8Cqx8iVgqrUd3r8oODgVD67VlKkHfTrKk1JuG3CByriCWj0WRXHZPXVmXsgVAugA3Fh2Fp8sKwFp/OAzI9U5s0R0i0x6lQ4jqJ0pDawCZ0Y+Xve1AF3ZBJ8M0D1nDAjXFcwBEBE+MzJmzGVjtrJP5DIaiRzGPtIay1daPRDXzwePKqJkPPpnuDS3xwcXdr0Qrelr9EkheA0Mefhxmwx687irBSBUCjKWpsA89nU7cJaVKV/HnlHAtZACI01xExzEHNr9Py7xv5z+v4cYl2yY6DiPg/9yOjioztX5FXvPBC6L42Be3Jgqze5PBI3o51g7O9sB1oqV3AIWdCfsMN2H3XSSPJ4zCwgXc5qhifk7JkJlh/m+F/plMA/RyW0WRwdc9e3QQVrVBLu+hz8q58a4hv7ESblw3daQzegpHBjnyDlWRhyJ5cNfrxbTC834mcpoa0rwA02VzJ1YVGkMPWlYrQxKzBrDsQzUY3WmHPzpPZAP11rvYC5mqVLfgzN99ouSDxKrhRnwm8ANYf8IRzhiqA6PRLlRT2K2TZQjJrOxQOLkfl4tRUQf0tMgBbdrPz5NFOM0HMzhshhpAhTHhkCS5bU7EWylfBNC6isJvDBSeXmTCe7rDsNHn54Fov4zs032qPzsxVyRU+XHcg6B/MucuI6irPx85JIB94P9kgnfRHhaZMIgzUVkW3lJTxqlgAtqjtuZkAIYHH8+rqjxGtKKYoPzgvzEvqt7/Xs3z+OxkFgv8BouhAb3fyexwcx8B06TFHpOGLRS1Rzg/TPoTVGxiYPoJShJXhMzV5bSCFPpxktWWj/te7P/S/cSrNrrYSuyZA9+cgq9VCrKOa3DFn3d+7bcLUqdYBYk9lLxw/m.box",
+    "signature": "qar7jMmLqNu4sTYrOLpF5lv44HwuSqQ0aYSJLeTW7kRVjvHvbLP7yAbFPKD2p1yNvR1TXTBZXez0SgcMibNqDA==.sig.ed25519"
+  },
+  "timestamp": 1560334348126.001
+}
+
+{
+  "key": "%+WxLf2KXwNtpN0IFSw7frFPWcUcTXDYcUBZqyynu1Sk=.sha256",
+  "value": {
+    "previous": "%LD8qIKCRs7TMUkTvOIMGbjJXycLAB53Xjw52Yszd38U=.sha256",
+    "sequence": 164,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560353828470,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%INTnMKH4a0HCqqyjXXmYHn+2gxarmjfd2/+6CIu1uCk=.sha256",
+      "branch": "%QnXYYRye/nU/yriFBtVTjQpfHTcnxBvv6GpQJf8QqxM=.sha256",
+      "reply": {
+        "%INTnMKH4a0HCqqyjXXmYHn+2gxarmjfd2/+6CIu1uCk=.sha256": "@kS1GT34Sg+Kzjcqoehz//afmIQC5+CGo8O/KvMddVrM=.ed25519",
+        "%QnXYYRye/nU/yriFBtVTjQpfHTcnxBvv6GpQJf8QqxM=.sha256": "@LzTjF5eAVC6xprPMGeNzqEP/EEBIGpM6hDaaY10hrz8=.ed25519"
+      },
+      "channel": null,
+      "recps": null,
+      "text": "Hey there! Long-time Ergodox user here. My experience with switching between internal and external keyboards is that it's all about the training: When learning, distribute your typing equally between normal keyboards and the Ergodox. Your fingers will learn to type on both.\n\nA friend went the route of different layouts: On the Ergodox he uses a modified Dvorak layout, while going normal Qwerty on all other keyboards. I tried this too, but learning Dvorak while getting used to the physical arrangement of the Ergodox keys was too much for me.\n\nHowever, you definitely should adapt the extra Ergodox keys and layers to your liking: I have one layer with navigation keys on the home row, together with PgUp and PgDn easily reachable. I also recommend moving frequently-used symbols to easily reachable keys.",
+      "mentions": []
+    },
+    "signature": "CKqwqmsjfgTTqXDYRxDwl0IZpODMpRDswnneBM977GjGZcORxqjs3W2PVG4c7uHX/IAPDdMvnNOFkNFBO9XFBQ==.sig.ed25519"
+  },
+  "timestamp": 1560353828470.001
+}
+
+{
+  "key": "%Gn+QIVHA4fwMo432o3ULf/diAnrc6VTdKyRtMDKfJ9U=.sha256",
+  "value": {
+    "previous": "%+WxLf2KXwNtpN0IFSw7frFPWcUcTXDYcUBZqyynu1Sk=.sha256",
+    "sequence": 165,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560455482748,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%75eIgl0TUCm2K/oFpK4t1/dTg1M6tHgmBIY3WN9t9lw=.sha256",
+      "branch": "%75eIgl0TUCm2K/oFpK4t1/dTg1M6tHgmBIY3WN9t9lw=.sha256",
+      "reply": {
+        "%75eIgl0TUCm2K/oFpK4t1/dTg1M6tHgmBIY3WN9t9lw=.sha256": "@zVgfPY/wrpIetVMenUnokwcmrqlDderiZr7jCbOpR1k=.ed25519"
+      },
+      "channel": null,
+      "recps": null,
+      "text": "I think the inclusion of all interfaces in the announcement packet was deliberate so other peers can see all available methods of connecting to the broadcasting peer. This code was touched recently, see https://github.com/ssbc/patchwork/issues/1035 and related issues.\n\nHowever, I share your concerns. Maybe open an issue so we can discuss it there?",
+      "mentions": []
+    },
+    "signature": "N3jSXWsWromnIACYHx+3fooCKq+R1Cl2oiwXd0NKC4DdF6hCAK9EtY7/L3i7YqCVgQdL5q87WDYxRqJ7BgBxAQ==.sig.ed25519"
+  },
+  "timestamp": 1560455482751
+}
+
+{
+  "key": "%66WOJMF4l+X54SgyWafPHtubWdidW7WrdqAG20U6Gjc=.sha256",
+  "value": {
+    "previous": "%Gn+QIVHA4fwMo432o3ULf/diAnrc6VTdKyRtMDKfJ9U=.sha256",
+    "sequence": 166,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560455714246,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%VeuoOSHw2oj4N9Z8JWU7oq4+2cxIGSCYLNUbLnxhhpk=.sha256",
+      "branch": "%VeuoOSHw2oj4N9Z8JWU7oq4+2cxIGSCYLNUbLnxhhpk=.sha256",
+      "reply": {
+        "%VeuoOSHw2oj4N9Z8JWU7oq4+2cxIGSCYLNUbLnxhhpk=.sha256": "@fBS90Djngwl/SlCh/20G7piSC064Qz2hBBxbfnbyM+Y=.ed25519"
+      },
+      "channel": null,
+      "recps": null,
+      "text": "I'm interested in this too. I found https://spec.scuttlebutt.nz/introduction.html quite nice to get the specifics of message-hashing right, and I feel that this document should be the place where message schemas are documented. Of course, we should generate this documentation from machine-readable data to make sure documentation and real-world usage always match.",
+      "mentions": []
+    },
+    "signature": "QMMy6gZGHvGAnYp2UXG9vAvHcbs1nxtUumxzDPF3vKX29uVSQwE7KSSDCO4EO97YUGFe4X0PXplGBWCxm6l0Cg==.sig.ed25519"
+  },
+  "timestamp": 1560455714246.001
+}
+
+{
+  "key": "%/a00EnQST4bY7cK1WdZtCL0syzZzcjf7ey8t95U/itk=.sha256",
+  "value": {
+    "previous": "%66WOJMF4l+X54SgyWafPHtubWdidW7WrdqAG20U6Gjc=.sha256",
+    "sequence": 167,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560459836712,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "channel": "markup",
+      "vote": {
+        "link": "%7AIRWNOQMbLJnAzXShzw7YCbXCYGgmUh7qK9i9V8SgY=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "K6GRv7WF+NRjBuTlOmYIr/UpQUGFno3VXNiuvaImB/BCaXwp9r+Zz4NAxRQ8hd4a9be//Jam/L4DDd4wB2IgBg==.sig.ed25519"
+  },
+  "timestamp": 1560459836713
+}
+
+{
+  "key": "%weymW/tAig6XVk5hJiKKOsMjCwsRqZOLtSonPchBR9A=.sha256",
+  "value": {
+    "previous": "%/a00EnQST4bY7cK1WdZtCL0syzZzcjf7ey8t95U/itk=.sha256",
+    "sequence": 168,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560459887567,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "vote": {
+        "link": "%qv57ztsHyEwZAHQ5LQ/gmOFvvy1BRYYIlHNKO4VgUAI=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "u60e6J5Ism+Tzd3yexEHhJm7Zfv9P89CvPKfA73cDmfltH8bhN+eHzL7cQARAwWjLZv99kePzt2mN3w/u/vdBA==.sig.ed25519"
+  },
+  "timestamp": 1560459887568
+}
+
+{
+  "key": "%z+S//6vntv2znYFWS3LbjTac+8PZWwrWB4Fl1McdOu8=.sha256",
+  "value": {
+    "previous": "%weymW/tAig6XVk5hJiKKOsMjCwsRqZOLtSonPchBR9A=.sha256",
+    "sequence": 169,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560500850401,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%VeuoOSHw2oj4N9Z8JWU7oq4+2cxIGSCYLNUbLnxhhpk=.sha256",
+      "branch": "%g7uu/GNctUMSlJTNnZOvW3QOIdYskODdhxSF1SHbwg4=.sha256",
+      "reply": {
+        "%VeuoOSHw2oj4N9Z8JWU7oq4+2cxIGSCYLNUbLnxhhpk=.sha256": "@fBS90Djngwl/SlCh/20G7piSC064Qz2hBBxbfnbyM+Y=.ed25519",
+        "%g7uu/GNctUMSlJTNnZOvW3QOIdYskODdhxSF1SHbwg4=.sha256": "@o3eDT3n9urv1cyIWDuF+wQHBFj3I8OcE3L4Tla9RR8A=.ed25519"
+      },
+      "channel": null,
+      "recps": null,
+      "text": "[@Tim Schumacher](@o3eDT3n9urv1cyIWDuF+wQHBFj3I8OcE3L4Tla9RR8A=.ed25519) \n\n> That said, I would welcome some sort of registry of content-types where some sort of consensus could be documented. Or maybe some sort of automated documentation on how the certain content-types have been used so far.\n\nI think that's a great idea! We have the data, we have the tools, so why not generate statistics over all message types and the keys (and for some of them the values) used in the scuttleverse? This would paint a great \"is\" picture from which we could derive guidelines. \n\nI get the impression that the discussion in this thread is drifting away from \"what we have\" to \"what we want\". We need the former to specify the latter :-)",
+      "mentions": [
+        {
+          "link": "@o3eDT3n9urv1cyIWDuF+wQHBFj3I8OcE3L4Tla9RR8A=.ed25519",
+          "name": "Tim Schumacher"
+        }
+      ]
+    },
+    "signature": "3ZxMj/EWY9wDsGOeCsqpIlQhGSu/P73KhWi4a48ymf4zR+p8XkIDkWjYTx9sIUWGV017oRbS+UfEz3aWkYb0Cg==.sig.ed25519"
+  },
+  "timestamp": 1560500850401.001
+}
+
+{
+  "key": "%WC9bECSNMaaA9Ec3gOjGQtteLt0/uFUvQ5oLX8NnCkQ=.sha256",
+  "value": {
+    "previous": "%z+S//6vntv2znYFWS3LbjTac+8PZWwrWB4Fl1McdOu8=.sha256",
+    "sequence": 170,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560544623810,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%bQAbpw/7IcBeOJUNycvLCJbCcU2F/B5MEHHgUNBLuDM=.sha256",
+      "branch": "%bQAbpw/7IcBeOJUNycvLCJbCcU2F/B5MEHHgUNBLuDM=.sha256",
+      "reply": {
+        "%bQAbpw/7IcBeOJUNycvLCJbCcU2F/B5MEHHgUNBLuDM=.sha256": "@o3eDT3n9urv1cyIWDuF+wQHBFj3I8OcE3L4Tla9RR8A=.ed25519"
+      },
+      "channel": null,
+      "recps": null,
+      "text": "That's great! Maybe extend it to generate some JSON and push that to a git repo? We could generate the HTML and the specs from that data.",
+      "mentions": []
+    },
+    "signature": "/b8hDTh9yZoAcOwUYqNSZi7RYoU3y6MjCgvFZe1Yi46r+lTQFrQFDGNA/UIxxLsGm5bJRxlsX86FEm4iH4DpDA==.sig.ed25519"
+  },
+  "timestamp": 1560544623810.001
+}
+
+{
+  "key": "%L2VquIsgbG/UHR44OFxy0Diy/1xoJFJ3yT8LXqjrCLU=.sha256",
+  "value": {
+    "previous": "%WC9bECSNMaaA9Ec3gOjGQtteLt0/uFUvQ5oLX8NnCkQ=.sha256",
+    "sequence": 171,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560883367431,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "channel": "cccamp19",
+      "vote": {
+        "link": "%mLyF1OGr6Z05lKOQ27hNHe1T+yod/CfTHkleSM9uwS0=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "hexmO+y24hq9FIhXPtHgOD6AbJbMF1tvvtzoW9jXgz5LjEABZrltW0mHdGFD8Qy+PbOOW4Fg56dZ+rDrwBwLCg==.sig.ed25519"
+  },
+  "timestamp": 1560883367431.001
+}
+
+{
+  "key": "%RG9j0w0/oBPmnBHJlHjdZElvHS84/VtE3UUajUbTk2k=.sha256",
+  "value": {
+    "previous": "%L2VquIsgbG/UHR44OFxy0Diy/1xoJFJ3yT8LXqjrCLU=.sha256",
+    "sequence": 172,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560883391593,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@wNmNF7aPW+S5ETkyJ/qcSzZLm0bQ4hiLbJ9gEKyWNDQ=.ed25519",
+      "following": true
+    },
+    "signature": "MwE8xD0GIxN9WrcB27R+BPkitjW7fhA6KXos4s5pPyA+5lU90fM8v6Zn7CMdwlPU1jkm9x+OLpplbUjcgtdjCA==.sig.ed25519"
+  },
+  "timestamp": 1560883391594
+}
+
+{
+  "key": "%nn8Nmg/FV2ZD4TRFviLeah66bsi0UhyYO5nQHFgq1BA=.sha256",
+  "value": {
+    "previous": "%RG9j0w0/oBPmnBHJlHjdZElvHS84/VtE3UUajUbTk2k=.sha256",
+    "sequence": 173,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560887236765,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%lGHT9VlZCoRc32ENRBGi/JDB9lMYwCpQ2YHM3aJ+YwQ=.sha256",
+      "branch": "%wdXr/6mhUfZOZl0laI1vdMQPo6/xG6DpktbCbYag2ZU=.sha256",
+      "reply": {
+        "%lGHT9VlZCoRc32ENRBGi/JDB9lMYwCpQ2YHM3aJ+YwQ=.sha256": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+        "%wdXr/6mhUfZOZl0laI1vdMQPo6/xG6DpktbCbYag2ZU=.sha256": "@THUzexG1y6kWofwiN8Lix/jNH/P6roYdlCDgpAn2HSc=.ed25519"
+      },
+      "channel": "cccamp19",
+      "recps": null,
+      "text": "[@Rabble](@THUzexG1y6kWofwiN8Lix/jNH/P6roYdlCDgpAn2HSc=.ed25519) Uh, getting a dedicated Scuttlebutt village would be great! Do you have any idea what we have to do for that?",
+      "mentions": [
+        {
+          "link": "@THUzexG1y6kWofwiN8Lix/jNH/P6roYdlCDgpAn2HSc=.ed25519",
+          "name": "Rabble"
+        }
+      ]
+    },
+    "signature": "871/KV8fntn8iJYssEOX7gt5M+MM48o0ILTw4qX4XJ7F/ngaY04//xVoBh6cOWw6L4o8E4krOlloAhhr05FCDA==.sig.ed25519"
+  },
+  "timestamp": 1560887236765.001
+}
+
+{
+  "key": "%T7oWv97vr4AlPFsxQ/379v5c3bYZ4Kou2BxsbdnGHtE=.sha256",
+  "value": {
+    "previous": "%nn8Nmg/FV2ZD4TRFviLeah66bsi0UhyYO5nQHFgq1BA=.sha256",
+    "sequence": 174,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560969092997,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "channel": "tuakana-teina",
+      "vote": {
+        "link": "%YhOnnXpd0ZuxDuAA+yRfq2yCio12b8pOZOKT8qYTkL0=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "6b7ikFOgRpk0z+3xh1UThy1xEQZ1JWJcYDkUT609/cTnuV1TlykDcVAggA5ij4cSrqdfMzgECtTMx+kpykwlAQ==.sig.ed25519"
+  },
+  "timestamp": 1560969092997.001
+}
+
+{
+  "key": "%wEZPCjZgtOat0wXPhRyyEj79K96f8iKb1yVxpXcSwF8=.sha256",
+  "value": {
+    "previous": "%T7oWv97vr4AlPFsxQ/379v5c3bYZ4Kou2BxsbdnGHtE=.sha256",
+    "sequence": 175,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560978279012,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "channel": "scuttlebutt",
+      "vote": {
+        "link": "%G6FVdfLPIxROrJdrHCU5UnwN+29o8ZJsYaC3FiNsct8=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "C3c0Lno6gZjivbFBD6KFSw3SN0z0GL+PXgr6+WrLQSn+uUuRA6/pbIWgRFLs8boRU37o4V+IY0M02H+um/U4DQ==.sig.ed25519"
+  },
+  "timestamp": 1560978279012.001
+}
+
+{
+  "key": "%VJoHAOj8t9apAcBrMQcSLmrH45d40VNqmCcqjlZp6KY=.sha256",
+  "value": {
+    "previous": "%wEZPCjZgtOat0wXPhRyyEj79K96f8iKb1yVxpXcSwF8=.sha256",
+    "sequence": 176,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560978288859,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@EMovhfIrFk4NihAKnRNhrfRaqIhBv1Wj8pTxJNgvCCY=.ed25519",
+      "following": true
+    },
+    "signature": "QAW9MKLwbMPLTPpkRnmF9XDRQp0F4MdIjmnDuWFF09Si08+MOFJLNZCECWi/W+Ic2C1JDPJAxKytSafMdFHmAA==.sig.ed25519"
+  },
+  "timestamp": 1560978288859.001
+}
+
+{
+  "key": "%CdZle0i6Mg6Eekg0SCY8zNEjP0HGlhdcnkmmZQMTa9k=.sha256",
+  "value": {
+    "previous": "%VJoHAOj8t9apAcBrMQcSLmrH45d40VNqmCcqjlZp6KY=.sha256",
+    "sequence": 177,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560978998319,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "channel": "boats",
+      "vote": {
+        "link": "%7jgvBI/swg6yAHWOeg5ofLfmxpyqGFu0ya1kqwgkRBs=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "6Om/14JKtMlQdzCu+KQpdSn+R233N+bBXvdGCdIbf8Mp3bO9H0AfwYW26lssHxYCdBYbr25qZ57qoOaLTPJtBw==.sig.ed25519"
+  },
+  "timestamp": 1560978998320
+}
+
+{
+  "key": "%/5Y2dWribqYuUUA3YXEpKfg/v7varbpHdf+j771dwr0=.sha256",
+  "value": {
+    "previous": "%CdZle0i6Mg6Eekg0SCY8zNEjP0HGlhdcnkmmZQMTa9k=.sha256",
+    "sequence": 178,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560979049972,
+    "hash": "sha256",
+    "content": {
+      "type": "channel",
+      "channel": "hamradio",
+      "subscribed": true
+    },
+    "signature": "tyvUKZ1kDn1AkMqDrSeO94PHnMiXH06P8cxJEcMA/JRcljisWTkYMu8LqZrs8oFKJWzeO4BYexmEUogznxGPCQ==.sig.ed25519"
+  },
+  "timestamp": 1560979049972.001
+}
+
+{
+  "key": "%ls0bDOYdnFT2RELQKdZ8/3Nj2cDbrc8OB5/cbMrNFx0=.sha256",
+  "value": {
+    "previous": "%/5Y2dWribqYuUUA3YXEpKfg/v7varbpHdf+j771dwr0=.sha256",
+    "sequence": 179,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1560981606704,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "channel": "boats",
+      "vote": {
+        "link": "%9vW9vgkE1/bteKIO2JfT5jnT5c4ZzbQMjdGD4phLW7I=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "2LG0ILP5dZF6DyOqcqj5RqFLfoSa6uSI2eqUhDslHNjktHdqRyL4xmqrBouCpgzs0p4Pnnrz2pe0MnD9OBKTBw==.sig.ed25519"
+  },
+  "timestamp": 1560981606704.001
+}
+
+{
+  "key": "%i2WtHpM3G8ie2FibSskkuTHm1Sp4B/EfH6C2T28lyp0=.sha256",
+  "value": {
+    "previous": "%ls0bDOYdnFT2RELQKdZ8/3Nj2cDbrc8OB5/cbMrNFx0=.sha256",
+    "sequence": 180,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1561044434221,
+    "hash": "sha256",
+    "content": {
+      "type": "tag",
+      "version": 1
+    },
+    "signature": "i5rPiGDQD2slFRoTgBB++x72YaaeLSFq3LuehikNjVpG2K/EXWvYZA3K03z0vsVLHEoti3A0n5f69x/7XVetCA==.sig.ed25519"
+  },
+  "timestamp": 1561044434221.001
+}
+
+{
+  "key": "%l1PQP5ptNUKdElGk5YO8XaP863OpW7RoJJnufIJA4s4=.sha256",
+  "value": {
+    "previous": "%i2WtHpM3G8ie2FibSskkuTHm1Sp4B/EfH6C2T28lyp0=.sha256",
+    "sequence": 181,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1561044434384,
+    "hash": "sha256",
+    "content": {
+      "type": "about",
+      "about": "%i2WtHpM3G8ie2FibSskkuTHm1Sp4B/EfH6C2T28lyp0=.sha256",
+      "name": "cccamp19"
+    },
+    "signature": "bp+ghgBzApfcAvaZwioPsHJ/17q/6d1M4kibPDwXLzwNxcZuPIPg5gQQ39K5zTNFD/Z/INZEGAwUCSFoSuBSBA==.sig.ed25519"
+  },
+  "timestamp": 1561044434385
+}
+
+{
+  "key": "%MR7mFbNZPWceuf6HWnvqdRBSPh7r2TLi9D4NRDV6eI4=.sha256",
+  "value": {
+    "previous": "%l1PQP5ptNUKdElGk5YO8XaP863OpW7RoJJnufIJA4s4=.sha256",
+    "sequence": 182,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1561044434391,
+    "hash": "sha256",
+    "content": {
+      "type": "tag",
+      "version": 1,
+      "tagged": true,
+      "message": "%g/cGpgrBK/T3lS4QWZk7s/wuMXcpwI4H7N2lI/5Cl+Y=.sha256",
+      "root": "%i2WtHpM3G8ie2FibSskkuTHm1Sp4B/EfH6C2T28lyp0=.sha256",
+      "branch": []
+    },
+    "signature": "fX7buMw955ZrXHLuktB5d/CFSUtgrGukYCqBoSEmPC6iVTXgLscMZlcbtL6c22Rf1AHscinNWMbgvxInyXUfAg==.sig.ed25519"
+  },
+  "timestamp": 1561044434391.001
+}
+
+{
+  "key": "%QuxI2K/ucXJo2BLJpgdPKUx2PcYBUWTvVavxc7Fkwhg=.sha256",
+  "value": {
+    "previous": "%MR7mFbNZPWceuf6HWnvqdRBSPh7r2TLi9D4NRDV6eI4=.sha256",
+    "sequence": 183,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1561071572520,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "channel": "cccamp19",
+      "text": "Note that [@keks](@YXkE3TikkY4GFMX3lzXUllRkNTbj5E+604AkaO1xbz8=.ed25519) asked for some help with making a Scuttlebutt Village happen :-) \n\n%g/cGpgrBK/T3lS4QWZk7s/wuMXcpwI4H7N2lI/5Cl+Y=.sha256 ",
+      "mentions": [
+        {
+          "link": "@YXkE3TikkY4GFMX3lzXUllRkNTbj5E+604AkaO1xbz8=.ed25519",
+          "name": "keks"
+        },
+        {
+          "link": "%g/cGpgrBK/T3lS4QWZk7s/wuMXcpwI4H7N2lI/5Cl+Y=.sha256"
+        }
+      ]
+    },
+    "signature": "bpDQXYCgtxz2qE9JjIowhQAeOMxm/j37SUhsJmJCIQPI6oLhXPdftlq/1HhR153p0Nap8CoS2S8/3VcENXSFCw==.sig.ed25519"
+  },
+  "timestamp": 1561071572521
+}
+
+{
+  "key": "%Nn/by0oYa1FMCSgLlRf4QPtE37LbVPKARKRX8DKbpj0=.sha256",
+  "value": {
+    "previous": "%QuxI2K/ucXJo2BLJpgdPKUx2PcYBUWTvVavxc7Fkwhg=.sha256",
+    "sequence": 184,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1561071588572,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@plo0t5t1G3h4Y+Zaxw2q5NNE+SsensLDx0TbcYhj8WY=.ed25519",
+      "following": true
+    },
+    "signature": "BRnSxJSEt/yfmBoiQtd/9XMDCcH9K1m1b0kVD1DIo4QhPWMGkHEyHk65fjKaiDIrb8gm3zanLc3s1TE/buK5DA==.sig.ed25519"
+  },
+  "timestamp": 1561071588573
+}
+
+{
+  "key": "%qdYoFmxIgv1z5bD+CtylU8dgDZMKjSPC1CDCmecvva8=.sha256",
+  "value": {
+    "previous": "%Nn/by0oYa1FMCSgLlRf4QPtE37LbVPKARKRX8DKbpj0=.sha256",
+    "sequence": 185,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1561071624666,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@3u2quSQ8qX1fTx4HQKthYPDavQI4Wm88kThExFXemYo=.ed25519",
+      "following": true
+    },
+    "signature": "mdXlK3P9WWVhqC9hv4qAmeivyPjK9BKG2On7fcdRh70KjRpH2JLD+j7VD7yfeULPNXuXUJg/uVHOjXZCpCcZAg==.sig.ed25519"
+  },
+  "timestamp": 1561071624666.001
+}
+
+{
+  "key": "%T7fjsQKCLXuKUO3ShglY+xSwaPKWl3iWbi2lkmc0mLs=.sha256",
+  "value": {
+    "previous": "%qdYoFmxIgv1z5bD+CtylU8dgDZMKjSPC1CDCmecvva8=.sha256",
+    "sequence": 186,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1561071653859,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@x4rsayTzoXVlxcSeeQ49A6PzSQa41MRySB33z1LjZr0=.ed25519",
+      "following": true
+    },
+    "signature": "zuL2hkW4tLgxQ5MQHrfdKQaRhPN6fm0f8eDyfqtHsAVKmZPxJMLNd+iGJMKRLUpAz/Xyc18O/algdIR22C+vAQ==.sig.ed25519"
+  },
+  "timestamp": 1561071653860
+}
+
+{
+  "key": "%AubaARrII2l1uLYFwTKbPKFn72BrrmJ1+Rwr6or6ApI=.sha256",
+  "value": {
+    "previous": "%T7fjsQKCLXuKUO3ShglY+xSwaPKWl3iWbi2lkmc0mLs=.sha256",
+    "sequence": 187,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1561071666328,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@rwPz425mJYhvnYFQp/UV/ZieceSoi15l62fXXEBGAG8=.ed25519",
+      "following": true
+    },
+    "signature": "i0jztiZVf08pjKt3xZorVQizrT43bxXbJGrnxbz4e0en28Mn/4WFACPUFomdUdyz3/bwxViuFvbeYWBAxsfyCQ==.sig.ed25519"
+  },
+  "timestamp": 1561071666328.001
+}
+
+{
+  "key": "%UYzweouChFDmKsBlc4shNQ07+f0T6TSwaf51RLu3UX8=.sha256",
+  "value": {
+    "previous": "%AubaARrII2l1uLYFwTKbPKFn72BrrmJ1+Rwr6or6ApI=.sha256",
+    "sequence": 188,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1561278640745,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%L3eC8Dc6TEGvfct2BkaRPKZfKdfCl1H7AENFryGwrQg=.sha256",
+      "branch": "%tQn1mCB7eGrb1teYgTDo5z6BWsZMSBx2MWaZIf5eB2o=.sha256",
+      "reply": {
+        "%L3eC8Dc6TEGvfct2BkaRPKZfKdfCl1H7AENFryGwrQg=.sha256": "@ye+QM09iPcDJD6YvQYjoQc7sLF/IFhmNbEqgdzQo3lQ=.ed25519",
+        "%tQn1mCB7eGrb1teYgTDo5z6BWsZMSBx2MWaZIf5eB2o=.sha256": "@ye+QM09iPcDJD6YvQYjoQc7sLF/IFhmNbEqgdzQo3lQ=.ed25519"
+      },
+      "channel": "help",
+      "recps": null,
+      "text": "Ahhh. The joys of node package management. ",
+      "mentions": []
+    },
+    "signature": "3Ed403iGwGlSINbGP9DRKX8SaUlZKx647skpsI77tfYRK4aW0xr666v1To2Vhvq6B+6/XIUwCudITYfpyMAEAQ==.sig.ed25519"
+  },
+  "timestamp": 1561278640746
+}
+
+{
+  "key": "%HvnMGNDm9PO5zkIx/BNtcZeaCN2n6estBRGBkQq3A3k=.sha256",
+  "value": {
+    "previous": "%UYzweouChFDmKsBlc4shNQ07+f0T6TSwaf51RLu3UX8=.sha256",
+    "sequence": 189,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1561456141139,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%0b15gHHVmyFv9c/U8GsZYbikOCoSw9IDynFmXIgkuBM=.sha256",
+      "fork": "%EPT9fIA27WT14Z6h6RAHrn4ZRaUEV+671wVrRgw/8yU=.sha256",
+      "branch": "%sOPaW0gJexWOFgSd1xMvpZ8ZukMsa+8rt3X9fyPvYfw=.sha256",
+      "reply": {
+        "%0b15gHHVmyFv9c/U8GsZYbikOCoSw9IDynFmXIgkuBM=.sha256": "@UhORGzAhEE3gqy/pH5vK+EgbpZfnyYvdI46TVBJH6Mw=.ed25519",
+        "%sOPaW0gJexWOFgSd1xMvpZ8ZukMsa+8rt3X9fyPvYfw=.sha256": "@ye+QM09iPcDJD6YvQYjoQc7sLF/IFhmNbEqgdzQo3lQ=.ed25519"
+      },
+      "channel": null,
+      "recps": null,
+      "text": "[@mixmix](@ye+QM09iPcDJD6YvQYjoQc7sLF/IFhmNbEqgdzQo3lQ=.ed25519) I think the old rule from the early days of the internet applies: \n\n> Be conservative in what you send, be liberal in what you accept\n\n[Robustness principle](https://en.wikipedia.org/wiki/Robustness_principle)\n\nI know this doesn't lessen the burden of additional work, but it is a good thing to keep in mind when writing future code :-)",
+      "mentions": [
+        {
+          "link": "@ye+QM09iPcDJD6YvQYjoQc7sLF/IFhmNbEqgdzQo3lQ=.ed25519",
+          "name": "mixmix"
+        }
+      ]
+    },
+    "signature": "V+PGqgxRRpwEgFqNb8LeHaABTkoVa/NlE8vGHq8BkYvKoBiA6SgYoI0VxebYV+zk6CMpfyFN43iKf6NL68AxBA==.sig.ed25519"
+  },
+  "timestamp": 1561456141141
+}
+
+{
+  "key": "%Jf19t92854NIBOG8Fe8BbR+Zkolp9voQwe+hLw4POxs=.sha256",
+  "value": {
+    "previous": "%HvnMGNDm9PO5zkIx/BNtcZeaCN2n6estBRGBkQq3A3k=.sha256",
+    "sequence": 190,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1561492659168,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@FWHrnoH/YwtiVSng8MiWrb6ekZDX9R+i3XlXLlmtaiE=.ed25519",
+      "blocking": true
+    },
+    "signature": "PrOc64xvQm3tk3HUv2lc/4AYZKAXn/0lfkXxSAznANhCRymFmP85olxvgQJn5MTxtKxOi+yR8Or/rCAFxZMEAQ==.sig.ed25519"
+  },
+  "timestamp": 1561492659169
+}
+
+{
+  "key": "%6dbRDZktoXCQKR7FWJYgYzxK/rRPeoD7KM3jkry3HUs=.sha256",
+  "value": {
+    "previous": "%Jf19t92854NIBOG8Fe8BbR+Zkolp9voQwe+hLw4POxs=.sha256",
+    "sequence": 191,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1561645470482,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "channel": "photography",
+      "vote": {
+        "link": "%P7BcvyBCSEF32nq1CxV39DBw7BT3LxGfySxLDArL6K8=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "Nb7FPN7rWDeiavPhzYuJPTWZL1s7d8kmkE1nG1DD+ET676I5q+vXnHWzsxLsRrbLWU2pGEA6Dr69DQSu6AwaAg==.sig.ed25519"
+  },
+  "timestamp": 1561645470482.001
+}
+
+{
+  "key": "%Xmf3Y7pworwMCFsPt5E+JMg+RgYGhppfIOpPnt2jejs=.sha256",
+  "value": {
+    "previous": "%6dbRDZktoXCQKR7FWJYgYzxK/rRPeoD7KM3jkry3HUs=.sha256",
+    "sequence": 192,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1561645860214,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%P7BcvyBCSEF32nq1CxV39DBw7BT3LxGfySxLDArL6K8=.sha256",
+      "branch": "%P7BcvyBCSEF32nq1CxV39DBw7BT3LxGfySxLDArL6K8=.sha256",
+      "reply": {
+        "%P7BcvyBCSEF32nq1CxV39DBw7BT3LxGfySxLDArL6K8=.sha256": "@enYnrAbM4s4BVadGY7VC0suQ48QitTkE4PlQYTtNT+4=.ed25519"
+      },
+      "channel": "photography",
+      "recps": null,
+      "text": "I give a workshop about film development every few months at the local library. Can't stress the temperature point enough: If you don't go for fine art (and especially if you get them scanned later on) films can really take some abuse during development. \n\nOne guy wanted to experiment and used carbonated water for development without checking the temperature at all (it came from the fridge). Negatives were quite light but they still came out fine after scanning :-)\n\nAs for storage: I recently found a really old 120 film from my father which he didn't remember taking. Stored in a cold wet cellar over at least 40 years. Did a simple stand development in Rodinal (because I had nothing else at home) and it turns out it was full of vacation photos in France, most notably with a young puppy. \n\nTLDR: Film is great.",
+      "mentions": []
+    },
+    "signature": "2EtqQ+gU/+wpftqZ7aCr2C5GIEstE1Lwr0HkgEknjFvzHcNkkOvRgqpj6tK+NMT9KWn3j0ix0LuBTc84IHKfAg==.sig.ed25519"
+  },
+  "timestamp": 1561645860214.001
+}
+
+{
+  "key": "%oK5N0BJUerpNAFb6cf7PSKgqOVHPDSo4NV+MAmizkwc=.sha256",
+  "value": {
+    "previous": "%Xmf3Y7pworwMCFsPt5E+JMg+RgYGhppfIOpPnt2jejs=.sha256",
+    "sequence": 193,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1561645965274,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@enYnrAbM4s4BVadGY7VC0suQ48QitTkE4PlQYTtNT+4=.ed25519",
+      "following": true
+    },
+    "signature": "Hpl5oLEEFxvEPyxMepGKvQaXRPzpf04xiKoz7//jPU2DJQ7Ro3Zb6mTZPJHeisQCIDk4CtZhYmTHHh8MM1QwDg==.sig.ed25519"
+  },
+  "timestamp": 1561645965274.001
+}
+
+{
+  "key": "%scPXqtJDAJ2rPMHhA0E3n3J/HrXX/xm3JayatffGmt0=.sha256",
+  "value": {
+    "previous": "%oK5N0BJUerpNAFb6cf7PSKgqOVHPDSo4NV+MAmizkwc=.sha256",
+    "sequence": 194,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1561708715758,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@qv10rF4IsmxRZb7g5ekJ33EakYBpdrmV/vtP1ij5BS4=.ed25519",
+      "following": true
+    },
+    "signature": "LEaDUqqmYIc+1KnhYkwj7rIcZ3V3kIJJvXjj1pzjHyJxOVQ4+LLAZZ0FDXPrquoo4ABoG7QDHjzwL5s/yqD8Cw==.sig.ed25519"
+  },
+  "timestamp": 1561708715758.001
+}
+
+{
+  "key": "%RkqHPBYPPXGcIgSQ4aQzmyLTZCBHqfBPTbIfcAcy2cQ=.sha256",
+  "value": {
+    "previous": "%scPXqtJDAJ2rPMHhA0E3n3J/HrXX/xm3JayatffGmt0=.sha256",
+    "sequence": 195,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1561847013094,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "vote": {
+        "link": "%0BvU+BPkzctD6p2scCEN4S1tlX7i39jq1LMgYkpuurk=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "xeddzWILe6v4mVdtNl8DNBq1W2xHDYuCBfBSU5nTnSUBNigq6uxBR71qc9oHcyFh4LIuujQHTHaKZx0Zh4BEBQ==.sig.ed25519"
+  },
+  "timestamp": 1561847013094.001
+}
+
+{
+  "key": "%2HDp0GVdK3EPVZba/raGnNI3A2Adi7lq5R0nB0cuCDA=.sha256",
+  "value": {
+    "previous": "%RkqHPBYPPXGcIgSQ4aQzmyLTZCBHqfBPTbIfcAcy2cQ=.sha256",
+    "sequence": 196,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1562754789881,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@e7dzwv5WppRYym7Pb3KFGBHf4btBm/oB34MBXg4x3SY=.ed25519",
+      "following": true
+    },
+    "signature": "nUzO+chCrkW6jEJNBTGCyjB7xT/EQRG0jBtAgZYNC3KNcIV4QJ0N963KR8bPTgzmaEKZRfTYqYs01WeH6NgXCg==.sig.ed25519"
+  },
+  "timestamp": 1562754789882
+}
+
+{
+  "key": "%fcNhrO1YlrVUmYUKaSWgRc/sxoqYOI5hrTq6ZbRGess=.sha256",
+  "value": {
+    "previous": "%2HDp0GVdK3EPVZba/raGnNI3A2Adi7lq5R0nB0cuCDA=.sha256",
+    "sequence": 197,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1562754791891,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "vote": {
+        "link": "%sgI5ru51jP2gNXxDIaPgoVL8Uo99gVTd1FXEBM6uzck=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "8aW+z/67m6VJHDfnPmg5DGgHcqVCsgz33YX7Bs1Yf1NU+BKks3WYA9J23Ird6OVgm+35i/B458Zy826PQkNxCA==.sig.ed25519"
+  },
+  "timestamp": 1562754791892
+}
+
+{
+  "key": "%y4vC2QpdKsrvPoS3/mRLPXgs+Jt9PkUB7BEASUwJBNk=.sha256",
+  "value": {
+    "previous": "%fcNhrO1YlrVUmYUKaSWgRc/sxoqYOI5hrTq6ZbRGess=.sha256",
+    "sequence": 198,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1562755185950,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%sgI5ru51jP2gNXxDIaPgoVL8Uo99gVTd1FXEBM6uzck=.sha256",
+      "branch": "%7s3XVE0d0kzkIFRzgjjjsjAZBxAuU//7EZ7To9B0PcU=.sha256",
+      "reply": {
+        "%sgI5ru51jP2gNXxDIaPgoVL8Uo99gVTd1FXEBM6uzck=.sha256": "@e7dzwv5WppRYym7Pb3KFGBHf4btBm/oB34MBXg4x3SY=.ed25519",
+        "%7s3XVE0d0kzkIFRzgjjjsjAZBxAuU//7EZ7To9B0PcU=.sha256": "@YXkE3TikkY4GFMX3lzXUllRkNTbj5E+604AkaO1xbz8=.ed25519"
+      },
+      "channel": null,
+      "recps": null,
+      "text": "Hey there! I just discovered your profile here on Scuttlebutt after reading your article. Just wanted to drop-in and say how much I enjoyed your ideas.\n\nI think #sunrise-choir will open great opportunities for writing many more tools like `decent` - small, single-purpose tools capable of one single task in the SSB ecosystem without having to start a big nodejs instance :-)\n\nPersonally, I'm really looking forward to this.",
+      "mentions": [
+        {
+          "link": "#sunrise-choir"
+        }
+      ]
+    },
+    "signature": "5NITjY9uQYP7IjnuGGpd0GFZI4RtEt58dMjpSG5MtNoTPn5Q5UpeT2xA3xEHKXd2e1KXuxz+GK0hzC2GFn2zBQ==.sig.ed25519"
+  },
+  "timestamp": 1562755185951
+}
+
+{
+  "key": "%0mMAqteofT2JyvYwig5QWoihe5ShsYgA4XJ6UnqE6z4=.sha256",
+  "value": {
+    "previous": "%y4vC2QpdKsrvPoS3/mRLPXgs+Jt9PkUB7BEASUwJBNk=.sha256",
+    "sequence": 199,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1562883740446,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%x5/e2+j2doKUCZQt552CeDT0rQfVegWcCU2Qw+w6J9o=.sha256",
+      "branch": "%x5/e2+j2doKUCZQt552CeDT0rQfVegWcCU2Qw+w6J9o=.sha256",
+      "reply": {
+        "%x5/e2+j2doKUCZQt552CeDT0rQfVegWcCU2Qw+w6J9o=.sha256": "@EaYYQo5nAQRabB9nxAn5i2uiIZ665b90Qk2U/WHNVE8=.ed25519"
+      },
+      "channel": null,
+      "recps": null,
+      "text": "Yup, still working on it in my spare time :-) Handshake, RPC, etc. is working fine. Currently tinkering on handling real messages like `about`, `post` and all the likes. Blob replication is unidirectional right now, but all the work is done for real replication. Same for gossip.\n\nI really want to get it in a good state before presenting it, because releasing something like this as open source always carries the burden of being a maintainer with it. However, I'm sure we can work something out if you're interested in working on it :-)\n\n(Btw.: Elixir is a great language for this kind of code. I'm super happy with the decision to learn it)",
+      "mentions": []
+    },
+    "signature": "CNkM0nSQI+pb3YpptZCCZ/kw4M+bs0/RnczszXn5IzW/46akePAbRKRtS/qjGKr1GvPGuMidh0dWmi75MKBtBg==.sig.ed25519"
+  },
+  "timestamp": 1562883740446.001
+}
+
+{
+  "key": "%I9MaB+3asg+CcWxzJnYiUYIg14ljuP/awGAzbcph6rA=.sha256",
+  "value": {
+    "previous": "%0mMAqteofT2JyvYwig5QWoihe5ShsYgA4XJ6UnqE6z4=.sha256",
+    "sequence": 200,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1562883760161,
+    "hash": "sha256",
+    "content": {
+      "type": "channel",
+      "channel": "ssb-protocol",
+      "subscribed": true
+    },
+    "signature": "UqV136QEhcheiCY2eNOlW23zmkWrs7o949QtkuQhKPH0BG/WDV6nhwDv5Hwtb4Qu2I9HQAkJe+I4doL4jxTjDA==.sig.ed25519"
+  },
+  "timestamp": 1562883760162
+}
+
+{
+  "key": "%mUPHgtq8kBUaWClE3mU3Do54TCGXSftHyFD9eQt8S9w=.sha256",
+  "value": {
+    "previous": "%I9MaB+3asg+CcWxzJnYiUYIg14ljuP/awGAzbcph6rA=.sha256",
+    "sequence": 201,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1562885334090,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "text": "# Announcing a new SSB Implementation in Elixir \n\n![Elixir code related to blob handling ](&7G0iXiUJNJ/kTMgvy1Ft+KBPPKDm684w1b9MsHNGDC0=.sha256)\n\n#ssb-implementations #ssb #show-and-tell #programming\n\nAs [@punkmonk](@EaYYQo5nAQRabB9nxAn5i2uiIZ665b90Qk2U/WHNVE8=.ed25519) observed somewhere (see %x5/e2+j2doKUCZQt552CeDT0rQfVegWcCU2Qw+w6J9o=.sha256) I'm working on a new implementation of SSB in [Elixir](https://elixir-lang.org/). \n\nI kept this one quiet as I don't like announcing big things without having to show something for it -and I'm not yet ready to release it to the whole world. So stay tuned! \n\n## Goals\n\n- Full SSB implementation keeping track with new developments\n- Usable as a building block for patchwork-style clients, pubs, or something completely new\n\n### Soft Goals\n\n- Implement something big in Elixir\n- Provide a resource friendly and super stable implementation of SSB that is easy to work on\n- Strengthen the SSB ecosystem\n\n## Technical Stuff\n\nElixir + libsodium + Sqlite. That's it. \n\nI try to keep the dependencies to a minimum. One work in progress is the removal of the dependency on `libsodium` by replacing it with the native Erlang `crypto` module. \n\n## Current Status\n\n- Handshake, RPC, message decoding, etc. is working\n- Blob download is implemented, full replication almost done\n- Feed download, verification, and persistence is implemented\n\n## Future Work\n\nRight now I'm working on consuming the feeds and filling the database with summarized data like who-follows-whom, posts with comments and likes, etc. There is some technical debt in a few places, but nothing really harmful architectural-wise. I just had the urge to work on something a bit more high-level before diving into the low-level parts again :-)\n\nI don't have that much time to work on this project, but I'm extending it whenever I find some free time and motivation. So don't expect progress every day :-)\n\n## Comments\n\nIf anyone is interested in joining me with this, please get in touch! I hope to some feedback on the code, the project goals, and anything else :-) \n\n\n\n   ",
+      "mentions": [
+        {
+          "link": "&7G0iXiUJNJ/kTMgvy1Ft+KBPPKDm684w1b9MsHNGDC0=.sha256",
+          "name": "Elixir code related to blob handling ",
+          "type": "image/png",
+          "size": 72560
+        },
+        {
+          "link": "#ssb-implementations"
+        },
+        {
+          "link": "#ssb"
+        },
+        {
+          "link": "#show-and-tell"
+        },
+        {
+          "link": "#programming"
+        },
+        {
+          "link": "@EaYYQo5nAQRabB9nxAn5i2uiIZ665b90Qk2U/WHNVE8=.ed25519",
+          "name": "punkmonk"
+        },
+        {
+          "link": "%x5/e2+j2doKUCZQt552CeDT0rQfVegWcCU2Qw+w6J9o=.sha256"
+        }
+      ]
+    },
+    "signature": "woa/8mDm+PjGdghjeJ1iY0QX61EbiekDO349ax2Fdp1bKw4lPI6O2E7dPmtjmPCc8tzMCO5I28+RJfvVetDPAQ==.sig.ed25519"
+  },
+  "timestamp": 1562885334091
+}
+
+{
+  "key": "%dQ/OH7QDiFFCyCdv5CIclMoH69grpBXzxHi3va/FSsA=.sha256",
+  "value": {
+    "previous": "%mUPHgtq8kBUaWClE3mU3Do54TCGXSftHyFD9eQt8S9w=.sha256",
+    "sequence": 202,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1562885692783,
+    "hash": "sha256",
+    "content": {
+      "type": "contact",
+      "contact": "@EaYYQo5nAQRabB9nxAn5i2uiIZ665b90Qk2U/WHNVE8=.ed25519",
+      "following": true
+    },
+    "signature": "eY173Hbvn1V3na9gVGnCH3meILiJ2TOPvTYYJCxfKBiO2JYNNRO6oNG932ZnHyi5Q0zNAn0dWf+ziVJQw/GLCA==.sig.ed25519"
+  },
+  "timestamp": 1562885692783.001
+}
+
+{
+  "key": "%dwKZ8sXXB4+PXP3weJRjQv1ugC6J2mj1fEA6wEMGPXg=.sha256",
+  "value": {
+    "previous": "%dQ/OH7QDiFFCyCdv5CIclMoH69grpBXzxHi3va/FSsA=.sha256",
+    "sequence": 203,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1562918096885,
+    "hash": "sha256",
+    "content": "f90+wTrDKBwFyFt65ffpjKdF6mK6lCj69Jy8Gmh3D4ZYM2c3JK2TzigB3s9fVNpzAiMTi+7Wkh7xNUtrow4MhIPL6GfIFu9c33TOddcD28LJRQorE7xqF5PoI1zXOp3+VaklXOI/PJ3IAsp9Cg5NlHevHklfihRpe7YKIWyvbuwolnP4awfiDJJC8NO4GvI0SPC/3xXfjbNXla0lL88D+V0ouM8uxaG4dhvrwOWrGEVbjh2IGpRTEYF27YmsBq53JmzWC5k5IlSU2VjuY8uWGEq6A19iX+ATR9Bwi0Ys8JCfNpFd9ZN+jVcq9ZPBtfbnadm4j3dFfwAF5V1AMAKqZbqrldcBWTojhSmWDmVGoCDYtugIT6QfubPpff4L8NiunumxUS7GnDlOSAfNFsDCcsB3QlWAlzuKsmLMvvQISWymlDH/cnpfKf9m5fwQmrLfXYYgEmQuUKHJT9EsmZdCXYstwF/K7ANDogHqDGVMj/Xhd+7hHeGaPQ5v9qSKivbvQoWNAINK4jxs9+Yxxp3VrY7RZdB9cegBRK4LX+UP02YI+U4v1m8n7+xfOv8sKLnRCJHZykGHxW1EPS9IktPZV6q+j9j34IcGmEXO3A8tH2KyU63Ax2CwpAlCLWQeR4qI20EngjhEH4SNd7SWYXCY/i3rUum0n2mII01NzZZUYEu/vA+wtNlObdjuuxzbsawCFXfBDb1sGx6wV5KttNB1P4B1//U72zi2GsNFZQbmcvpRsS/S7SsjfNNyz+dA6fSwByTourvOjmXvOGOzE3kQ2NUwHhh2GtWq0V28EsAzaZ8V0BlWStqxJtW+bsmvGDCInl6rGwFEBbcWPOf7ARNBzx3miJLmG1dvfr6CdKewkUH0KolZjtfq47IRDEUhQtC2RcfchERBr2IcXJhT7PA6FGxmcEh/BuStagyOW5lQ6psCdWw5BoUyoKDclyAFAQi8HAPcZy+3dMWm0KVybMdYDJc7uAs2/PxbjxpWrr6AqhQtK6joEbYZ8oYnHOD/oPvAC078RCLCnvy763Pp6GecnBd+44i+qa7P4LR3D2y9nHEShE5dywIRiVN67cZ1iZFTDrAglDnBI0kGnFpqxzLQ9qlUj8HWlUxCUsey17Wf1wQUGH5JtHmfQFftkl8=.box",
+    "signature": "9lLc6yz98yIdUo5o6LuFGeV76j4t1haZ/cfZy5HwSnjWzEMROcRZbO223oWRhfZZtt2Uvc+6SY3b9PyZChaZAw==.sig.ed25519"
+  },
+  "timestamp": 1562918096886
+}
+
+{
+  "key": "%63EooMzZ/6mryMkYVghXCyeN0iw20GLyCEmvAAfbqJ4=.sha256",
+  "value": {
+    "previous": "%dwKZ8sXXB4+PXP3weJRjQv1ugC6J2mj1fEA6wEMGPXg=.sha256",
+    "sequence": 204,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1562918331040,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%mUPHgtq8kBUaWClE3mU3Do54TCGXSftHyFD9eQt8S9w=.sha256",
+      "branch": "%C25B1E1OI0LsfRR5AIy3OV1dMzTa8/RPvbT1kiWO2LM=.sha256",
+      "reply": {
+        "%mUPHgtq8kBUaWClE3mU3Do54TCGXSftHyFD9eQt8S9w=.sha256": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+        "%C25B1E1OI0LsfRR5AIy3OV1dMzTa8/RPvbT1kiWO2LM=.sha256": "@6CAxOI3f+LUOVrbAl0IemqiS7ATpQvr9Mdw9LC4+Uv0=.ed25519"
+      },
+      "channel": null,
+      "recps": null,
+      "text": "[@Christian Bundy](@+oaWWDs8g73EZFUMfW37R/ULtFEjwKN/DczvdYihjbU=.ed25519) [@arj](@6CAxOI3f+LUOVrbAl0IemqiS7ATpQvr9Mdw9LC4+Uv0=.ed25519) The code is in git, but not public yet. I plan to change that soon and will keep you updated! :-)\n\n",
+      "mentions": [
+        {
+          "link": "@+oaWWDs8g73EZFUMfW37R/ULtFEjwKN/DczvdYihjbU=.ed25519",
+          "name": "Christian Bundy"
+        },
+        {
+          "link": "@6CAxOI3f+LUOVrbAl0IemqiS7ATpQvr9Mdw9LC4+Uv0=.ed25519",
+          "name": "arj"
+        }
+      ]
+    },
+    "signature": "t6bhsySsg/Sg2s3Kz2skPvmloZ4aWd4+4IbNjWnfpltuu+lw1OzYQm7uzZYVMWY6pJ4ujiLM751MgxZx2VP/DA==.sig.ed25519"
+  },
+  "timestamp": 1562918331040.001
+}
+
+{
+  "key": "%jBggvtIWNBt2UqfpT0/DFQJV2fxiWA2bD9ojhPxRRxc=.sha256",
+  "value": {
+    "previous": "%63EooMzZ/6mryMkYVghXCyeN0iw20GLyCEmvAAfbqJ4=.sha256",
+    "sequence": 205,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1562926459124,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%mUPHgtq8kBUaWClE3mU3Do54TCGXSftHyFD9eQt8S9w=.sha256",
+      "branch": "%aJOZ1aDXKihjwgTfK525OyxD5vSBm6bR1F5sHCj4zSo=.sha256",
+      "reply": {
+        "%mUPHgtq8kBUaWClE3mU3Do54TCGXSftHyFD9eQt8S9w=.sha256": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+        "%aJOZ1aDXKihjwgTfK525OyxD5vSBm6bR1F5sHCj4zSo=.sha256": "@Sur8RwcDh6kBjub8pLZpHNWDfuuRpYVyCHrVo+TdA/4=.ed25519"
+      },
+      "channel": null,
+      "recps": null,
+      "text": "[@moid](@Sur8RwcDh6kBjub8pLZpHNWDfuuRpYVyCHrVo+TdA/4=.ed25519) Yup, I'm aware of Nerves and have tried it. Works great! \n\nRunning my project on it should work too, although it's not working out of the box as I'm depending on libsodium (for now). That's easy to fix by adding it via an overlay to the build image, but I haven't had any time to do that yet.",
+      "mentions": [
+        {
+          "link": "@Sur8RwcDh6kBjub8pLZpHNWDfuuRpYVyCHrVo+TdA/4=.ed25519",
+          "name": "moid"
+        }
+      ]
+    },
+    "signature": "+gWWIyxPFAtd1mnx1YvnpTjxpg+bivvDyhUMfGBi+BHdyMUhOa9qWUG3fyHQenDIBYgvyWH88t6NcFOA5rYRDA==.sig.ed25519"
+  },
+  "timestamp": 1562926459124.001
+}
+
+{
+  "key": "%cPgfeJ2lNVWVv2IwiyaW4SMLztx8TZu6pEanB91foK0=.sha256",
+  "value": {
+    "previous": "%jBggvtIWNBt2UqfpT0/DFQJV2fxiWA2bD9ojhPxRRxc=.sha256",
+    "sequence": 206,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1562936615892,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%mUPHgtq8kBUaWClE3mU3Do54TCGXSftHyFD9eQt8S9w=.sha256",
+      "branch": [
+        "%8m/iZ3ThJbWwowrybgai++F72j7S/SIADuUUjFd9uCw=.sha256",
+        "%N9q9xPUou24K/BamYLEeR7geM0FjfOyMEK0OkRTKgX0=.sha256"
+      ],
+      "reply": {
+        "%mUPHgtq8kBUaWClE3mU3Do54TCGXSftHyFD9eQt8S9w=.sha256": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+        "%N9q9xPUou24K/BamYLEeR7geM0FjfOyMEK0OkRTKgX0=.sha256": "@+UMKhpbzXAII+2/7ZlsgkJwIsxdfeFi36Z5Rk1gCfY0=.ed25519"
+      },
+      "channel": null,
+      "recps": null,
+      "text": "[@andrestaltz_phone](@+UMKhpbzXAII+2/7ZlsgkJwIsxdfeFi36Z5Rk1gCfY0=.ed25519) Absolutely! LiveView is something I'm really looking forward to :-) LiveView is a great solution for providing frontends to heavy backend stuff - especially when running on the local machine or a machine in the local network.",
+      "mentions": [
+        {
+          "link": "@+UMKhpbzXAII+2/7ZlsgkJwIsxdfeFi36Z5Rk1gCfY0=.ed25519",
+          "name": "andrestaltz_phone"
+        }
+      ]
+    },
+    "signature": "x4RxHqxSU9tj4V7KldG6E6YklI9uP5eDMetFIJnhzC7XJIjTIlVVNb8wkRKp4B4U526OFKH5gYwSKFq83VELDA==.sig.ed25519"
+  },
+  "timestamp": 1562936615893
+}
+
+{
+  "key": "%GXAsPkMu5nag78K9QpHyFSyYOjoc7EFU3qm4sYNTHWw=.sha256",
+  "value": {
+    "previous": "%cPgfeJ2lNVWVv2IwiyaW4SMLztx8TZu6pEanB91foK0=.sha256",
+    "sequence": 207,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1562961600585,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "vote": {
+        "link": "%/NGBaQtVPNKgFEa7ZBJuIGHMCQeG2+8Dg+QOI5kHCJk=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "FH/Kw6J5hJ13gumv4pRGoPrpBxaDFLeivxEtb3sWX8Ck55jUDLugZA9gaaIIa0GMz4CBO1v7JxYstNDFor+vBA==.sig.ed25519"
+  },
+  "timestamp": 1562961600586
+}
+
+{
+  "key": "%B4TmDUt0dXqVjR4pn5GAx8o4oF58nFoeWvpc/2QQVp8=.sha256",
+  "value": {
+    "previous": "%GXAsPkMu5nag78K9QpHyFSyYOjoc7EFU3qm4sYNTHWw=.sha256",
+    "sequence": 208,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1562961668851,
+    "hash": "sha256",
+    "content": {
+      "type": "about",
+      "about": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+      "description": "Software developer from Germany specializing in functional languages. Also interested in gardening, photography and cycling.\n\nWorking on `sailor`, a SSB implementation in Elixir."
+    },
+    "signature": "buRF0BFn5+NGPAh06eUcKWJ4AuFW6oaZnYSMBGGhddroN3CFJg8X9p8ElmJ9meIFhmnr7RofNttPllyBMq1KAw==.sig.ed25519"
+  },
+  "timestamp": 1562961668851.001
+}
+
+{
+  "key": "%XJwUE07OGIWV4DGt7c55aDDYmMeO6HGcPeNE+Xq6b5E=.sha256",
+  "value": {
+    "previous": "%B4TmDUt0dXqVjR4pn5GAx8o4oF58nFoeWvpc/2QQVp8=.sha256",
+    "sequence": 209,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1563136255433,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "text": "Looks like the SSL certificate for https://scuttlebutt.io just expired. Maybe it's time to switch it over to a LetsEncrypt one?\n\n![Screenshot 2019-07-14 at 22.30.16.png](&gHclhLvI3m0hpZ920MR3gyCIFHsIGdJdw0EPmEV8K9U=.sha256)\n \n\n#scuttlebutt #documentation\n  ",
+      "mentions": [
+        {
+          "link": "&gHclhLvI3m0hpZ920MR3gyCIFHsIGdJdw0EPmEV8K9U=.sha256",
+          "name": "Screenshot 2019-07-14 at 22.30.16.png",
+          "type": "image/png",
+          "size": 183871
+        },
+        {
+          "link": "#scuttlebutt"
+        },
+        {
+          "link": "#documentation"
+        }
+      ]
+    },
+    "signature": "ceCuUllyFIlaNo1ls8SVUq8NXHL20FDCK1INDVBJa2Z15Ly7OF0xiSGTw2KPtgR4SCzbqnkurFDCI4gA6kf5CQ==.sig.ed25519"
+  },
+  "timestamp": 1563136255434
+}
+
+{
+  "key": "%v9MSMKBBXcN+vCQe5yX2jntWIVWOBavawzvEmZYe0kU=.sha256",
+  "value": {
+    "previous": "%XJwUE07OGIWV4DGt7c55aDDYmMeO6HGcPeNE+Xq6b5E=.sha256",
+    "sequence": 210,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1563136294026,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%XJwUE07OGIWV4DGt7c55aDDYmMeO6HGcPeNE+Xq6b5E=.sha256",
+      "branch": "%XJwUE07OGIWV4DGt7c55aDDYmMeO6HGcPeNE+Xq6b5E=.sha256",
+      "reply": {
+        "%XJwUE07OGIWV4DGt7c55aDDYmMeO6HGcPeNE+Xq6b5E=.sha256": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519"
+      },
+      "channel": null,
+      "recps": null,
+      "text": "That should be https://scuttlebot.io, obviously. Sorry :-)",
+      "mentions": []
+    },
+    "signature": "h6iKkfCc5GFcEnT6tQmNPgIPMOtZbyZhnmhSXUvcSLP9cNBe1fSaWHSuzZdah6dYqKbv31JTf21M345lA5bKDQ==.sig.ed25519"
+  },
+  "timestamp": 1563136294026.001
+}
+
+{
+  "key": "%pviH3ZzPSi160Uwtl7N74W59M52ETFW8q3uFSi8VGCw=.sha256",
+  "value": {
+    "previous": "%v9MSMKBBXcN+vCQe5yX2jntWIVWOBavawzvEmZYe0kU=.sha256",
+    "sequence": 211,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1563170735612,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%XJwUE07OGIWV4DGt7c55aDDYmMeO6HGcPeNE+Xq6b5E=.sha256",
+      "branch": "%/RCV9t7KzESF9XENoZyryRF7by0Xzt3uYa2JrTz44/Q=.sha256",
+      "reply": {
+        "%XJwUE07OGIWV4DGt7c55aDDYmMeO6HGcPeNE+Xq6b5E=.sha256": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+        "%/RCV9t7KzESF9XENoZyryRF7by0Xzt3uYa2JrTz44/Q=.sha256": "@f/6sQ6d2CMxRUhLpspgGIulDxDCwYD7DzFzPNr7u5AU=.ed25519"
+      },
+      "channel": null,
+      "recps": null,
+      "text": "[@Powersource too](@JifG9OFC1cUWHCI+126iOZeqevvgF5nwrNiNXcHohYM=.ed25519) you're right. Yesterday was not my most attentive day",
+      "mentions": [
+        {
+          "link": "@JifG9OFC1cUWHCI+126iOZeqevvgF5nwrNiNXcHohYM=.ed25519",
+          "name": "Powersource too"
+        }
+      ]
+    },
+    "signature": "mdUG+klTU1AXMKcdZiRyCQrNaUnAUj+rYu1DASOFKZGf5Wg6d9jJ4RFuC76PBO46pzVzi4HoXbbt0UcOCKhlDw==.sig.ed25519"
+  },
+  "timestamp": 1563170735612.001
+}
+
+{
+  "key": "%3M+8DqPT1VaAp6Bt2lqcaPuHthI9SJSFoSZfJ5JOP18=.sha256",
+  "value": {
+    "previous": "%pviH3ZzPSi160Uwtl7N74W59M52ETFW8q3uFSi8VGCw=.sha256",
+    "sequence": 212,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1563200330222,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%OU7GA2fOQROM0Zs+VFEOqF6WWFAKTlSkE3YYiDYjU4o=.sha256",
+      "branch": "%OU7GA2fOQROM0Zs+VFEOqF6WWFAKTlSkE3YYiDYjU4o=.sha256",
+      "reply": {
+        "%OU7GA2fOQROM0Zs+VFEOqF6WWFAKTlSkE3YYiDYjU4o=.sha256": "@/6Xvv3L7eYrQDsJQQkhcxf1G8xaP9HIj4LDqAJmYXyw=.ed25519"
+      },
+      "channel": null,
+      "recps": null,
+      "text": "As you seem to know Forth: Are parts of keykapp implemented in Forth? :-)",
+      "mentions": []
+    },
+    "signature": "atadygnD/gZV8nXCGJNoZvjeoHnimoMjLEfhL11g8HSi73SnsaYs6r8mMp/Apb1lyt5GbdQc2VuFhRIYQdV2AQ==.sig.ed25519"
+  },
+  "timestamp": 1563200330222.001
+}
+
+{
+  "key": "%d1/JcbujtCp44mxjRsW1izfafvgoNJf2x1U26OPxNYU=.sha256",
+  "value": {
+    "previous": "%3M+8DqPT1VaAp6Bt2lqcaPuHthI9SJSFoSZfJ5JOP18=.sha256",
+    "sequence": 213,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1563201858707,
+    "hash": "sha256",
+    "content": {
+      "type": "vote",
+      "vote": {
+        "link": "%OU7GA2fOQROM0Zs+VFEOqF6WWFAKTlSkE3YYiDYjU4o=.sha256",
+        "value": 1,
+        "expression": "Like"
+      }
+    },
+    "signature": "AMdyJakekakBh2gcWKb/LJFzPksxaUSg0ZO40XoxAK096Ot7IU2i5Q+1DvggDV9aFAjBPqhpZHeIrqRxaWh+CQ==.sig.ed25519"
+  },
+  "timestamp": 1563201858708
+}
+
+{
+  "key": "%WOb/sWMUda11iGhiuIJyzGiPeGFGbycx2RsDNrEMgv8=.sha256",
+  "value": {
+    "previous": "%d1/JcbujtCp44mxjRsW1izfafvgoNJf2x1U26OPxNYU=.sha256",
+    "sequence": 214,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1563359307774,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "channel": "sailor",
+      "text": "# Sailor Dev-Diary\n\n#ssb-implementations #sailor-ssb\n\nAs some of you know, I'm working on a SSB implementation in Elixir. The source code is not public yet, but I will release it under an Open Source license in the near future.\n\n## Updates\n\nWhile working on gossip replication and storing said gossip in the database (Sqlite) I ran into an issue where calls where running into timeouts (which default to 5 seconds). Sqlite supports multiple open connections to the database but creates a database-wide lock as soon as a connection wants to write to the database.\n\nTurning on write-ahead-logging (WAL) mode improved the situation. Another thing I did was reducing the concurrent write load by serializing the writes in a few places. While I really dislike the idea of serializing anything in a language like Elixir, I might have hit the limits of Sqlite. \n\nAnother thing I need to do in this part of the code is implementing backpressure mechanics. The application shouldn't fetch more messages for replication from peers when the database can't handle the write load. \n\n## Next Steps\n\nI'm a bit annoyed by the database limits, so I might move on to something else for some time (as long as the it doesn't cause new issues). Bidirectional blob synchronization and finishing the gossip code sounds fun :-) ",
+      "mentions": [
+        {
+          "link": "#ssb-implementations"
+        },
+        {
+          "link": "#sailor-ssb"
+        }
+      ]
+    },
+    "signature": "OYv6ABdEyn08SVhvVbm/gShnwlA1N8cEaZYrqlbVipuc1w96NYrsxkOaV810F6smPT2w+yKI6qmLq/t4IAOOCw==.sig.ed25519"
+  },
+  "timestamp": 1563359307775
+}
+
+{
+  "key": "%I2f0YB4250OdHXR269trda/wGjUoy5C7wZBnbvS6H9s=.sha256",
+  "value": {
+    "previous": "%WOb/sWMUda11iGhiuIJyzGiPeGFGbycx2RsDNrEMgv8=.sha256",
+    "sequence": 215,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1563915825728,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "channel": "ssb-implementations",
+      "text": "Can someone tell me if there's something up with the following messages? My code calculates the correct ids for hundreds of test messages as well as verifies their signatures, but calculates different IDs than `sbot` for these two messages:\n\n- %ulQhTQBs4Ut9HpXUgFSOcHgcybNs9xxfxyZZ7GZgvwI=.sha256 (calculates `%PKpVvgkUnCKSJMi0zjb7RcbZjg4Yt59q0/UbfGE60fo=.sha256`)\n- %noYmscg6meUuLKECN5esscYylk/edehqjT1sBEaYh84=.sha256 (calculates `%4pbdzaDIcXINPLxBsNrqEo8z7Y3ddo4tyhqA/tNWos4=.sha256`)\n\n(left is from `sbot`, right is what my code calculates)\n\nThe signatures check out, and I use the same code path for signature verification as well as id calculation. ",
+      "mentions": [
+        {
+          "link": "%ulQhTQBs4Ut9HpXUgFSOcHgcybNs9xxfxyZZ7GZgvwI=.sha256"
+        },
+        {
+          "link": "%noYmscg6meUuLKECN5esscYylk/edehqjT1sBEaYh84=.sha256"
+        }
+      ]
+    },
+    "signature": "hH8zon6KGtKl2qo7eVjGHmd+wZKrxauodIBDeZk0SwMfOQhX6s9ZKmWjsxcnf42GjajPrGmPplvaKr/Tq1LOAQ==.sig.ed25519"
+  },
+  "timestamp": 1563915825728.001
+}
+
+{
+  "key": "%ATQmNACifAfnZmjqeD8z70PNVQKJrljNDBisYXiBbks=.sha256",
+  "value": {
+    "previous": "%I2f0YB4250OdHXR269trda/wGjUoy5C7wZBnbvS6H9s=.sha256",
+    "sequence": 216,
+    "author": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+    "timestamp": 1563955469296,
+    "hash": "sha256",
+    "content": {
+      "type": "post",
+      "root": "%I2f0YB4250OdHXR269trda/wGjUoy5C7wZBnbvS6H9s=.sha256",
+      "branch": "%yCVSCCOZQSSI7aVxrRqwiUiW5Z2Azc/6ad++7VRRyns=.sha256",
+      "reply": {
+        "%I2f0YB4250OdHXR269trda/wGjUoy5C7wZBnbvS6H9s=.sha256": "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519",
+        "%yCVSCCOZQSSI7aVxrRqwiUiW5Z2Azc/6ad++7VRRyns=.sha256": "@zurF8X68ArfRM71dF3mKh36W0xDM8QmOnAS5bYOq8hA=.ed25519"
+      },
+      "channel": "ssb-implementations",
+      "recps": null,
+      "text": "[@Aljoscha](@zurF8X68ArfRM71dF3mKh36W0xDM8QmOnAS5bYOq8hA=.ed25519) I thought I did! I'll investigate this some more. Thanks for the test dataset. That will help :-)",
+      "mentions": [
+        {
+          "link": "@zurF8X68ArfRM71dF3mKh36W0xDM8QmOnAS5bYOq8hA=.ed25519",
+          "name": "Aljoscha"
+        }
+      ]
+    },
+    "signature": "LIOK2htIPP339zFH1JQv7eIFxeJ1TgIA5Lrsva1FqvSqqO0ZaJj78ElKKdtq4uTizCTNzgXRleO9t4EIwuo/Ag==.sig.ed25519"
+  },
+  "timestamp": 1563955469297
+}

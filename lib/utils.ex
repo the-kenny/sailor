@@ -16,10 +16,8 @@ defmodule Sailor.Utils do
   end
 
   def message_blobs(message) do
-    alias Sailor.Stream.Message
-
     [message]
-    |> Stream.map(&Message.content/1)
+    |> Stream.map(&Map.get(&1, :content))
     |> Stream.reject(&is_binary/1)
     |> Stream.map(&:proplists.get_value("text", &1, nil))
     |> Stream.filter(&is_binary/1)

@@ -3,34 +3,52 @@ defmodule Sailor.Stream.MessageTest do
 
   alias Sailor.Stream.Message
 
-  @legacy_message ~s({"previous":"%5vRiWqlTOUsY6MM1I/lcQqCkw1F09BSmI6BnPD7FWcc=.sha256","sequence":32,"author":"@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519","timestamp":1557303668620,"hash":"sha256","content":{"type":"contact","contact":"@EvIllh9vj5gYABPBjNPWvkABcVp0rUbp4EoA0tXPhFY=.ed25519","following":true},"signature":"QMtIicJmiaEGxFAgyB8Hg9FABJdcPjaHlXubN5J+GrElGoVHxfU5SLle6HCSreSAutJ8CNwSVmvLbGsheGRkDA==.sig.ed25519"})
+  @msgs File.read!("priv/tests/messages")
+    |> String.split("\n\n")
+    |> Enum.filter(&String.starts_with?(&1, "%"))
+    |> Enum.map(&String.split(&1, "\n", parts: 2))
+    |> Enum.map(fn [k, v] -> {k, v} end)
 
-  test "Message.verify_signature for legacy formats" do
-    {:ok, message} = Message.from_json(@legacy_message)
-    assert :ok = Message.verify_signature(message)
-  end
+  Enum.each @msgs, fn {message_id, message_json} ->
+    @message_id message_id
+    @message_json message_json
 
-  test "Message.id for legacy formats" do
-    {:ok, message} = Message.from_json(@legacy_message)
-    # assert nil = Message.id(message)
-    assert "%lp3Ev8vnaL9X9IpSjV4FmqD/pBRknyBSIFVbfyxjP9o=.sha256" = Message.legacy_id(message)
-  end
+    test "Message.to_compact_json roundtrip for msg #{message_id}" do
+      assert {:ok, message} = Message.from_json(@message_json)
+      json = Message.to_compact_json(message)
+      assert {:ok, roundtrip_message} = Message.from_json(json)
 
-  @msg_files File.ls!("priv/tests/") |> Enum.map(&Path.join("priv/tests/", &1))
-
-  Enum.each @msg_files, fn msg_file ->
-    @msg File.read!(msg_file)
-
-    @tag skip: String.contains?(msg_file, "@skip")
-    test "Message roundtrip for msg in #{msg_file}" do
-      {:ok, message} = Message.from_json(@msg)
-      assert @msg == Message.to_signing_string(message.data)
+      assert message == roundtrip_message
     end
 
-    @tag skip: String.contains?(msg_file, "@skip")
-    test "Message.verify_signature for msg in #{msg_file}" do
-      {:ok, message} = Message.from_json(@msg)
-      assert :ok = Message.verify_signature(message)
+    test "Message.id generates correct id for msg #{message_id}" do
+      {:ok, message} = Message.from_json(@message_json)
+      assert @message_id == Message.calculate_id(message)
+    end
+
+    test "Message.verify_signature for msg #{message_id}" do
+      {:ok, message} = Message.from_json(@message_json)
+      assert :ok == Message.verify_signature(message)
+    end
+  end
+
+  @create_history_stream_msgs File.read!("priv/tests/history_stream.json")
+  |> String.split("\n\n")
+
+  Enum.each Enum.with_index(@create_history_stream_msgs), fn {message_json, index} ->
+    @message_json message_json
+
+    test "Message.to_compact_json roundtrip for msg at index #{index}" do
+      assert {:ok, message} = Message.from_history_stream_json(@message_json)
+      json = Message.to_compact_json(message)
+      assert {:ok, roundtrip_message} = Message.from_json(json)
+
+      assert message == roundtrip_message
+    end
+
+    test "Message.verify_signature for msg at index #{index}" do
+      assert {:ok, message} = Message.from_history_stream_json(@message_json)
+      assert :ok == Message.verify_signature(message)
     end
   end
 end

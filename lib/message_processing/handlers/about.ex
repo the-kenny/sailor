@@ -3,10 +3,9 @@ defmodule Sailor.MessageProcessing.Handlers.About do
 
   alias Sailor.Peer
   alias Sailor.Blob
-  alias Sailor.Stream.Message
 
   def handle!(db, _message_id, message) do
-    message_content = Message.content(message) |> Enum.into(%{})
+    message_content = Enum.into(message.content, %{})
     identifier = message_content["about"]
     if identifier && String.starts_with?(identifier, "@") do
       peer = Peer.for_identifier(identifier)

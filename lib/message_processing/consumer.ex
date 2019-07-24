@@ -18,7 +18,7 @@ defmodule Sailor.MessageProcessing.Consumer do
 
     Sailor.Db.with_db(fn db ->
       for {db_id, message} <- events do
-         message_content = Message.content(message) |> Enum.into(%{})
+         message_content = Enum.into(message.content, %{})
         %{"type" => message_type} = message_content
         module = Module.concat(Sailor.MessageProcessing.Handlers, String.capitalize(message_type))
 
@@ -39,7 +39,7 @@ defmodule Sailor.MessageProcessing.Consumer do
         Message.mark_processed!(db, db_id)
       end
 
-      Logger.info("Marked #{length events} messages as processed")
+      Logger.debug("Marked #{length events} messages as processed")
     end)
 
     # We are a consumer, so we would never emit items.

@@ -8,12 +8,13 @@ defmodule Sailor.MessageProcessing.Decryptor do
   end
 
   def init(nil) do
-    {:producer_consumer, nil, subscribe_to: [Sailor.MessageProcessing.Producer]}
+    {:producer_consumer, nil, subscribe_to: [{Sailor.MessageProcessing.Producer, max_demand: 1}]}
   end
 
   def handle_events(events, _from, state) do
     Logger.info "Decrypting #{length events} messages"
     messages = Enum.flat_map(events, fn {db_id, json} ->
+      Logger.info "Decrypting #{db_id} #{json}"
       {:ok, message} = Message.from_json(json)
       case maybe_decrypt_content(message) do
         [] ->
@@ -29,7 +30,7 @@ defmodule Sailor.MessageProcessing.Decryptor do
   end
 
   defp maybe_decrypt_content(message) do
-    if is_binary(Message.content(message)) do
+    if is_binary(message.content) do
       []
     else
       [message]

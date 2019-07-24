@@ -4,6 +4,7 @@ defmodule Sailor.Peer.Tasks.FetchGossip do
   def run(peer_connection) do
     peer = Sailor.Peer.for_identifier(Sailor.PeerConnection.identifier(peer_connection))
 
+    # TODO: We actually have to use the contacts for the peer of LocalIdentity
     streams = [peer.identifier] ++ MapSet.to_list(peer.contacts)
 
     task = fn identifier ->
@@ -51,7 +52,6 @@ defmodule Sailor.Peer.Tasks.FetchGossip.SingleFeed do
     }
 
     {:ok, request_number} = PeerConnection.rpc_stream(peer, "createHistoryStream", [args])
-
     {:ok, stream} = receive_loop(peer, request_number, stream)
 
     Logger.info "#{inspect __MODULE__} finished for #{identifier} for stream #{history_stream_id}"
@@ -87,12 +87,8 @@ defmodule Sailor.Peer.Tasks.FetchGossip.SingleFeed do
     if Sailor.Rpc.Packet.end_or_error?(packet) do
       :halt
     else
-      {:ok, message} = Message.from_history_stream_json(body)
-      case Message.verify_signature(message) do
-        {:error, :forged} -> Logger.warn "Couldn't verify signature of message #{Message.id(message)}"
-        :ok -> nil
-      end
-      {:ok, message}
+      IO.inspect body
+      Message.from_history_stream_json(body)
     end
   end
 
@@ -104,6 +100,7 @@ defmodule Sailor.Peer.Tasks.FetchGossip.SingleFeed do
       {:rpc_response, ^request_number, "createHistoryStream", packet} ->
         case packet_to_message(packet) do
           {:ok, message} -> {:ok, message}
+          {:error, err} -> Logger.error err
           :halt -> :halt
         end
     after

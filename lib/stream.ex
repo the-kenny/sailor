@@ -11,19 +11,19 @@ defmodule Sailor.Stream do
 
   def from_messages(identifier, messages) do
     Enum.each(messages, fn message ->
-      if Message.author(message) != identifier do
-        raise "Message #{Message.id(message)} doesn't match author #{identifier}"
+      if message.author != identifier do
+        raise "Message #{message.id} doesn't match author #{identifier}"
       end
     end)
 
     sequence = messages
-    |> Stream.map(&Message.sequence/1)
+    |> Stream.map(&Map.get(&1, :sequence))
     |> Enum.max(fn -> 0 end)
 
     %__MODULE__{
       identifier: identifier,
       sequence: sequence,
-      messages: Enum.sort_by(messages, &Message.sequence/1)
+      messages: Enum.sort_by(messages, &Map.get(&1, :sequence))
     }
   end
 
@@ -33,9 +33,9 @@ defmodule Sailor.Stream do
 
     rows = Enum.map(stream.messages, fn message ->
       [
-        Message.id(message),
-        Message.author(message),
-        Message.sequence(message),
+        message.id,
+        message.author,
+        message.sequence,
         Message.to_compact_json(message)
       ]
     end)
@@ -65,8 +65,11 @@ defmodule Sailor.Stream do
       result
       |> Stream.map(&Keyword.get(&1, :json))
       |> Stream.map(fn json ->
-        {:ok, message} = Message.from_json(json)
-        message
+        case Message.from_json(json) do
+          {:ok, message} -> message
+          {:error, error} ->
+            raise "#{error}: #{json}"
+        end
       end)
     end
 
@@ -79,8 +82,8 @@ defmodule Sailor.Stream do
   def append(stream, []), do: {:ok, stream}
 
   def append(stream, [message]) do
-    seq = Message.sequence(message)
-    author = Message.author(message)
+    seq = message.sequence
+    author = message.author
 
     cond do
       seq > (stream.sequence + 1) ->
@@ -123,7 +126,7 @@ defmodule Sailor.Stream do
 
   defp message_content_stream(stream) do
     stream.messages
-    |> Stream.map(&Message.content/1)
+    |> Stream.map(&Map.get(&1, :content))
     |> Stream.reject(&is_binary/1)
     |> Stream.map(&:proplists.get_value("text", &1, nil))
     |> Stream.filter(&is_binary/1)
