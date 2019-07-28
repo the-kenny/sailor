@@ -6,14 +6,18 @@ defmodule Sailor.Stream do
   defstruct [
     identifier: nil,
     sequence: 0,
-    messages: []
+    unsaved_messages: []
   ]
 
-  @spec persist!(%Sailor.Stream{}) :: :ok
+  def empty?(stream) do
+    stream.sequence == 0 && Enum.empty?(stream.unsaved_messages)
+  end
+
+  @spec persist!(%Sailor.Stream{}) :: {:ok, %__MODULE__{}}
   def persist!(stream) do
     Logger.debug "Persisting stream for #{stream.identifier} with sequence #{stream.sequence}"
 
-    rows = Enum.map(stream.messages, fn message ->
+    rows = Enum.map(stream.unsaved_messages, fn message ->
       [
         message.id,
         message.author,
@@ -26,38 +30,24 @@ defmodule Sailor.Stream do
       Sailor.Db.with_transaction(db, fn db ->
         {:ok, stmt} = Sqlitex.Statement.prepare(db, "insert or ignore into stream_messages (id, author, sequence, json) values (?1, ?2, ?3, ?4)")
 
-        {:ok, [[sequence: seq]]} = Sqlitex.query(db, "select max(sequence) as sequence from stream_messages where author = ?", bind: [stream.identifier])
-        seq = seq || 0
-
-        rows
-        |> Enum.filter(fn [_, _, mseq, _] -> mseq > seq end)
-        |> Enum.each(fn row ->
+        Enum.each(rows, fn row ->
           {:ok, stmt} = Sqlitex.Statement.bind_values(stmt, row)
           :ok = Sqlitex.Statement.exec(stmt)
         end)
 
-        :ok
+        %{stream | unsaved_messages: [], }
       end)
     end)
   end
 
   def for_peer(identifier) do
-    message_stream = with {:ok, result} <- Sailor.Db.with_db(&Sqlitex.query(&1, "select json from stream_messages where author = ? order by sequence", bind: [identifier]))
-    do
-      result
-      |> Stream.map(&Keyword.get(&1, :json))
-      |> Stream.map(fn json ->
-        case Message.from_json(json) do
-          {:ok, message} -> message
-          {:error, error} ->
-            raise "#{error}: #{json}"
-        end
-      end)
-    end
+    {:ok, [[sequence: max_seq]]} = Sailor.Db.with_db(&Sqlitex.query(&1, "select max(sequence) as sequence from stream_messages where author = ?", bind: [identifier]))
 
-    # TODO: Validate that `row.id` matches `Message.id(message)`
-
-    from_messages(identifier, Enum.into(message_stream, []))
+    %__MODULE__{
+      identifier: identifier,
+      sequence: max_seq || 0,
+      unsaved_messages: [],
+    }
   end
 
   @spec append(%Sailor.Stream{}, [%Sailor.Stream.Message{}]) :: {:ok, %Sailor.Stream{}} | {:error, String.t}
@@ -77,7 +67,7 @@ defmodule Sailor.Stream do
       :else ->
         {:ok, %{ stream |
           sequence: seq,
-          messages: stream.messages ++ [message]
+          unsaved_messages: stream.unsaved_messages ++ [message]
         }}
     end
   end
@@ -91,21 +81,7 @@ defmodule Sailor.Stream do
     end)
   end
 
-  defp from_messages(identifier, messages) do
-    Enum.each(messages, fn message ->
-      if message.author != identifier do
-        raise "Message #{message.id} doesn't match author #{identifier}"
-      end
-    end)
-
-    sequence = messages
-    |> Stream.map(&Map.get(&1, :sequence))
-    |> Enum.max(fn -> 0 end)
-
-    %__MODULE__{
-      identifier: identifier,
-      sequence: sequence,
-      messages: Enum.sort_by(messages, &Map.get(&1, :sequence))
-    }
+  def messages(_stream, _start_seq \\ 0) do
+    raise "Unimplemented"
   end
 end
