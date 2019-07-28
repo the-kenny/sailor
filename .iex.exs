@@ -48,18 +48,6 @@ defmodule User do
     end
   end
 
-  def dump_all_peers() do
-    peers = Sailor.Stream.for_peer(@me)
-    |> Sailor.Stream.extract_peers()
-
-    User.outgoing_peer({127,0,0,1}, 8008, @me)
-    peer = GenServer.whereis(PeerConnection.for_identifier(@me))
-
-    peers
-    |> Stream.each(&Sailor.Peer.Tasks.FetchGossip.run(peer, &1))
-    |> Stream.run()
-  end
-
   # {:ok, peer} = User.outgoing_peer({127,0,0,1}, 8008, "@mucTrTjExFklGdAFobgY4zypBAZMVi7q0m6Ya55gLVo=.ed25519");
   # User.create_history_stream(peer) |> Stream.each(&IO.inspect(&1)) |> Stream.each(&Sailor.Database.store(&1)) |> Stream.run
 end

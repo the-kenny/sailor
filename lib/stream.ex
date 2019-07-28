@@ -9,24 +9,6 @@ defmodule Sailor.Stream do
     messages: []
   ]
 
-  def from_messages(identifier, messages) do
-    Enum.each(messages, fn message ->
-      if message.author != identifier do
-        raise "Message #{message.id} doesn't match author #{identifier}"
-      end
-    end)
-
-    sequence = messages
-    |> Stream.map(&Map.get(&1, :sequence))
-    |> Enum.max(fn -> 0 end)
-
-    %__MODULE__{
-      identifier: identifier,
-      sequence: sequence,
-      messages: Enum.sort_by(messages, &Map.get(&1, :sequence))
-    }
-  end
-
   @spec persist!(%Sailor.Stream{}) :: :ok
   def persist!(stream) do
     Logger.debug "Persisting stream for #{stream.identifier} with sequence #{stream.sequence}"
@@ -109,44 +91,21 @@ defmodule Sailor.Stream do
     end)
   end
 
+  defp from_messages(identifier, messages) do
+    Enum.each(messages, fn message ->
+      if message.author != identifier do
+        raise "Message #{message.id} doesn't match author #{identifier}"
+      end
+    end)
 
-  def extract_peers(stream) do
-    stream
-    |> message_content_stream()
-    |> Stream.flat_map(&Sailor.Utils.extract_identifiers/1)
-    |> Enum.into(MapSet.new())
+    sequence = messages
+    |> Stream.map(&Map.get(&1, :sequence))
+    |> Enum.max(fn -> 0 end)
+
+    %__MODULE__{
+      identifier: identifier,
+      sequence: sequence,
+      messages: Enum.sort_by(messages, &Map.get(&1, :sequence))
+    }
   end
-
-  def blobs(stream) do
-    stream
-    |> message_content_stream()
-    |> Stream.flat_map(&Sailor.Utils.extract_blobs/1)
-    |> Enum.into(MapSet.new())
-  end
-
-  defp message_content_stream(stream) do
-    stream.messages
-    |> Stream.map(&Map.get(&1, :content))
-    |> Stream.reject(&is_binary/1)
-    |> Stream.map(&:proplists.get_value("text", &1, nil))
-    |> Stream.filter(&is_binary/1)
-  end
-
-  # defp validate(stream) do
-  #   stream = stream.messages |> Enum.sort_by(&Message.sequence/1)
-  #   seq_check_result = Enum.map(stream.messages, &Message.sequence/1)
-  #   |> Enum.reduce(1, fn expected, got ->
-  #     if expected == got do
-  #       got + 1
-  #     else
-  #       {:halt, expected, got}
-  #     end
-  #   end)
-
-  #   case seq_check_result do
-  #     n when is_number(n) -> stream
-  #     {:error, expected, got} ->
-  #       raise "Invalid Sequence. Expected #{expected} got #{got}"
-  #   end
-  # end
 end
