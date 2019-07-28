@@ -87,22 +87,18 @@ defmodule Sailor.Peer.Tasks.FetchGossip.SingleFeed do
     if Sailor.Rpc.Packet.end_or_error?(packet) do
       :halt
     else
-      IO.inspect body
       Message.from_history_stream_json(body)
     end
   end
 
+  @spec receive_message(number(), number()) :: {:ok, %Message{}} | {:error, String.t} | :halt | :timeout
   defp receive_message(request_number, timeout) do
     receive do
       {:DOWN, _ref, :process, _object, _reason} ->
         {:error, "Peer shut down"}
 
       {:rpc_response, ^request_number, "createHistoryStream", packet} ->
-        case packet_to_message(packet) do
-          {:ok, message} -> {:ok, message}
-          {:error, err} -> Logger.error err
-          :halt -> :halt
-        end
+        packet_to_message(packet)
     after
       timeout -> :timeout
     end

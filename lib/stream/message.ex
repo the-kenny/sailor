@@ -48,10 +48,12 @@ defmodule Sailor.Stream.Message do
   #   |> Map.put(:legacy_id?, legacy_id?(message.data))
   # end
 
-  defp ssbencode(proplist) do
+  def ssbencode(proplist) do
     proplist
+    |> Sailor.Stream.MessageUtils.fmap()
     |> :jsone.encode([:native_utf8, :native_forward_slash, indent: 2, space: 1, float_format: [{:decimals, 4}, :compact]])
     |> String.replace(~r/{\s+}/, "{}") # hack as :jsone encodes `{}` as `{\n}`
+    |> String.replace(~r/\[\s+\]/, "[]") # hack as :jsone encodes `[]` as `[\n]`
   end
 
   def to_signature_string(message) do
@@ -76,6 +78,7 @@ defmodule Sailor.Stream.Message do
   def to_compact_json(message) do
     message_fields(message)
     |> Enum.map(fn field -> {to_string(field), Map.get(message, field)} end)
+    |> Sailor.Stream.MessageUtils.fmap()
     |> :jsone.encode([:native_utf8, :native_forward_slash, indent: 0, space: 0])
   end
 
@@ -109,6 +112,19 @@ defmodule Sailor.Stream.Message do
   end
 
   def from_json(str) do
+    case from_json_unchecked(str) do
+      {:error, err} ->
+        {:error, err}
+      {:ok, message} ->
+        if verify_signature(message) != :ok do
+          {:error, "Signature verification failed for message #{message.id}"}
+        else
+          {:ok, message}
+        end
+    end
+  end
+
+  def from_json_unchecked(str) do
     proplist = :jsone.decode(str, object_format: :proplist)
 
     field_list = @message_fields
@@ -120,12 +136,7 @@ defmodule Sailor.Stream.Message do
 
     # Add the calculated id to `message`
     message = %{ message | id: calculate_id(message) }
-
-    if verify_signature(message) != :ok do
-      {:error, "Signature verification failed for message #{message.id}"}
-    else
-      {:ok, message}
-    end
+    {:ok, message}
   end
 
   defp legacy_id?(proplist) do

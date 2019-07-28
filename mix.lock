@@ -7,7 +7,7 @@
   "gen_stage": {:hex, :gen_stage, "0.14.2", "6a2a578a510c5bfca8a45e6b27552f613b41cf584b58210f017088d3d17d0b14", [:mix], [], "hexpm"},
   "jason": {:hex, :jason, "1.1.2", "b03dedea67a99223a2eaf9f1264ce37154564de899fd3d8b9a21b1a6fd64afe7", [:mix], [{:decimal, "~> 1.0", [hex: :decimal, repo: "hexpm", optional: true]}], "hexpm"},
   "jiffy": {:hex, :jiffy, "1.0.1", "4f25639772ca41202f41ba9c8f6ca0933554283dd4742c90651e03471c55e341", [:rebar3], [], "hexpm"},
-  "jsone": {:git, "https://github.com/the-kenny/jsone.git", "e60c66c9014895b607b8620a4a7081d43e585056", [branch: "empty-array-formatting"]},
+  "jsone": {:hex, :jsone, "1.5.0", "410f5208bcae541bf941b3f2756e5bb5a4c8694d7ffd6b34b909ae88262629c0", [:rebar3], [], "hexpm"},
   "memento": {:hex, :memento, "0.3.1", "b2909390820550d8b90b68ec96f9e15ff8a45a28b6f97fa4a62ef50e87c2f9d9", [:mix], [], "hexpm"},
   "poison": {:hex, :poison, "4.0.1", "bcb755a16fac91cad79bfe9fc3585bb07b9331e50cfe3420a24bcc2d735709ae", [:mix], [], "hexpm"},
   "poolboy": {:hex, :poolboy, "1.5.2", "392b007a1693a64540cead79830443abf5762f5d30cf50bc95cb2c1aaafa006b", [:rebar3], [], "hexpm"},
