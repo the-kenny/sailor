@@ -8,14 +8,14 @@ defmodule Sailor.MessageProcessing.Decryptor do
   end
 
   def init(nil) do
-    {:producer_consumer, nil, subscribe_to: [{Sailor.MessageProcessing.Producer, max_demand: 1}]}
+    {:producer_consumer, nil, subscribe_to: [Sailor.MessageProcessing.Producer]}
   end
 
   def handle_events(events, _from, state) do
     Logger.info "Decrypting #{length events} messages"
     messages = Enum.flat_map(events, fn {db_id, json} ->
-      Logger.info "Decrypting #{db_id} #{json}"
       {:ok, message} = Message.from_json(json)
+
       case maybe_decrypt_content(message) do
         [] ->
           Logger.warn "Unimplemented: decryption for message content of #{message.id}"

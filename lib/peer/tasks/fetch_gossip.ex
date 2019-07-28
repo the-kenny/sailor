@@ -13,7 +13,9 @@ defmodule Sailor.Peer.Tasks.FetchGossip do
 
     persist_stream = fn arg ->
       case arg do
-        {:ok, stream} -> Sailor.Stream.persist!(stream)
+        {:ok, stream} ->
+          Sailor.Stream.persist!(stream)
+          Sailor.MessageProcessing.Producer.notify!()
         {:error, err} -> Logger.warn "Failed to fetch stream: #{err}"
       end
     end
@@ -21,8 +23,6 @@ defmodule Sailor.Peer.Tasks.FetchGossip do
     Task.Supervisor.async_stream_nolink(Sailor.Peer.TaskSupervisor, streams, task, max_concurrency: 5, ordered: false, timeout: :infinity)
     |> Stream.each(persist_stream)
     |> Stream.run()
-
-    Sailor.MessageProcessing.Producer.notify!()
   end
 end
 

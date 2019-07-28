@@ -15,6 +15,8 @@ defmodule Sailor.Stream.MessageTest do
 
     test "Message.to_compact_json roundtrip for msg #{message_id}" do
       assert {:ok, message} = Message.from_json(@message_json)
+      assert :ok == Message.verify(message)
+
       json = Message.to_compact_json(message)
       assert {:ok, roundtrip_message} = Message.from_json(json)
 
@@ -27,8 +29,13 @@ defmodule Sailor.Stream.MessageTest do
     end
 
     test "Message.id generates correct id for msg #{message_id}" do
-      {:ok, message} = Message.from_json_unchecked(@message_json)
+      {:ok, message} = Message.from_json(@message_json)
       assert @message_id == Message.calculate_id(message)
+    end
+
+    test "Message.verify for msg #{message_id}" do
+      {:ok, message} = Message.from_json(@message_json)
+      assert :ok == Message.verify(message)
     end
   end
 
@@ -40,8 +47,11 @@ defmodule Sailor.Stream.MessageTest do
 
     test "Message.to_compact_json roundtrip for msg at index #{index}" do
       assert {:ok, message} = Message.from_history_stream_json(@message_json)
+      assert :ok == Message.verify(message)
+
       json = Message.to_compact_json(message)
       assert {:ok, roundtrip_message} = Message.from_json(json)
+      assert :ok == Message.verify(roundtrip_message)
 
       assert message == roundtrip_message
     end
