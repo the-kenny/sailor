@@ -29,3 +29,4 @@ sailor-*.tar
 /sailor_data*/
 
 /.elixir_ls
+/ecma262.so
