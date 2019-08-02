@@ -35,7 +35,7 @@ defmodule Sailor.PeerConnection do
   end
 
   def for_identifier(identifier) do
-    GenServer.whereis({:global, {__MODULE__, identifier}})
+    GenServer.whereis({:via, Registry, {Sailor.PeerConnection.Registry, identifier}})
   end
 
   def identifier(peer) do
@@ -137,9 +137,9 @@ defmodule Sailor.PeerConnection do
     other_keypair = Keypair.from_pubkey(handshake.other_pubkey)
     identifier = Keypair.identifier(other_keypair)
 
-    case :global.register_name({__MODULE__, identifier}, self()) do
-      :yes -> nil
-      :no -> raise "PeerConnection already exists for #{identifier}"
+    case Registry.register(Sailor.PeerConnection.Registry, identifier, self()) do
+      {:ok, _} -> nil
+      {:error, {:already_registered, pid}} -> raise "PeerConnection already exists for #{identifier} (#{inspect pid})"
     end
 
     Logger.info "Started Peer process for #{identifier}"
