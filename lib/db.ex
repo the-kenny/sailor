@@ -1,17 +1,11 @@
 defmodule Sailor.Db do
   require Logger
 
-  def child_spec([db_path]) do
-
-    %{
-      id: __MODULE__,
-      start: {__MODULE__, :start_link, [db_path]}
-    }
-  end
+  use Agent
 
   # TODO: Add a `Registry` to make announcement about table updates
 
-  def start_link(db_path) do
+  def start_link([db_path]) do
     Sqlitex.with_db(db_path, fn db ->
       if !initialized?(db) do
         Logger.info "Initializing database #{inspect db_path}"
@@ -19,17 +13,20 @@ defmodule Sailor.Db do
       end
     end)
 
-    :wpool.start_pool(__MODULE__, [
-      workers: 20,
-      worker: {Sailor.Db.PoolWorker, [db_path]},
-      overrun_warning: 1_000,
-    ])
+    Agent.start_link(fn -> db_path end, name: __MODULE__)
   end
 
   def with_db(fun) do
     time = Time.utc_now
 
-    res = :wpool.call(__MODULE__, {:exec, fun})
+    db_path = Agent.get(__MODULE__, fn db_path -> db_path end)
+
+    res = Sqlitex.with_db(db_path, fn db ->
+      :ok = Sqlitex.exec(db, "PRAGMA journal_mode=WAL")
+      :ok = Sqlitex.exec(db, "PRAGMA foreign_keys = ON")
+
+      fun.(db)
+    end)
 
     diff_ms = Time.diff(Time.utc_now, time, :microsecond)/1000
     # acquiration_diff_ms = Time.diff(Time.utc_now, acquiration_time, :microsecond)/1000
@@ -65,7 +62,6 @@ defmodule Sailor.Db do
         err
     end
   end
-
 
   def initialized?(db) do
     case Sqlitex.query(db, "select true from sqlite_master where type = 'table' and name = ?", bind: ["stream_messages"]) do
