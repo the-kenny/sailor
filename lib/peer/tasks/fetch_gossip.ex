@@ -4,7 +4,7 @@ defmodule Sailor.Peer.Tasks.FetchGossip do
   def run(peer_connection) do
     peer = Sailor.Peer.for_identifier(Sailor.PeerConnection.identifier(peer_connection))
 
-    # TODO: We actually have to use the contacts for the peer of LocalIdentity
+    # TODO: Right now we're just fetching everything on the connected peer plus all its contacts' feeds
     streams = [peer.identifier] ++ MapSet.to_list(peer.contacts)
 
     task = fn identifier ->
@@ -23,6 +23,11 @@ defmodule Sailor.Peer.Tasks.FetchGossip do
     Task.Supervisor.async_stream_nolink(Sailor.Peer.TaskSupervisor, streams, task, max_concurrency: 5, ordered: false, timeout: :infinity)
     |> Stream.each(persist_stream)
     |> Stream.run()
+
+    delay = Application.get_env(:sailor, __MODULE__) |> Keyword.get(:repeat_every)
+    Logger.info "Repeating #{inspect __MODULE__} after #{delay}ms"
+    Process.sleep(delay)
+    run(peer_connection)
   end
 end
 
