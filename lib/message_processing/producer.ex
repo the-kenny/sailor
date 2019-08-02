@@ -16,6 +16,14 @@ defmodule Sailor.MessageProcessing.Producer do
     GenStage.call(__MODULE__, :notify)
   end
 
+  def unprocessed_message_count() do
+    {:ok, [[count: count]]} = Sailor.Db.with_db(fn db ->
+      Sqlitex.query(db, "SELECT count(id) as count from stream_messages where not processed")
+    end)
+
+    count
+  end
+
   defp query_events(demand \\ -1) do
     {:ok, rows} = Sailor.Db.with_db(fn db ->
       Sqlitex.query(db, "SELECT id, json from stream_messages where not processed order by author, sequence limit ?", bind: [demand])
