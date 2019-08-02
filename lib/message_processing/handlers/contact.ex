@@ -12,23 +12,23 @@ defmodule Sailor.MessageProcessing.Handlers.Contact do
       following? = content["following"] || false
 
       if contact do
-        update_follow!(db, message.author, contact, following?)
+        case Sailor.Keypair.from_identifier(contact) do
+          {:error, _err} -> Logger.warn "Failed ot update contact data: Invalid identifier #{contact}"
+          {:ok, keypair} -> update_follow!(db, message.author, Sailor.Keypair.identifier(keypair), following?)
+        end
       end
     end
   end
 
-  defp update_follow!(db, peer, contact, following?) do
-    {:ok, keypair} = Sailor.Keypair.from_identifier(contact)
-    identifier = Sailor.Keypair.identifier(keypair)
-
-    for identifier <- [peer, identifier] do
+  defp update_follow!(db, peer, contact_identifier, following?) do
+    for identifier <- [peer, contact_identifier] do
       Peer.for_identifier(identifier)
     end
 
     {:ok, _} = if following? do
-      Sqlitex.query(db, "insert or ignore into peer_contacts (peer, contact) values(?, ?)", bind: [ peer, identifier ])
+      Sqlitex.query(db, "insert or ignore into peer_contacts (peer, contact) values(?, ?)", bind: [ peer, contact_identifier ])
     else
-      Sqlitex.query(db, "delete from peer_contacts where peer = ? and contact = ?", bind: [ peer, identifier ])
+      Sqlitex.query(db, "delete from peer_contacts where peer = ? and contact = ?", bind: [ peer, contact_identifier ])
     end
 
   end
