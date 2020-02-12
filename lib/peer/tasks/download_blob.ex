@@ -23,7 +23,7 @@ defmodule Sailor.Peer.Tasks.DownloadBlob do
               raise "Blob #{blob_id} at #{temp_path} failed hash-check (got #{blob})"
             end
             :ok = Blob.persist_file!(temp_path)
-            Blob.remove_wanted!(blob)
+            Blob.remove_wanted!(Sailor.Db, blob)
             Logger.info "Successfully downloaded blob #{blob}"
             :ok
           :binary ->

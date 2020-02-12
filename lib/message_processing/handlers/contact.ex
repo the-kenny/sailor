@@ -22,13 +22,13 @@ defmodule Sailor.MessageProcessing.Handlers.Contact do
 
   defp update_follow!(db, peer, contact_identifier, following?) do
     for identifier <- [peer, contact_identifier] do
-      Peer.for_identifier(identifier)
+      Peer.for_identifier(db, identifier)
     end
 
     {:ok, _} = if following? do
-      Sqlitex.query(db, "insert or ignore into peer_contacts (peer, contact) values(?, ?)", bind: [ peer, contact_identifier ])
+      Exqlite.query(db, "insert or ignore into peer_contacts (peer, contact) values(?, ?)", [peer, contact_identifier])
     else
-      Sqlitex.query(db, "delete from peer_contacts where peer = ? and contact = ?", bind: [ peer, contact_identifier ])
+      Exqlite.query(db, "delete from peer_contacts where peer = ? and contact = ?", [peer, contact_identifier])
     end
 
   end

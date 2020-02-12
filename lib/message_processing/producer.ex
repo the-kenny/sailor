@@ -16,20 +16,11 @@ defmodule Sailor.MessageProcessing.Producer do
     GenStage.call(__MODULE__, :notify)
   end
 
-  def unprocessed_message_count() do
-    {:ok, [[count: count]]} = Sailor.Db.with_db(fn db ->
-      Sqlitex.query(db, "SELECT count(id) as count from stream_messages where not processed")
-    end)
-
-    count
-  end
-
   defp query_events(demand \\ -1) do
-    {:ok, rows} = Sailor.Db.with_db(fn db ->
-      Sqlitex.query(db, "SELECT id, json from stream_messages where not processed order by author, sequence limit ?", bind: [demand])
-    end)
+    {:ok, result} = Exqlite.query(Sailor.Db, "SELECT id, json from stream_messages where not processed order by author, sequence limit ?", [demand])
 
-    events = Enum.map(rows, fn row -> {
+    events = Enum.map(result.rows, fn row ->
+      {
         Keyword.get(row, :id),
         Keyword.get(row, :json)
       }
@@ -38,6 +29,7 @@ defmodule Sailor.MessageProcessing.Producer do
     {:ok, events}
   end
 
+  @spec handle_demand(any, any) :: {:noreply, [any], any}
   def handle_demand(demand, state) when demand > 0 do
     Logger.info "Querying database for up to #{demand} unprocessed messages"
 

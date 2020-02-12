@@ -1,8 +1,6 @@
 defmodule Mix.Tasks.Db.Reset do
   use Mix.Task
 
-  alias Sqlitex
-
   @shortdoc "Resets the local sqlite database and initializes the schema"
   def run(_) do
     db_path = Path.join([Application.get_env(:sailor, :data_path), "data.sqlite"])
@@ -11,9 +9,8 @@ defmodule Mix.Tasks.Db.Reset do
 
     schema_file = Path.join([Application.app_dir(:sailor), "priv", "schema.sql"])
 
-    :ok = Sqlitex.with_db(db_path, fn(db) ->
-      :ok = Sqlitex.exec(db, File.read!(schema_file))
-      :ok = Sqlitex.exec(db, "vacuum")
-    end)
+    {:ok, db} = Exqlite.start_link(database: db_path)
+    :ok = Exqlite.execute_raw(db, File.read!(schema_file))
+    :ok = Exqlite.execute_raw(db, "vacuum")
   end
 end

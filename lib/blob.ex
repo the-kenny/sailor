@@ -67,31 +67,22 @@ defmodule Sailor.Blob do
   # Database Operations
 
   def mark_wanted!(db, blob, severity) do
-    case Sqlitex.query(db, "insert or ignore into wanted_blobs (blob, severity) values (?, ?)", bind: [blob, severity]) do
+    case Exqlite.query(db, "insert or ignore into wanted_blobs (blob, severity) values (?, ?)", [blob, severity]) do
       {:ok, _} -> :ok
       err -> err
     end
   end
 
-  def mark_wanted!(blob, severity) do
-    Sailor.Db.with_db(&mark_wanted!(&1, blob, severity))
-  end
-
   def remove_wanted!(db, blob) do
-    {:ok, _} = Sqlitex.query(db, "delete from wanted_blobs where blob = ?", bind: [blob])
+    {:ok, _} = Exqlite.query(db, "delete from wanted_blobs where blob = ?", [blob])
+    :ok
   end
 
-  def remove_wanted!(blob) do
-    Sailor.Db.with_db(&remove_wanted!(&1, blob))
-  end
+  def all_wanted(db) do
+    {:ok, result} = Exqlite.query(db, "select blob, severity from wanted_blobs order by severity desc")
 
-  @spec all_wanted() :: %{String.t => number}
-  def all_wanted() do
-    Sailor.Db.with_db(fn(db) ->
-      {:ok, rows} = Sqlitex.query(db, "select blob, severity from wanted_blobs order by severity desc")
-      rows
-      |> Stream.map(fn [blob: blob, severity: severity] -> {blob, severity} end)
-      |> Enum.into(%{}, fn entry -> entry end)
-    end)
+    result.rows
+    |> Stream.map(fn [blob: blob, severity: severity] -> {blob, severity} end)
+    |> Enum.into(%{}, fn entry -> entry end)
   end
 end

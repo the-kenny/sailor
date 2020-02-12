@@ -13,8 +13,7 @@ defmodule Sailor.Stream do
     stream.sequence == 0 && Enum.empty?(stream.unsaved_messages)
   end
 
-  @spec persist!(%Sailor.Stream{}) :: {:ok, %__MODULE__{}}
-  def persist!(stream) do
+  def persist!(db, stream) do
     Logger.debug "Persisting stream for #{stream.identifier} with sequence #{stream.sequence}"
 
     rows = Enum.map(stream.unsaved_messages, fn message ->
@@ -26,22 +25,19 @@ defmodule Sailor.Stream do
       ]
     end)
 
-    Sailor.Db.with_db(fn(db) ->
-      Sailor.Db.with_transaction(db, fn db ->
-        {:ok, stmt} = Sqlitex.Statement.prepare(db, "insert or ignore into stream_messages (id, author, sequence, json) values (?1, ?2, ?3, ?4)")
+    Exqlite.transaction(db, fn db ->
+      {:ok, stmt} = Exqlite.prepare(db, "insert or ignore into stream_messages (id, author, sequence, json) values (?1, ?2, ?3, ?4)")
 
-        Enum.each(rows, fn row ->
-          {:ok, stmt} = Sqlitex.Statement.bind_values(stmt, row)
-          :ok = Sqlitex.Statement.exec(stmt)
-        end)
-
-        %{stream | unsaved_messages: [], }
+      Enum.each(rows, fn row ->
+        {:ok, _} = Exqlite.execute(db, stmt, row)
       end)
+
+      %{stream | unsaved_messages: [], }
     end)
   end
 
-  def for_peer(identifier) do
-    {:ok, [[sequence: max_seq]]} = Sailor.Db.with_db(&Sqlitex.query(&1, "select max(sequence) as sequence from stream_messages where author = ?", bind: [identifier]))
+  def for_peer(db, identifier) do
+    {:ok, %Exqlite.Result{rows: [[sequence: max_seq]]}} = Exqlite.query(db, "select max(sequence) as sequence from stream_messages where author = ?", [identifier])
 
     %__MODULE__{
       identifier: identifier,

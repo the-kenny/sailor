@@ -16,6 +16,7 @@ defmodule Sailor.Db do
 
   def start_link([db_path]) do
     {:ok, db} = Exqlite.start_link(database: db_path, name: __MODULE__)
+    Exqlite.prepare_execute(db, "PRAGMA journal_mode=WAL")
 
     if !initialized?(db) do
       Logger.info "Initializing database #{inspect db_path}"
@@ -35,7 +36,7 @@ defmodule Sailor.Db do
   defp initialize!(db) do
     schema_file = Path.join([Application.app_dir(:sailor), "priv", "schema.sql"])
 
-    {:ok, _} = Exqlite.execute_raw(db, File.read!(schema_file))
+    :ok = Exqlite.execute_raw(db, File.read!(schema_file))
     {:ok, _} = Exqlite.query(db, "vacuum")
     :ok
   end

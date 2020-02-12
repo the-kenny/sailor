@@ -8,7 +8,7 @@ defmodule Sailor.MessageProcessing.Handlers.About do
     message_content = Enum.into(message.content, %{})
     identifier = message_content["about"]
     if identifier && String.starts_with?(identifier, "@") do
-      peer = Peer.for_identifier(identifier)
+      peer = Peer.for_identifier(db, identifier)
 
       image_blob = case message_content["image"] do
         blob when is_binary(blob) -> blob

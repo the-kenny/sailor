@@ -39,7 +39,7 @@ defmodule Sailor.Rpc.HandlerRegistry.Blobs do
   # end
 
   def create_wants(peer, packet) do
-    Sailor.Blob.all_wanted()
+    Sailor.Blob.all_wanted(Sailor.Db)
     |> Enum.map(fn {blob, severity} -> Packet.respond(packet) |> Packet.body_type(:json) |> Packet.body(Jason.encode!(%{blob => severity})) end)
     |> Enum.each(&Sailor.PeerConnection.send_rpc_response(peer, &1))
 
