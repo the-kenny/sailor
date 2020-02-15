@@ -15,8 +15,18 @@ defmodule Sailor.Db do
   # TODO: Add a `Registry` to make announcement about table updates
 
   def start_link([db_path]) do
-    {:ok, db} = Exqlite.start_link(database: db_path, name: __MODULE__)
-    Exqlite.prepare_execute(db, "PRAGMA journal_mode=WAL")
+    {:ok, db} = Exqlite.start_link([
+      name: __MODULE__,
+      database: db_path,
+      show_sensitive_data_on_connection_error: true,
+      queue_target: 500,
+      queue_interval: 1000,
+      after_connect: fn db ->
+        Logger.info "Enabling WAL on DB connection #{inspect db}"
+
+        {:ok, _, _} = Exqlite.prepare_execute(db, "PRAGMA journal_mode=WAL")
+      end
+    ])
 
     if !initialized?(db) do
       Logger.info "Initializing database #{inspect db_path}"
