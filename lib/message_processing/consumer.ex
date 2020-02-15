@@ -39,7 +39,7 @@ defmodule Sailor.MessageProcessing.Consumer do
         Message.mark_processed!(db, db_id)
       end
 
-      Logger.info("Processed #{length events} messages")
+      Logger.debug("Processed #{length events} messages")
     end)
 
     # We are a consumer, so we would never emit items.

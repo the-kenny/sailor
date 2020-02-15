@@ -8,7 +8,7 @@ config :logger,
   ]
 
 config :logger, :console,
-  level: :debug,
+  level: :info,
   format: "\n$time $metadata[$level] $levelpad$message\n"
 
 config :mnesia,
