@@ -13,7 +13,7 @@ defmodule Sailor.MessageProcessing.Handlers.Contact do
 
       if contact do
         case Sailor.Keypair.from_identifier(contact) do
-          {:error, _err} -> Logger.warn "Failed ot update contact data: Invalid identifier #{contact}"
+          {:error, _err} -> Logger.warn "Failed to handle message #{message.id}: Invalid contact identifier #{inspect contact}"
           {:ok, keypair} -> update_follow!(db, message.author, Sailor.Keypair.identifier(keypair), following?)
         end
       end
