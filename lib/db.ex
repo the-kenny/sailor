@@ -26,14 +26,14 @@ defmodule Sailor.Db do
     {:ok, db}
   end
 
-  defp initialized?(db) do
+  def initialized?(db) do
     case Exqlite.query(db, "select true from sqlite_master where type = 'table' and name = ?", ["stream_messages"]) do
       {:ok, %Exqlite.Result{rows: []}} -> false
       {:ok, _} -> true
     end
   end
 
-  defp initialize!(db) do
+  def initialize!(db) do
     schema_file = Path.join([Application.app_dir(:sailor), "priv", "schema.sql"])
 
     :ok = Exqlite.execute_raw(db, File.read!(schema_file))

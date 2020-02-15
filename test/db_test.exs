@@ -4,7 +4,7 @@ defmodule Sailor.DbTest do
   alias Sailor.Db
 
   test "initialized?" do
-    {:ok, db} = Sqlitex.open(':memory:')
+    {:ok, db} = Exqlite.start_link(database: ':memory:')
 
     assert Db.initialized?(db) == false
     :ok = Db.initialize!(db)
