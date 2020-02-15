@@ -6,7 +6,7 @@
   "decimal": {:hex, :decimal, "1.7.0", "30d6b52c88541f9a66637359ddf85016df9eb266170d53105f02e4a67e00c5aa", [:mix], [], "hexpm"},
   "elixir_make": {:hex, :elixir_make, "0.5.2", "96a28c79f5b8d34879cd95ebc04d2a0d678cfbbd3e74c43cb63a76adf0ee8054", [:mix], [], "hexpm"},
   "esqlite": {:hex, :esqlite, "0.4.0", "8d0b88a774dceaec4fff0a6f63248efe811684591f186b6b21d4390be19bf1db", [:rebar3], [], "hexpm"},
-  "exqlite": {:git, "git@github.com:the-kenny/exqlite.git", "8100dbd311b7f337d2bc6ec7dff8cffcd4d89c92", []},
+  "exqlite": {:git, "git@github.com:the-kenny/exqlite.git", "84abdcbe08e7d8eef4253a4a93110b2299bee5fc", []},
   "gen_stage": {:hex, :gen_stage, "0.14.2", "6a2a578a510c5bfca8a45e6b27552f613b41cf584b58210f017088d3d17d0b14", [:mix], [], "hexpm"},
   "jason": {:hex, :jason, "1.1.2", "b03dedea67a99223a2eaf9f1264ce37154564de899fd3d8b9a21b1a6fd64afe7", [:mix], [{:decimal, "~> 1.0", [hex: :decimal, repo: "hexpm", optional: true]}], "hexpm"},
   "jiffy": {:hex, :jiffy, "1.0.1", "4f25639772ca41202f41ba9c8f6ca0933554283dd4742c90651e03471c55e341", [:rebar3], [], "hexpm"},
