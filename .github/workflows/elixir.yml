@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: elixir:1.9.1
+      image: elixir:1.10.0
       env:
         MIX_ENV: test
 
