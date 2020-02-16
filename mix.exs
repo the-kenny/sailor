@@ -26,8 +26,6 @@ defmodule Sailor.MixProject do
       {:jason, "~> 1.1"},
       {:jsone, "~> 1.5"},
       {:exqlite, git: "git@github.com:the-kenny/exqlite.git"},
-      {:poolboy, "~> 1.5.2"},
-      {:worker_pool, "~> 4.0"},
       {:gen_stage, "~> 0.14.2"},
 
       {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
