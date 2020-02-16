@@ -7,27 +7,35 @@ defmodule Sailor.MessageProcessing.Handlers.About do
   def handle!(db, _message_id, message) do
     message_content = Enum.into(message.content, %{})
     identifier = message_content["about"]
-    if identifier && String.starts_with?(identifier, "@") do
-      peer = Peer.for_identifier(identifier)
+    same_as = message_content["sameAs"]
 
-      image_blob = case message_content["image"] do
-        blob when is_binary(blob) -> blob
-        proplist when is_list(proplist) -> :proplists.get_value("link", proplist, nil)
-        _ -> nil
-      end
+    case identifier do
+      <<"@", _rest :: binary>> -> handle_identifier!(db, identifier, message_content)
+      <<"%", _rest :: binary>> -> Logger.warn "Unimplemented: About messages for other messages/gatherings #{inspect identifier}"
+      [{"feedKey", _dentifier}] -> Logger.warn "Unimplemented: About messages with identifier #{inspect identifier}"
+      nil when not is_nil(same_as) -> Logger.warn("Unimplemented: sameAs for message #{message.id}")
+      nil -> Logger.warn "Got no identifier for about message #{message.id}"
+    end
+  end
 
-      if image_blob && Blob.valid?(image_blob) do
-        Blob.mark_wanted!(db, image_blob, -1)
-      end
+  def handle_identifier!(db, identifier, message_content) do
+    peer = Peer.for_identifier(db, identifier)
 
-      peer = %{peer |
-        name: message_content["name"] || peer.name,
-        image_blob: image_blob || peer.image_blob,
-      }
-
-      Peer.persist!(db, peer)
+    image_blob = case message_content["image"] do
+      blob when is_binary(blob) -> blob
+      proplist when is_list(proplist) -> :proplists.get_value("link", proplist, nil)
+      _ -> nil
     end
 
-    # TODO: Handle `sameAs`
+    if image_blob && Blob.valid?(image_blob) do
+      Blob.mark_wanted!(db, image_blob, -1)
+    end
+
+    peer = %{peer |
+      name: message_content["name"] || peer.name,
+      image_blob: image_blob || peer.image_blob,
+    }
+
+    Peer.persist!(db, peer)
   end
 end

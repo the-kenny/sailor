@@ -37,4 +37,4 @@ create table wanted_blobs (
   severity number not null default -1
 );
 
-end;
+commit;

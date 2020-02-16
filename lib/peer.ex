@@ -1,6 +1,4 @@
 defmodule Sailor.Peer do
-  alias Sailor.Db
-
   defstruct [
     identifier: nil,
     name: nil,
@@ -8,11 +6,11 @@ defmodule Sailor.Peer do
     contacts: MapSet.new(),
   ]
 
-  @spec for_identifier(String.t()) :: %Sailor.Peer{}
-  def for_identifier(identifier) do
-    {:ok, [row]} = Db.with_db(&Sqlitex.query(&1, "select peers.*, group_concat(peer_contacts.contact) as following from peers left join peer_contacts on peers.identifier = peer_contacts.peer where peers.identifier = ?", bind: [identifier]))
+  def for_identifier(db, identifier) do
+    {:ok, result} = Exqlite.query(db, "select peers.*, group_concat(peer_contacts.contact) as following from peers left join peer_contacts on peers.identifier = peer_contacts.peer where peers.identifier = ?", [identifier])
+    [row] = result.rows
     case from_row(identifier, row) do
-      nil -> persist!(%__MODULE__{identifier: identifier})
+      nil -> persist!(db, %__MODULE__{identifier: identifier})
       peer -> peer
     end
   end
@@ -36,24 +34,23 @@ defmodule Sailor.Peer do
     end
   end
 
-  def persist!(peer), do: Db.with_db(&persist!(&1, peer))
-
   def persist!(db, peer) do
-    {:ok, _} = Sqlitex.query(db, "insert or replace into peers (identifier, name, image_blob) values (?, ?, ?)", bind: [
+    {:ok, _} = Exqlite.query(db, "insert or replace into peers (identifier, name, image_blob) values (?, ?, ?)", [
       peer.identifier,
       peer.name,
       peer.image_blob,
     ])
 
-    with {:ok, rows} <- Sqlitex.query(db, "select contact from peer_contacts where peer = ? and status = 1", bind: [peer.identifier]),
+    with {:ok, result} <- Exqlite.query(db, "select contact from peer_contacts where peer = ? and status = 1", [peer.identifier]),
+         rows = result.rows,
          old_contacts = rows |> Enum.map(&Keyword.get(&1, :contact)) |> Enum.into(MapSet.new)
     do
       for removed_contact <- MapSet.difference(old_contacts, peer.contacts) do
-        {:ok, _} = Sqlitex.query(db, "delete from peer_contacts where peer = ? and contact = ?", bind: [peer.identifier, removed_contact])
+        {:ok, _} = Exqlite.query(db, "delete from peer_contacts where peer = ? and contact = ?", [peer.identifier, removed_contact])
       end
 
       for added_contact <- MapSet.difference(peer.contacts, old_contacts) do
-        {:ok, _} = Sqlitex.query(db, "insert into peer_contacts (peer, contact) values (?, ?)", bind: [peer.identifier, added_contact])
+        {:ok, _} = Exqlite.query(db, "insert into peer_contacts (peer, contact) values (?, ?)", [peer.identifier, added_contact])
       end
     end
 

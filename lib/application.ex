@@ -39,7 +39,7 @@ defmodule Sailor.Application do
 
       {Sailor.MessageProcessing.Supervisor, []},
 
-      {Sailor.SSBServer, [port, identity_keypair, network_key]},
+      # {Sailor.SSBServer, [port, identity_keypair, network_key]},
     ]
 
     opts = [strategy: :one_for_one, name: Sailor.Supervisor]

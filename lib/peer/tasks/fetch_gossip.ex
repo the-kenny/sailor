@@ -2,7 +2,7 @@ defmodule Sailor.Peer.Tasks.FetchGossip do
   require Logger
 
   def run(peer_connection) do
-    peer = Sailor.Peer.for_identifier(Sailor.PeerConnection.identifier(peer_connection))
+    peer = Sailor.Peer.for_identifier(Sailor.Db, Sailor.PeerConnection.identifier(peer_connection))
 
     # TODO: Right now we're just fetching everything on the connected peer plus all its contacts' feeds
     streams = [peer.identifier] ++ MapSet.to_list(peer.contacts)
@@ -14,7 +14,7 @@ defmodule Sailor.Peer.Tasks.FetchGossip do
     persist_stream = fn arg ->
       case arg do
         {:ok, stream} ->
-          Sailor.Stream.persist!(stream)
+          Sailor.Stream.persist!(Sailor.Db, stream)
           Sailor.MessageProcessing.Producer.notify!()
         {:error, err} -> Logger.warn "Failed to fetch stream: #{err}"
       end
@@ -45,7 +45,7 @@ defmodule Sailor.Peer.Tasks.FetchGossip.SingleFeed do
 
   def run(peer, history_stream_id) do
     identifier = PeerConnection.identifier(peer)
-    stream = Sailor.Stream.for_peer(history_stream_id)
+    stream = Sailor.Stream.for_peer(Sailor.Db, history_stream_id)
 
     Logger.info "Running #{inspect __MODULE__} for #{identifier} for stream #{history_stream_id} starting at #{stream.sequence+1}"
 

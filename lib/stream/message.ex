@@ -152,6 +152,6 @@ defmodule Sailor.Stream.Message do
   end
 
   def mark_processed!(db, message_id) do
-    {:ok, _} = Sqlitex.query(db, "update stream_messages set processed = true where id = ?", bind: [message_id])
+    {:ok, _} = Exqlite.query(db, "update stream_messages set processed = true where id = ?", [message_id])
   end
 end
