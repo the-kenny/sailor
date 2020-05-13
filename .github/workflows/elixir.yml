@@ -1,0 +1,29 @@
+name: Elixir CI
+
+on: push
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    container:
+      image: elixir:1.10.0
+      env:
+        MIX_ENV: test
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install Dependencies
+      run: |
+        echo "deb http://deb.debian.org/debian stretch-backports main" | tee -a /etc/apt/sources.list
+        echo "deb-src http://deb.debian.org/debian stretch-backports main" | tee -a /etc/apt/sources.list
+        apt-get update
+        apt-get -t stretch-backports install -y libsodium23 libsodium-dev
+        mix local.rebar --force
+        mix local.hex --force
+        mix deps.get && mix deps.compile
+    - name: Run Tests
+      run: |
+        mix db.reset
+        mix test
